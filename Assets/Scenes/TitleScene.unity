@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -23}
+  m_AnchoredPosition: {x: 0, y: -151}
   m_SizeDelta: {x: 427.9809, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &130412373
@@ -179,10 +179,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 1}
     m_HighlightedColor: {r: 0.57254905, g: 0.6627451, b: 0.34901962, a: 1}
     m_PressedColor: {r: 0.57254905, g: 0.6627451, b: 0.34901962, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -323,8 +323,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1027540245}
-        m_TargetAssemblyTypeName: QuitGame, Assembly-CSharp
+      - m_Target: {fileID: 1027540247}
+        m_TargetAssemblyTypeName: UISwitcher, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
@@ -409,7 +409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 101}
+  m_AnchoredPosition: {x: 0, y: -27}
   m_SizeDelta: {x: 427.9809, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &235882066
@@ -433,10 +433,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 1}
     m_HighlightedColor: {r: 0.57254905, g: 0.6627451, b: 0.34901962, a: 1}
     m_PressedColor: {r: 0.57254905, g: 0.6627451, b: 0.34901962, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -747,7 +747,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 348}
+  m_AnchoredPosition: {x: -347, y: 362}
   m_SizeDelta: {x: 680.6422, y: 154.9563}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &469083392
@@ -779,8 +779,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284132244
-  m_fontColor: {r: 0.5803922, g: 0.67058825, b: 0.3529412, a: 1}
+    rgba: 4284000656
+  m_fontColor: {r: 0.5647059, g: 0.6627451, b: 0.34509805, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -916,8 +916,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1212,26 +1212,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1027540246}
-  - component: {fileID: 1027540245}
+  - component: {fileID: 1027540247}
   m_Layer: 0
-  m_Name: ButtonControls
+  m_Name: SceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1027540245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1027540244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44cf2836d73114c1ab9733fc374387ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuitGame
 --- !u!4 &1027540246
 Transform:
   m_ObjectHideFlags: 0
@@ -1247,6 +1235,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1027540247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027540244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44cf2836d73114c1ab9733fc374387ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UISwitcher
 --- !u!1 &1084573536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1313,8 +1313,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1420,7 +1420,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 226}
+  m_AnchoredPosition: {x: 0, y: 98}
   m_SizeDelta: {x: 427.9809, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1290557967
@@ -1444,10 +1444,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 1}
     m_HighlightedColor: {r: 0.57254905, g: 0.6627451, b: 0.34901962, a: 1}
     m_PressedColor: {r: 0.57254905, g: 0.6627451, b: 0.34901962, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1543,8 +1543,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -727.4835, y: -33.22638}
-  m_SizeDelta: {x: -1454.9669, y: -66.4517}
+  m_AnchoredPosition: {x: -727.4835, y: -33.764587}
+  m_SizeDelta: {x: -1454.9669, y: -67.5282}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1570969311
 MonoBehaviour:
@@ -1652,8 +1652,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1789,8 +1789,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1896,7 +1896,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 350}
+  m_AnchoredPosition: {x: 0, y: 222}
   m_SizeDelta: {x: 427.9809, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2024594875
@@ -1920,10 +1920,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 1}
     m_HighlightedColor: {r: 0.57254905, g: 0.6627451, b: 0.34901962, a: 1}
     m_PressedColor: {r: 0.57254905, g: 0.6627451, b: 0.34901962, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1942,7 +1942,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2024594876}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1027540247}
+        m_TargetAssemblyTypeName: UISwitcher, Assembly-CSharp
+        m_MethodName: ToStarting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2024594876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2843,7 +2855,7 @@ GameObject:
   - component: {fileID: 3761974662093032972}
   - component: {fileID: 9178728653796455351}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: URL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3092,6 +3104,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 341503264}
   - {fileID: 425962882}
+  - {fileID: 990803218}
   - {fileID: 1027540246}
   - {fileID: 5436684073687062081}
-  - {fileID: 990803218}

@@ -4,12 +4,22 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class QuitGame : MonoBehaviour
+public class UISwitcher : MonoBehaviour
 {
     public void ExitGame() // this quits the game
     {
         Application.Quit();
 
         Debug.Log("this exits the game");
+    }
+
+    public void ToTitle()
+    {
+        SceneManager.LoadScene(0); // 0 opens title scene
+    }
+
+    public void ToStarting()
+    {
+        SceneManager.LoadScene(1); // 1 opens the starting soon scene
     }
 }
