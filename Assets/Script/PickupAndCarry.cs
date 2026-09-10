@@ -1,35 +1,54 @@
+using System;
 using UnityEngine;
 
 public class PickupAndCarry : MonoBehaviour
 {
-    private Rigidbody rb;
+    [SerializeField]private Rigidbody rb;
     public Transform player;
+    public Transform playerCamera;
     private BoxCollider bc;
+    public float distanceFromCamera;
+
+
+    private bool isCarried=false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         bc = GetComponent<BoxCollider>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        playerCamera = GameObject.FindGameObjectWithTag("PlayerCamera").GetComponent<Transform>();
     }
 
     [ContextMenu(nameof(Pickup))]
-    void Pickup()
+    public void Pickup()
     {
         SetObjectPhysics(false, false, false, false);
-        transform.position = player.position+new Vector3(0f,0.14f,0.80f);
+
+        transform.position = Vector3.Lerp(transform.position, player.position+(player.forward*distanceFromCamera), 0.1f);
+        transform.LookAt(player);
+
+        isCarried=true;
     }
     [ContextMenu(nameof(Throw))]
-    void Throw()
+    public void Throw()
     {
         SetObjectPhysics(true, true, true, true);
-        rb.AddForce(0, 0, 999f);
+        rb.AddForce(playerCamera.forward*999f);
+        isCarried=false;
     }
-
+    void Update()
+    {
+        if (isCarried)
+        {
+            Pickup();
+        }
+    }
     void SetObjectPhysics(bool grav, bool lin, bool collide, bool rota)
     {
         rb.useGravity=grav;
         if(!lin){rb.linearVelocity=Vector3.zero;}
         bc.isTrigger=!collide;
-        if(!rota){rb.freezeRotation=true;}else{rb.freezeRotation=false;}
+        // if(!rota){rb.freezeRotation=true;}else{rb.freezeRotation=false;}
     }
 }
