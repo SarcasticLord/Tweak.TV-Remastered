@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(EnemySpawn());
+        //StartCoroutine(EnemySpawn());
     }
 
     // Update is called once per frame
@@ -23,6 +23,17 @@ public class EnemySpawner : MonoBehaviour
     {
         
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            {
+                StartCoroutine(EnemySpawn());
+            }
+        }
+    }
+    
 
     IEnumerator EnemySpawn() 
     {
