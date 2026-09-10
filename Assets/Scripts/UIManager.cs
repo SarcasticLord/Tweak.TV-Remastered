@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class UISwitcher : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     public void ExitGame() // this quits the game
     {
