@@ -22,4 +22,14 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(1); // 1 opens the starting soon scene
     }
+
+    public void ToStats()
+    {
+        SceneManager.LoadScene(4); // 4 opens the stats scene
+    }
+
+    public void ToSettings()
+    {
+        SceneManager.LoadScene(5); // 5 opens the settings scene
+    }
 }
