@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Windows;
 
 public class PlayerMovementScript : MonoBehaviour
 {

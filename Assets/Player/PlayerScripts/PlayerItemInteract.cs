@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerItemInteract : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class PlayerItemInteract : MonoBehaviour
     public GameObject heldObject;
     private PickupAndCarry heldObjectScript;
     public GameObject playerCamera;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
 
@@ -35,8 +37,11 @@ public class PlayerItemInteract : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.CompareTag("KillZone"))
+        {
+            SceneManager.LoadScene("DeathScreen");
+        }
     }
 }
