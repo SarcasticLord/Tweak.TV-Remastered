@@ -14,7 +14,7 @@ public class PlayerMovementScript : MonoBehaviour
     [SerializeField] private InputActionReference jumpAction;
 
     //States
-    private enum PlayerState {IDLE, RUN, SLIDE, DASH, JUMP};
+    private enum PlayerState {IDLE, RUN, SLIDE, DASH};
     private PlayerState _currentState = PlayerState.IDLE;
 
     //Player Ingame Stats
@@ -22,7 +22,10 @@ public class PlayerMovementScript : MonoBehaviour
 
     private float _verticalVelocity;
     private bool _isGrounded;
-
+    
+    //Coyote timer variables
+    private bool _canJump;
+    private float _coyoteTimer = 1.0f;
 
     //Player Inputs
     private Vector2 _moveInput;
@@ -143,6 +146,7 @@ public class PlayerMovementScript : MonoBehaviour
         }
         else
         {
+            //On Jump pressed
             if (_isGrounded)
             {
                 _verticalVelocity = playerJumpForce;
