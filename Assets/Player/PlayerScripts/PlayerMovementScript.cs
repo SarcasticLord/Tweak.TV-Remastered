@@ -60,7 +60,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         //Ground Check
         _isGrounded = _controller.isGrounded;
