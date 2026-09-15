@@ -13,29 +13,47 @@ public class EnemySpawner : MonoBehaviour
     public int enemyCount = 0;
     public int maxEnemies = 10;
 
+    private Coroutine EnemyCoroutine;
+
     void Start()
     {
         //StartCoroutine(EnemySpawn());
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other) // when the player walks into the circle itll spawn an enemy
     {
         if (other.CompareTag("Player"))
         {
             {
-                StartCoroutine(EnemySpawn());
+                EnemyCoroutine = StartCoroutine(EnemySpawn());
+                Debug.Log("start");
             }
+        } 
+        
+    }
+
+    void OnTriggerExit(Collider other) // when you leave the circle it stops spawning
+    {
+        if (other.CompareTag("Player")){
+
+            if (EnemyCoroutine != null)
+            {
+                StopCoroutine(EnemyCoroutine);
+                EnemyCoroutine = null;
+            }
+            Debug.Log("stopping");
         }
     }
+
+
     
 
-    IEnumerator EnemySpawn() 
+    IEnumerator EnemySpawn() // this spawns them once then will spawn more after x seconds
     {
         while (true)
         {
@@ -45,7 +63,7 @@ public class EnemySpawner : MonoBehaviour
                 enemyCount++;
             
             }
-            yield return new WaitForSeconds(500f);  
+            yield return new WaitForSeconds(5f);  
         } 
     }
 }

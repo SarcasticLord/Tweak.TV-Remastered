@@ -84,7 +84,7 @@ public class PlayerMovementScript : MonoBehaviour
         }
 
         //Player State Machine
-        Debug.Log("CurrentState:" + _currentState);
+        //Debug.Log("CurrentState:" + _currentState);
         switch (_currentState)
         {
             case PlayerState.IDLE:
