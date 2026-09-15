@@ -33,7 +33,7 @@ public class PlayerMovementScript : MonoBehaviour
     public float playerSlideSpeed = 150f;
     public float playerRotationSpeed = 1.0f;
 
-    public float playerJumpForce = 10f;
+    public float playerJumpForce = 9f;
     public float playerGravity = -12f;
     public float initialFallVelocity = -3f;
 
@@ -102,6 +102,8 @@ public class PlayerMovementScript : MonoBehaviour
                     _currentState = PlayerState.IDLE;
                 
                 break;
+
+            
         }
 
         Vector3 finalMove = inputDirection * _speed;
