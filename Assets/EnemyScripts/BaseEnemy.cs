@@ -9,24 +9,24 @@ public class BaseEnemy : MonoBehaviour
     //Component variables
     private Rigidbody rb;
     private NavMeshAgent agent;
-    private Vector3 wanderTarget;
-    public Animator animator;
+   
+
     protected bool canUseLinks = true;
     private bool isJumping = false;
-    private float jumpTime = 3f;
-    private float jumpHeight = 3f;
-
-    //General variables
-    public float walkSpeed = 6;
-    public float runSpeed = 9;
+    public float jumpTime = 3f;
+    public float jumpHeight = 3f;
     
     //Wander variables
     public float wanderRadius = 1f;
     public float wanderInterval = 5f;
     public float wanderTimer;
     public float idleTime = 10f;
-    
+
     //Chase variables
+    public float detectionAngle = 60f;
+    public float detectionRange = 10f;
+    public Transform chaseTarget;
+    private bool targetVisible = false;
 
     //Attack variables
 
@@ -38,21 +38,12 @@ public class BaseEnemy : MonoBehaviour
     public float offset = 2;
     public float attackCooldown = 3f;
 
-    public LayerMask playerMask;
-    public LayerMask obstacleMask;
+    public LayerMask groundMask;
 
-    public Transform[] waypoints;
-    int m_CurrentWaypointIndex;
+    public Transform rayOrigin;
 
-    Vector3 playerLastPosition = Vector3.zero;
-    Vector3 m_PlayerPosition;
-
-    float m_WaitTime;
-    float m_TimeToRotate;
-    bool m_PlayerInRange;
-    bool m_PlayerNear;
-    bool m_IsPatrol;
-    bool m_CaughtPlayer;
+    //Optional
+    public Animator animator;
 
     private void Awake()
     {
@@ -60,7 +51,7 @@ public class BaseEnemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         if (agent != null)
         {
-            agent.speed = walkSpeed;
+            agent.speed = wanderSpeed;
             agent.autoTraverseOffMeshLink = false;
         }
     }
@@ -70,22 +61,30 @@ public class BaseEnemy : MonoBehaviour
         currentState = EnemyState.Wander;
         ChooseNewWanderPoint();
     }
-
+    private void FixedUpdate()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(rayOrigin.position, Vector3.down, out hit, 100f, groundMask))
+        {
+            transform.up = hit.normal; // align up to NavMesh normal
+        }
+    }
     void Update()
     {
         HandleLinks();
-        if (isJumping)
+            if (isJumping)
             return;
-
-        FindTarget();
+        Look();
 
         switch (currentState)
         {
             case EnemyState.Wander:
+                agent.speed = wanderSpeed;
                 WanderBehavior();
                 break;
 
             case EnemyState.Chase:
+                agent.speed = chaseSpeed;
                 ChaseBehavior();
                 break;
 
@@ -95,10 +94,50 @@ public class BaseEnemy : MonoBehaviour
         }
         UpdateAnimations();
     }
+
+    public void Look()
+    {
+        Vector3 forward = transform.forward;
+        Vector3 toPlayer = (chaseTarget.position - transform.position).normalized;
+        float angle = Vector3.Angle(forward, toPlayer);
+        float distance = Vector3.Distance(transform.position, chaseTarget.position);
+
+        bool inCone = angle < detectionAngle;
+        bool inRange = distance <= detectionRange;
+
+        if (inCone && inRange)
+        {
+            targetVisible = true;
+            Debug.Log("Player Detected!");
+        } else
+        {
+            targetVisible = false;
+        }
+    }
+
+    protected virtual void ChaseBehavior()
+    {
+        if (animator != null)
+            animator.SetInteger("EnemyState", (int)EnemyState.Chase);
+
+        if (!agent.hasPath && targetVisible)
+        {
+            agent.SetDestination(chaseTarget.position);
+        }
+    }
+
     protected virtual void WanderBehavior()
     {
+        if (animator != null)
+            animator.SetInteger("EnemyState", (int)EnemyState.Wander);
+
         if (isJumping)
             return;
+
+        if (targetVisible)
+        {
+            currentState = EnemyState.Chase;
+        }
 
         wanderTimer += Time.deltaTime;
 
@@ -108,6 +147,7 @@ public class BaseEnemy : MonoBehaviour
         {
             ChooseNewWanderPoint();
         }
+        //Debug.Log(agent.pathPending);
     }
 
     protected virtual void ChooseNewWanderPoint()
@@ -139,23 +179,8 @@ public class BaseEnemy : MonoBehaviour
             }
         }
     }
-
-    void CaughtPlayer()
-    {
-        m_CaughtPlayer = true;
-    }
-    void Move(float speed)
-    {
-        agent.isStopped = false;
-        agent.speed = speed;
-    }
-
     
 
-    void FindTarget()
-    {
-        return;
-    }
     protected virtual void CreateNewWanderPoint()
     {
         wanderTimer = 0f;
@@ -174,10 +199,6 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    void ChaseBehavior()
-    {
-
-    }
     void AttackBehavior()
     {
 
@@ -201,6 +222,7 @@ public class BaseEnemy : MonoBehaviour
 
     protected virtual IEnumerator JumpLink()
     {
+        Vector3 currentDestination = agent.destination;
         isJumping = true;
 
         OffMeshLinkData data = agent.currentOffMeshLinkData;
@@ -229,12 +251,21 @@ public class BaseEnemy : MonoBehaviour
 
         transform.position = endPos;
         agent.CompleteOffMeshLink();
-        agent.Warp(endPos);
-
         agent.updatePosition = true;
         agent.isStopped = false;
+        
+        if (currentState == EnemyState.Wander)
+        {
+            MoveTo(currentDestination);
+        }
+
+        
 
         isJumping = false;
     }
-
+ 
+    public void MoveTo(Vector3 destination)
+    {
+        agent.SetDestination(destination);
+    }
 }

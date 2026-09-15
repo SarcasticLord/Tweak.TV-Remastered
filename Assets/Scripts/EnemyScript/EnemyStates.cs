@@ -118,24 +118,24 @@ public class EnemyStates : MonoBehaviour
         }
     }
 
-    //void ChaseBehavior(float distanceToPlayer)
-    //{
-    //    agent.speed = chaseSpeed;
-    //    animator.SetBool("IsChasing", true);
-    //    if (distanceToPlayer <= attackRange)
-    //    {
-    //        currentState = EnemyState.Attack;
-    //        agent.ResetPath();
-    //        return;
-    //    }
-    //    else if (distanceToPlayer > detectionRange)
-    //    {
-    //        currentState = EnemyState.Wander;
-    //        SetNewWanderTarget();
-    //        return;
-    //    }
-    //    agent.SetDestination(player.position);
-    //}
+    void ChaseBehavior(float distanceToPlayer)
+    {
+        agent.speed = chaseSpeed;
+        animator.SetBool("IsChasing", true);
+        if (distanceToPlayer <= attackRange)
+        {
+            currentState = EnemyState.Attack;
+            agent.ResetPath();
+            return;
+        }
+        else if (distanceToPlayer > detectionRange)
+        {
+            currentState = EnemyState.Wander;
+            SetNewWanderTarget();
+            return;
+        }
+        agent.SetDestination(player.position);
+    }
 
     //void AttackBehavior(float distanceToPlayer)
     //{
