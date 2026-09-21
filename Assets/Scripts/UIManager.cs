@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+
+
     public void ExitGame() // this quits the game
     {
         Application.Quit();
@@ -32,4 +34,6 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(5); // 5 opens the settings scene
     }
+
+    
 }
