@@ -24,8 +24,8 @@ public class PlayerMovementScript : MonoBehaviour
     private bool _isGrounded;
     
     //Coyote timer variables
-    private bool _canJump;
-    private float _coyoteTimer = 1.0f;
+    private float _coyoteTimer;
+    
 
     //Player Inputs
     private Vector2 _moveInput;
@@ -39,6 +39,7 @@ public class PlayerMovementScript : MonoBehaviour
     public float playerJumpForce = 9f;
     public float playerGravity = -12f;
     public float initialFallVelocity = -3f;
+    public float coyoteTime = 0.3f;
 
     public float acceleration = 10.0f;
 
@@ -60,7 +61,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         _controller = GetComponent<CharacterController>();
         _playerInput = GetComponent<PlayerInput>();
-
+        _coyoteTimer = coyoteTime;
     }
 
     private void FixedUpdate()
@@ -68,7 +69,18 @@ public class PlayerMovementScript : MonoBehaviour
         //Ground Check
         _isGrounded = _controller.isGrounded;
 
-        ApplyGravity();
+        //Allow player the ability to jump a little bit after falling off a ledge
+        if(_coyoteTimer > 0)
+        {
+            _coyoteTimer -= Time.deltaTime; 
+        }
+        if(_isGrounded)
+        {
+            _coyoteTimer = coyoteTime;
+        }
+
+
+            ApplyGravity();
 
         Vector3 inputDirection = (transform.right * _moveInput.x + transform.forward * _moveInput.y).normalized;
 
@@ -137,7 +149,7 @@ public class PlayerMovementScript : MonoBehaviour
     void OnJumpPressed(InputAction.CallbackContext jumpValue)
     {
         //Variable jump height
-        if(jumpValue.ReadValue<float>() == 0)
+        if (jumpValue.ReadValue<float>() == 0)
         {
             if (!_isGrounded && _verticalVelocity > 0)
             {
@@ -147,11 +159,12 @@ public class PlayerMovementScript : MonoBehaviour
         else
         {
             //On Jump pressed
-            if (_isGrounded)
-            {
-                _verticalVelocity = playerJumpForce;
+            if (_isGrounded || _coyoteTimer > 0)
+            {   
+                _verticalVelocity = playerJumpForce;   
             }
         }
-
+        //Prevent double jump
+        _coyoteTimer = 0;
     }
 }
