@@ -99,6 +99,7 @@ public class PlayerMovementScript : MonoBehaviour
         }
 
         //Player State Machine
+        //Debug.Log("CurrentState:" + _currentState);
         switch (_currentState)
         {
             case PlayerState.IDLE:
@@ -108,6 +109,8 @@ public class PlayerMovementScript : MonoBehaviour
                 //Switch to RUN state
                 if (_moveInput != Vector2.zero)
                     _currentState = PlayerState.RUN;
+
+                    
 
                 break;
             case PlayerState.RUN:
@@ -143,6 +146,7 @@ public class PlayerMovementScript : MonoBehaviour
     void OnMove(InputValue movementValue)
     {
         _moveInput = movementValue.Get<Vector2>();
+        //Debug.Log("MOVE");
     }
 
     //Retrieve jump input
