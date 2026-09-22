@@ -63,12 +63,13 @@ public class BaseEnemy : MonoBehaviour
     public Transform rayOrigin;
 
     //Optional
-    public Animator animator;
+    private Animator animator;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
         if (agent != null)
         {
             agent.speed = wanderSpeed;
@@ -137,7 +138,6 @@ public class BaseEnemy : MonoBehaviour
 
     protected virtual void ChaseBehavior()
     {
-
         if (animator != null)
             animator.SetInteger("EnemyState", (int)EnemyState.Chase);
 
