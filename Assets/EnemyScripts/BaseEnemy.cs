@@ -31,8 +31,9 @@ public class BaseEnemy : MonoBehaviour
 
     //Attack variables
     public float attackRange = 2f;
-
-
+    public float cooldown = 3f;
+    private float attackTimer;
+    private bool canAttack;
 
     //Detection variables
     public float detectionAngle = 60f;
@@ -48,6 +49,8 @@ public class BaseEnemy : MonoBehaviour
 
     public float targetMemoryTime = 3f;
     private float lastSeenTimer;
+
+    private Vector3 lastTargetPos;
 
 
 
@@ -70,6 +73,9 @@ public class BaseEnemy : MonoBehaviour
         {
             agent.speed = wanderSpeed;
             agent.autoTraverseOffMeshLink = false;
+            agent.stoppingDistance = attackRange;
+            agent.autoBraking = false;
+            agent.updateRotation = false;
         }
     }
 
@@ -81,7 +87,9 @@ public class BaseEnemy : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(agent.updatePosition);
+        //Debug.Log(currentState);
+        RotateTowardsMovement();
+        
         HandleLinks();
         
         if (isJumping)
@@ -89,6 +97,7 @@ public class BaseEnemy : MonoBehaviour
         
         lookTimer += Time.deltaTime;
         lastSeenTimer += Time.deltaTime;
+        attackTimer += Time.deltaTime;
 
         if (lookTimer >= lookInterval)
         {
@@ -96,6 +105,7 @@ public class BaseEnemy : MonoBehaviour
             Look();
             
         }
+
 
         switch (currentState)
         {
@@ -111,6 +121,11 @@ public class BaseEnemy : MonoBehaviour
 
             case EnemyState.Attack:
                 AttackBehavior();
+                if (attackTimer >= cooldown)
+                {
+                    canAttack = true;
+                    attackTimer = 0f;
+                }
                 break;
         }
 
@@ -122,6 +137,7 @@ public class BaseEnemy : MonoBehaviour
 
     protected virtual void ChaseBehavior()
     {
+
         if (animator != null)
             animator.SetInteger("EnemyState", (int)EnemyState.Chase);
 
@@ -133,6 +149,7 @@ public class BaseEnemy : MonoBehaviour
 
         if (!targetVisible)
         {
+            agent.SetDestination(lastTargetPos);
             if (lastSeenTimer >= targetMemoryTime)
             {
                 currentState = EnemyState.Wander;
@@ -146,16 +163,20 @@ public class BaseEnemy : MonoBehaviour
         float distanceToTarget =
             Vector3.Distance(transform.position,
                              chaseTarget.position);
-
+ 
         if (distanceToTarget <= attackRange)
         {
             currentState = EnemyState.Attack;
             agent.ResetPath();
             return;
         }
+        ChaseTarget();
+    }
 
+    private void ChaseTarget()
+    {
         NavMeshHit hit;
- 
+
         if (NavMesh.SamplePosition(
                 chaseTarget.position,
                 out hit,
@@ -163,7 +184,7 @@ public class BaseEnemy : MonoBehaviour
                 NavMesh.AllAreas))
         {
             NavMeshPath path = new NavMeshPath();
- 
+
             if (agent.CalculatePath(hit.position, path) &&
                 path.status != NavMeshPathStatus.PathInvalid)
             {
@@ -192,7 +213,6 @@ public class BaseEnemy : MonoBehaviour
         if (ReachedDestination())
         {
             agent.ResetPath();
-            Debug.Log("ResetPath Called");
             wanderTimer += Time.deltaTime;
 
             if (wanderTimer >= idleTime)
@@ -202,33 +222,51 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    protected virtual void ChooseNewWanderPoint()
+    protected virtual void AttackBehavior()
     {
-        wanderTimer = 0f;
 
-        Vector3 randomDirection = transform.position +  Random.insideUnitSphere * wanderRadius;
+        if (animator != null)
+            animator.SetInteger("EnemyState", (int)EnemyState.Attack);
 
-        if (NavMesh.SamplePosition(
-            randomDirection,
-            out NavMeshHit hit,
-            wanderRadius,
-            NavMesh.AllAreas))
+        if (!targetVisible)
         {
-            NavMeshPath path = new NavMeshPath();
-            // Verify the destination is reachable
-            if (agent.CalculatePath(hit.position, path) &&
-                path.status == NavMeshPathStatus.PathComplete)
+            if (lastSeenTimer <= targetMemoryTime)
             {
-                currentDestination = hit.position;
-                agent.SetDestination(currentDestination);
+                currentState = EnemyState.Chase;
+                ChaseTarget();
             }
+            return;
         }
-    }
-    
 
-    void AttackBehavior()
-    {
+        float distanceToTarget =
+            Vector3.Distance(transform.position,
+                             chaseTarget.position);
+ 
+        if (distanceToTarget > attackRange)
+        {
+            currentState = EnemyState.Chase;
+            return;
+        }
 
+        if (canAttack)
+        {
+            agent.velocity = Vector3.zero;
+            Debug.Log("attack function");
+            
+            canAttack = false;
+        }
+        Vector3 direction =
+            chaseTarget.position - transform.position;
+ 
+        direction.y = 0f;
+ 
+        Quaternion lookRotation =
+            Quaternion.LookRotation(direction);
+ 
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            lookRotation,
+            10f * Time.deltaTime);
     }
 
     void UpdateAnimations()
@@ -245,6 +283,19 @@ public class BaseEnemy : MonoBehaviour
             StartCoroutine(JumpLink());
         }
         
+    }
+    private void RotateTowardsMovement()
+    {
+        if (agent.velocity.sqrMagnitude < 0.01f)
+            return;
+
+        Quaternion targetRotation =
+            Quaternion.LookRotation(agent.velocity.normalized);
+
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            targetRotation,
+            8f * Time.deltaTime);
     }
 
     protected virtual IEnumerator JumpLink()
@@ -280,14 +331,11 @@ public class BaseEnemy : MonoBehaviour
         agent.CompleteOffMeshLink();
         agent.updatePosition = true;
         agent.isStopped = false;
-        
+
         if (currentState == EnemyState.Wander)
         {
             MoveTo(currentDestination);
         }
-
-        
-
         isJumping = false;
     }
  
@@ -341,41 +389,36 @@ public class BaseEnemy : MonoBehaviour
                 obstructionMask))
             {
                 chaseTarget = target.transform;
-
                 targetVisible = true;
                 lastSeenTimer = 0f;
+                lastTargetPos = target.transform.position;
                 return;
             }
         }
-
     }
 
-    protected virtual bool TryGetChasePosition(
-    out Vector3 chasePosition)
+    protected virtual void ChooseNewWanderPoint()
     {
-        chasePosition = Vector3.zero;
+        wanderTimer = 0f;
 
-        NavMeshHit hit;
+        Vector3 randomDirection = transform.position + Random.insideUnitSphere * wanderRadius;
 
-        if (!NavMesh.SamplePosition(
-                chaseTarget.position,
-                out hit,
-                10f,
-                NavMesh.AllAreas))
-            return false;
-
-        NavMeshPath path = new NavMeshPath();
-
-        if (!agent.CalculatePath(hit.position, path))
-            return false;
-
-        if (path.status == NavMeshPathStatus.PathInvalid)
-            return false;
-
-        chasePosition = hit.position;
-        return true;
+        if (NavMesh.SamplePosition(
+            randomDirection,
+            out NavMeshHit hit,
+            wanderRadius,
+            NavMesh.AllAreas))
+        {
+            NavMeshPath path = new NavMeshPath();
+            // Verify the destination is reachable
+            if (agent.CalculatePath(hit.position, path) &&
+                path.status == NavMeshPathStatus.PathComplete)
+            {
+                currentDestination = hit.position;
+                agent.SetDestination(currentDestination);
+            }
+        }
     }
-
 
     private void OnDrawGizmosSelected()
     {
