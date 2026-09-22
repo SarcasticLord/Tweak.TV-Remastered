@@ -7,8 +7,11 @@ public class PlayerMovementScript : MonoBehaviour
     private PlayerInput _playerInput;
     private CharacterController _controller;
 
+    [Header("Inputs")]
+    [SerializeField] private InputActionReference jumpAction;
+
     //States
-    private enum PlayerState {IDLE, RUN, SLIDE, DASH, JUMP};
+    private enum PlayerState {IDLE, RUN, SLIDE, DASH};
     private PlayerState _currentState = PlayerState.IDLE;
 
     //Player Ingame Stats
@@ -16,38 +19,65 @@ public class PlayerMovementScript : MonoBehaviour
 
     private float _verticalVelocity;
     private bool _isGrounded;
-
+    
+    //Coyote timer variables
+    private float _coyoteTimer;
+    
 
     //Player Inputs
     private Vector2 _moveInput;
 
-    //Player base stats
+    [Header("Player Base Stats")]
     public float playerHealth = 100f;
     public float playerSpeed = 5f;
     public float playerSlideSpeed = 150f;
     public float playerRotationSpeed = 1.0f;
 
-    public float playerJumpForce = 6f;
+    public float playerJumpForce = 9f;
     public float playerGravity = -12f;
-    public float initialFallVelocity = -2f;
+    public float initialFallVelocity = -3f;
+    public float coyoteTime = 0.3f;
 
     public float acceleration = 10.0f;
-    
+
+
+    private void OnEnable()
+    {
+        jumpAction.action.performed += OnJumpPressed;
+        jumpAction.action.canceled += OnJumpPressed;
+    }
+
+    private void OnDisable()
+    {
+        jumpAction.action.performed -= OnJumpPressed;
+        jumpAction.action.canceled -= OnJumpPressed;
+    }
 
 
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
         _playerInput = GetComponent<PlayerInput>();
-
+        _coyoteTimer = coyoteTime;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        ApplyGravity();
-
         //Ground Check
         _isGrounded = _controller.isGrounded;
+
+        //Allow player the ability to jump a little bit after falling off a ledge
+        if(_coyoteTimer > 0)
+        {
+            _coyoteTimer -= Time.deltaTime; 
+        }
+        if(_isGrounded)
+        {
+            _coyoteTimer = coyoteTime;
+        }
+
+
+            ApplyGravity();
 
         Vector3 inputDirection = (transform.right * _moveInput.x + transform.forward * _moveInput.y).normalized;
 
@@ -84,6 +114,8 @@ public class PlayerMovementScript : MonoBehaviour
                     _currentState = PlayerState.IDLE;
                 
                 break;
+
+            
         }
 
         Vector3 finalMove = inputDirection * _speed;
@@ -93,12 +125,15 @@ public class PlayerMovementScript : MonoBehaviour
 
     void ApplyGravity()
     {
-        if(_isGrounded && _verticalVelocity < 0)
+        //Keep gravity to an initial value while grounded
+        if (_isGrounded && _verticalVelocity < 0)
         {
             _verticalVelocity = initialFallVelocity;
         }
 
-        _verticalVelocity += playerGravity * Time.deltaTime;
+        //Exponentially increase gravity as you fall
+        _verticalVelocity += 2 * playerGravity * Time.deltaTime;
+
     }
 
     //Retrieve move input
@@ -108,11 +143,25 @@ public class PlayerMovementScript : MonoBehaviour
     }
 
     //Retrieve jump input
-    void OnJump(InputValue jumpValue)
+    void OnJumpPressed(InputAction.CallbackContext jumpValue)
     {
-        if (_isGrounded)
+        //Variable jump height
+        if (jumpValue.ReadValue<float>() == 0)
         {
-            _verticalVelocity = playerJumpForce;
+            if (!_isGrounded && _verticalVelocity > 0)
+            {
+                _verticalVelocity = 0;
+            }
         }
+        else
+        {
+            //On Jump pressed
+            if (_isGrounded || _coyoteTimer > 0)
+            {   
+                _verticalVelocity = playerJumpForce;   
+            }
+        }
+        //Prevent double jump
+        _coyoteTimer = 0;
     }
 }
