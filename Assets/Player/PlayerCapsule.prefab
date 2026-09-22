@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2273673707435137200}
   m_Layer: 0
   m_Name: PlayerCamera
-  m_TagString: Untagged
+  m_TagString: PlayerCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 8420447848467802541}
   - component: {fileID: 8784038733276363321}
   - component: {fileID: 703740887833873743}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerCapsule
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5793440834577206791}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -269,6 +269,7 @@ MonoBehaviour:
   playerJumpForce: 9
   playerGravity: -12
   initialFallVelocity: -2
+  coyoteTime: 0.3
   acceleration: 10
 --- !u!114 &8784038733276363321
 MonoBehaviour:

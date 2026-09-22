@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9074840247617857123}
   - component: {fileID: 2659155008492936062}
   - component: {fileID: 5484015092664076405}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: BaseEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3732554126820547295}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.84975415, z: -0, w: 0.52717924}
+  m_LocalRotation: {x: 0, y: -0.8497547, z: 0, w: 0.5271783}
   m_LocalPosition: {x: -4.2, y: 2.24, z: -7.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -214,14 +214,14 @@ MonoBehaviour:
   detectionRange: 15
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 64
   targetMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8
   lookInterval: 0.3
   targetMemoryTime: 3
   groundMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 64
   rayOrigin: {fileID: 8347750859488450031}
   animator: {fileID: 0}
