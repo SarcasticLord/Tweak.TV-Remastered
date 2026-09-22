@@ -7,11 +7,11 @@ using UnityEngine.Windows;
 public class PlayerMovementScript : MonoBehaviour
 {
     //Components
-    private PlayerInput _playerInput;
     private CharacterController _controller;
 
     [Header("Inputs")]
     [SerializeField] private InputActionReference jumpAction;
+    [SerializeField] private InputActionReference slideAction;
 
     //States
     private enum PlayerState {IDLE, RUN, SLIDE, DASH};
@@ -25,10 +25,10 @@ public class PlayerMovementScript : MonoBehaviour
     
     //Coyote timer variables
     private float _coyoteTimer;
-    
 
     //Player Inputs
     private Vector2 _moveInput;
+    private bool _slideInput;
 
     [Header("Player Base Stats")]
     public float playerHealth = 100f;
@@ -48,24 +48,30 @@ public class PlayerMovementScript : MonoBehaviour
     {
         jumpAction.action.performed += OnJumpPressed;
         jumpAction.action.canceled += OnJumpPressed;
+        slideAction.action.performed += OnSlidePressed;
+        slideAction.action.canceled += OnSlidePressed;
     }
 
     private void OnDisable()
     {
         jumpAction.action.performed -= OnJumpPressed;
         jumpAction.action.canceled -= OnJumpPressed;
+        slideAction.action.performed -= OnSlidePressed;
+        slideAction.action.canceled -= OnSlidePressed;
     }
 
 
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
-        _playerInput = GetComponent<PlayerInput>();
         _coyoteTimer = coyoteTime;
     }
 
     private void FixedUpdate()
     {
+
+        Debug.Log(_currentState);
+
         //Ground Check
         _isGrounded = _controller.isGrounded;
 
@@ -79,8 +85,7 @@ public class PlayerMovementScript : MonoBehaviour
             _coyoteTimer = coyoteTime;
         }
 
-
-            ApplyGravity();
+        ApplyGravity();
 
         Vector3 inputDirection = (transform.right * _moveInput.x + transform.forward * _moveInput.y).normalized;
 
@@ -115,10 +120,20 @@ public class PlayerMovementScript : MonoBehaviour
                 //Switch to IDLE state
                 if (_moveInput == Vector2.zero)
                     _currentState = PlayerState.IDLE;
-                
-                break;
 
-            
+                if(_slideInput == true)
+                    _currentState = PlayerState.SLIDE;
+                
+
+                break;
+            case PlayerState.SLIDE:
+                
+                targetSpeed = playerSlideSpeed;
+
+                //Switch to RUN state
+                if(_slideInput == false)
+                    _currentState = PlayerState.RUN;
+                break;
         }
 
         Vector3 finalMove = inputDirection * _speed;
@@ -143,6 +158,18 @@ public class PlayerMovementScript : MonoBehaviour
     void OnMove(InputValue movementValue)
     {
         _moveInput = movementValue.Get<Vector2>();
+    }
+
+    void OnSlidePressed(InputAction.CallbackContext slideValue)
+    {
+        if (slideValue.ReadValue<float>() == 0)
+        {
+            _slideInput = false;
+        }
+        else
+        {
+            _slideInput = true;
+        }
     }
 
     //Retrieve jump input
