@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
@@ -84,11 +85,14 @@ public class BaseEnemy : MonoBehaviour
     {
         currentState = EnemyState.Wander;
         ChooseNewWanderPoint();
+        if(animator != null)
+        {
+            StartCoroutine(UpdateAnimations());
+        }
     }
 
     void Update()
     {
-        //Debug.Log(currentState);
         RotateTowardsMovement();
         
         HandleLinks();
@@ -130,7 +134,6 @@ public class BaseEnemy : MonoBehaviour
                 break;
         }
 
-        UpdateAnimations();
     }
 
 
@@ -138,8 +141,6 @@ public class BaseEnemy : MonoBehaviour
 
     protected virtual void ChaseBehavior()
     {
-        if (animator != null)
-            animator.SetInteger("EnemyState", (int)EnemyState.Chase);
 
         if (chaseTarget == null)
         {
@@ -196,8 +197,6 @@ public class BaseEnemy : MonoBehaviour
 
     protected virtual void WanderBehavior()
     {
-        if (animator != null)
-            animator.SetInteger("EnemyState", (int)EnemyState.Wander);
 
         if (targetVisible)
         {
@@ -269,10 +268,6 @@ public class BaseEnemy : MonoBehaviour
             10f * Time.deltaTime);
     }
 
-    void UpdateAnimations()
-    {
-
-    }
 
     protected virtual void HandleLinks()
     {
@@ -417,6 +412,30 @@ public class BaseEnemy : MonoBehaviour
                 currentDestination = hit.position;
                 agent.SetDestination(currentDestination);
             }
+        }
+    }
+    private IEnumerator UpdateAnimations()
+    {
+        while(this.isActiveAndEnabled)
+        {
+            Debug.Log("Updating Animations");
+            Vector3 currentVel = agent.velocity;
+
+            if (currentVel.sqrMagnitude > 0f)
+            {
+                animator.SetInteger("EnemyState", 1);
+            }
+            else
+            {
+                animator.SetInteger("EnemyState", 0);
+            }
+
+            if ()
+            {
+
+            }
+
+            yield return new WaitForSeconds(.5f);
         }
     }
 
