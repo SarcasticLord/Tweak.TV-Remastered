@@ -39,9 +39,17 @@ public class PlayerItemInteract : MonoBehaviour
     // Update is called once per frame
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("KillZone"))
+        switch (other.gameObject.tag)
         {
-            SceneManager.LoadScene("DeathScreen");
+            case "KillZone":
+                SceneManager.LoadScene("DeathScreen");
+                break;
+            case "AttackZone":
+                GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<ViewTracker>().baseOffset-=100;
+                break;
+            default:
+                break;
         }
+        
     }
 }
