@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 public class BaseEnemy : MonoBehaviour
 {
     enum EnemyState { Wander, Chase, Attack }
@@ -15,28 +16,44 @@ public class BaseEnemy : MonoBehaviour
     private bool isJumping = false;
     public float jumpTime = 3f;
     public float jumpHeight = 3f;
-    
+
     //Wander variables
+    public float wanderSpeed = 1f;
     public float wanderRadius = 1f;
     public float wanderInterval = 5f;
     public float wanderTimer;
+    public float wanderTolerance = 1f;
     public float idleTime = 10f;
 
     //Chase variables
-    public float detectionAngle = 60f;
-    public float detectionRange = 10f;
-    public Transform chaseTarget;
-    private bool targetVisible = false;
+    public float chaseSpeed = 3f;
+
 
     //Attack variables
+    public float attackRange = 2f;
 
 
-    public float wanderSpeed = 10f;
-    public float chaseSpeed;
-    public float attackSpeed;
-    public GameObject hitbox;
-    public float offset = 2;
-    public float attackCooldown = 3f;
+
+    //Detection variables
+    public float detectionAngle = 60f;
+    public float detectionRange = 10f;
+    public LayerMask obstructionMask;
+    public LayerMask targetMask;
+
+    private Transform chaseTarget;
+    private bool targetVisible = false;
+
+    private float lookTimer;
+    public float lookInterval = 0.1f;
+
+    public float targetMemoryTime = 3f;
+    private float lastSeenTimer;
+
+
+
+    private Coroutine pathCoroutine;
+    private Vector3 currentDestination;
+
 
     public LayerMask groundMask;
 
@@ -61,20 +78,24 @@ public class BaseEnemy : MonoBehaviour
         currentState = EnemyState.Wander;
         ChooseNewWanderPoint();
     }
-    private void FixedUpdate()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(rayOrigin.position, Vector3.down, out hit, 100f, groundMask))
-        {
-            transform.up = hit.normal; // align up to NavMesh normal
-        }
-    }
+
     void Update()
     {
+        Debug.Log(agent.updatePosition);
         HandleLinks();
-            if (isJumping)
+        
+        if (isJumping)
             return;
-        Look();
+        
+        lookTimer += Time.deltaTime;
+        lastSeenTimer += Time.deltaTime;
+
+        if (lookTimer >= lookInterval)
+        {
+            lookTimer = 0f;
+            Look();
+            
+        }
 
         switch (currentState)
         {
@@ -92,37 +113,63 @@ public class BaseEnemy : MonoBehaviour
                 AttackBehavior();
                 break;
         }
+
         UpdateAnimations();
     }
 
-    public void Look()
-    {
-        Vector3 forward = transform.forward;
-        Vector3 toPlayer = (chaseTarget.position - transform.position).normalized;
-        float angle = Vector3.Angle(forward, toPlayer);
-        float distance = Vector3.Distance(transform.position, chaseTarget.position);
 
-        bool inCone = angle < detectionAngle;
-        bool inRange = distance <= detectionRange;
 
-        if (inCone && inRange)
-        {
-            targetVisible = true;
-            Debug.Log("Player Detected!");
-        } else
-        {
-            targetVisible = false;
-        }
-    }
 
     protected virtual void ChaseBehavior()
     {
         if (animator != null)
             animator.SetInteger("EnemyState", (int)EnemyState.Chase);
 
-        if (!agent.hasPath && targetVisible)
+        if (chaseTarget == null)
         {
-            agent.SetDestination(chaseTarget.position);
+            currentState = EnemyState.Wander;
+            return;
+        }
+
+        if (!targetVisible)
+        {
+            if (lastSeenTimer >= targetMemoryTime)
+            {
+                currentState = EnemyState.Wander;
+                chaseTarget = null;
+                ChooseNewWanderPoint();
+            }
+
+            return;
+        }
+
+        float distanceToTarget =
+            Vector3.Distance(transform.position,
+                             chaseTarget.position);
+
+        if (distanceToTarget <= attackRange)
+        {
+            currentState = EnemyState.Attack;
+            agent.ResetPath();
+            return;
+        }
+
+        NavMeshHit hit;
+ 
+        if (NavMesh.SamplePosition(
+                chaseTarget.position,
+                out hit,
+                attackRange,
+                NavMesh.AllAreas))
+        {
+            NavMeshPath path = new NavMeshPath();
+ 
+            if (agent.CalculatePath(hit.position, path) &&
+                path.status != NavMeshPathStatus.PathInvalid)
+            {
+                currentDestination = hit.position;
+                agent.SetDestination(currentDestination);
+            }
         }
     }
 
@@ -131,73 +178,53 @@ public class BaseEnemy : MonoBehaviour
         if (animator != null)
             animator.SetInteger("EnemyState", (int)EnemyState.Wander);
 
-        if (isJumping)
-            return;
-
         if (targetVisible)
         {
             currentState = EnemyState.Chase;
+            return;
         }
+
+        if (agent.pathPending || agent.remainingDistance > wanderTolerance)
+            return;
 
         wanderTimer += Time.deltaTime;
 
-        if (!agent.pathPending &&
-            agent.remainingDistance <= agent.stoppingDistance &&
-            wanderTimer >= idleTime)
+        if (ReachedDestination())
         {
-            ChooseNewWanderPoint();
+            agent.ResetPath();
+            Debug.Log("ResetPath Called");
+            wanderTimer += Time.deltaTime;
+
+            if (wanderTimer >= idleTime)
+            {
+                ChooseNewWanderPoint();
+            }
         }
-        //Debug.Log(agent.pathPending);
     }
 
     protected virtual void ChooseNewWanderPoint()
     {
         wanderTimer = 0f;
 
-        for (int i = 0; i < 10; i++)
+        Vector3 randomDirection = transform.position +  Random.insideUnitSphere * wanderRadius;
+
+        if (NavMesh.SamplePosition(
+            randomDirection,
+            out NavMeshHit hit,
+            wanderRadius,
+            NavMesh.AllAreas))
         {
-            Vector3 randomDirection =
-                Random.insideUnitSphere * wanderRadius;
-
-            randomDirection += transform.position;
-
-            if (NavMesh.SamplePosition(
-                randomDirection,
-                out NavMeshHit hit,
-                wanderRadius,
-                NavMesh.AllAreas))
+            NavMeshPath path = new NavMeshPath();
+            // Verify the destination is reachable
+            if (agent.CalculatePath(hit.position, path) &&
+                path.status == NavMeshPathStatus.PathComplete)
             {
-                NavMeshPath path = new NavMeshPath();
-
-                // Verify the destination is reachable
-                if (agent.CalculatePath(hit.position, path) &&
-                    path.status == NavMeshPathStatus.PathComplete)
-                {
-                    agent.SetDestination(hit.position);
-                    return;
-                }
+                currentDestination = hit.position;
+                agent.SetDestination(currentDestination);
             }
         }
     }
     
-
-    protected virtual void CreateNewWanderPoint()
-    {
-        wanderTimer = 0f;
-
-        Vector3 randomDirection = Random.insideUnitSphere * wanderRadius;
-
-        randomDirection += transform.position;
-
-        if(NavMesh.SamplePosition(
-            randomDirection,
-            out NavMeshHit hit,
-            wanderRadius,
-            1))
-        {
-            agent.SetDestination(hit.position);
-        }
-    }
 
     void AttackBehavior()
     {
@@ -267,5 +294,129 @@ public class BaseEnemy : MonoBehaviour
     public void MoveTo(Vector3 destination)
     {
         agent.SetDestination(destination);
+    }
+    public virtual void SetTarget(Transform target)
+        {
+            chaseTarget = target;
+ 
+            if (currentDestination != null)
+            {
+                agent.SetDestination(chaseTarget.position);
+            }
+        }
+
+    bool ReachedDestination()
+    {
+        return !agent.pathPending &&
+               agent.remainingDistance <= agent.stoppingDistance &&
+               (!agent.hasPath || agent.velocity.sqrMagnitude < 0.01f);
+    }
+
+    public void Look()
+    {
+        targetVisible = false;
+
+        Collider[] targets = Physics.OverlapSphere(transform.position, detectionRange, targetMask);
+
+        foreach (Collider target in targets)
+        {
+            Vector3 directionToTarget =
+                (target.transform.position - transform.position).normalized;
+ 
+            float angle =
+                Vector3.Angle(transform.forward, directionToTarget);
+ 
+            if (angle > detectionAngle * 0.5f)
+                continue;
+ 
+            float distance =
+                Vector3.Distance(transform.position,
+                                 target.transform.position);
+ 
+            // Check if something blocks vision
+            if (!Physics.Raycast(
+                rayOrigin.position,
+                directionToTarget,
+                distance,
+                obstructionMask))
+            {
+                chaseTarget = target.transform;
+
+                targetVisible = true;
+                lastSeenTimer = 0f;
+                return;
+            }
+        }
+
+    }
+
+    protected virtual bool TryGetChasePosition(
+    out Vector3 chasePosition)
+    {
+        chasePosition = Vector3.zero;
+
+        NavMeshHit hit;
+
+        if (!NavMesh.SamplePosition(
+                chaseTarget.position,
+                out hit,
+                10f,
+                NavMesh.AllAreas))
+            return false;
+
+        NavMeshPath path = new NavMeshPath();
+
+        if (!agent.CalculatePath(hit.position, path))
+            return false;
+
+        if (path.status == NavMeshPathStatus.PathInvalid)
+            return false;
+
+        chasePosition = hit.position;
+        return true;
+    }
+
+
+    private void OnDrawGizmosSelected()
+    {
+        Vector3 origin = rayOrigin != null
+            ? rayOrigin.position
+            : transform.position;
+
+        // Detection sphere
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(origin, detectionRange);
+
+        // FOV boundaries
+        Vector3 left =
+            Quaternion.Euler(0, -detectionAngle * 0.5f, 0) *
+            transform.forward;
+
+        Vector3 right =
+            Quaternion.Euler(0, detectionAngle * 0.5f, 0) *
+            transform.forward;
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawLine(origin, origin + left * detectionRange);
+        Gizmos.DrawLine(origin, origin + right * detectionRange);
+
+        // Chase target
+        if (chaseTarget != null)
+        {
+            Gizmos.color = targetVisible
+                ? Color.green
+                : Color.red;
+
+            Gizmos.DrawLine(origin, chaseTarget.position);
+            Gizmos.DrawSphere(chaseTarget.position, 0.2f);
+        }
+
+        // Current destination
+        if (agent != null && agent.hasPath)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(agent.destination, 0.3f);
+            Gizmos.DrawLine(transform.position, agent.destination);
+        }
     }
 }
