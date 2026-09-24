@@ -1796,7 +1796,7 @@ PrefabInstance:
       objectReference: {fileID: 5622047900825028132, guid: cc1a3018731a87441a84f69b4e06232b, type: 3}
     - target: {fileID: 6363579603806570304, guid: 9b345c6cd2cd6464583fbfcd8e858f4d, type: 3}
       propertyPath: maxEnemies
-      value: 69
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6363579603806570304, guid: 9b345c6cd2cd6464583fbfcd8e858f4d, type: 3}
       propertyPath: EnemyExists
@@ -10192,7 +10192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2692102832101938282, guid: 9b345c6cd2cd6464583fbfcd8e858f4d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.58
+      value: 1.547
       objectReference: {fileID: 0}
     - target: {fileID: 2692102832101938282, guid: 9b345c6cd2cd6464583fbfcd8e858f4d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10225,6 +10225,14 @@ PrefabInstance:
     - target: {fileID: 3321288106974514896, guid: 9b345c6cd2cd6464583fbfcd8e858f4d, type: 3}
       propertyPath: m_Name
       value: vent (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3433354240616177008, guid: 9b345c6cd2cd6464583fbfcd8e858f4d, type: 3}
+      propertyPath: m_Radius
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 3433354240616177008, guid: 9b345c6cd2cd6464583fbfcd8e858f4d, type: 3}
+      propertyPath: m_Center.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6363579603806570304, guid: 9b345c6cd2cd6464583fbfcd8e858f4d, type: 3}
       propertyPath: Enemy
