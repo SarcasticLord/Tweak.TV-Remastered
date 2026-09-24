@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Linq;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Windows;
 
 public class PlayerMovementScript : MonoBehaviour
 {
@@ -19,6 +17,10 @@ public class PlayerMovementScript : MonoBehaviour
 
     //Player Ingame Stats
     private float _speed;
+    private bool _isJumping;
+    private bool _canMove = true;
+    private float _playerHeight = 2.0f;
+    private float _playerSlideHeight = 0.0f;
 
     private float _verticalVelocity;
     private bool _isGrounded;
@@ -27,21 +29,23 @@ public class PlayerMovementScript : MonoBehaviour
     private float _coyoteTimer;
 
     //Player Inputs
+    private Vector3 _inputDirection;
     private Vector2 _moveInput;
     private bool _slideInput;
 
     [Header("Player Base Stats")]
     public float playerHealth = 100f;
-    public float playerSpeed = 5f;
-    public float playerSlideSpeed = 150f;
+    public float playerSpeed = 10f;
+    public float playerSlideSpeed = 20f;
     public float playerRotationSpeed = 1.0f;
 
     public float playerJumpForce = 9f;
+    public float playerFastFall = -20f;
     public float playerGravity = -12f;
     public float initialFallVelocity = -3f;
     public float coyoteTime = 0.3f;
 
-    public float acceleration = 10.0f;
+    public float acceleration = 7.0f;
 
 
     private void OnEnable()
@@ -87,21 +91,18 @@ public class PlayerMovementScript : MonoBehaviour
 
         ApplyGravity();
 
-        Vector3 inputDirection = (transform.right * _moveInput.x + transform.forward * _moveInput.y).normalized;
-
-        float targetSpeed = playerSpeed;
-        float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
-        float speedOffset = 0.1f;
-
-        //Handle player acceleration 
-        if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
+        if(_canMove)
         {
-            _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed, Time.deltaTime * acceleration);
+            _inputDirection = (transform.right * _moveInput.x + transform.forward * _moveInput.y).normalized;
         }
         else
         {
-            _speed = targetSpeed;
+            //TODO: Add slight movement in a direction while sliding
         }
+
+            float targetSpeed = playerSpeed;
+        float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
+        float speedOffset = 0.1f;
 
         //Player State Machine
         switch (_currentState)
@@ -113,30 +114,64 @@ public class PlayerMovementScript : MonoBehaviour
                 //Switch to RUN state
                 if (_moveInput != Vector2.zero)
                     _currentState = PlayerState.RUN;
+                //Switch to SLIDE state
+                if (_slideInput == true)
+                    _currentState = PlayerState.SLIDE;
 
                 break;
             case PlayerState.RUN:
+
+                targetSpeed = playerSpeed;
 
                 //Switch to IDLE state
                 if (_moveInput == Vector2.zero)
                     _currentState = PlayerState.IDLE;
 
-                if(_slideInput == true)
+                //Switch to SLIDE state
+                if (_slideInput == true)
+                    
                     _currentState = PlayerState.SLIDE;
                 
 
                 break;
             case PlayerState.SLIDE:
-                
-                targetSpeed = playerSlideSpeed;
+
+                _canMove = false;
+                _controller.height = _playerSlideHeight;
+
+                if (_isGrounded)
+                {
+                    targetSpeed = playerSlideSpeed;
+                }
+                else
+                {
+                    if (!_isJumping)
+                    {
+                        _verticalVelocity = playerFastFall;
+                    }
+                }
 
                 //Switch to RUN state
-                if(_slideInput == false)
+                if (_slideInput == false)
+                {
+                    _canMove = true;
+                    _controller.height = _playerHeight;
                     _currentState = PlayerState.RUN;
+                }
                 break;
         }
 
-        Vector3 finalMove = inputDirection * _speed;
+        //Handle player acceleration 
+        if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
+        {
+            _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed, Time.deltaTime * acceleration);
+        }
+        else
+        {
+            _speed = targetSpeed;
+        }
+
+        Vector3 finalMove = _inputDirection * _speed;
         finalMove.y = _verticalVelocity;
         _controller.Move(finalMove * Time.deltaTime);
     }
@@ -178,6 +213,8 @@ public class PlayerMovementScript : MonoBehaviour
         //Variable jump height
         if (jumpValue.ReadValue<float>() == 0)
         {
+            //Cut jump velocity
+            _isJumping = false;
             if (!_isGrounded && _verticalVelocity > 0)
             {
                 _verticalVelocity = 0;
@@ -185,6 +222,7 @@ public class PlayerMovementScript : MonoBehaviour
         }
         else
         {
+            _isJumping = true;
             //On Jump pressed
             if (_isGrounded || _coyoteTimer > 0)
             {   

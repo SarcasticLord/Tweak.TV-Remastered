@@ -5386,9 +5386,33 @@ PrefabInstance:
       value: PlayerCapsule
       objectReference: {fileID: 0}
     - target: {fileID: 8420447848467802541, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420447848467802541, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: jumpAction
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420447848467802541, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: playerSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420447848467802541, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
       propertyPath: slideAction
       value: 
-      objectReference: {fileID: 7040659881675835329, guid: 6055c109ca094264eb94c4fc10bcb837, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420447848467802541, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: acceleration
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420447848467802541, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: playerSlideSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420447848467802541, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: initialFallVelocity
+      value: -3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
