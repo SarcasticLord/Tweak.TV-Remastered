@@ -42,6 +42,8 @@ public class PlayerItemInteract : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "KillZone":
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 SceneManager.LoadScene("DeathScreen");
                 break;
             case "AttackZone":
