@@ -34,6 +34,4 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(5); // 5 opens the settings scene
     }
-
-    
 }
