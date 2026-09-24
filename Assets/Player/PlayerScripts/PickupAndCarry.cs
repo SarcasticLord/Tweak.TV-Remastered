@@ -7,7 +7,9 @@ public class PickupAndCarry : MonoBehaviour
     public Transform player;
     public Transform playerCamera;
     private BoxCollider bc;
-    public float distanceFromCamera;
+    public float distanceFromCamera=1.1f;
+    public float lerpTime=0.2f;
+    public float lerpTimeStamp=0f;
 
 
     private bool isCarried=false;
@@ -20,15 +22,20 @@ public class PickupAndCarry : MonoBehaviour
         playerCamera = GameObject.FindGameObjectWithTag("PlayerCamera").GetComponent<Transform>();
     }
 
+    public void StartPickup()
+    {
+        SetObjectPhysics(false, false, false, false);
+        isCarried=true;
+    }
     [ContextMenu(nameof(Pickup))]
     public void Pickup()
     {
-        SetObjectPhysics(false, false, false, false);
-
-        transform.position = Vector3.Lerp(transform.position, player.position+(player.forward*distanceFromCamera), 0.1f);
+        
+//Vector3.Lerp(transform.position, player.position+(player.forward*distanceFromCamera), lerpTime);
+        transform.position = player.position+(player.forward*distanceFromCamera);
         transform.LookAt(player);
 
-        isCarried=true;
+        
     }
     [ContextMenu(nameof(Throw))]
     public void Throw()

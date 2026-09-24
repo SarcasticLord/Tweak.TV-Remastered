@@ -23,7 +23,7 @@ public class PlayerItemInteract : MonoBehaviour
             heldObject = hit.collider.gameObject;
             heldObjectScript = heldObject.GetComponent<PickupAndCarry>();
             
-            heldObjectScript.Pickup();
+            heldObjectScript.StartPickup();
         }
         
     }

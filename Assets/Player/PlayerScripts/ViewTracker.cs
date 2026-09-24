@@ -6,11 +6,11 @@ public class ViewTracker : MonoBehaviour
 {
     public bool streamSniperSpawned;
     private static WaitForSeconds _waitForSeconds_01 = new WaitForSeconds(.1f);
-    public double baseNumber; //increases over time
-    public double baseModifier; //When things happen on stream, edit this
+    public double baseNumber=-50; //increases over time
+    public double baseModifier=2; //When things happen on stream, edit this
     public double displayNumber; //show this
-    public double baseOffset; //Raises the end number
-    public double slowingFactor; //Makes the process take longer
+    public double baseOffset=2000; //Raises the end number
+    public double slowingFactor=20; //Makes the process take longer
 
     public GameObject streamSniper;
     public Transform streamSniperSpawnpoint;
