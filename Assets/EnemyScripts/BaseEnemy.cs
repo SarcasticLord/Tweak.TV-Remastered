@@ -430,9 +430,9 @@ public class BaseEnemy : MonoBehaviour
                 animator.SetInteger("EnemyState", 0);
             }
 
-            if ()
+            if (currentState == EnemyState.Attack)
             {
-
+                animator.SetInteger("EnemyState", 2);
             }
 
             yield return new WaitForSeconds(.5f);

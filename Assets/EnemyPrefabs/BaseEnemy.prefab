@@ -202,7 +202,7 @@ MonoBehaviour:
   jumpTime: 1
   jumpHeight: 1
   wanderSpeed: 10
-  wanderRadius: 30
+  wanderRadius: 15
   wanderInterval: 5
   wanderTimer: 0
   wanderTolerance: 1
@@ -211,7 +211,7 @@ MonoBehaviour:
   attackRange: 2
   cooldown: 3
   detectionAngle: 135
-  detectionRange: 15
+  detectionRange: 5
   obstructionMask:
     serializedVersion: 2
     m_Bits: 64
@@ -224,4 +224,3 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   rayOrigin: {fileID: 8347750859488450031}
-  animator: {fileID: 0}
