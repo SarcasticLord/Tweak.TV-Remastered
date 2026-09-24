@@ -4,8 +4,24 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - StreamSniper
   - PlayerCamera
-  - Collectibles
+  - Object
+  - HUD
+  - Hotbar
+  - PlayerHealth
+  - Enemy
+  - HitboxSpawn
+  - Hitbox
+  - BearTrap
+  - Train
+  - Endpoint1
+  - Endpoint2
+  - SubwayLight
+  - Crowable
+  - KillZone
+  - AttackZone
+  - ViewTracker
   layers:
   - Default
   - TransparentFX
@@ -14,7 +30,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - Enemy
+  - 
   - 
   - 
   - 
@@ -45,10 +61,3 @@ TagManager:
     locked: 0
   m_RenderingLayers:
   - Default
-  - Light Layer 1
-  - Light Layer 2
-  - Light Layer 3
-  - Light Layer 4
-  - Light Layer 5
-  - Light Layer 6
-  - Light Layer 7
