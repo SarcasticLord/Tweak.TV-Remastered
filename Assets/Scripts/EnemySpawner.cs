@@ -13,6 +13,8 @@ public class EnemySpawner : MonoBehaviour
     public int enemyCount = 0;
     public int maxEnemies = 10;
 
+    public int spawnGap = 5;
+
     private Coroutine EnemyCoroutine;
 
     void Start()
@@ -63,7 +65,7 @@ public class EnemySpawner : MonoBehaviour
                 enemyCount++;
             
             }
-            yield return new WaitForSeconds(5f);  
+            yield return new WaitForSeconds(spawnGap);  
         } 
     }
 }
