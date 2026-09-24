@@ -15,11 +15,13 @@ public class EnemySpawner : MonoBehaviour
 
     public int spawnGap = 5;
 
+    private bool isSpawning = false;
+
     private Coroutine EnemyCoroutine;
 
     void Start()
     {
-        //StartCoroutine(EnemySpawn());
+        StartCoroutine(EnemySpawn());
     }
 
     void Update()
@@ -31,25 +33,23 @@ public class EnemySpawner : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            {
-                EnemyCoroutine = StartCoroutine(EnemySpawn());
-                Debug.Log("start");
-            }
+            isSpawning = true;
+            
+                
+            
         } 
-        
+        Debug.Log("starting");
     }
 
     void OnTriggerExit(Collider other) // when you leave the circle it stops spawning
     {
-        if (other.CompareTag("Player")){
-
-            if (EnemyCoroutine != null)
-            {
-                StopCoroutine(EnemyCoroutine);
-                EnemyCoroutine = null;
-            }
-            Debug.Log("stopping");
+        if (other.CompareTag("Player"))
+        {
+            isSpawning = false;
+            
+            
         }
+        Debug.Log("stopping");
     }
 
 
@@ -59,7 +59,7 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            if (enemyCount < maxEnemies)
+            if (isSpawning && enemyCount < maxEnemies)
             {
                 EnemyExists = Instantiate(Enemy, EnemyPoint.position, facingRight ? EnemyPoint.rotation : Quaternion.Euler(-90, 0, 0));
                 enemyCount++;
