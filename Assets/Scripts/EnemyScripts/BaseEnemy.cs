@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 public class BaseEnemy : MonoBehaviour
 {
-    enum EnemyState { Wander, Chase, Attack }
+    enum EnemyState { Wander, Chase, Attack, Death}
     EnemyState currentState;
 
     //Component variables
@@ -85,7 +85,7 @@ public class BaseEnemy : MonoBehaviour
     {
         currentState = EnemyState.Wander;
         ChooseNewWanderPoint();
-        if(animator != null)
+        if (animator != null || animator.runtimeAnimatorController == null)
         {
             StartCoroutine(UpdateAnimations());
         }
@@ -132,12 +132,23 @@ public class BaseEnemy : MonoBehaviour
                     attackTimer = 0f;
                 }
                 break;
+            case EnemyState.Death:
+                Death();
+                break;
         }
 
     }
 
+    //Meant to test death, may be removed/altered later
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Hitbox"))
+        {
+            Debug.Log("Hitbox collided");
+            currentState = EnemyState.Death;
+        }
+    }
 
     protected virtual void ChaseBehavior()
     {
@@ -250,7 +261,9 @@ public class BaseEnemy : MonoBehaviour
         if (canAttack)
         {
             agent.velocity = Vector3.zero;
-            Debug.Log("attack function");
+            
+            //Replace with Attack Function            
+            //Debug.Log("attack function");
             
             canAttack = false;
         }
@@ -266,6 +279,13 @@ public class BaseEnemy : MonoBehaviour
             transform.rotation,
             lookRotation,
             10f * Time.deltaTime);
+    }
+
+
+    private void Death()
+    {
+        agent.isStopped = true;
+        Destroy(gameObject, 5);
     }
 
 
@@ -418,7 +438,6 @@ public class BaseEnemy : MonoBehaviour
     {
         while(this.isActiveAndEnabled)
         {
-            Debug.Log("Updating Animations");
             Vector3 currentVel = agent.velocity;
 
             if (currentVel.sqrMagnitude > 0f)
@@ -433,6 +452,10 @@ public class BaseEnemy : MonoBehaviour
             if (currentState == EnemyState.Attack)
             {
                 animator.SetInteger("EnemyState", 2);
+            }
+            if (currentState == EnemyState.Death)
+            {
+                animator.SetInteger("EnemyState", 3);
             }
 
             yield return new WaitForSeconds(.5f);
