@@ -2454,8 +2454,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4196893426243335126, guid: 359a8711abcff4142b5caccfd7450ac0, type: 3}
+      propertyPath: lerpTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -4196893426243335126, guid: 359a8711abcff4142b5caccfd7450ac0, type: 3}
       propertyPath: distanceFromCamera
-      value: 0.9
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 854776053936846142, guid: 359a8711abcff4142b5caccfd7450ac0, type: 3}
       propertyPath: m_LocalPosition.x
