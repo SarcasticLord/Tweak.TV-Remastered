@@ -76,7 +76,7 @@ public class PlayerMovementScript : MonoBehaviour
     private void FixedUpdate()
     {
 
-        Debug.Log(_currentState);
+        //Debug.Log(_currentState);
 
         //Ground Check
         _isGrounded = _controller.isGrounded;
