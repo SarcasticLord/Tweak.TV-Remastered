@@ -2505,6 +2505,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: DummyItem
       objectReference: {fileID: 0}
+    - target: {fileID: 8420447848467802541, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420447848467802541, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: jumpAction
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420447848467802541, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: playerSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420447848467802541, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: slideAction
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420447848467802541, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: acceleration
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420447848467802541, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: playerSlideSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420447848467802541, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: initialFallVelocity
+      value: -3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
