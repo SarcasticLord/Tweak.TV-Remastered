@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    // keeps track of the last played scene
     public static string lastScene = "";
 
 
@@ -56,7 +57,7 @@ public class UIManager : MonoBehaviour
         if (string.IsNullOrEmpty(lastScene))
         {
             Debug.Log("loading last scene");
-        }
+        } // after you die it opens the last scene
         SceneManager.LoadScene(lastScene);
     }
 }

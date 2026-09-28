@@ -34,9 +34,7 @@ public class EnemySpawner : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isSpawning = true;
-            
-                
-            
+
         } 
         //Debug.Log("starting");
     }
