@@ -38,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
                 
             
         } 
-        Debug.Log("starting");
+        //Debug.Log("starting");
     }
 
     void OnTriggerExit(Collider other) // when you leave the circle it stops spawning
@@ -49,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
             
             
         }
-        Debug.Log("stopping");
+        //Debug.Log("stopping");
     }
 
 

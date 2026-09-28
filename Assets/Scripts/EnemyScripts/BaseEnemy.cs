@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 public class BaseEnemy : MonoBehaviour
 {
-    enum EnemyState { Wander, Chase, Attack, Death}
+    enum EnemyState { Wander, Chase, Attack, Death, Stunned}
     EnemyState currentState;
 
     //Component variables
@@ -35,6 +35,14 @@ public class BaseEnemy : MonoBehaviour
     public float cooldown = 3f;
     private float attackTimer;
     private bool canAttack;
+
+
+    //Stun variables
+    public GameObject stunObj;
+    public float stunTimer;
+    public float stunDuration = 5f;
+    public float stunCooldown = 1f;
+
 
     //Detection variables
     public float detectionAngle = 60f;
@@ -83,6 +91,8 @@ public class BaseEnemy : MonoBehaviour
 
     void Start()
     {
+        stunTimer = 0f;
+        attackTimer = 0f;
         currentState = EnemyState.Wander;
         ChooseNewWanderPoint();
         if (animator != null || animator.runtimeAnimatorController == null)
@@ -103,6 +113,7 @@ public class BaseEnemy : MonoBehaviour
         lookTimer += Time.deltaTime;
         lastSeenTimer += Time.deltaTime;
         attackTimer += Time.deltaTime;
+        stunTimer += Time.deltaTime;
 
         if (lookTimer >= lookInterval)
         {
@@ -135,6 +146,14 @@ public class BaseEnemy : MonoBehaviour
             case EnemyState.Death:
                 Death();
                 break;
+
+            case EnemyState.Stunned:
+                if (stunTimer >= stunCooldown)
+                {
+                    StartCoroutine(Stunned());
+                    stunTimer = 0f;
+                }
+                break;
         }
 
     }
@@ -145,8 +164,13 @@ public class BaseEnemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Hitbox"))
         {
-            Debug.Log("Hitbox collided");
+            Debug.Log("Death");
             currentState = EnemyState.Death;
+        }
+        else if (other.gameObject.CompareTag("Stun"))
+        {
+            Debug.Log("Stun");
+            currentState = EnemyState.Stunned;
         }
     }
 
@@ -286,6 +310,18 @@ public class BaseEnemy : MonoBehaviour
     {
         agent.isStopped = true;
         Destroy(gameObject, 5);
+    }
+
+    private IEnumerator Stunned()
+    {
+
+        agent.isStopped = true;
+        yield return new WaitForSeconds(stunDuration);
+        Debug.Log("Escaping stun");
+        agent.isStopped = false;
+        currentState = EnemyState.Wander;
+        yield return null;
+
     }
 
 
@@ -440,24 +476,33 @@ public class BaseEnemy : MonoBehaviour
         {
             Vector3 currentVel = agent.velocity;
 
+
+            //Handles idle and movement animations
             if (currentVel.sqrMagnitude > 0f)
             {
+                //Idle
                 animator.SetInteger("EnemyState", 1);
             }
             else
             {
+                //Moving
                 animator.SetInteger("EnemyState", 0);
             }
 
-            if (currentState == EnemyState.Attack)
+            //Handles attack, stun, and death animations 
+            switch (currentState)
             {
-                animator.SetInteger("EnemyState", 2);
+                case EnemyState.Attack:
+                    animator.SetInteger("EnemyState", 2);
+                    break;
+                case EnemyState.Stunned:
+                    //change if enemy has dedicated stun animation, for base enemy is same as idle
+                    animator.SetInteger("EnemyState", 0);
+                    break;
+                case EnemyState.Death:
+                    animator.SetInteger("EnemyState", 3);
+                    break;
             }
-            if (currentState == EnemyState.Death)
-            {
-                animator.SetInteger("EnemyState", 3);
-            }
-
             yield return new WaitForSeconds(.5f);
         }
     }
