@@ -44,7 +44,7 @@ public class PlayerItemInteract : MonoBehaviour
             case "KillZone":
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                SceneManager.LoadScene("DeathScreen");
+                SceneManager.LoadScene("DeathScene");
                 break;
             case "AttackZone":
                 GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<ViewTracker>().baseOffset-=100;

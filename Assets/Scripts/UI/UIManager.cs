@@ -1,8 +1,12 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+
+[System.Serializable]
+
 
 public class UIManager : MonoBehaviour
 {
@@ -18,17 +22,18 @@ public class UIManager : MonoBehaviour
 
     public void ToTitle()
     {
+        lastScene = "TitleScene";
         SceneManager.LoadScene("TitleScene"); // 0 opens title scene
     }
 
     public void ToStarting()
     {
-        SceneManager.LoadScene("StartingSoon"); // 1 opens the starting soon scene
+        SceneManager.LoadScene("StartingScene"); // 1 opens the starting soon scene
     }
 
     public void ToStats()
     {
-        SceneManager.LoadScene("StatScene"); // 4 opens the stats scene
+        SceneManager.LoadScene("StatsScene"); // 4 opens the stats scene
     }
 
     public void ToSettings()
@@ -36,22 +41,22 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("SettingsScene"); // 5 opens the settings scene
     }
 
+    public void ToDeath()
+    {
+        SceneManager.LoadScene("DeathScene");
+    }
     public void ToDemo()
     {
+        lastScene = "DemoScene";
         SceneManager.LoadScene("DemoScene"); 
     }
 
     public void RestartLevel()
     {
-        if (lastScene == "DemoScene")
+        if (string.IsNullOrEmpty(lastScene))
         {
-            Debug.Log("Last scene:" + lastScene);
-            SceneManager.LoadScene("DemoScene");
+            Debug.Log("loading last scene");
         }
-
-        else if (lastScene == "TweakAsylum")
-        {
-            // when we add the ther levels add it here
-        }    
+        SceneManager.LoadScene(lastScene);
     }
 }
