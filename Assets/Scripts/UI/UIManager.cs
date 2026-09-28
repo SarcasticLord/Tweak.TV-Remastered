@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    public static string lastScene = "";
 
 
     public void ExitGame() // this quits the game
@@ -17,21 +18,40 @@ public class UIManager : MonoBehaviour
 
     public void ToTitle()
     {
-        SceneManager.LoadScene(0); // 0 opens title scene
+        SceneManager.LoadScene("TitleScene"); // 0 opens title scene
     }
 
     public void ToStarting()
     {
-        SceneManager.LoadScene(1); // 1 opens the starting soon scene
+        SceneManager.LoadScene("StartingSoon"); // 1 opens the starting soon scene
     }
 
     public void ToStats()
     {
-        SceneManager.LoadScene(4); // 4 opens the stats scene
+        SceneManager.LoadScene("StatScene"); // 4 opens the stats scene
     }
 
     public void ToSettings()
     {
-        SceneManager.LoadScene(5); // 5 opens the settings scene
+        SceneManager.LoadScene("SettingsScene"); // 5 opens the settings scene
+    }
+
+    public void ToDemo()
+    {
+        SceneManager.LoadScene("DemoScene"); 
+    }
+
+    public void RestartLevel()
+    {
+        if (lastScene == "DemoScene")
+        {
+            Debug.Log("Last scene:" + lastScene);
+            SceneManager.LoadScene("DemoScene");
+        }
+
+        else if (lastScene == "TweakAsylum")
+        {
+            // when we add the ther levels add it here
+        }    
     }
 }
