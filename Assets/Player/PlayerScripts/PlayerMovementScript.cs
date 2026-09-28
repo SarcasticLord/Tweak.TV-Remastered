@@ -21,6 +21,7 @@ public class PlayerMovementScript : MonoBehaviour
     private bool _canMove = true;
     private float _playerHeight = 2.0f;
     private float _playerSlideHeight = 0.0f;
+    private float _currSlideSpeed = 0.0f;
 
     private float _verticalVelocity;
     private bool _isGrounded;
@@ -46,6 +47,7 @@ public class PlayerMovementScript : MonoBehaviour
     public float coyoteTime = 0.3f;
 
     public float acceleration = 7.0f;
+    
 
 
     private void OnEnable()
@@ -100,7 +102,7 @@ public class PlayerMovementScript : MonoBehaviour
             //TODO: Add slight movement in a direction while sliding
         }
 
-            float targetSpeed = playerSpeed;
+        float targetSpeed = playerSpeed;
         float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
         float speedOffset = 0.1f;
 
@@ -129,22 +131,33 @@ public class PlayerMovementScript : MonoBehaviour
 
                 //Switch to SLIDE state
                 if (_slideInput == true)
-                    
+                {
+                    //Set the initial slide speed when switching to SLIDE state from RUN state
+                    _currSlideSpeed = playerSlideSpeed;
                     _currentState = PlayerState.SLIDE;
-                
+                }
 
                 break;
             case PlayerState.SLIDE:
 
+                //Lock player movement, and shrink player capsule height
                 _canMove = false;
                 _controller.height = _playerSlideHeight;
 
                 if (_isGrounded)
                 {
-                    targetSpeed = playerSlideSpeed;
+                    //Decrease slide speed as slide is held down
+                    if(_currSlideSpeed > 0.0f)
+                    {
+                        _currSlideSpeed -= Time.deltaTime * acceleration * 2;
+                    }
+
+                    targetSpeed = _currSlideSpeed;
+
                 }
                 else
                 {
+                    //Allow player to fast fall with crouch
                     if (!_isJumping)
                     {
                         _verticalVelocity = playerFastFall;
@@ -167,8 +180,8 @@ public class PlayerMovementScript : MonoBehaviour
             _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed, Time.deltaTime * acceleration);
         }
         else
-        {
-            _speed = targetSpeed;
+        {   
+            _speed = targetSpeed;       
         }
 
         Vector3 finalMove = _inputDirection * _speed;
