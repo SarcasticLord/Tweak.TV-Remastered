@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 727173890966152581}
   - component: {fileID: 8753484502715323986}
   - component: {fileID: 5339933116428800491}
-  - component: {fileID: -4196893426243335126}
   - component: {fileID: -9035847798298126573}
+  - component: {fileID: 4234384253075673361}
   m_Layer: 0
   m_Name: DummyItem
   m_TagString: Object
@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 3b5cc91c3bf8cf74391252247f52fb59, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -114,21 +114,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-4196893426243335126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4012005124692186222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38a6bc313e6e0a64b9b2ac4c33fc8397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickupAndCarry
-  rb: {fileID: 0}
-  player: {fileID: 0}
-  distanceFromCamera: 0
 --- !u!54 &-9035847798298126573
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -156,3 +141,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4234384253075673361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4012005124692186222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc003abe7e48fd1429f21d86de754cbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupAndCarry
+  rb: {fileID: 0}
+  player: {fileID: 0}
+  playerCamera: {fileID: 0}
+  playerInteract: {fileID: 0}
+  distanceFromCamera: 1.1
+  lerpTime: 0.2
+  lerpTimeStamp: 0
+  isCarried: 0

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -8,31 +9,48 @@ public class PlayerItemInteract : MonoBehaviour
     public GameObject heldObject;
     private PickupAndCarry heldObjectScript;
     public GameObject playerCamera;
+    public float pickupCooldown = 1f;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
+    //private IEnumerator PickupDelay()
+    //{
+    //    canPickup = false;
+    //    yield return new WaitForSeconds(.5f);
+    //    canPickup = true;
+    //}
+    private void Update()
+    {
+        
+        if(pickupCooldown > 0)
+            pickupCooldown -= Time.deltaTime;
+
+    }
+
 
     void OnPickup(InputValue pickupValue)
     {
-        
-        Vector3 direction = playerCamera.transform.forward*maxDistance;
-        Debug.DrawRay(transform.position, direction, Color.green);
-        if(Physics.Raycast(transform.position, playerCamera.transform.forward, out RaycastHit hit, maxDistance)
-        && hit.collider.gameObject.CompareTag("Object"))
+        if(heldObject == null && pickupCooldown <= 0)
         {
-            heldObject = hit.collider.gameObject;
-            heldObjectScript = heldObject.GetComponent<PickupAndCarry>();
-            
-            heldObjectScript.StartPickup();
-        }
-        
+            Vector3 direction = playerCamera.transform.forward * maxDistance;
+            Debug.DrawRay(transform.position, direction, Color.green);
+            if (Physics.Raycast(transform.position, playerCamera.transform.forward, out RaycastHit hit, maxDistance)
+            && hit.collider.gameObject.CompareTag("Object"))
+            {
+                heldObject = hit.collider.gameObject;
+                heldObjectScript = heldObject.GetComponent<PickupAndCarry>();
+                heldObjectScript.StartPickup();
+            }
+        }    
     }
 
     void OnThrow(InputValue throwValue)
     {
-        if (heldObject!=null)
+        if (heldObject != null)
         {
             heldObjectScript.Throw();
+            pickupCooldown = 1.0f;
+            heldObject = null;
         }
     }
 

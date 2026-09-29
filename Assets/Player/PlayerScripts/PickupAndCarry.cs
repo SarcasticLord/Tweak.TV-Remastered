@@ -6,13 +6,14 @@ public class PickupAndCarry : MonoBehaviour
     [SerializeField]private Rigidbody rb;
     public Transform player;
     public Transform playerCamera;
+    public PlayerItemInteract playerInteract;
     private BoxCollider bc;
     public float distanceFromCamera=1.1f;
     public float lerpTime=0.2f;
     public float lerpTimeStamp=0f;
 
 
-    private bool isCarried=false;
+    public bool isCarried=false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,6 +21,7 @@ public class PickupAndCarry : MonoBehaviour
         bc = GetComponent<BoxCollider>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         playerCamera = GameObject.FindGameObjectWithTag("PlayerCamera").GetComponent<Transform>();
+        playerInteract = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerItemInteract>();
     }
 
     public void StartPickup()
@@ -43,6 +45,7 @@ public class PickupAndCarry : MonoBehaviour
         SetObjectPhysics(true, true, true, true);
         rb.AddForce(playerCamera.forward*999f);
         isCarried=false;
+        playerInteract.heldObject = null;
     }
     void Update()
     {

@@ -146,6 +146,9 @@ GameObject:
   - component: {fileID: 8420447848467802541}
   - component: {fileID: 8784038733276363321}
   - component: {fileID: 703740887833873743}
+  - component: {fileID: 328800369136569875}
+  - component: {fileID: 1867516630657381261}
+  - component: {fileID: 2590586664598903075}
   m_Layer: 3
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -263,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementScript
   jumpAction: {fileID: -2099379676528639254, guid: 6055c109ca094264eb94c4fc10bcb837, type: 3}
-  slideAction: {fileID: 0}
+  slideAction: {fileID: 7040659881675835329, guid: 6055c109ca094264eb94c4fc10bcb837, type: 3}
   playerHealth: 100
   playerSpeed: 10
   playerSlideSpeed: 150
@@ -329,6 +332,54 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &328800369136569875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5793440834577206791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f6029855fffdde4c9ac447ccca6d629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStatusEffects
+  isTrapped: 0
+  isPoisoned: 0
+  drankCoffee: 0
+  isDead: 0
+  storeDefaultSpeed: 0
+  stunnedSpeed: 2
+  storeDefaultJumpForce: 0
+  stunnedJumpForce: 2
+  playerMovementScript: {fileID: 8420447848467802541}
+--- !u!114 &1867516630657381261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5793440834577206791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 500654cdc2e715940a607df1365efcd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerItemInteract
+  maxDistance: 3
+  heldObject: {fileID: 0}
+  playerCamera: {fileID: 2378955566042852624}
+--- !u!114 &2590586664598903075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5793440834577206791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ed0b11850145c4995dd76170bb2500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.TestRunner::UnityEngine.TestTools.TestRunner.Callbacks.PlayerQuitHandler
 --- !u!1001 &1942523069324982990
 PrefabInstance:
   m_ObjectHideFlags: 0
