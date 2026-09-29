@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 8347750859488450031}
   - component: {fileID: 8885099993278485130}
   - component: {fileID: 7424846176805421409}
-  - component: {fileID: 7645351798481667583}
   - component: {fileID: 434968568840955058}
   - component: {fileID: 9074840247617857123}
   - component: {fileID: 2659155008492936062}
   - component: {fileID: 5484015092664076405}
+  - component: {fileID: 3502892409980091253}
   m_Layer: 7
   m_Name: DummyStreamSniper
   m_TagString: Untagged
@@ -46,7 +46,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3732554126820547295}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &7424846176805421409
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -96,27 +96,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7645351798481667583
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3732554126820547295}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &434968568840955058
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -130,8 +109,8 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 15
   avoidancePriority: 50
-  m_AngularSpeed: 720
-  m_StoppingDistance: 2
+  m_AngularSpeed: 1440
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 0
   m_AutoRepath: 0
@@ -211,6 +190,10 @@ MonoBehaviour:
   chaseSpeed: 15
   attackRange: 2
   cooldown: 3
+  stunObj: {fileID: 0}
+  stunTimer: 0
+  stunDuration: 5
+  stunCooldown: 1
   detectionAngle: 135
   detectionRange: 15
   obstructionMask:
@@ -225,7 +208,29 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   rayOrigin: {fileID: 8347750859488450031}
-  animator: {fileID: 0}
+--- !u!136 &3502892409980091253
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3732554126820547295}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &5402175710854954923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -285,7 +290,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2524731856408087570, guid: b5434dd41766e58409a3c6bb99f5674c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5540544064932367450}
+      addedObject: {fileID: 5178122957365956820}
   m_SourcePrefab: {fileID: 100100000, guid: b5434dd41766e58409a3c6bb99f5674c, type: 3}
 --- !u!4 &1396973436221708272 stripped
 Transform:
@@ -297,8 +302,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2524731856408087570, guid: b5434dd41766e58409a3c6bb99f5674c, type: 3}
   m_PrefabInstance: {fileID: 5402175710854954923}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &5540544064932367450
-BoxCollider:
+--- !u!136 &5178122957365956820
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -315,6 +320,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.1, y: 1, z: 1.1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 0.75
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0.2}

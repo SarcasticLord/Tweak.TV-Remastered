@@ -11,6 +11,7 @@ public class PickupAndCarry : MonoBehaviour
     public float distanceFromCamera=1.1f;
     public float lerpTime=0.2f;
     public float lerpTimeStamp=0f;
+    public float throwForce = 1000f;
 
 
     public bool isCarried=false;
@@ -43,7 +44,7 @@ public class PickupAndCarry : MonoBehaviour
     public void Throw()
     {
         SetObjectPhysics(true, true, true, true);
-        rb.AddForce(playerCamera.forward*999f);
+        rb.AddForce(playerCamera.forward*throwForce);
         isCarried=false;
         playerInteract.heldObject = null;
     }
