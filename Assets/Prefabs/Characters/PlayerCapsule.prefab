@@ -268,9 +268,9 @@ MonoBehaviour:
   jumpAction: {fileID: -2099379676528639254, guid: 6055c109ca094264eb94c4fc10bcb837, type: 3}
   slideAction: {fileID: 7040659881675835329, guid: 6055c109ca094264eb94c4fc10bcb837, type: 3}
   playerHealth: 100
-  playerSpeed: 10
+  playerSpeed: 15
   playerCrouchSpeed: 5
-  playerSlideSpeed: 20
+  playerSlideSpeed: 25.5
   playerRotationSpeed: 1
   playerJumpForce: 9
   playerFastFall: -30
@@ -329,7 +329,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.5
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
