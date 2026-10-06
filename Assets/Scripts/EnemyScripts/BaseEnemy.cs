@@ -5,16 +5,16 @@ using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 public class BaseEnemy : MonoBehaviour
 {
-    enum EnemyState { Wander, Chase, Attack, Death, Stunned}
-    EnemyState currentState;
+    protected enum EnemyState { Wander, Chase, Attack, Death, Stunned}
+    protected EnemyState currentState;
 
     //Component variables
-    private Rigidbody rb;
-    private NavMeshAgent agent;
+    protected Rigidbody rb;
+    protected NavMeshAgent agent;
    
 
     protected bool canUseLinks = true;
-    private bool isJumping = false;
+    protected bool isJumping = false;
     public float jumpTime = 3f;
     public float jumpHeight = 3f;
 
@@ -33,8 +33,8 @@ public class BaseEnemy : MonoBehaviour
     //Attack variables
     public float attackRange = 2f;
     public float cooldown = 3f;
-    private float attackTimer;
-    private bool canAttack;
+    protected float attackTimer;
+    protected bool canAttack;
 
 
     //Stun variables
@@ -50,21 +50,21 @@ public class BaseEnemy : MonoBehaviour
     public LayerMask obstructionMask;
     public LayerMask targetMask;
 
-    private Transform chaseTarget;
-    private bool targetVisible = false;
+    protected Transform chaseTarget;
+    protected bool targetVisible = false;
 
-    private float lookTimer;
+    protected float lookTimer;
     public float lookInterval = 0.1f;
 
     public float targetMemoryTime = 3f;
-    private float lastSeenTimer;
+    protected float lastSeenTimer;
 
-    private Vector3 lastTargetPos;
+    protected Vector3 lastTargetPos;
 
 
 
-    private Coroutine pathCoroutine;
-    private Vector3 currentDestination;
+    protected Coroutine pathCoroutine;
+    protected Vector3 currentDestination;
 
 
     public LayerMask groundMask;
@@ -72,7 +72,7 @@ public class BaseEnemy : MonoBehaviour
     public Transform rayOrigin;
 
     //Optional
-    private Animator animator;
+    protected Animator animator;
 
     private void Awake()
     {
@@ -306,13 +306,13 @@ public class BaseEnemy : MonoBehaviour
     }
 
 
-    private void Death()
+    protected void Death()
     {
         agent.isStopped = true;
         Destroy(gameObject, 5);
     }
 
-    private IEnumerator Stunned()
+    protected IEnumerator Stunned()
     {
 
         agent.isStopped = true;
@@ -335,7 +335,7 @@ public class BaseEnemy : MonoBehaviour
         }
         
     }
-    private void RotateTowardsMovement()
+    protected void RotateTowardsMovement()
     {
         if (agent.velocity.sqrMagnitude < 0.01f)
             return;
@@ -470,7 +470,7 @@ public class BaseEnemy : MonoBehaviour
             }
         }
     }
-    private IEnumerator UpdateAnimations()
+    protected IEnumerator UpdateAnimations()
     {
         while(this.isActiveAndEnabled)
         {
