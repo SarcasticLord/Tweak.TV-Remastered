@@ -269,8 +269,9 @@ MonoBehaviour:
   slideAction: {fileID: 7040659881675835329, guid: 6055c109ca094264eb94c4fc10bcb837, type: 3}
   playerHealth: 100
   playerSpeed: 10
-  playerSlideSpeed: 150
-  playerRotationSpeed: 1
+  playerCrouchSpeed: 20
+  playerSlideSpeed: 20
+  playerRotationSpeed: 9
   playerJumpForce: 9
   playerFastFall: -20
   playerGravity: -12
@@ -368,6 +369,7 @@ MonoBehaviour:
   maxDistance: 3
   heldObject: {fileID: 0}
   playerCamera: {fileID: 2378955566042852624}
+  pickupCooldown: 1
 --- !u!114 &2590586664598903075
 MonoBehaviour:
   m_ObjectHideFlags: 0
