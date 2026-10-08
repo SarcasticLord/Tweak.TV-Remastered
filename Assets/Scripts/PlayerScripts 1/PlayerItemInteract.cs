@@ -35,7 +35,7 @@ public class PlayerItemInteract : MonoBehaviour
             Vector3 direction = playerCamera.transform.forward * maxDistance;
             Debug.DrawRay(transform.position, direction, Color.green);
             if (Physics.Raycast(transform.position, playerCamera.transform.forward, out RaycastHit hit, maxDistance)
-            && hit.collider.gameObject.CompareTag("Object"))
+            && (hit.collider.gameObject.CompareTag("Object") || hit.collider.gameObject.CompareTag("KeyItem")))
             {
                 heldObject = hit.collider.gameObject;
                 heldObjectScript = heldObject.GetComponent<PickupAndCarry>();
