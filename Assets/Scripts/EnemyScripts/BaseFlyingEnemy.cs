@@ -1,9 +1,12 @@
 using System.Collections;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseFlyingEnemy : BaseEnemy
 {
-    protected FlyingEnemyOffset flyOffset;
+
+    [SerializeField] protected float hoverOffset;
     protected void Start()
     {
         stunTimer = 0f;
@@ -74,15 +77,21 @@ public class BaseFlyingEnemy : BaseEnemy
 
     private IEnumerator FlyingStunned()
     {
-        agent.isStopped = true;
+        agent.baseOffset = 0f;
         rb.useGravity = true;
         rb.isKinematic = false;
+        rb.linearVelocity = -agent.velocity * 3.5f;
+        agent.enabled = false;
         yield return new WaitForSeconds(stunDuration);
         Debug.Log("Escaping stun");
-        agent.isStopped = false;
-        currentState = EnemyState.Wander;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        agent.Warp(transform.position);
+        agent.enabled = true;
+        agent.baseOffset = hoverOffset;
         rb.isKinematic = true;
         rb.useGravity = false;
+        currentState = EnemyState.Wander;
         yield return null;
 
     }
