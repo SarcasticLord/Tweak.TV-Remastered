@@ -6,7 +6,7 @@ using UnityEngine;
 public class BaseFlyingEnemy : BaseEnemy
 {
 
-    [SerializeField] protected float hoverOffset;
+    [SerializeField] protected float hoverOffset = 10f;
     protected void Start()
     {
         stunTimer = 0f;
