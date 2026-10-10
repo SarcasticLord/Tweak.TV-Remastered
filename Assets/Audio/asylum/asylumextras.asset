@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-8546719027146165057
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ATHSwalking_{-8546719027146165057}
+  m_AudioClip: {fileID: 8300000, guid: 7ea55cb7eeefa0d43a2b2731d2e14881, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-8363707263596850110
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: clockticking_{-8363707263596850110}
+  m_AudioClip: {fileID: 8300000, guid: 2f4da76679752504988f25296d569fc5, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-3281776998787956073
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ATHSwalking_{-3281776998787956073}
+  m_AudioClip: {fileID: 8300000, guid: 7ea55cb7eeefa0d43a2b2731d2e14881, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-1028398442172937585
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Train Horn - Sound Effect (HD)_{-1028398442172937585}
+  m_AudioClip: {fileID: 8300000, guid: f67816aa965ee6d43b083f383f96def8, type: 3}
+  m_Volume: -50
+  m_Enabled: 1
+--- !u!1233149941 &1692067231149846544
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: clockticking_{1692067231149846544}
+  m_AudioClip: {fileID: 8300000, guid: 2f4da76679752504988f25296d569fc5, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: asylumextras
+  m_Volume: -5.4
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 15
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 56.618916}
+  m_PitchRandomizationRange: {x: 0, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: 1692067231149846544}
+  - {fileID: -8363707263596850110}
+  - {fileID: -8546719027146165057}
+  - {fileID: -3281776998787956073}
+  - {fileID: -1028398442172937585}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 1
+  m_TriggerMode: 1
+  m_AutomaticTriggerMode: 0
+  m_LoopMode: 0
+  m_VolumeRandomizationEnabled: 1
+  m_PitchRandomizationEnabled: 1
+  m_AutomaticTriggerTimeRandomizationEnabled: 1
+  m_LoopCountRandomizationEnabled: 0
