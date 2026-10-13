@@ -89,7 +89,7 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    void Start()
+     protected virtual void Start()
     {
         stunTimer = 0f;
         attackTimer = 0f;
@@ -143,6 +143,7 @@ public class BaseEnemy : MonoBehaviour
                     attackTimer = 0f;
                 }
                 break;
+
             case EnemyState.Death:
                 Death();
                 break;
@@ -209,7 +210,7 @@ public class BaseEnemy : MonoBehaviour
         ChaseTarget();
     }
 
-    private void ChaseTarget()
+    protected void ChaseTarget()
     {
         NavMeshHit hit;
 
@@ -312,7 +313,7 @@ public class BaseEnemy : MonoBehaviour
         Destroy(gameObject, 5);
     }
 
-    protected IEnumerator Stunned()
+    protected virtual IEnumerator Stunned()
     {
 
         agent.isStopped = true;

@@ -7,93 +7,91 @@ public class BaseFlyingEnemy : BaseEnemy
 {
 
     [SerializeField] protected float hoverOffset = 10f;
-    protected void Start()
+    [SerializeField] protected float projSpeed = 10f;
+
+    [SerializeField] protected GameObject beeProj;
+
+
+
+
+    protected override void Start()
     {
-        stunTimer = 0f;
-        attackTimer = 0f;
-        currentState = EnemyState.Wander;
-        ChooseNewWanderPoint();
-        if (animator != null || animator.runtimeAnimatorController == null)
-        {
-            StartCoroutine(UpdateAnimations());
-        }
+        agent.baseOffset = hoverOffset;
+        base.Start();
     }
 
-    void Update()
+    protected override IEnumerator Stunned()
     {
-        RotateTowardsMovement();
-
-        HandleLinks();
-
-        if (isJumping)
-            return;
-
-        lookTimer += Time.deltaTime;
-        lastSeenTimer += Time.deltaTime;
-        attackTimer += Time.deltaTime;
-        stunTimer += Time.deltaTime;
-
-        if (lookTimer >= lookInterval)
-        {
-            lookTimer = 0f;
-            Look();
-
-        }
-
-
-        switch (currentState)
-        {
-            case EnemyState.Wander:
-                agent.speed = wanderSpeed;
-                WanderBehavior();
-                break;
-
-            case EnemyState.Chase:
-                agent.speed = chaseSpeed;
-                ChaseBehavior();
-                break;
-
-            case EnemyState.Attack:
-                AttackBehavior();
-                if (attackTimer >= cooldown)
-                {
-                    canAttack = true;
-                    attackTimer = 0f;
-                }
-                break;
-            case EnemyState.Death:
-                Death();
-                break;
-
-            case EnemyState.Stunned:
-                if (stunTimer >= stunCooldown)
-                {
-                    StartCoroutine(FlyingStunned());
-                    stunTimer = 0f;
-                }
-                break;
-        }
-    }
-
-    private IEnumerator FlyingStunned()
-    {
+        Vector3 launchVelocity = agent.velocity;
         agent.baseOffset = 0f;
+        agent.enabled = false;
         rb.useGravity = true;
         rb.isKinematic = false;
-        rb.linearVelocity = -agent.velocity * 3.5f;
-        agent.enabled = false;
+        rb.linearVelocity = launchVelocity;
         yield return new WaitForSeconds(stunDuration);
-        Debug.Log("Escaping stun");
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        agent.Warp(transform.position);
-        agent.enabled = true;
-        agent.baseOffset = hoverOffset;
         rb.isKinematic = true;
         rb.useGravity = false;
-        currentState = EnemyState.Wander;
+        agent.enabled = true;
+        agent.baseOffset = hoverOffset;
+        currentState = EnemyState.Chase;
         yield return null;
-
     }
 
+
+    protected override void AttackBehavior()
+    {
+        Vector3 direction =
+          chaseTarget.position - transform.position;
+
+        direction.y = 0f;
+
+        Quaternion lookRotation =
+            Quaternion.LookRotation(direction);
+
+        if (animator != null)
+            animator.SetInteger("EnemyState", (int)EnemyState.Attack);
+
+        if (!targetVisible)
+        {
+            if (lastSeenTimer <= targetMemoryTime)
+            {
+                currentState = EnemyState.Chase;
+                ChaseTarget();
+            }
+            return;
+        }
+
+        float distanceToTarget =
+            Vector3.Distance(transform.position,
+                             chaseTarget.position);
+
+        if (distanceToTarget > attackRange)
+        {
+            currentState = EnemyState.Chase;
+            return;
+        }
+
+
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            lookRotation,
+            10f * Time.deltaTime);
+
+
+        if (canAttack)
+        {
+            agent.velocity = Vector3.zero;
+            ShootAttack(direction);
+            canAttack = false;
+        }
+    }
+
+
+    protected virtual void ShootAttack(Vector3 dir)
+    {
+        GameObject bullet = Instantiate(beeProj,transform.position, transform.rotation);
+        bullet.GetComponent<Rigidbody>().AddForce(dir * projSpeed, ForceMode.Impulse);
+    }
 }
