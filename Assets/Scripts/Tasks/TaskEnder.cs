@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class TaskEnder : MonoBehaviour
@@ -10,6 +10,9 @@ public class TaskEnder : MonoBehaviour
     [Header("Pickup Variables")]
     public bool isPickup;
     public PickupAndCarry pickupAndCarry;
+    [Header("Grafitti Variables")]
+    public bool isGrafitti;
+    public GrafittiChallenge grafittiChallenge;
 
     void Start()
     {
@@ -19,7 +22,7 @@ public class TaskEnder : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnTriggerEnter(Collider other)
     {
-        if (isPickup)
+        if (isPickup || isGrafitti)
         {
             return;
         }
@@ -37,6 +40,13 @@ public class TaskEnder : MonoBehaviour
             
         }
     }
+    void OnPickup(InputValue pickupValue)
+    {
+        if (taskMaster.taskCursor == 3)
+        {
+            grafittiChallenge.Activate();
+        }
+    }
 
     void FixedUpdate()
     {
@@ -46,5 +56,6 @@ public class TaskEnder : MonoBehaviour
             taskMaster.EndTask();
             Destroy(gameObject);
         }
+        
     }
 }

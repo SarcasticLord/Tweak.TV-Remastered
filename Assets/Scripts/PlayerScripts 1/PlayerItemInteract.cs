@@ -11,8 +11,6 @@ public class PlayerItemInteract : MonoBehaviour
     public GameObject playerCamera;
     public float pickupCooldown = 1f;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    
     //private IEnumerator PickupDelay()
     //{
     //    canPickup = false;
@@ -34,12 +32,20 @@ public class PlayerItemInteract : MonoBehaviour
         {
             Vector3 direction = playerCamera.transform.forward * maxDistance;
             Debug.DrawRay(transform.position, direction, Color.green);
-            if (Physics.Raycast(transform.position, playerCamera.transform.forward, out RaycastHit hit, maxDistance)
-            && (hit.collider.gameObject.CompareTag("Object") || hit.collider.gameObject.CompareTag("KeyItem")))
+            if (Physics.Raycast(transform.position, playerCamera.transform.forward, out RaycastHit hit, maxDistance))
             {
-                heldObject = hit.collider.gameObject;
-                heldObjectScript = heldObject.GetComponent<PickupAndCarry>();
-                heldObjectScript.StartPickup();
+                if (hit.collider.gameObject.CompareTag("Object") || hit.collider.gameObject.CompareTag("KeyItem"))
+                {
+                    heldObject = hit.collider.gameObject;
+                    heldObjectScript = heldObject.GetComponent<PickupAndCarry>();
+                    heldObjectScript.StartPickup();
+                }
+                if (hit.collider.gameObject.CompareTag("GrafittiWall"))
+                {
+                    Debug.Log("AAAAAAAA");
+                    GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<GrafittiChallenge>().Activate();
+                }
+                
             }
         }    
     }
