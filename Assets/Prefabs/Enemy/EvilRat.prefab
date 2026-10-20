@@ -570,6 +570,7 @@ GameObject:
   - component: {fileID: 1918253097575622581}
   - component: {fileID: 2162765591358523298}
   - component: {fileID: -755591273423582205}
+  - component: {fileID: 6424467211176051857}
   m_Layer: 0
   m_Name: EvilRat
   m_TagString: Object
@@ -748,6 +749,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.3318121, y: 1.3081743, z: 3.9152555}
   m_Center: {x: 0, y: 0.74011844, z: 0.29053354}
+--- !u!114 &6424467211176051857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5622047900825028132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4352277bcd3d695499e269f2b1310b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskEnder
+  taskMaster: {fileID: 0}
+  isCollector: 0
+  isPickup: 0
+  pickupAndCarry: {fileID: 0}
+  isGrafitti: 0
+  grafittiChallenge: {fileID: 0}
 --- !u!1 &6543482665542381569
 GameObject:
   m_ObjectHideFlags: 0
