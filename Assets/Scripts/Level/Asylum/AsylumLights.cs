@@ -19,11 +19,11 @@ public class AsylumLights : MonoBehaviour
     [SerializeField] private float onLight = 3f;
     [SerializeField] private bool turnOffOnExit;
 
-    [Header("Flicker Settings")]
-    [SerializeField] private bool flicker = true;
-    [SerializeField] private float minFlickerTime = 0.05f;
-    [SerializeField] private float maxFlickerTime = 0.4f;
-    [SerializeField] private float flickerChance = 0.6f;
+    [Header("Flicker Settings")] // this is the stuff that flickers the lights when theyre on   // they are set public so you should be able to access them
+    [SerializeField] public bool flicker = true;
+    [SerializeField] public float minFlickerTime = 0.05f;
+    [SerializeField] public float maxFlickerTime = 0.4f;
+    [SerializeField] public float flickerChance = 0.6f;
 
     private Material glowMat;
     private bool isOn;
