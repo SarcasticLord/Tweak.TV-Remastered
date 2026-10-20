@@ -74,7 +74,7 @@ public class BaseEnemy : MonoBehaviour
     //Optional
     protected Animator animator;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
