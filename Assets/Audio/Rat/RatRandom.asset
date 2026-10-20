@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-3438908622428954195
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: rat-squeaks-5-fx-396300_{-3438908622428954195}
+  m_AudioClip: {fileID: 8300000, guid: 560c4e78a3e6ff94c9862a644b116777, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-2366944078853361132
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: rat-squeaks-4-fx-396298_{-2366944078853361132}
+  m_AudioClip: {fileID: 8300000, guid: 7c38c43049b984842923423fbe005ef1, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &950722728763714255
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: rat-squeaks-2-fx-396301_{950722728763714255}
+  m_AudioClip: {fileID: 8300000, guid: b1d624bafdbf29b49af2babcb5680236, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &6181979820354498960
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: rat-squeaks-1-fx-396297_{6181979820354498960}
+  m_AudioClip: {fileID: 8300000, guid: c9991961460259e498ff714c6829be90, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RatRandom
+  m_Volume: 0
+  m_Pitch: 1
+  m_AutomaticTriggerTime: 3.5
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 16.467943}
+  m_PitchRandomizationRange: {x: -100, y: 100}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 7}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: 6181979820354498960}
+  - {fileID: 7684300279445585992}
+  - {fileID: 950722728763714255}
+  - {fileID: 8970631776029697619}
+  - {fileID: -2366944078853361132}
+  - {fileID: -3438908622428954195}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 1
+  m_TriggerMode: 1
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 0
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 1
+  m_AutomaticTriggerTimeRandomizationEnabled: 1
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &7684300279445585992
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: rat-squeaks-1-fx-396297_{7684300279445585992}
+  m_AudioClip: {fileID: 8300000, guid: c9991961460259e498ff714c6829be90, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &8970631776029697619
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: rat-squeaks-3-fx-396299_{8970631776029697619}
+  m_AudioClip: {fileID: 8300000, guid: 357559f0986e7fe48abdb60321fb436f, type: 3}
+  m_Volume: 0
+  m_Enabled: 1

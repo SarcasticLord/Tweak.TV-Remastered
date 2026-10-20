@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-5139621779832862872
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: behind the hello line please_{-5139621779832862872}
+  m_AudioClip: {fileID: 8300000, guid: 71c9f14b5a7d064478eb0c8f463cebbf, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-3963699979328936651
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: stay behind the yellow line_{-3963699979328936651}
+  m_AudioClip: {fileID: 8300000, guid: 15996e85cb0a4a144ac2d01e5c5a2246, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-3918592431127608359
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: tweak-asylum-5-minutes_{-3918592431127608359}
+  m_AudioClip: {fileID: 8300000, guid: 78880d6763d309540a748f92cff4dfda, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-3688795055315708372
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: mind the gap please_{-3688795055315708372}
+  m_AudioClip: {fileID: 8300000, guid: a78a3f6167985fe43805fee8853e521d, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-3312944598613477931
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: stay off the tracks_{-3312944598613477931}
+  m_AudioClip: {fileID: 8300000, guid: 5a8ae91fe7325e7448dfb26870347e05, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-1568458502556481111
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: tweak-asylum_{-1568458502556481111}
+  m_AudioClip: {fileID: 8300000, guid: cd753eefa70213b42b4ff65e16004cea, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &978949947712144218
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: delayed train_{978949947712144218}
+  m_AudioClip: {fileID: 8300000, guid: dcbcdc630308f394e9ea8f4ea63ca4d1, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &6252018965449782590
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: please stay off the tracks_{6252018965449782590}
+  m_AudioClip: {fileID: 8300000, guid: 7fdc3e4b05f2cd84ebe2a9dad3e40f33, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TweakStationRandAudio
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 5
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: 0, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 15}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: -5139621779832862872}
+  - {fileID: 978949947712144218}
+  - {fileID: 7230182572923948923}
+  - {fileID: -3688795055315708372}
+  - {fileID: 7632106568828353892}
+  - {fileID: 6252018965449782590}
+  - {fileID: -3963699979328936651}
+  - {fileID: -3312944598613477931}
+  - {fileID: -1568458502556481111}
+  - {fileID: -3918592431127608359}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 1
+  m_TriggerMode: 1
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 0
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 0
+  m_AutomaticTriggerTimeRandomizationEnabled: 1
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &7230182572923948923
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: glep_{7230182572923948923}
+  m_AudioClip: {fileID: 8300000, guid: ba07cc44393072242a0b84d64363a847, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &7632106568828353892
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: please mind the gap_{7632106568828353892}
+  m_AudioClip: {fileID: 8300000, guid: c0bd623e8b3f80b47aea501beb5fccb9, type: 3}
+  m_Volume: 0
+  m_Enabled: 1

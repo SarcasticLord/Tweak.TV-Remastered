@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-5747276345672533380
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ATHS lobby_{-5747276345672533380}
+  m_AudioClip: {fileID: 8300000, guid: fe4128facf1721e4f978354aeb97246a, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-3685660885482531628
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: operating systems room_{-3685660885482531628}
+  m_AudioClip: {fileID: 8300000, guid: 326aca8c97c3861419ae18205af66652, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-1811630422386730232
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ATHS lobby_{-1811630422386730232}
+  m_AudioClip: {fileID: 8300000, guid: fe4128facf1721e4f978354aeb97246a, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &695787946048010396
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: operating systems room_{695787946048010396}
+  m_AudioClip: {fileID: 8300000, guid: 326aca8c97c3861419ae18205af66652, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &5225812026091307617
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ATHS lobby_{5225812026091307617}
+  m_AudioClip: {fileID: 8300000, guid: fe4128facf1721e4f978354aeb97246a, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &5942834264529968639
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: water fountain_{5942834264529968639}
+  m_AudioClip: {fileID: 8300000, guid: fcb6f50560a3d2443858007519aa8d5e, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: asylumbackground
+  m_Volume: -8.5
+  m_Pitch: 96
+  m_AutomaticTriggerTime: 5
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 61.66189}
+  m_PitchRandomizationRange: {x: -1200, y: 220.05743}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 10}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: 5225812026091307617}
+  - {fileID: 695787946048010396}
+  - {fileID: 5942834264529968639}
+  - {fileID: -5747276345672533380}
+  - {fileID: -3685660885482531628}
+  - {fileID: 6811887127231101617}
+  - {fileID: -1811630422386730232}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 2
+  m_TriggerMode: 1
+  m_AutomaticTriggerMode: 0
+  m_LoopMode: 0
+  m_VolumeRandomizationEnabled: 1
+  m_PitchRandomizationEnabled: 1
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &6811887127231101617
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: water fountain_{6811887127231101617}
+  m_AudioClip: {fileID: 8300000, guid: fcb6f50560a3d2443858007519aa8d5e, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
