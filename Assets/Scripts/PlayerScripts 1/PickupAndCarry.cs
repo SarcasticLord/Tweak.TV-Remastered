@@ -7,7 +7,7 @@ public class PickupAndCarry : MonoBehaviour
     public Transform player;
     public Transform playerCamera;
     public PlayerItemInteract playerInteract;
-    private BoxCollider bc;
+    private Collider c;
     public float distanceFromCamera=1.1f;
     public float lerpTime=0.2f;
     public float lerpTimeStamp=0f;
@@ -19,7 +19,7 @@ public class PickupAndCarry : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        bc = GetComponent<BoxCollider>();
+        c = GetComponent<Collider>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         playerCamera = GameObject.FindGameObjectWithTag("PlayerCamera").GetComponent<Transform>();
         playerInteract = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerItemInteract>();
@@ -59,7 +59,7 @@ public class PickupAndCarry : MonoBehaviour
     {
         rb.useGravity=grav;
         if(!lin){rb.linearVelocity=Vector3.zero;}
-        bc.isTrigger=!collide;
+        c.isTrigger=!collide;
         // if(!rota){rb.freezeRotation=true;}else{rb.freezeRotation=false;}
     }
 }
