@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Threading.Tasks;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -10,6 +12,10 @@ public class PlayerItemInteract : MonoBehaviour
     private PickupAndCarry heldObjectScript;
     public GameObject playerCamera;
     public float pickupCooldown = 1f;
+    public TaskMasterScript taskMasterScript;
+    public GrafittiChallenge grafittiChallenge;
+    public ViewTracker viewTracker;
+    
     
     //private IEnumerator PickupDelay()
     //{
@@ -17,6 +23,13 @@ public class PlayerItemInteract : MonoBehaviour
     //    yield return new WaitForSeconds(.5f);
     //    canPickup = true;
     //}
+
+    void Start()
+    {
+        grafittiChallenge = GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<GrafittiChallenge>();
+        viewTracker = GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<ViewTracker>();
+        taskMasterScript = GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<TaskMasterScript>();
+    }
     private void Update()
     {
         
@@ -42,8 +55,8 @@ public class PlayerItemInteract : MonoBehaviour
                 }
                 if (hit.collider.gameObject.CompareTag("GrafittiWall"))
                 {
-                    Debug.Log("AAAAAAAA");
-                    GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<GrafittiChallenge>().Activate();
+                    if(taskMasterScript.currentTask.TaskID!=3){return;}
+                    grafittiChallenge.Activate();
                 }
                 
             }
@@ -67,11 +80,13 @@ public class PlayerItemInteract : MonoBehaviour
         {
             case "KillZone":
                 Cursor.lockState = CursorLockMode.None;
+                if(grafittiChallenge.systemActive){grafittiChallenge.FailState();} //Fail them if they get hit in the minigame
                 Cursor.visible = true;
                 SceneManager.LoadScene("DeathScene");
                 break;
             case "AttackZone":
                 GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<ViewTracker>().baseOffset-=100;
+                if(grafittiChallenge.systemActive){grafittiChallenge.FailState();} //Fail them if they get hit in the minigame
                 break;
             default:
                 break;

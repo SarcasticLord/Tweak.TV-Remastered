@@ -19,9 +19,9 @@ public class GrafittiChallenge : MonoBehaviour
     public PlayerInput playerInput;
     public enum Direction {Up, Left, Down, Right}
     public Direction lastKnownDirectionInput;
-    public Direction[] directionOrder = new Direction[5];
-    public int minigameCursor;
-    bool inputLoaded;
+    public Direction[] directionOrder = new Direction[5]; //The commands randomly chosen
+    public int minigameCursor; //Where you are in the minigame
+    bool inputLoaded; //do you have an input selected
     public GameObject mainCanvas;
     public GameObject player;
 
@@ -33,15 +33,16 @@ public class GrafittiChallenge : MonoBehaviour
     public Sprite correctSprite;
     public TaskMasterScript taskMasterScript;
     public bool canBeStarted;
-    
+    public MeshRenderer grafittiResult;
+    public Material[] grafittiResultImages;
 
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
-        Grafitti = playerInput.actions.FindActionMap(nameof(Grafitti));
+        Grafitti = playerInput.actions.FindActionMap(nameof(Grafitti)); //Get grafitti functional
         for (int i = 0; i < 5; i++)
         {
-            inputImages[i].SetActive(false);
+            inputImages[i].SetActive(false); //Disable images until needed
         }
     }
     [ContextMenu(nameof(Activate))]
@@ -64,13 +65,13 @@ public class GrafittiChallenge : MonoBehaviour
         CommandInputs = movementValue.Get<Vector2>();
     }
 
-    void CreateCommandPattern()
+    void CreateCommandPattern() //Randomize pattern and display visuals for it
     {
         for (int i = 0; i < 5; i++)
         {
             Direction direction = (Direction)Random.Range(0, 4);
             directionOrder[i] = direction;
-            inputImages[i].transform.rotation = Quaternion.Euler(0, 0, 180+(((int)direction)*90));
+            inputImages[i].transform.rotation = Quaternion.Euler(0, 0, ((int)direction)*90);
         }
     }
 
@@ -82,13 +83,13 @@ public class GrafittiChallenge : MonoBehaviour
         AcceptInputs();
     }
 
-    void InterpretInputs()
+    void InterpretInputs() //Convert keyboard inputs to a set of directional inputs
     {
         (UpIsInput, DownIsInput, LeftIsInput, RightIsInput) = (CommandInputs.y>0, CommandInputs.y<0, CommandInputs.x<0, CommandInputs.x>0);
         AnyIsInput=UpIsInput||DownIsInput||LeftIsInput||RightIsInput;
     }
 
-    void InsertInputs()
+    void InsertInputs() //lock inputs so holding an input does nothing
     {
         
         if (UpIsInput)
@@ -150,7 +151,7 @@ public class GrafittiChallenge : MonoBehaviour
         
     }
 
-    void AcceptInputs()
+    void AcceptInputs() //Only accept in one input at a time, no diagonals
     {
         
         if(!inputLoaded){return;}
@@ -159,11 +160,12 @@ public class GrafittiChallenge : MonoBehaviour
         
     }
 
-    void AddressInputs()
+    void AddressInputs() //If an input is correct, move on. If not, fail. If all complete, complete task
     {
         if(lastKnownDirectionInput == directionOrder[minigameCursor])
         {
             inputImages[minigameCursor].GetComponent<Image>().sprite = correctSprite;
+            inputImages[minigameCursor].transform.rotation=Quaternion.Euler(0, 0, 0);
             minigameCursor++;
             if(minigameCursor==directionOrder.Length){Deactivate();}
         }
@@ -174,7 +176,7 @@ public class GrafittiChallenge : MonoBehaviour
         
     }
 
-    void Deactivate()
+    void Deactivate() //End task, reset everything
     {
         for (int i = 0; i < 5; i++)
         {
@@ -187,9 +189,10 @@ public class GrafittiChallenge : MonoBehaviour
         taskMasterScript.EndTask();
         canBeStarted=false;
         player.GetComponent<PlayerInput>().enabled=true;
+        grafittiResult.material = grafittiResultImages[Random.Range(0, 3)];
     }
 
-    void FailState()
+    public void FailState() //End task, reset everything, let player go back in
     {
         for (int i = 0; i < 5; i++)
         {
