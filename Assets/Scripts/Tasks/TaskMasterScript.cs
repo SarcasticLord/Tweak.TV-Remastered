@@ -11,6 +11,8 @@ public class TaskMasterScript : MonoBehaviour
     public ViewTracker viewTracker; //The viewtracker
     public int objectsNeededForTask; //How many objects are needed to complete the collection task
     public int objectsCollected; //The current number of collected objects
+    public int enemiesLeftAlive; //How many enemies must be killed to complete the task
+    public int enemiesKilled; //The current number of enemies killed
 
     void SetTask(int taskNumber) //Change the task and task description
     {
@@ -38,6 +40,16 @@ public class TaskMasterScript : MonoBehaviour
     {
         objectsCollected++;
         if (objectsCollected >= objectsNeededForTask)
+        {
+            EndTask();
+        }
+    }
+
+    public void CountEnemiesKilled() //Increment object and end task if complete
+    {
+        if(currentTask.TaskID==5){return;}
+        enemiesKilled++;
+        if (enemiesKilled >= enemiesLeftAlive)
         {
             EndTask();
         }

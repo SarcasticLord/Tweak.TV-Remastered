@@ -1,5 +1,6 @@
 using UnityEngine.InputSystem;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class TaskEnder : MonoBehaviour
 {
@@ -13,10 +14,13 @@ public class TaskEnder : MonoBehaviour
     [Header("Grafitti Variables")]
     public bool isGrafitti;
     public GrafittiChallenge grafittiChallenge;
+    [Header("Enemy Variables")]
+    public bool trackEnemyDeath;
 
     void Start()
     {
         if(isPickup){pickupAndCarry=GetComponent<PickupAndCarry>();}
+        taskMaster = GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<TaskMasterScript>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,11 +32,11 @@ public class TaskEnder : MonoBehaviour
         }
         if (other.gameObject.CompareTag("KeyItem")) //If key item found, either collect or end task
         {
-            if (!isCollector && taskMaster.taskCursor==2)
+            if (!isCollector && taskMaster.currentTask.TaskID==2)
             {
                 taskMaster.EndTask();
             }
-            else if(taskMaster.taskCursor==4)
+            else if(taskMaster.currentTask.TaskID==4)
             {
                 taskMaster.CollectObject();
                 Destroy(other.gameObject);
@@ -40,18 +44,16 @@ public class TaskEnder : MonoBehaviour
             
         }
     }
-    void OnPickup(InputValue pickupValue)
+
+    void OnDestroy()
     {
-        if (taskMaster.taskCursor == 3)
-        {
-            grafittiChallenge.Activate();
-        }
+        taskMaster.CountEnemiesKilled();
     }
 
     void FixedUpdate()
     {
         if(!isPickup){return;}
-        if (pickupAndCarry.isCarried && taskMaster.taskCursor==1)
+        if (pickupAndCarry.isCarried && taskMaster.currentTask.TaskID==1)
         {
             taskMaster.EndTask();
             Destroy(gameObject);

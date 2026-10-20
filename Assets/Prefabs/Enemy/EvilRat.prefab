@@ -87,9 +87,6 @@ PrefabInstance:
       addedObject: {fileID: 5644978843016308433}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 701b1121dc2d14a4f812e9758079d29d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8085248211172201616}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 701b1121dc2d14a4f812e9758079d29d, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 832057380762405404}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 701b1121dc2d14a4f812e9758079d29d, type: 3}
       insertIndex: -1
@@ -97,6 +94,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 701b1121dc2d14a4f812e9758079d29d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7626661972569055635}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 701b1121dc2d14a4f812e9758079d29d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8168352593966215130}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 701b1121dc2d14a4f812e9758079d29d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5372853507477823073}
   m_SourcePrefab: {fileID: 100100000, guid: 701b1121dc2d14a4f812e9758079d29d, type: 3}
 --- !u!1 &4827336216684728739 stripped
 GameObject:
@@ -131,10 +134,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4827336216684728739}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 10
-  m_Drag: 0
-  m_AngularDrag: 0
+  m_LinearDamping: 0
+  m_AngularDamping: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -173,34 +176,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8085248211172201616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4827336216684728739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82619dac841a15e4d8e2919f74150fa7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 2
-  hitParticle: {fileID: 3567050154118531774, guid: 3f8d026cd8203754ea2721da63e7d5b4, type: 3}
-  knockOutChance: 1
-  detectionRange: 25
-  attackRange: 2
-  wanderRadius: 15
-  idleTime: 2
-  wanderSpeed: 4
-  chaseSpeed: 7
-  attackSpeed: 0
-  hitbox: {fileID: 1371328489957405031, guid: c54074abc2658d64494eca7b6e0adadf, type: 3}
-  offset: 0
-  attackCooldown: 10
-  enemyScore: 10
-  knockOutDuration: 5
-  unconsciousIndicator: {fileID: 4611314927788911721, guid: 965cfbcce72ea574193ec6a1d16ad4f8, type: 3}
 --- !u!95 &832057380762405404
 Animator:
   serializedVersion: 7
@@ -211,7 +186,7 @@ Animator:
   m_GameObject: {fileID: 4827336216684728739}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 542e62fbcc219ca48930c02bca272905, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4adc1f34506240a4083a4cb1d7e55a67, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -342,3 +317,68 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8168352593966215130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4827336216684728739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4352277bcd3d695499e269f2b1310b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskEnder
+  taskMaster: {fileID: 0}
+  isCollector: 0
+  isPickup: 0
+  pickupAndCarry: {fileID: 0}
+  isGrafitti: 0
+  grafittiChallenge: {fileID: 0}
+  trackEnemyDeath: 1
+--- !u!114 &5372853507477823073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4827336216684728739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5d470545b900d442800995a4845c2df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BaseEnemy
+  jumpTime: 3
+  jumpHeight: 3
+  wanderSpeed: 1
+  wanderRadius: 1
+  wanderInterval: 5
+  wanderTimer: 0
+  wanderTolerance: 1
+  idleTime: 10
+  chaseSpeed: 3
+  attackRange: 2
+  cooldown: 3
+  stunObj: {fileID: 0}
+  stunTimer: 0
+  stunDuration: 5
+  stunCooldown: 1
+  detectionAngle: 60
+  detectionRange: 10
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 64
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 8
+  lookInterval: 0.1
+  targetMemoryTime: 3
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  rayOrigin: {fileID: 5311419732026411801}
+--- !u!4 &5311419732026411801 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 701b1121dc2d14a4f812e9758079d29d, type: 3}
+  m_PrefabInstance: {fileID: 5638310365731368178}
+  m_PrefabAsset: {fileID: 0}

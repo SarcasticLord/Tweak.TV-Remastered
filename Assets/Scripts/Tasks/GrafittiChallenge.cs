@@ -189,7 +189,7 @@ public class GrafittiChallenge : MonoBehaviour
         taskMasterScript.EndTask();
         canBeStarted=false;
         player.GetComponent<PlayerInput>().enabled=true;
-        grafittiResult.material = grafittiResultImages[Random.Range(0, 3)];
+        grafittiResult.material = grafittiResultImages[Random.Range(0, grafittiResultImages.Length)];
     }
 
     public void FailState() //End task, reset everything, let player go back in
