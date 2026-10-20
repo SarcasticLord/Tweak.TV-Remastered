@@ -266,8 +266,12 @@ MonoBehaviour:
   materialSlot: 1
   emissionColor: {r: 1, g: 1, b: 1, a: 1}
   offLight: -10
-  onLight: 4
+  onLight: 3
   turnOffOnExit: 1
+  flicker: 1
+  minFlickerTime: 0.1
+  maxFlickerTime: 1.2
+  flickerChance: 0.6
 --- !u!4 &2169249609840990242 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f59d860c2cea86e4180ba653a0a80aaf, type: 3}

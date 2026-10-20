@@ -1,12 +1,17 @@
+// this turns the lights on when the player is near
+// it also swaps the material on the light to match its state 
+
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class AsylumLights : MonoBehaviour
 {
     [SerializeField] private Light light;
     [SerializeField] private Renderer glowing;
     [SerializeField] private Material glowingMaterial;
-    [SerializeField] private int materialSlot = 2;
+    [SerializeField] private int materialSlot = 2;      // this is a workaround to get the material to be in the proper place 
 
 
     [SerializeField] private Color emissionColor = Color.white;
@@ -14,7 +19,15 @@ public class AsylumLights : MonoBehaviour
     [SerializeField] private float onLight = 3f;
     [SerializeField] private bool turnOffOnExit;
 
+    [Header("Flicker Settings")]
+    [SerializeField] private bool flicker = true;
+    [SerializeField] private float minFlickerTime = 0.05f;
+    [SerializeField] private float maxFlickerTime = 0.4f;
+    [SerializeField] private float flickerChance = 0.6f;
+
     private Material glowMat;
+    private bool isOn;
+    private Coroutine flickerCo;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -50,13 +63,7 @@ public class AsylumLights : MonoBehaviour
         SetLight(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other) // when the player enters the collider
     {
         if(other.CompareTag("Player"))
         {
@@ -64,7 +71,7 @@ public class AsylumLights : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other) // when the player leaves the collider
     {
         if (turnOffOnExit && other.CompareTag("Player"))
         {
@@ -74,15 +81,68 @@ public class AsylumLights : MonoBehaviour
 
     private void SetLight(bool on)
     {
+
+        isOn = on;
+        if (flickerCo != null)
+        {
+            StopCoroutine(flickerCo);
+            flickerCo = null;
+        }
         if (light != null)
         {
             light.enabled = on;
+            light.intensity = on ? onLight : offLight;
         }
 
-        if (glowMat != null)
+        UpdateGlow(on ? onLight : offLight);
+
+        if (on && flicker)
         {
-            float intenseity = on ? onLight : offLight;
-            glowMat.SetColor("_EmissionColor", emissionColor * intenseity);
+            flickerCo = StartCoroutine(FlickerLight());
+        }
+
+        
+    }
+    
+    private IEnumerator FlickerLight()
+    {
+        while (isOn)
+        {
+            float waitTime = Random.Range(minFlickerTime, maxFlickerTime);
+            yield return new WaitForSeconds(waitTime);
+
+            if(Random.value < flickerChance)
+            {
+                float randomIntensity = Random.Range(0f, onLight);
+
+                if(light != null)
+                {
+                    light.intensity = randomIntensity;
+                }
+
+                UpdateGlow(randomIntensity);
+
+                yield return new WaitForSeconds(Random.Range(0.02f, 0.1f));
+
+                if (isOn)
+                {
+                    if (light != null)
+                    {
+                        light.intensity = onLight;
+                    }
+
+                    UpdateGlow(onLight);
+                }
+            }
         }
     }
+    private void UpdateGlow(float intensity)
+    {
+        if (glowMat != null)
+        {
+            glowMat.SetColor("_EmissionColor", emissionColor * intensity);
+        }
+    }
+        
 }
+
