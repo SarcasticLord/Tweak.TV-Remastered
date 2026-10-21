@@ -11,6 +11,7 @@ public class BaseEnemy : MonoBehaviour
     //Component variables
     private Rigidbody rb;
     private NavMeshAgent agent;
+    public GameObject blood;
    
 
     protected bool canUseLinks = true;
@@ -309,6 +310,7 @@ public class BaseEnemy : MonoBehaviour
     private void Death()
     {
         agent.isStopped = true;
+        blood.SetActive(true);
         Destroy(gameObject, 5);
     }
 
