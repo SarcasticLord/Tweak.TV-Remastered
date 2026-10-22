@@ -14,6 +14,7 @@ public class PickupAndCarry : MonoBehaviour
     public float throwForce = 1000f;
 
 
+
     public bool isCarried=false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,16 +30,16 @@ public class PickupAndCarry : MonoBehaviour
     {
         SetObjectPhysics(false, false, false, false);
         isCarried=true;
+
     }
     [ContextMenu(nameof(Pickup))]
     public void Pickup()
     {
         
-//Vector3.Lerp(transform.position, player.position+(player.forward*distanceFromCamera), lerpTime);
+        //Vector3.Lerp(transform.position, player.position+(player.forward*distanceFromCamera), lerpTime);
         transform.position = player.position+(player.forward*distanceFromCamera);
         transform.LookAt(player);
 
-        
     }
     [ContextMenu(nameof(Throw))]
     public void Throw()
