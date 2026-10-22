@@ -80,7 +80,7 @@ public class PlayerItemInteract : MonoBehaviour
         {
             case "KillZone":
                 Cursor.lockState = CursorLockMode.None;
-                if(grafittiChallenge.systemActive){grafittiChallenge.FailState();} //Fail them if they get hit in the minigame
+                //if (grafittiChallenge.systemActive){grafittiChallenge.FailState();} //Fail them if they get hit in the minigame
                 Cursor.visible = true;
                 SceneManager.LoadScene("DeathScene");
                 break;
