@@ -47,6 +47,7 @@ public class TaskEnder : MonoBehaviour
 
     void OnDestroy()
     {
+        if(taskMaster.currentTask.TaskID!=5){return;}
         taskMaster.CountEnemiesKilled();
     }
 

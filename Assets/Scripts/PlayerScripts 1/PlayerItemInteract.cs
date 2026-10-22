@@ -43,9 +43,13 @@ public class PlayerItemInteract : MonoBehaviour
     {
         if(heldObject == null && pickupCooldown <= 0)
         {
-            Vector3 direction = playerCamera.transform.forward * maxDistance;
-            Debug.DrawRay(transform.position, direction, Color.green);
-            if (Physics.Raycast(transform.position, playerCamera.transform.forward, out RaycastHit hit, maxDistance))
+            Vector3 rayOrigin = playerCamera.transform.position;
+            Vector3 rayDirection = playerCamera.transform.forward * maxDistance;
+
+            // Draw the ray from the camera's position
+            Debug.DrawRay(rayOrigin, rayDirection, Color.green);
+
+            if (Physics.Raycast(rayOrigin, playerCamera.transform.forward, out RaycastHit hit, maxDistance))
             {
                 if (hit.collider.gameObject.CompareTag("Object") || hit.collider.gameObject.CompareTag("KeyItem"))
                 {

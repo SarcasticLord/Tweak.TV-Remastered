@@ -80,10 +80,10 @@ PrefabInstance:
       addedObject: {fileID: 797466540988554570}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fa02103c21006124eb2e22b5299a80ff, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7579615225456899636}
+      addedObject: {fileID: 4336403540636540301}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fa02103c21006124eb2e22b5299a80ff, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4336403540636540301}
+      addedObject: {fileID: 9021760610436069502}
   m_SourcePrefab: {fileID: 100100000, guid: fa02103c21006124eb2e22b5299a80ff, type: 3}
 --- !u!1 &1841668125125262216 stripped
 GameObject:
@@ -133,20 +133,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.01
   m_Center: {x: 0, y: 0, z: 0.01}
---- !u!114 &7579615225456899636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1841668125125262216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9565c224b3ebcb9499b2fbecf8d87ef5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value: 10
-  confetti: {fileID: 3567050154118531774, guid: a9c26a548801c9b4494df62ddfa5f66a, type: 3}
 --- !u!82 &4336403540636540301
 AudioSource:
   m_ObjectHideFlags: 0
@@ -244,3 +230,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &9021760610436069502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841668125125262216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4352277bcd3d695499e269f2b1310b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskEnder
+  taskMaster: {fileID: 0}
+  isCollector: 1
+  isPickup: 0
+  pickupAndCarry: {fileID: 0}
+  isGrafitti: 0
+  grafittiChallenge: {fileID: 0}
+  trackEnemyDeath: 0
