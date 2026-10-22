@@ -24,10 +24,11 @@ public class TrainMovement : MonoBehaviour
 
         //transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
         Vector3 nextPos = Vector3.MoveTowards(rb.position, targetPos, speed * Time.deltaTime);
-        Quaternion rot = new Quaternion(0, target.rotation.y, 0, 0);
+        Vector3 euler = transform.eulerAngles;
+        euler.y = target.eulerAngles.y;
+        transform.rotation = Quaternion.Euler(euler);
         rb.MovePosition(nextPos);
-        transform.rotation = rot;
-
+        transform.rotation = Quaternion.Euler(euler);
         if (Vector3.Distance(transform.position, nextPos) < 0.1f)
         {
             waypointIndex = (waypointIndex + 1) % waypoints.Length;
