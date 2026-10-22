@@ -5,16 +5,18 @@ using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 public class BaseEnemy : MonoBehaviour
 {
-    protected enum EnemyState { Wander, Chase, Attack, Death, Stunned}
-    protected EnemyState currentState;
+    enum EnemyState { Wander, Chase, Attack, Death, Stunned}
+    EnemyState currentState;
 
     //Component variables
-    protected Rigidbody rb;
-    protected NavMeshAgent agent;
+    private Rigidbody rb;
+    private NavMeshAgent agent;
+    [SerializeField] private GameObject blood;
+    [SerializeField] private Material ghostMat;
    
 
     protected bool canUseLinks = true;
-    protected bool isJumping = false;
+    private bool isJumping = false;
     public float jumpTime = 3f;
     public float jumpHeight = 3f;
 
@@ -33,8 +35,8 @@ public class BaseEnemy : MonoBehaviour
     //Attack variables
     public float attackRange = 2f;
     public float cooldown = 3f;
-    protected float attackTimer;
-    protected bool canAttack;
+    private float attackTimer;
+    private bool canAttack;
 
 
     //Stun variables
@@ -50,21 +52,21 @@ public class BaseEnemy : MonoBehaviour
     public LayerMask obstructionMask;
     public LayerMask targetMask;
 
-    protected Transform chaseTarget;
-    protected bool targetVisible = false;
+    private Transform chaseTarget;
+    private bool targetVisible = false;
 
-    protected float lookTimer;
+    private float lookTimer;
     public float lookInterval = 0.1f;
 
     public float targetMemoryTime = 3f;
-    protected float lastSeenTimer;
+    private float lastSeenTimer;
 
-    protected Vector3 lastTargetPos;
+    private Vector3 lastTargetPos;
 
 
 
-    protected Coroutine pathCoroutine;
-    protected Vector3 currentDestination;
+    private Coroutine pathCoroutine;
+    private Vector3 currentDestination;
 
 
     public LayerMask groundMask;
@@ -72,9 +74,9 @@ public class BaseEnemy : MonoBehaviour
     public Transform rayOrigin;
 
     //Optional
-    protected Animator animator;
+    private Animator animator;
 
-    protected virtual void Awake()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
@@ -89,7 +91,7 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-     protected virtual void Start()
+    void Start()
     {
         stunTimer = 0f;
         attackTimer = 0f;
@@ -143,7 +145,6 @@ public class BaseEnemy : MonoBehaviour
                     attackTimer = 0f;
                 }
                 break;
-
             case EnemyState.Death:
                 Death();
                 break;
@@ -210,7 +211,7 @@ public class BaseEnemy : MonoBehaviour
         ChaseTarget();
     }
 
-    protected void ChaseTarget()
+    private void ChaseTarget()
     {
         NavMeshHit hit;
 
@@ -307,13 +308,21 @@ public class BaseEnemy : MonoBehaviour
     }
 
 
-    protected void Death()
+    private void Death()
     {
         agent.isStopped = true;
+        blood.SetActive(true);
+        SkinnedMeshRenderer renderer = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();   
+        Material[] mats = renderer.materials;
+        for (int i = 0; i < mats.Length; i++)
+        {
+            mats[i] = ghostMat;
+            renderer.materials = mats;
+        }
         Destroy(gameObject, 5);
     }
 
-    protected virtual IEnumerator Stunned()
+    private IEnumerator Stunned()
     {
 
         agent.isStopped = true;
@@ -336,7 +345,7 @@ public class BaseEnemy : MonoBehaviour
         }
         
     }
-    protected void RotateTowardsMovement()
+    private void RotateTowardsMovement()
     {
         if (agent.velocity.sqrMagnitude < 0.01f)
             return;
@@ -471,7 +480,7 @@ public class BaseEnemy : MonoBehaviour
             }
         }
     }
-    protected IEnumerator UpdateAnimations()
+    private IEnumerator UpdateAnimations()
     {
         while(this.isActiveAndEnabled)
         {

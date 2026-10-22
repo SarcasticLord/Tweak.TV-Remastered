@@ -12,7 +12,7 @@ public class PlayerMovementScript : MonoBehaviour
     [SerializeField] private InputActionReference slideAction;
 
     //States
-    private enum PlayerState {IDLE, RUN, SLIDE, DASH};
+    private enum PlayerState {IDLE, RUN, SLIDE, SLIDEWALK, DASH};
     private PlayerState _currentState = PlayerState.IDLE;
 
     //Player Ingame Stats
@@ -37,6 +37,7 @@ public class PlayerMovementScript : MonoBehaviour
     [Header("Player Base Stats")]
     public float playerHealth = 100f;
     public float playerSpeed = 10f;
+    public float playerCrouchSpeed = 5f;
     public float playerSlideSpeed = 20f;
     public float playerRotationSpeed = 1.0f;
 
@@ -140,36 +141,47 @@ public class PlayerMovementScript : MonoBehaviour
                 break;
             case PlayerState.SLIDE:
 
-                //Lock player movement, and shrink player capsule height
-                _canMove = false;
-                _controller.height = _playerSlideHeight;
-
-                if (_isGrounded)
+                if(_currSlideSpeed > playerCrouchSpeed)
                 {
-                    //Decrease slide speed as slide is held down
-                    if(_currSlideSpeed > 0.0f)
+                    //Lock player movement if they are moving
+                    _canMove = false;
+                    if (_isGrounded)
                     {
-                        _currSlideSpeed -= Time.deltaTime * acceleration * 2;
+                        //Decrease slide speed as slide is held down
+                        if (_currSlideSpeed > 0.0f)
+                        {
+                            _currSlideSpeed -= Time.deltaTime * acceleration * 2;
+                        }
+                        targetSpeed = _currSlideSpeed;
                     }
-
-                    targetSpeed = _currSlideSpeed;
-
                 }
                 else
                 {
-                    //Allow player to fast fall with crouch
-                    if (!_isJumping)
-                    {
-                        _verticalVelocity = playerFastFall;
-                    }
+                    _canMove = true;
+                    targetSpeed = playerCrouchSpeed;
                 }
+
+                //Allow player to fast fall with crouch
+                if (!_isJumping && !_isGrounded)
+                {
+                    _verticalVelocity = playerFastFall;
+                }
+
+                //Shrink player capsule height
+                _controller.height = _playerSlideHeight;
+
+
 
                 //Switch to RUN state
                 if (_slideInput == false)
                 {
                     _canMove = true;
                     _controller.height = _playerHeight;
+
+                    _currSlideSpeed = 0f;
+
                     _currentState = PlayerState.RUN;
+
                 }
                 break;
         }
