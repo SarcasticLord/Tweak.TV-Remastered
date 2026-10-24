@@ -1,64 +1,106 @@
-using UnityEngine.InputSystem;
 using UnityEngine;
-using System.Threading.Tasks;
 
+/// <summary>
+/// Handles ending or updating specific tasks based on triggers, pickups, graffiti, or enemy destruction.
+/// </summary>
 public class TaskEnder : MonoBehaviour
 {
     [Header("General")]
+    [Tooltip("Reference to the central task management system.")]
     public TaskMasterScript taskMaster;
+    [Tooltip("Determines if this object handles collection behavior.")]
     public bool isCollector;
 
     [Header("Pickup Variables")]
+    [Tooltip("Is this object associated with a pickup task?")]
     public bool isPickup;
+    [Tooltip("Reference to the PickupAndCarry component.")]
     public PickupAndCarry pickupAndCarry;
+
     [Header("Grafitti Variables")]
+    [Tooltip("Is this object associated with a graffiti task?")]
     public bool isGrafitti;
+    [Tooltip("Reference to the GrafittiChallenge component.")]
     public GrafittiChallenge grafittiChallenge;
+
     [Header("Enemy Variables")]
+    [Tooltip("Should this object track enemy deaths upon destruction?")]
     public bool trackEnemyDeath;
 
     void Start()
     {
-        if(isPickup){pickupAndCarry=GetComponent<PickupAndCarry>();}
+        // Automatically cache the PickupAndCarry component if this is a pickup object
+        if (isPickup)
+        {
+            pickupAndCarry = GetComponent<PickupAndCarry>();
+        }
+
+        // Find and cache the TaskMasterScript via the "ViewTracker" tag
         taskMaster = GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<TaskMasterScript>();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    /// <summary>
+    /// Trigger-based logic for interacting with KeyItems (e.g., reaching an end zone or collecting items).
+    /// </summary>
     void OnTriggerEnter(Collider other)
     {
+        // If this object is designated for pickups or graffiti, ignore standard trigger volume end logic here
         if (isPickup || isGrafitti)
         {
             return;
         }
-        if (other.gameObject.CompareTag("KeyItem")) //If key item found, either collect or end task
+
+        // Check if the colliding object is tagged as a KeyItem
+        if (other.gameObject.CompareTag("KeyItem"))
         {
-            if (!isCollector && taskMaster.currentTask.TaskID==2)
+            // TaskID 2: Reach a destination/trigger with a key item to end the task (if not a collector)
+            if (!isCollector && taskMaster.currentTask.TaskID == 2)
             {
                 taskMaster.EndTask();
             }
-            else if(taskMaster.currentTask.TaskID==4)
+            // TaskID 4: Collect the object, update progress, and destroy the item in the world
+            else if (taskMaster.currentTask.TaskID == 4)
             {
                 taskMaster.CollectObject();
                 Destroy(other.gameObject);
             }
-            
         }
     }
 
+    /// <summary>
+    /// Called when the GameObject is destroyed. Used here to track enemy elimination tasks.
+    /// </summary>
     void OnDestroy()
     {
-        if(taskMaster.currentTask.TaskID!=5){return;}
-        taskMaster.CountEnemiesKilled();
+        // Only track enemy kills if the current active task is TaskID 5
+        if (taskMaster != null && taskMaster.currentTask.TaskID != 5)
+        {
+            return;
+        }
+
+        // Inform the task master that an enemy has been defeated/destroyed
+        if (taskMaster != null)
+        {
+            taskMaster.CountEnemiesKilled();
+        }
     }
 
+    /// <summary>
+    /// FixedUpdate is used for physics-synced checks, such as checking if a carried pickup has reached its goal.
+    /// </summary>
     void FixedUpdate()
     {
-        if(!isPickup){return;}
-        if (pickupAndCarry.isCarried && taskMaster.currentTask.TaskID==1)
+        // Skip if this isn't a pickup object
+        if (!isPickup || pickupAndCarry == null || taskMaster == null)
+        {
+            return;
+        }
+
+        // TaskID 1: End the task and destroy this object once it is successfully carried
+        if (pickupAndCarry.isCarried && taskMaster.currentTask.TaskID == 1)
         {
             taskMaster.EndTask();
             Destroy(gameObject);
         }
-        
     }
 }

@@ -111,6 +111,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 52ee0cf5f8ff049aa90a6ffa594503ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4630010897288087244}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 52ee0cf5f8ff049aa90a6ffa594503ab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5996576040827534496}
     - targetCorrespondingSourceObject: {fileID: -5568371526223589888, guid: 52ee0cf5f8ff049aa90a6ffa594503ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6771260057838778340}
@@ -218,8 +221,27 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 30
+  m_Radius: 32.28
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-5996576040827534496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467894060636305698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4352277bcd3d695499e269f2b1310b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskEnder
+  taskMaster: {fileID: 0}
+  isCollector: 1
+  isPickup: 0
+  pickupAndCarry: {fileID: 0}
+  isGrafitti: 0
+  grafittiChallenge: {fileID: 0}
+  trackEnemyDeath: 0
 --- !u!1 &7326872401953399653 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6733177361254619370, guid: 52ee0cf5f8ff049aa90a6ffa594503ab, type: 3}

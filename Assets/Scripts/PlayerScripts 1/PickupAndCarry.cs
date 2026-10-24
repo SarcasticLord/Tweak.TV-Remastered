@@ -26,14 +26,14 @@ public class PickupAndCarry : MonoBehaviour
         playerInteract = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerItemInteract>();
     }
 
-    public void StartPickup()
+    public void StartPickup() //Sets up statistics for helobject being carried
     {
         SetObjectPhysics(false, false, false, false);
         isCarried=true;
 
     }
     [ContextMenu(nameof(Pickup))]
-    public void Pickup()
+    public void Pickup() //Run continuously to carry object
     {
         
         //Vector3.Lerp(transform.position, player.position+(player.forward*distanceFromCamera), lerpTime);
@@ -42,7 +42,7 @@ public class PickupAndCarry : MonoBehaviour
 
     }
     [ContextMenu(nameof(Throw))]
-    public void Throw()
+    public void Throw() //Reactivate object functions and launch it
     {
         SetObjectPhysics(true, true, true, true);
         rb.AddForce(playerCamera.forward*throwForce);
@@ -56,7 +56,7 @@ public class PickupAndCarry : MonoBehaviour
             Pickup();
         }
     }
-    void SetObjectPhysics(bool grav, bool lin, bool collide, bool rota)
+    void SetObjectPhysics(bool grav, bool lin, bool collide, bool rota) //Set object statistics when needed
     {
         rb.useGravity=grav;
         if(!lin){rb.linearVelocity=Vector3.zero;}

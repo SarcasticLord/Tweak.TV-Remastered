@@ -18,6 +18,8 @@ public class TaskMasterScript : MonoBehaviour
     {
         currentTask=availableTasks[taskCursor];
         descDisplay.text=currentTask.TaskDescription;
+        if(currentTask.TaskID==4){descDisplay.text=currentTask.TaskDescription+"\nTrash Collected: "+objectsCollected+" / "+objectsNeededForTask;}
+        if(currentTask.TaskID==5){descDisplay.text=currentTask.TaskDescription+"\nRats Killed: "+enemiesKilled+" / "+enemiesLeftAlive;}
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,6 +41,7 @@ public class TaskMasterScript : MonoBehaviour
     public void CollectObject() //Increment object and end task if complete
     {
         objectsCollected++;
+        descDisplay.text=currentTask.TaskDescription+"\nTrash Collected: "+objectsCollected+" / "+objectsNeededForTask;
         if (objectsCollected >= objectsNeededForTask)
         {
             EndTask();
