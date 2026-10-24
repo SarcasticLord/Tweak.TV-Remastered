@@ -859,7 +859,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 299.9998, y: -0.12601}
+  m_AnchoredPosition: {x: 299.99976, y: -0.12597656}
   m_SizeDelta: {x: 600.44, y: 0.25201}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &499671341
@@ -3468,10 +3468,10 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
+    m_Top: 20
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: 10
+  m_Spacing: 25
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -4952,6 +4952,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StartingSoonUI
   asylumSelected: {fileID: 1697727537}
   stationSelected: {fileID: 97677128}
+  asylumScene: asylum
+  stationScene: subway
 --- !u!1 &1892953738
 GameObject:
   m_ObjectHideFlags: 0
@@ -5658,7 +5660,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2081611219}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1886158852}
+        m_TargetAssemblyTypeName: StartingSoonUI, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2081611219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5735,7 +5749,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -35.180115}
+  m_AnchoredPosition: {x: 0.000061035156, y: -35.180176}
   m_SizeDelta: {x: 1920, y: 70.36658}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2099414647

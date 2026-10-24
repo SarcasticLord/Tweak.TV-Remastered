@@ -4,34 +4,39 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+
 public class StartingSoonUI : MonoBehaviour
 {
 
     public GameObject asylumSelected;
     public GameObject stationSelected;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public string asylumScene = "Asylum";
+    public string stationScene = "Station";
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private string selectedLevel = "";
 
     public void SelectAsylum()
     {
         asylumSelected.SetActive(true);
         stationSelected.SetActive(false);
-        
+        selectedLevel = asylumScene;
     }
 
     public void SelectStation()
     {
         asylumSelected.SetActive(false);
         stationSelected.SetActive(true);
+        selectedLevel = stationScene;
+    }
+
+    public void Play()
+    {
+        if (string.IsNullOrEmpty(selectedLevel))
+        {
+            Debug.Log("select a level");
+            return;
+        }
+        SceneManager.LoadScene(selectedLevel);
     }
 }
