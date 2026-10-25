@@ -50,8 +50,9 @@ public class TaskMasterScript : MonoBehaviour
 
     public void CountEnemiesKilled() //Increment object and end task if complete
     {
-        if(currentTask.TaskID==5){return;}
+        if(currentTask.TaskID!=5){return;}
         enemiesKilled++;
+        descDisplay.text=currentTask.TaskDescription+"\nRats Killed: "+enemiesKilled+" / "+enemiesLeftAlive;
         if (enemiesKilled >= enemiesLeftAlive)
         {
             EndTask();

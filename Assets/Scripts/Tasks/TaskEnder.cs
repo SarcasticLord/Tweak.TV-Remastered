@@ -6,7 +6,7 @@ using UnityEngine;
 public class TaskEnder : MonoBehaviour
 {
     [Header("General")]
-    [Tooltip("Reference to the central task management system.")]
+    
     public TaskMasterScript taskMaster;
     [Tooltip("Determines if this object handles collection behavior.")]
     public bool isCollector;
@@ -14,13 +14,13 @@ public class TaskEnder : MonoBehaviour
     [Header("Pickup Variables")]
     [Tooltip("Is this object associated with a pickup task?")]
     public bool isPickup;
-    [Tooltip("Reference to the PickupAndCarry component.")]
+    
     public PickupAndCarry pickupAndCarry;
 
     [Header("Grafitti Variables")]
     [Tooltip("Is this object associated with a graffiti task?")]
     public bool isGrafitti;
-    [Tooltip("Reference to the GrafittiChallenge component.")]
+    
     public GrafittiChallenge grafittiChallenge;
 
     [Header("Enemy Variables")]
@@ -72,17 +72,17 @@ public class TaskEnder : MonoBehaviour
     /// </summary>
     void OnDestroy()
     {
+        
         // Only track enemy kills if the current active task is TaskID 5
         if (taskMaster != null && taskMaster.currentTask.TaskID != 5)
         {
             return;
         }
-
+        
         // Inform the task master that an enemy has been defeated/destroyed
-        if (taskMaster != null)
-        {
-            taskMaster.CountEnemiesKilled();
-        }
+        
+        taskMaster.CountEnemiesKilled();
+        
     }
 
     /// <summary>
