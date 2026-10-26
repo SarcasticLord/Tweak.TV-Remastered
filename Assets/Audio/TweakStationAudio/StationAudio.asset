@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-6768018420048833082
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: behind the hello line please_{-6768018420048833082}
+  m_AudioClip: {fileID: 8300000, guid: 71c9f14b5a7d064478eb0c8f463cebbf, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-5969979205105705860
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: delayed train_{-5969979205105705860}
+  m_AudioClip: {fileID: 8300000, guid: dcbcdc630308f394e9ea8f4ea63ca4d1, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-2046278950641487879
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: mind the gap please_{-2046278950641487879}
+  m_AudioClip: {fileID: 8300000, guid: a78a3f6167985fe43805fee8853e521d, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-1822129102971588255
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: please mind the gap_{-1822129102971588255}
+  m_AudioClip: {fileID: 8300000, guid: c0bd623e8b3f80b47aea501beb5fccb9, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-1548394495525886828
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: stay behind the yellow line_{-1548394495525886828}
+  m_AudioClip: {fileID: 8300000, guid: 15996e85cb0a4a144ac2d01e5c5a2246, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &2291084792014273825
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: tweak-asylum_{2291084792014273825}
+  m_AudioClip: {fileID: 8300000, guid: cd753eefa70213b42b4ff65e16004cea, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: StationAudio
+  m_Volume: 0
+  m_Pitch: -1200
+  m_AutomaticTriggerTime: 10
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: 0, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: -10, y: 10}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: -6768018420048833082}
+  - {fileID: -5969979205105705860}
+  - {fileID: -1822129102971588255}
+  - {fileID: -1548394495525886828}
+  - {fileID: 2291084792014273825}
+  - {fileID: -2046278950641487879}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 1
+  m_TriggerMode: 1
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 0
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 0
+  m_AutomaticTriggerTimeRandomizationEnabled: 1
+  m_LoopCountRandomizationEnabled: 0

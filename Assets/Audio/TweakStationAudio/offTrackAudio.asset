@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-8378319743296610823
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FTLOGstay off the tracks_{-8378319743296610823}
+  m_AudioClip: {fileID: 8300000, guid: 5a8ae91fe7325e7448dfb26870347e05, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-5939420935744124058
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: please stay off the tracks_{-5939420935744124058}
+  m_AudioClip: {fileID: 8300000, guid: 7fdc3e4b05f2cd84ebe2a9dad3e40f33, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &2207986180623772784
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: stay on the tracks_{2207986180623772784}
+  m_AudioClip: {fileID: 8300000, guid: 0e80f556a8ce74f1a8cfc804232945cf, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: offTrackAudio
+  m_Volume: 0
+  m_Pitch: -1200
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: 0, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: -8378319743296610823}
+  - {fileID: -5939420935744124058}
+  - {fileID: 2207986180623772784}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 1
+  m_TriggerMode: 0
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 2
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 0
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
