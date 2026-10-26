@@ -8,6 +8,7 @@ public class RailShock : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            Debug.Log(effects.storeDefaultSlideSpeed);
             Debug.Log("Player Detected");
             effects.OnSlowed();
             StopCoroutine("ExitSlowed");
