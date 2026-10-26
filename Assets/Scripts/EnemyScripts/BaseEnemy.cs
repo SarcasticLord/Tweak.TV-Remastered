@@ -11,6 +11,8 @@ public class BaseEnemy : MonoBehaviour
     //Component variables
     private Rigidbody rb;
     private NavMeshAgent agent;
+    [SerializeField] private GameObject blood;
+    [SerializeField] private Material ghostMat;
    
 
     protected bool canUseLinks = true;
@@ -309,6 +311,14 @@ public class BaseEnemy : MonoBehaviour
     private void Death()
     {
         agent.isStopped = true;
+        blood.SetActive(true);
+        SkinnedMeshRenderer renderer = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();   
+        Material[] mats = renderer.materials;
+        for (int i = 0; i < mats.Length; i++)
+        {
+            mats[i] = ghostMat;
+            renderer.materials = mats;
+        }
         Destroy(gameObject, 5);
     }
 
