@@ -8,16 +8,13 @@ public class BaseFlyingEnemy : BaseEnemy
 
     [SerializeField] protected float hoverOffset = 10f;
     [SerializeField] protected float projSpeed = 10f;
-
     [SerializeField] protected GameObject beeProj;
-
-
-
+    [SerializeField] protected Transform attackSpawn;
 
     protected override void Start()
     {
-        agent.baseOffset = hoverOffset;
         base.Start();
+        agent.baseOffset = hoverOffset;
     }
 
     protected override IEnumerator Stunned()
@@ -26,12 +23,12 @@ public class BaseFlyingEnemy : BaseEnemy
         agent.baseOffset = 0f;
         agent.enabled = false;
         rb.useGravity = true;
-        rb.isKinematic = false;
+        rb.isKinematic = true;
         rb.linearVelocity = launchVelocity;
         yield return new WaitForSeconds(stunDuration);
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        rb.isKinematic = true;
+        rb.isKinematic = false;
         rb.useGravity = false;
         agent.enabled = true;
         agent.baseOffset = hoverOffset;
@@ -43,8 +40,7 @@ public class BaseFlyingEnemy : BaseEnemy
     protected override void AttackBehavior()
     {
         Vector3 direction =
-          chaseTarget.position - transform.position;
-
+            (chaseTarget.position - transform.position).normalized;
         direction.y = 0f;
 
         Quaternion lookRotation =
@@ -82,8 +78,7 @@ public class BaseFlyingEnemy : BaseEnemy
 
         if (canAttack)
         {
-            agent.velocity = Vector3.zero;
-            ShootAttack(direction);
+            StartCoroutine(BeeAttack());
             canAttack = false;
         }
     }
@@ -91,7 +86,29 @@ public class BaseFlyingEnemy : BaseEnemy
 
     protected virtual void ShootAttack(Vector3 dir)
     {
-        GameObject bullet = Instantiate(beeProj,transform.position, transform.rotation);
-        bullet.GetComponent<Rigidbody>().AddForce(dir * projSpeed, ForceMode.Impulse);
+        GameObject bullet = Instantiate(beeProj,attackSpawn.position, attackSpawn.rotation);
+        bullet.GetComponent<Rigidbody>().AddForce(dir * projSpeed, ForceMode.VelocityChange);
     }
+
+    IEnumerator BeeAttack()
+    {
+        Vector3 direction =
+            (chaseTarget.position - transform.position).normalized;
+        agent.velocity = Vector3.zero;
+        agent.isStopped = true;
+        yield return new WaitForSeconds(1f);
+        ShootAttack(direction);
+        agent.isStopped = false;
+    }
+
+    protected override void Death()
+    {
+        base.Death();
+        agent.baseOffset = 0f;
+        rb.useGravity = true;
+        rb.isKinematic = false;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
+
 }

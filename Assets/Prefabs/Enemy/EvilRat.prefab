@@ -278,6 +278,37 @@ SkinnedMeshRenderer:
     m_Center: {x: 9.313226e-10, y: 0.0059722317, z: -0.0009327275}
     m_Extent: {x: 0.009330002, y: 0.031694837, z: 0.009859584}
   m_DirtyAABB: 0
+--- !u!1 &2046622661603035080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1504927424948571077}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1504927424948571077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046622661603035080}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.15, y: 1.3, z: 2}
+  m_LocalScale: {x: 3.125, y: 3.125, z: 3.125}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5083990915324268252}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2130887673399161098
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,8 +898,8 @@ GameObject:
   - component: {fileID: 5227440626975735790}
   - component: {fileID: 2772780137212327586}
   - component: {fileID: 1918253097575622581}
-  - component: {fileID: 2162765591358523298}
   - component: {fileID: -755591273423582205}
+  - component: {fileID: -8273191587369313736}
   m_Layer: 0
   m_Name: EvilRat
   m_TagString: Object
@@ -892,6 +923,7 @@ Transform:
   - {fileID: 7151699073845227222}
   - {fileID: 6257064406588118156}
   - {fileID: 6930304050784635656}
+  - {fileID: 1504927424948571077}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5145018441653629165
@@ -986,7 +1018,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2162765591358523298
+--- !u!65 &-755591273423582205
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5622047900825028132}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.3318121, y: 1.3081743, z: 3.9152555}
+  m_Center: {x: 0, y: 0.74011844, z: 0.29053354}
+--- !u!114 &-8273191587369313736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -995,9 +1048,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5622047900825028132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d470545b900d442800995a4845c2df, type: 3}
+  m_Script: {fileID: 11500000, guid: f1da17f8fd3298848b9f8d2d62957acd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BaseEnemy
+  m_EditorClassIdentifier: Assembly-CSharp::EvilRatManager
   blood: {fileID: 7966952873066761778}
   ghostMat: {fileID: 2100000, guid: 7c59173c8abd48f4489ac0641a66a335, type: 2}
   jumpTime: 1
@@ -1024,32 +1077,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   lookInterval: 0.1
-  targetMemoryTime: 3
+  targetMemoryTime: 10
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  rayOrigin: {fileID: 5083990915324268252}
---- !u!65 &-755591273423582205
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5622047900825028132}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.3318121, y: 1.3081743, z: 3.9152555}
-  m_Center: {x: 0, y: 0.74011844, z: 0.29053354}
+  rayOrigin: {fileID: 6257064406588118156}
+  hitbox: {fileID: 2524731856408087570, guid: 9dd11687e8b3d624493381617d2f651b, type: 3}
+  attackPoint: {fileID: 1504927424948571077}
 --- !u!1 &6030135425360102820
 GameObject:
   m_ObjectHideFlags: 0

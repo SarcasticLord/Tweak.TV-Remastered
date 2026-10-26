@@ -11,8 +11,10 @@ public class BaseEnemy : MonoBehaviour
     //Component variables
     protected Rigidbody rb;
     protected NavMeshAgent agent;
-    [SerializeField] private GameObject blood;
-    [SerializeField] private Material ghostMat;
+    public GameObject blood;
+    public Material ghostMat;
+
+    protected bool isDead;
    
 
     protected bool canUseLinks = true;
@@ -93,6 +95,7 @@ public class BaseEnemy : MonoBehaviour
 
     protected virtual void Start()
     {
+        Debug.Log("Has blood:" + (blood != null));
         stunTimer = 0f;
         attackTimer = 0f;
         currentState = EnemyState.Wander;
@@ -103,7 +106,7 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    void Update()
+    protected virtual void Update()
     {
         RotateTowardsMovement();
         
@@ -146,7 +149,11 @@ public class BaseEnemy : MonoBehaviour
                 }
                 break;
             case EnemyState.Death:
-                Death();
+                if (!isDead)
+                {
+                    Death();
+                    isDead = true;
+                }
                 break;
 
             case EnemyState.Stunned:
@@ -162,7 +169,7 @@ public class BaseEnemy : MonoBehaviour
 
     //Meant to test death, may be removed/altered later
 
-    private void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Hitbox"))
         {
@@ -308,16 +315,21 @@ public class BaseEnemy : MonoBehaviour
     }
 
 
-    private void Death()
+    protected virtual void Death()
     {
-        agent.isStopped = true;
         blood.SetActive(true);
-        SkinnedMeshRenderer renderer = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();   
-        Material[] mats = renderer.materials;
-        for (int i = 0; i < mats.Length; i++)
+        agent.enabled = false;
+        if (animator != null)
+            animator.SetInteger("EnemyState", (int)EnemyState.Death);
+        if (ghostMat != null)
         {
-            mats[i] = ghostMat;
-            renderer.materials = mats;
+            SkinnedMeshRenderer renderer = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+            Material[] mats = renderer.materials;
+            for (int i = 0; i < mats.Length; i++)
+            {
+                mats[i] = ghostMat;
+                renderer.materials = mats;
+            }
         }
         Destroy(gameObject, 5);
     }
