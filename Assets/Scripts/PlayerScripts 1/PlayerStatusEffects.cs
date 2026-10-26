@@ -6,7 +6,14 @@ public class PlayerStatusEffects : MonoBehaviour
     public bool isPoisoned; //Should put a weird screen effect on that makes it hard to see
     public bool drankCoffee; //Should allow player to dash
     public bool isDead; //Should open game over screen
+    public bool isSlowed; //Slows player speed
+    public float slowDuration = 5f;
+    
+    public float slowedSpeed = 4f;
+    public float slowedSlideSpeed = 4f;
+
     public float storeDefaultSpeed;
+    private float storeDefaultSlideSpeed;
     public float stunnedSpeed;
     public float storeDefaultJumpForce;
     public float stunnedJumpForce;
@@ -14,23 +21,38 @@ public class PlayerStatusEffects : MonoBehaviour
 
     void Start()
     {
-        playerMovementScript=GetComponent<PlayerMovementScript>();
-        storeDefaultSpeed=playerMovementScript.playerSpeed;
-        storeDefaultJumpForce=playerMovementScript.playerJumpForce;
-
+        playerMovementScript = gameObject.GetComponent<PlayerMovementScript>();
+        storeDefaultSpeed = playerMovementScript.playerSpeed;
+        storeDefaultSlideSpeed = playerMovementScript.playerCrouchSpeed;
+        storeDefaultJumpForce = playerMovementScript.playerJumpForce;
     }
     [ContextMenu(nameof(OnStun))]
     public void OnStun()
     {
-        playerMovementScript.playerSpeed=stunnedSpeed;
-        playerMovementScript.playerJumpForce=stunnedJumpForce;
+        playerMovementScript.playerSpeed = stunnedSpeed;
+        playerMovementScript.playerJumpForce = stunnedJumpForce;
 
     }
     [ContextMenu(nameof(OnRemoveStun))]
     public void OnRemoveStun()
     {
-        playerMovementScript.playerSpeed=storeDefaultSpeed;
-        playerMovementScript.playerJumpForce=storeDefaultJumpForce;
+        playerMovementScript.playerSpeed = storeDefaultSpeed;
+        playerMovementScript.playerJumpForce = storeDefaultJumpForce;
 
+    }
+    [ContextMenu(nameof(OnSlowed))]
+    public void OnSlowed()
+    {
+        isSlowed = true;
+        playerMovementScript.playerSpeed = slowedSpeed;
+        playerMovementScript.playerSlideSpeed = slowedSlideSpeed;
+
+    }
+    [ContextMenu(nameof(OnRemoveSlowed))]
+    public void OnRemoveSlowed()
+    {
+        isSlowed = true;
+        playerMovementScript.playerSpeed = storeDefaultSpeed;
+        playerMovementScript.playerSlideSpeed = storeDefaultSlideSpeed;
     }
 }
