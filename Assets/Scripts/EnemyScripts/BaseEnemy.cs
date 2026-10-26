@@ -37,6 +37,7 @@ public class BaseEnemy : MonoBehaviour
     public float cooldown = 3f;
     private float attackTimer;
     private bool canAttack;
+    private bool isDead = false;
 
 
     //Stun variables
@@ -318,6 +319,16 @@ public class BaseEnemy : MonoBehaviour
         {
             mats[i] = ghostMat;
             renderer.materials = mats;
+        }
+        if (isDead == false)
+        {
+            GameController.instance.decreaseCurrEnemyCount();
+            isDead = true;
+        }
+        Collider[] collider = gameObject.GetComponents<Collider>();
+        for (int i = 0;i < collider.Length;i++)
+        {
+            collider[i].enabled = false;
         }
         Destroy(gameObject, 5);
     }
