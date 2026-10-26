@@ -5,12 +5,12 @@ using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 public class BaseEnemy : MonoBehaviour
 {
-    enum EnemyState { Wander, Chase, Attack, Death, Stunned}
-    EnemyState currentState;
+    protected enum EnemyState { Wander, Chase, Attack, Death, Stunned}
+    protected EnemyState currentState;
 
     //Component variables
-    private Rigidbody rb;
-    private NavMeshAgent agent;
+    protected Rigidbody rb;
+    protected NavMeshAgent agent;
     [SerializeField] private GameObject blood;
     [SerializeField] private Material ghostMat;
    
@@ -35,8 +35,8 @@ public class BaseEnemy : MonoBehaviour
     //Attack variables
     public float attackRange = 2f;
     public float cooldown = 3f;
-    private float attackTimer;
-    private bool canAttack;
+    protected float attackTimer;
+    protected bool canAttack;
 
 
     //Stun variables
@@ -52,20 +52,20 @@ public class BaseEnemy : MonoBehaviour
     public LayerMask obstructionMask;
     public LayerMask targetMask;
 
-    private Transform chaseTarget;
-    private bool targetVisible = false;
+    protected Transform chaseTarget;
+    protected bool targetVisible = false;
 
     private float lookTimer;
     public float lookInterval = 0.1f;
 
     public float targetMemoryTime = 3f;
-    private float lastSeenTimer;
+    protected float lastSeenTimer;
 
-    private Vector3 lastTargetPos;
+    protected Vector3 lastTargetPos;
 
 
 
-    private Coroutine pathCoroutine;
+    protected Coroutine pathCoroutine;
     private Vector3 currentDestination;
 
 
@@ -74,9 +74,9 @@ public class BaseEnemy : MonoBehaviour
     public Transform rayOrigin;
 
     //Optional
-    private Animator animator;
+    protected Animator animator;
 
-    private void Awake()
+    protected void Awake()
     {
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
@@ -91,7 +91,7 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    void Start()
+    protected virtual void Start()
     {
         stunTimer = 0f;
         attackTimer = 0f;
@@ -211,7 +211,7 @@ public class BaseEnemy : MonoBehaviour
         ChaseTarget();
     }
 
-    private void ChaseTarget()
+    protected virtual void ChaseTarget()
     {
         NavMeshHit hit;
 
@@ -322,7 +322,7 @@ public class BaseEnemy : MonoBehaviour
         Destroy(gameObject, 5);
     }
 
-    private IEnumerator Stunned()
+    protected virtual IEnumerator Stunned()
     {
 
         agent.isStopped = true;
