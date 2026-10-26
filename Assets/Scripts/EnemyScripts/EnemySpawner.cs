@@ -10,8 +10,8 @@ public class EnemySpawner : MonoBehaviour
 
     public bool facingRight = true;
 
-    public int enemyCount = 0;
-    public int maxEnemies = 10;
+    //public int enemyCount = 0;
+    //public int maxEnemies = 10;
 
     public int spawnGap = 5;
 
@@ -57,11 +57,9 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            if (isSpawning && enemyCount < maxEnemies)
+            if (isSpawning && GameController.instance.increaseCurrEnemyCount())
             {
                 EnemyExists = Instantiate(Enemy, EnemyPoint.position, facingRight ? EnemyPoint.rotation : Quaternion.Euler(-90, 0, 0));
-                enemyCount++;
-            
             }
             yield return new WaitForSeconds(spawnGap);  
         } 

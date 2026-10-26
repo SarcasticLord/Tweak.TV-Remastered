@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 
     public int maxEnemyCount = 100;
 
-    private int viewCount;
+    private static int viewCount;
 
     public void Awake()
     {
@@ -24,4 +24,21 @@ public class GameController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public bool increaseCurrEnemyCount()
+    {
+        if (currEnemyCount < maxEnemyCount)
+        {
+            currEnemyCount++;
+            return true;
+        }
+        return false;
+    }
+
+    public void decreaseCurrEnemyCount() 
+    { 
+        if(currEnemyCount > 0)
+        {
+            currEnemyCount--;
+        }
+    }
 }
