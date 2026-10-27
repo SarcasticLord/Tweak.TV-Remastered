@@ -331,6 +331,11 @@ public class BaseEnemy : MonoBehaviour
                 renderer.materials = mats;
             }
         }
+        Collider[] cols = gameObject.GetComponents<Collider>();
+        foreach (Collider col in cols)
+        {
+            col.enabled = false;
+        }
         Destroy(gameObject, 5);
     }
 
