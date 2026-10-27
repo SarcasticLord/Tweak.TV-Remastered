@@ -12,6 +12,8 @@ public class PlayerStatusEffects : MonoBehaviour
     public float slowedSpeed = 4f;
     public float slowedSlideSpeed = 4f;
 
+    public GameObject slowedEffect; 
+
     public float storeDefaultSpeed;
     private float storeDefaultSlideSpeed;
     public float stunnedSpeed;
@@ -23,7 +25,7 @@ public class PlayerStatusEffects : MonoBehaviour
     {
         playerMovementScript = gameObject.GetComponent<PlayerMovementScript>();
         storeDefaultSpeed = playerMovementScript.playerSpeed;
-        storeDefaultSlideSpeed = playerMovementScript.playerCrouchSpeed;
+        storeDefaultSlideSpeed = playerMovementScript.playerSlideSpeed;
         storeDefaultJumpForce = playerMovementScript.playerJumpForce;
     }
     [ContextMenu(nameof(OnStun))]
@@ -44,14 +46,15 @@ public class PlayerStatusEffects : MonoBehaviour
     public void OnSlowed()
     {
         isSlowed = true;
+        slowedEffect.SetActive(true);
         playerMovementScript.playerSpeed = slowedSpeed;
         playerMovementScript.playerSlideSpeed = slowedSlideSpeed;
-
     }
     [ContextMenu(nameof(OnRemoveSlowed))]
     public void OnRemoveSlowed()
     {
-        isSlowed = true;
+        isSlowed = false;
+        slowedEffect.SetActive(false);
         playerMovementScript.playerSpeed = storeDefaultSpeed;
         playerMovementScript.playerSlideSpeed = storeDefaultSlideSpeed;
     }
