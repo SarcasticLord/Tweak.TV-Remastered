@@ -103,12 +103,19 @@ public class BaseFlyingEnemy : BaseEnemy
 
     protected override void Death()
     {
-        base.Death();
+        if (blood != null)
+            blood.SetActive(true);
+        agent.enabled = false;
+        if (animator != null)
+            animator.SetInteger("EnemyState", (int)EnemyState.Death);
         agent.baseOffset = 0f;
         rb.useGravity = true;
         rb.isKinematic = false;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        //GameController.instance.Decrease();
+        Destroy(gameObject, 5);
+
     }
 
 }

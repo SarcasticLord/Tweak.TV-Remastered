@@ -44,7 +44,7 @@ public class BaseEnemy : MonoBehaviour
     //Stun variables
     public GameObject stunObj;
     public float stunTimer;
-    public float stunDuration = 5f;
+    public float stunDuration = 999f; //Original Val = 5f
     public float stunCooldown = 1f;
 
 
@@ -108,6 +108,8 @@ public class BaseEnemy : MonoBehaviour
 
     protected virtual void Update()
     {
+        //if(rb.linearVelocity.magnitude > 15f) Death(); //Rat explodes when it reaches terminal velocity TODO: replace in the future probably
+
         RotateTowardsMovement();
         
         HandleLinks();
@@ -330,6 +332,11 @@ public class BaseEnemy : MonoBehaviour
                 mats[i] = ghostMat;
                 renderer.materials = mats;
             }
+        }
+        Collider[] cols = gameObject.GetComponents<Collider>();
+        foreach (Collider col in cols)
+        {
+            col.enabled = false;
         }
         Destroy(gameObject, 5);
     }

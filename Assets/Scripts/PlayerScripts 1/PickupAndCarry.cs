@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PickupAndCarry : MonoBehaviour
 {
-    [SerializeField]private Rigidbody rb;
+    private Rigidbody rb;
     public Transform player;
     public Transform playerCamera;
     public PlayerItemInteract playerInteract;
