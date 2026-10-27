@@ -6,6 +6,7 @@ public class RailShock : MonoBehaviour
     public PlayerStatusEffects effects;
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Entered");
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log(effects.storeDefaultSlideSpeed);
