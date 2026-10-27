@@ -209,7 +209,9 @@ public class GrafittiChallenge : MonoBehaviour
         mainCanvas.SetActive(true);
         minigameCursor=0;
         player.GetComponent<PlayerInput>().enabled=true;
-        playerInput.enabled = false;
+        playerInput.enabled = true;
+        Debug.Log("Failed input...Restoring controls.");
+        //playerInput.enabled = false;
 
     }
 }
