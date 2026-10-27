@@ -34,7 +34,8 @@ public class TaskMasterScript : MonoBehaviour
     {
         taskCursor++;
         if(taskCursor>=availableTasks.Length){taskCursor=0;}
-        viewTracker.baseOffset+=currentTask.TaskViewGain;
+        //viewTracker.baseOffset+=currentTask.TaskViewGain;
+        GameController.instance.IncreaseViewIncreaseRate(currentTask.TaskViewGain);
         SetTask(taskCursor);
     }
 

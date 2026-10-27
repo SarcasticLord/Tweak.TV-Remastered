@@ -1,12 +1,18 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InGameUIController : MonoBehaviour
 {
-
-    [SerializeField] private GameObject pauseScreen;
-
     [SerializeField] private InputActionReference pauseAction;
+
+    [Header("UI elements")]
+    [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private TextMeshProUGUI viewCountText;
+    [SerializeField] private TextMeshProUGUI timerText;
+
+    public static float gameTime = 0f;
 
     public static bool isPaused { get; private set; } = false;
 
@@ -14,12 +20,21 @@ public class InGameUIController : MonoBehaviour
     {
         pauseAction.action.performed += onPausePressed;
         pauseAction.action.Enable();
+        GameController.OnViewCountChanged += UpdateViewCount;
     }
 
     private void OnDisable()
     {
         pauseAction.action.performed -= onPausePressed;
         pauseAction.action.Disable();
+        GameController.OnViewCountChanged -= UpdateViewCount;
+    }
+
+    private void FixedUpdate()
+    {
+        gameTime += Time.deltaTime;
+        TimeSpan timespan = TimeSpan.FromSeconds(gameTime);
+        UpdateTimer(timespan);
     }
 
     private void Start()
@@ -48,4 +63,17 @@ public class InGameUIController : MonoBehaviour
         }
     }
 
+    private void UpdateViewCount(int currentViewCount)
+    {
+        viewCountText.text = $"Viewers: {currentViewCount}";
+    }
+
+    private void UpdateTimer(TimeSpan time)
+    {
+        int hours = time.Hours;
+        int minutes = time.Minutes; 
+        int seconds = time.Seconds;
+
+        timerText.text = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
+    }
 }

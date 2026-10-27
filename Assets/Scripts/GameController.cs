@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class GameController : MonoBehaviour
 
     public static GameController instance { get; private set; }
 
+    public static event Action<int> OnViewCountChanged;
+
     public int currEnemyCount = 0;
 
     public int maxEnemyCount = 100;
@@ -14,10 +17,15 @@ public class GameController : MonoBehaviour
     public int _viewCount;
 
     public int viewCount
-        {
+    {
         get { return _viewCount; }
-        set {_viewCount = Mathf.Clamp(value,0,999999);}
+        set 
+        {
+            _viewCount = Mathf.Clamp(value,0,999999);
+            OnViewCountChanged?.Invoke(_viewCount);
         }
+
+    }
 
     private float viewCountIncreaseRate = 1f; //Successful tasks and coolness increase this value
 
@@ -26,8 +34,6 @@ public class GameController : MonoBehaviour
     private float viewCountDecreaseRate = 0f; //When damaged increase decrease rate
 
     private float viewChangeTime;
-
-    public float gameTime = 0;
 
     [SerializeField] private GameObject streamSniper;
     private Transform streamSniperSpawnpoint;
@@ -52,7 +58,6 @@ public class GameController : MonoBehaviour
     {
         streamSniperSpawnpoint = GameObject.Find("StreamSniperSpawn").transform;
         gameStarted = true;
-        gameTime = 0;
         streamSniperSpawned = false;
         viewCountDecreaseRate = 0f;
         viewCountIncreaseRate = 1f;
@@ -64,13 +69,6 @@ public class GameController : MonoBehaviour
     {
         gameStarted = false;
         StopAllCoroutines();
-    }
-
-    private void Update()
-    {
-        if (!gameStarted) return;
-        //Keep track of time
-        gameTime += Time.deltaTime;
     }
 
     //Called in EnemySpawner.cs script 
@@ -105,7 +103,7 @@ public class GameController : MonoBehaviour
 
     public void DecreaseViews(int decreaseViewsVal = 0)
     {
-        if (gameTime <= 15) return;// 15 second grace period
+        if (InGameUIController.gameTime <= 15) return;// 15 second grace period
 
         if (decreaseViewsVal == 0)//Default value to allow the ChangeViews() coroutine to fight each other
             viewCount -= (int)(1 * viewCountDecreaseRate);
@@ -115,7 +113,7 @@ public class GameController : MonoBehaviour
             viewCount -= decreaseViewsVal; 
         }
 
-        if (gameTime <= 60) return; //Prevent streamsniper from spawning before a minute passes
+        if (InGameUIController.gameTime <= 60) return; //Prevent streamsniper from spawning before a minute passes
 
         if (viewCount <= 0 && !streamSniperSpawned)
         {
@@ -133,7 +131,7 @@ public class GameController : MonoBehaviour
     {
         while (true)
         {
-            viewChangeTime = Random.Range(1, 3);
+            viewChangeTime = UnityEngine.Random.Range(1, 3);
             viewCountDecreaseRate += 0.1f;
             IncreaseViews();
             DecreaseViews();

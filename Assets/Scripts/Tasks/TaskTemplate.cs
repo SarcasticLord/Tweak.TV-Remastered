@@ -5,5 +5,5 @@ public class TaskTemplate : ScriptableObject
     [TextArea]
     public string TaskDescription;
     public int TaskID;
-    public double TaskViewGain;
+    public float TaskViewGain;
 }
