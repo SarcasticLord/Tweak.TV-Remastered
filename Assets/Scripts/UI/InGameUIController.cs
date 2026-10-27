@@ -29,17 +29,18 @@ public class InGameUIController : MonoBehaviour
 
     void onPausePressed(InputAction.CallbackContext pause)
     {
-        Debug.Log("Attempting to pause");
         if (pause.ReadValueAsButton())
         {
             if (isPaused == false)
             {
+                //Freeze game and activate pause overlay
                 pauseScreen.SetActive(true);
                 Time.timeScale = 0f;
                 isPaused = true;
             }
             else
             {
+                //Unpause
                 pauseScreen.SetActive(false);
                 Time.timeScale = 1f;
                 isPaused = false;

@@ -50,6 +50,7 @@ public class PlayerCameraScript : MonoBehaviour
 
     void Update()
     {
+        //Stop camera movement if game is paused
         if(InGameUIController.isPaused) return;
 
         float lookX = _lookInput.x * sensitivity;
