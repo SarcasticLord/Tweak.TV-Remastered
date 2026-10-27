@@ -12,12 +12,12 @@ public class ItemHandler : MonoBehaviour
     public float movement = .25f;
     public float rotSpeed = 5f;
     //private int counter = 5;
-    [SerializeField] private GameObject inventory;
+    [SerializeField] private GameObject inventory; //items in PlayerCapsule
     public InputActionReference useItem;
     public InputActionReference itemDrop;
     protected Quaternion origRot;
 
-    [SerializeField] protected PlayerInventoryManager playerInventory;
+    protected PlayerInventoryManager playerInventory; //gathered from inventory
 
     public bool isSelected = false;
 
@@ -42,8 +42,8 @@ public class ItemHandler : MonoBehaviour
 
     private void Start()
     {
+        playerInventory = inventory.GetComponent<PlayerInventoryManager>(); //Get manager from inventory gameobject
         origRot = transform.rotation;
-        //StartCoroutine(MoveObject());
         rb = gameObject.GetComponent<Rigidbody>();
         col = gameObject.GetComponent<CapsuleCollider>();
     }
@@ -52,10 +52,12 @@ public class ItemHandler : MonoBehaviour
     {
         if (!inInventory)
         {
+            //spins as a pickup when out of inventory
             transform.Rotate(new Vector3(0f, 30f, 0f) * rotSpeed * Time.deltaTime);
         }
         if (inInventory && transform.parent != null)
         {
+            //Fixes position and rotation of item when in player inventory
             Transform parent = transform.parent.transform;
             rb.useGravity = false;
             col.enabled = false;
@@ -66,16 +68,16 @@ public class ItemHandler : MonoBehaviour
 
     }
 
-    private void OnUseItem(InputAction.CallbackContext use)
+    protected virtual void OnUseItem(InputAction.CallbackContext use)
     {
         if (isSelected && use.ReadValueAsButton())
         {
-            //insert use here
+            //insert uses here, override needed
             Debug.Log(gameObject.name + " used");
         }
     }
 
-    private void OnDropItem(InputAction.CallbackContext q)
+    protected virtual void OnDropItem(InputAction.CallbackContext q)
     { 
         if (q.ReadValueAsButton())
         {
@@ -93,29 +95,16 @@ public class ItemHandler : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
+        //Checks for player collision
         if (other.gameObject.CompareTag("Player") && !inInventory && playerInventory.items.Count < playerInventory.maxItems)
         {
             inInventory = true;
+            //makes this item a child of the player's inventory attached to the camera
             gameObject.transform.SetParent(inventory.transform);
         }
     }
-
-    //IEnumerator MoveObject()
-    //{
-    //    while (true)
-    //    {
-    //        transform.Translate(new Vector3(0, distance * movement) * Time.deltaTime);
-    //        counter--;
-    //        if(counter <= 0)
-    //        {
-    //            movement *= -1;
-    //            counter = 5;
-    //        }
-    //        yield return new WaitForSeconds(1f);
-    //    }
-    //}
 
     public void StopMove()
     {

@@ -27,6 +27,7 @@ public class PlayerInventoryManager : MonoBehaviour
 
     private void LateUpdate()
     {
+        //cycles through each child of the gameobject and adds it to items 
         foreach (Transform child in gameObject.GetComponentsInChildren<Transform>())
         {
             if (child != gameObject.transform && !items.Contains(child.gameObject) && items.Count < maxItems) // Exclude the parent itself
@@ -34,7 +35,7 @@ public class PlayerInventoryManager : MonoBehaviour
                 items.Add(child.gameObject);
             }
         }
-
+        //cycles through each item in the inventory and disables items that are not selected
         foreach (GameObject item in items)
         {
             if (item != items[selectedItem])
@@ -46,7 +47,7 @@ public class PlayerInventoryManager : MonoBehaviour
     }
 
 
-
+    //Switches betweens items
     private void OnSelectItem(InputAction.CallbackContext select)
     {
         if (select.ReadValueAsButton())
@@ -61,6 +62,7 @@ public class PlayerInventoryManager : MonoBehaviour
         if (items.Count > 0)
         {
             selectedItem++;
+            //ensures selected item stays in range of items in inventory
             if (selectedItem >= items.Count)
             {
                 selectedItem = 0;
