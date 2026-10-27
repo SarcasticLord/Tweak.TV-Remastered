@@ -13,6 +13,8 @@ public class TaskMasterScript : MonoBehaviour
     public int objectsCollected; //The current number of collected objects
     public int enemiesLeftAlive; //How many enemies must be killed to complete the task
     public int enemiesKilled; //The current number of enemies killed
+    public int grafittiSpots; //How many enemies must be killed to complete the task
+    public int grafittiCompleted; //The current number of enemies killed
 
     void SetTask(int taskNumber) //Change the task and task description
     {
@@ -20,16 +22,7 @@ public class TaskMasterScript : MonoBehaviour
         descDisplay.text=currentTask.TaskDescription;
         if(currentTask.TaskID==4){descDisplay.text=currentTask.TaskDescription+"\nTrash Collected: "+objectsCollected+" / "+objectsNeededForTask;}
         if(currentTask.TaskID==5){descDisplay.text=currentTask.TaskDescription+"\nRats Killed: "+enemiesKilled+" / "+enemiesLeftAlive;}
-    }
-
-    private void OnEnable()
-    {
-        GameController.OnEnemyKilled += CountEnemiesKilled;
-    }
-
-    private void OnDisable()
-    {
-        GameController.OnEnemyKilled -= CountEnemiesKilled;
+        if(currentTask.TaskID==3){descDisplay.text=currentTask.TaskDescription+"\nGrafitti Spots Completed: "+grafittiCompleted+" / "+grafittiSpots;}
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,8 +37,7 @@ public class TaskMasterScript : MonoBehaviour
     {
         taskCursor++;
         if(taskCursor>=availableTasks.Length){taskCursor=0;}
-        //viewTracker.baseOffset+=currentTask.TaskViewGain;
-        GameController.instance.IncreaseViewIncreaseRate(currentTask.TaskViewGain);
+        viewTracker.baseOffset+=currentTask.TaskViewGain;
         SetTask(taskCursor);
     }
 
@@ -54,6 +46,15 @@ public class TaskMasterScript : MonoBehaviour
         objectsCollected++;
         descDisplay.text=currentTask.TaskDescription+"\nTrash Collected: "+objectsCollected+" / "+objectsNeededForTask;
         if (objectsCollected >= objectsNeededForTask)
+        {
+            EndTask();
+        }
+    }
+    public void CompleteGrafitti() //Increment object and end task if complete
+    {
+        grafittiCompleted++;
+        descDisplay.text=currentTask.TaskDescription+"\nGrafitti Spots Completed: "+grafittiCompleted+" / "+grafittiSpots;
+        if (grafittiCompleted >= grafittiSpots)
         {
             EndTask();
         }

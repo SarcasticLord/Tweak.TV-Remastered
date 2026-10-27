@@ -20,6 +20,8 @@ public class TaskEnder : MonoBehaviour
     [Header("Grafitti Variables")]
     [Tooltip("Is this object associated with a graffiti task?")]
     public bool isGrafitti;
+    public MeshRenderer grafittiImage;
+    public bool canGrafitti;
     
     public GrafittiChallenge grafittiChallenge;
 

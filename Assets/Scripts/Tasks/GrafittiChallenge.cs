@@ -35,6 +35,7 @@ public class GrafittiChallenge : MonoBehaviour
     public bool canBeStarted;
     public MeshRenderer grafittiResult;
     public Material[] grafittiResultImages;
+    public TaskEnder wallTaskEnder;
 
     void Start()
     {
@@ -185,13 +186,16 @@ public class GrafittiChallenge : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             inputImages[i].SetActive(false);
+            inputImages[i].GetComponent<Image>().sprite = arrowSprite;
         }
         player.GetComponent<PlayerInput>().enabled = false;
         systemActive=false;
         mainCanvas.SetActive(true);
         //player.GetComponent<Rigidbody>().linearVelocity = storeLinearVelocity;
-        taskMasterScript.EndTask();
-        canBeStarted=false;
+        taskMasterScript.CompleteGrafitti();
+        
+        wallTaskEnder.canGrafitti=false;
+        minigameCursor=0;
         player.GetComponent<PlayerInput>().enabled=true;
         grafittiResult.material = grafittiResultImages[Random.Range(0, grafittiResultImages.Length)];
         playerInput.enabled = false;
@@ -211,7 +215,7 @@ public class GrafittiChallenge : MonoBehaviour
         player.GetComponent<PlayerInput>().enabled=true;
         playerInput.enabled = true;
         Debug.Log("Failed input...Restoring controls.");
-        //playerInput.enabled = false;
+        
 
     }
 }

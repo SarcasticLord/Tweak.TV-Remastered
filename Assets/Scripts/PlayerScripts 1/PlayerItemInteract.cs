@@ -66,6 +66,11 @@ public class PlayerItemInteract : MonoBehaviour
                 if (hit.collider.gameObject.CompareTag("GrafittiWall")) //Start grafitti challenge if appropriate
                 {
                     if(taskMasterScript.currentTask.TaskID!=3){return;}
+                    TaskEnder taskEnder = hit.collider.gameObject.GetComponent<TaskEnder>();
+                    grafittiChallenge.canBeStarted=taskEnder.canGrafitti;
+                    grafittiChallenge.grafittiResult=taskEnder.grafittiImage;
+                    grafittiChallenge.wallTaskEnder=taskEnder;
+                    
                     grafittiChallenge.Activate();
                 }
                 
