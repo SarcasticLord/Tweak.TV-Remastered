@@ -50,6 +50,8 @@ public class PlayerCameraScript : MonoBehaviour
 
     void Update()
     {
+        if(InGameUIController.isPaused) return;
+
         float lookX = _lookInput.x * sensitivity;
         float lookY = _lookInput.y * sensitivity;
 
