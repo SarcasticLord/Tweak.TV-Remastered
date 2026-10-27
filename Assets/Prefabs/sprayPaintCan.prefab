@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4299617180498352557
+--- !u!1001 &1657055148925289559
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ea84a57b562ffd547a342845d259ba98, type: 3}
       propertyPath: m_LocalScale.x
-      value: 53.23398
+      value: 18.41523
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea84a57b562ffd547a342845d259ba98, type: 3}
       propertyPath: m_LocalScale.y
-      value: 54.543324
+      value: 18.868172
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea84a57b562ffd547a342845d259ba98, type: 3}
       propertyPath: m_LocalScale.z
-      value: 117.75255
+      value: 40.73414
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea84a57b562ffd547a342845d259ba98, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea84a57b562ffd547a342845d259ba98, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.02
+      value: -3.8249
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea84a57b562ffd547a342845d259ba98, type: 3}
       propertyPath: m_LocalPosition.z
@@ -74,20 +74,20 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ea84a57b562ffd547a342845d259ba98, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1714279648536835361}
+      addedObject: {fileID: 7791494738600353799}
   m_SourcePrefab: {fileID: 100100000, guid: ea84a57b562ffd547a342845d259ba98, type: 3}
---- !u!1 &3993046739472377084 stripped
+--- !u!1 &1891057955661527302 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ea84a57b562ffd547a342845d259ba98, type: 3}
-  m_PrefabInstance: {fileID: 4299617180498352557}
+  m_PrefabInstance: {fileID: 1657055148925289559}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1714279648536835361
+--- !u!114 &7791494738600353799
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3993046739472377084}
+  m_GameObject: {fileID: 1891057955661527302}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc003abe7e48fd1429f21d86de754cbe, type: 3}
