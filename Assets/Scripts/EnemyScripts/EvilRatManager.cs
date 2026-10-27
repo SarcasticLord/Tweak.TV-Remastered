@@ -4,7 +4,8 @@ using UnityEngine;
 public class EvilRatManager : BaseEnemy
 {
     private PickupAndCarry pickup;
-    public bool canPickup;
+    //public bool canPickup;
+    private bool isPickedUp;
     public GameObject hitbox;
     public Transform attackPoint;
     public LayerMask ground;
@@ -26,7 +27,8 @@ public class EvilRatManager : BaseEnemy
     {
         pickup = gameObject.GetComponent<PickupAndCarry>();
         base.Start();
-        pickup.enabled = false;
+        isPickedUp = false;
+        pickup.enabled = true;
         rb.isKinematic = false;
     }
 
@@ -40,6 +42,8 @@ public class EvilRatManager : BaseEnemy
             {
                 col.enabled = false;
             }
+            isPickedUp = true;
+            currentState = EnemyState.Stunned;
         }
         else
         {
@@ -47,6 +51,12 @@ public class EvilRatManager : BaseEnemy
             {
                 col.enabled = enabled;
             }
+            if(isPickedUp == true)
+            {
+                isPickedUp = false;
+                currentState = EnemyState.Death;
+            }
+            
         }
         CheckGround();
         if (grounded)
@@ -66,14 +76,15 @@ public class EvilRatManager : BaseEnemy
 
         yield return new WaitForSeconds(stunDuration);
         //After stun
-        if(interact.heldObject == this.gameObject)
+        if (interact.heldObject == this.gameObject)
         {
             pickup.Throw();
         }
         pickup.enabled = false;
         agent.enabled = true;
-        currentState = EnemyState.Chase;
+        //currentState = EnemyState.Chase;
         yield return null;
+
     }
 
     protected override void AttackBehavior()
