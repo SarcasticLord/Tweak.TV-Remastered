@@ -5,12 +5,16 @@ using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 public class BaseEnemy : MonoBehaviour
 {
-    enum EnemyState { Wander, Chase, Attack, Death, Stunned}
-    EnemyState currentState;
+    protected enum EnemyState { Wander, Chase, Attack, Death, Stunned}
+    protected EnemyState currentState;
 
     //Component variables
-    private Rigidbody rb;
-    private NavMeshAgent agent;
+    protected Rigidbody rb;
+    protected NavMeshAgent agent;
+    public GameObject blood;
+    public Material ghostMat;
+
+    protected bool isDead;
    
 
     protected bool canUseLinks = true;
@@ -33,8 +37,8 @@ public class BaseEnemy : MonoBehaviour
     //Attack variables
     public float attackRange = 2f;
     public float cooldown = 3f;
-    private float attackTimer;
-    private bool canAttack;
+    protected float attackTimer;
+    protected bool canAttack;
 
 
     //Stun variables
@@ -50,20 +54,20 @@ public class BaseEnemy : MonoBehaviour
     public LayerMask obstructionMask;
     public LayerMask targetMask;
 
-    private Transform chaseTarget;
-    private bool targetVisible = false;
+    protected Transform chaseTarget;
+    protected bool targetVisible = false;
 
     private float lookTimer;
     public float lookInterval = 0.1f;
 
     public float targetMemoryTime = 3f;
-    private float lastSeenTimer;
+    protected float lastSeenTimer;
 
-    private Vector3 lastTargetPos;
+    protected Vector3 lastTargetPos;
 
 
 
-    private Coroutine pathCoroutine;
+    protected Coroutine pathCoroutine;
     private Vector3 currentDestination;
 
 
@@ -72,9 +76,9 @@ public class BaseEnemy : MonoBehaviour
     public Transform rayOrigin;
 
     //Optional
-    private Animator animator;
+    protected Animator animator;
 
-    private void Awake()
+    protected void Awake()
     {
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
@@ -89,8 +93,9 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    void Start()
+    protected virtual void Start()
     {
+        Debug.Log("Has blood:" + (blood != null));
         stunTimer = 0f;
         attackTimer = 0f;
         currentState = EnemyState.Wander;
@@ -101,7 +106,7 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    void Update()
+    protected virtual void Update()
     {
         RotateTowardsMovement();
         
@@ -144,7 +149,11 @@ public class BaseEnemy : MonoBehaviour
                 }
                 break;
             case EnemyState.Death:
-                Death();
+                if (!isDead)
+                {
+                    Death();
+                    isDead = true;
+                }
                 break;
 
             case EnemyState.Stunned:
@@ -160,7 +169,7 @@ public class BaseEnemy : MonoBehaviour
 
     //Meant to test death, may be removed/altered later
 
-    private void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Hitbox"))
         {
@@ -209,7 +218,7 @@ public class BaseEnemy : MonoBehaviour
         ChaseTarget();
     }
 
-    private void ChaseTarget()
+    protected virtual void ChaseTarget()
     {
         NavMeshHit hit;
 
@@ -306,13 +315,26 @@ public class BaseEnemy : MonoBehaviour
     }
 
 
-    private void Death()
+    protected virtual void Death()
     {
-        agent.isStopped = true;
+        blood.SetActive(true);
+        agent.enabled = false;
+        if (animator != null)
+            animator.SetInteger("EnemyState", (int)EnemyState.Death);
+        if (ghostMat != null)
+        {
+            SkinnedMeshRenderer renderer = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+            Material[] mats = renderer.materials;
+            for (int i = 0; i < mats.Length; i++)
+            {
+                mats[i] = ghostMat;
+                renderer.materials = mats;
+            }
+        }
         Destroy(gameObject, 5);
     }
 
-    private IEnumerator Stunned()
+    protected virtual IEnumerator Stunned()
     {
 
         agent.isStopped = true;
