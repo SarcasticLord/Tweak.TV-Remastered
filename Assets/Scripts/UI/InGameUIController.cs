@@ -40,6 +40,7 @@ public class InGameUIController : MonoBehaviour
     private void Start()
     {
         pauseScreen.SetActive(false);
+        gameTime = 0;
     }
 
     void onPausePressed(InputAction.CallbackContext pause)
