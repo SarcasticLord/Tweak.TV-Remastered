@@ -95,7 +95,7 @@ public class TaskEnder : MonoBehaviour
         {
             return;
         }
-
+        
         // TaskID 1: End the task and destroy this object once it is successfully carried
         if (pickupAndCarry.isCarried && taskMaster.currentTask.TaskID == 1)
         {

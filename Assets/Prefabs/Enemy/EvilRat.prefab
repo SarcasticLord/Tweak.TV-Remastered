@@ -900,6 +900,7 @@ GameObject:
   - component: {fileID: 1918253097575622581}
   - component: {fileID: -755591273423582205}
   - component: {fileID: -8273191587369313736}
+  - component: {fileID: -8084677052533885871}
   m_Layer: 0
   m_Name: EvilRat
   m_TagString: Object
@@ -1084,6 +1085,25 @@ MonoBehaviour:
   rayOrigin: {fileID: 6257064406588118156}
   hitbox: {fileID: 2524731856408087570, guid: 9dd11687e8b3d624493381617d2f651b, type: 3}
   attackPoint: {fileID: 1504927424948571077}
+--- !u!114 &-8084677052533885871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5622047900825028132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4352277bcd3d695499e269f2b1310b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskEnder
+  taskMaster: {fileID: 0}
+  isCollector: 0
+  isPickup: 0
+  pickupAndCarry: {fileID: 0}
+  isGrafitti: 0
+  grafittiChallenge: {fileID: 0}
+  trackEnemyDeath: 1
 --- !u!1 &6030135425360102820
 GameObject:
   m_ObjectHideFlags: 0
