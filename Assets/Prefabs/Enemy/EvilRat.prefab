@@ -900,6 +900,7 @@ GameObject:
   - component: {fileID: 1918253097575622581}
   - component: {fileID: -755591273423582205}
   - component: {fileID: -8273191587369313736}
+  - component: {fileID: -6201841415487154230}
   m_Layer: 0
   m_Name: EvilRat
   m_TagString: Object
@@ -1066,7 +1067,7 @@ MonoBehaviour:
   cooldown: 3
   stunObj: {fileID: 0}
   stunTimer: 0
-  stunDuration: 5
+  stunDuration: 10
   stunCooldown: 1
   detectionAngle: 275
   detectionRange: 10
@@ -1082,8 +1083,33 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   rayOrigin: {fileID: 6257064406588118156}
+  canPickup: 0
   hitbox: {fileID: 2524731856408087570, guid: 9dd11687e8b3d624493381617d2f651b, type: 3}
   attackPoint: {fileID: 1504927424948571077}
+  ground:
+    serializedVersion: 2
+    m_Bits: 64
+  grounded: 0
+--- !u!114 &-6201841415487154230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5622047900825028132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc003abe7e48fd1429f21d86de754cbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupAndCarry
+  player: {fileID: 0}
+  playerCamera: {fileID: 0}
+  playerInteract: {fileID: 0}
+  distanceFromCamera: 1.1
+  lerpTime: 0.2
+  lerpTimeStamp: 0
+  throwForce: 10000
+  isCarried: 0
 --- !u!1 &6030135425360102820
 GameObject:
   m_ObjectHideFlags: 0

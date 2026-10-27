@@ -113,6 +113,7 @@ public class BaseFlyingEnemy : BaseEnemy
         rb.isKinematic = false;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        //GameController.instance.Decrease();
         Destroy(gameObject, 5);
 
     }
