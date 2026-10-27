@@ -22,6 +22,16 @@ public class TaskMasterScript : MonoBehaviour
         if(currentTask.TaskID==5){descDisplay.text=currentTask.TaskDescription+"\nRats Killed: "+enemiesKilled+" / "+enemiesLeftAlive;}
     }
 
+    private void OnEnable()
+    {
+        GameController.OnEnemyKilled += CountEnemiesKilled;
+    }
+
+    private void OnDisable()
+    {
+        GameController.OnEnemyKilled -= CountEnemiesKilled;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

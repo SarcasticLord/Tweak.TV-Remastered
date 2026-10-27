@@ -179,6 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d470545b900d442800995a4845c2df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseEnemy
+  enemyType: 2
+  blood: {fileID: 0}
+  ghostMat: {fileID: 0}
   jumpTime: 1
   jumpHeight: 1
   wanderSpeed: 10

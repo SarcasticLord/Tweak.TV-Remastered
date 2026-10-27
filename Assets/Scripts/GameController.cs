@@ -10,9 +10,14 @@ public class GameController : MonoBehaviour
 
     public static event Action<int> OnViewCountChanged;
 
+    public static event Action OnEnemyKilled;
+
+    //Enemy related stuff
     public int currEnemyCount = 0;
 
     public int maxEnemyCount = 100;
+
+    public BaseEnemy.EnemyType lastEnemyKilled;
 
     public int _viewCount;
 
@@ -83,11 +88,13 @@ public class GameController : MonoBehaviour
     }
 
     //Called in BaseEnemy.cs
-    public void decreaseCurrEnemyCount() 
-    { 
+    public void decreaseCurrEnemyCount(BaseEnemy.EnemyType killedEnemyType) 
+    {
+        lastEnemyKilled = killedEnemyType;
         if(currEnemyCount > 0)
         {
             currEnemyCount--;
+            OnEnemyKilled?.Invoke();
         }
     }
 

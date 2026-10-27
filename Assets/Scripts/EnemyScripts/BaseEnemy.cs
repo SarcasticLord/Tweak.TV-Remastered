@@ -8,6 +8,10 @@ public class BaseEnemy : MonoBehaviour
     protected enum EnemyState { Wander, Chase, Attack, Death, Stunned}
     protected EnemyState currentState;
 
+    public enum EnemyType { RAT, BEE, STREAMSNIPER }
+
+    public EnemyType enemyType;
+
     //Component variables
     protected Rigidbody rb;
     protected NavMeshAgent agent;
@@ -319,6 +323,7 @@ public class BaseEnemy : MonoBehaviour
 
     protected virtual void Death()
     {
+        GameController.instance.decreaseCurrEnemyCount(enemyType);
         blood.SetActive(true);
         agent.enabled = false;
         if (animator != null)
