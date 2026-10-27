@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5627777016428812777}
-  - component: {fileID: 699284523322884749}
   - component: {fileID: 2919788550264667999}
   m_Layer: 0
   m_Name: Singleton
@@ -33,26 +32,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &699284523322884749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3460275677600913968}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87ca8237b3c0cdd4aac4e9b8fa4fe841, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ViewTracker
-  streamSniperSpawned: 0
-  baseNumber: -50
-  baseModifier: 2
-  displayNumber: 0
-  baseOffset: 20000
-  slowingFactor: 20
-  streamSniper: {fileID: 3732554126820547295, guid: ca88ba6cbc86eea40b4d620536eb4a16, type: 3}
-  streamSniperSpawnpoint: {fileID: 0}
 --- !u!114 &2919788550264667999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,4 +49,3 @@ MonoBehaviour:
   _viewCount: 0
   gameTime: 0
   streamSniper: {fileID: 3732554126820547295, guid: ca88ba6cbc86eea40b4d620536eb4a16, type: 3}
-  streamSniperSpawnpoint: {fileID: 0}

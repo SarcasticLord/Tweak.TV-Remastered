@@ -378555,6 +378555,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2018870230}
   - component: {fileID: 2018870229}
+  - component: {fileID: 2018870231}
   m_Layer: 0
   m_Name: SubwayManager
   m_TagString: Untagged
@@ -378589,6 +378590,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2018870231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018870228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: bfd206b0264bc4ef383e24e3d3406392, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!43 &2022315499
 Mesh:
   m_ObjectHideFlags: 0
@@ -400332,7 +400365,7 @@ MonoBehaviour:
   baseOffset: 2000
   slowingFactor: 20
   streamSniper: {fileID: 0}
-  streamSniperSpawnpoint: {fileID: 0}
+  streamSniperSpawnpoint: {fileID: 1794194321}
 --- !u!114 &2142405484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401539,6 +401572,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1237142061}
   - {fileID: 2018870230}
+  - {fileID: 2142405485}
   - {fileID: 2072550569}
   - {fileID: 1858129544}
   - {fileID: 1240970998}
@@ -401592,7 +401626,6 @@ SceneRoots:
   - {fileID: 1042885060}
   - {fileID: 1469937965}
   - {fileID: 5051309777894493120}
-  - {fileID: 2142405485}
   - {fileID: 3087910734667398500}
   - {fileID: 603655128}
   - {fileID: 1850662236}
