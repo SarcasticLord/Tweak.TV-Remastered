@@ -323365,6 +323365,27 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+--- !u!1 &1733674184 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8667122210447663171, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+  m_PrefabInstance: {fileID: 1733674183}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1733674185 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8873650547438373170, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+  m_PrefabInstance: {fileID: 1733674183}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &1733674186 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5793440834577206791, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+  m_PrefabInstance: {fileID: 1733674183}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1734015114
 Mesh:
   m_ObjectHideFlags: 0
@@ -396932,6 +396953,151 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &2142405480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2142405485}
+  - component: {fileID: 2142405484}
+  - component: {fileID: 2142405483}
+  - component: {fileID: 2142405482}
+  - component: {fileID: 2142405481}
+  m_Layer: 0
+  m_Name: TaskMaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2142405481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142405480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 6055c109ca094264eb94c4fc10bcb837, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 08c0d699-a317-411e-aa60-62609a1704ae
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 2072550568}
+--- !u!114 &2142405482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142405480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2e61e40817526f45ac276392beebdfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrafittiChallenge
+  Grafitti:
+    m_Name: Grafitti
+    m_Id: 44466318-76aa-4d54-814a-a93c61e26bc2
+    m_Asset: {fileID: 0}
+    m_Actions: []
+    m_Bindings: []
+  playerInput: {fileID: 2142405481}
+  lastKnownDirectionInput: 0
+  directionOrder: 0000000000000000000000000000000000000000
+  minigameCursor: 0
+  mainCanvas: {fileID: 1733674184}
+  player: {fileID: 1733674186}
+  inputImages:
+  - {fileID: 0}
+  systemActive: 0
+  arrowSprite: {fileID: 21300000, guid: 372373826a9b9c8499feec7020fa5b5c, type: 3}
+  correctSprite: {fileID: 21300000, guid: bc48d74203ee40b41b0cbd052ca599c7, type: 3}
+  taskMasterScript: {fileID: 2142405484}
+  canBeStarted: 1
+  grafittiResult: {fileID: 0}
+  grafittiResultImages:
+  - {fileID: 2100000, guid: 994c2d0ce0f3fe84eaf1dfa4789dcea8, type: 2}
+  - {fileID: 2100000, guid: 61389f8d08db4c84685334d4baf217ec, type: 2}
+  - {fileID: 2100000, guid: 247ad8f1429f4b54abf0c1e23225f629, type: 2}
+  - {fileID: 2100000, guid: 9869cdcb28e927b44bede10cc56d6e46, type: 2}
+  - {fileID: 2100000, guid: 1edc95fdf4deed24b987902baf954889, type: 2}
+  - {fileID: 2100000, guid: fb2763d1984b8b04f842d4ac8ba2152d, type: 2}
+--- !u!114 &2142405483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142405480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ca8237b3c0cdd4aac4e9b8fa4fe841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ViewTracker
+  streamSniperSpawned: 0
+  baseNumber: -50
+  baseModifier: 2
+  displayNumber: 0
+  baseOffset: 2000
+  slowingFactor: 20
+  streamSniper: {fileID: 0}
+  streamSniperSpawnpoint: {fileID: 0}
+--- !u!114 &2142405484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142405480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c43864822b49b04da524fc7fa000e40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskMasterScript
+  currentTask: {fileID: 0}
+  availableTasks: []
+  taskCursor: 1
+  descDisplay: {fileID: 1733674185}
+  viewTracker: {fileID: 0}
+  objectsNeededForTask: 0
+  objectsCollected: 0
+  enemiesLeftAlive: 0
+  enemiesKilled: 0
+--- !u!4 &2142405485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142405480}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2143159435
 GameObject:
   m_ObjectHideFlags: 0
@@ -398019,3 +398185,4 @@ SceneRoots:
   - {fileID: 1042885060}
   - {fileID: 1469937965}
   - {fileID: 5051309777894493120}
+  - {fileID: 2142405485}
