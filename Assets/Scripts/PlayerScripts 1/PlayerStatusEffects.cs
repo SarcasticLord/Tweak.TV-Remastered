@@ -8,12 +8,13 @@ public class PlayerStatusEffects : MonoBehaviour
     public bool isDead; //Should open game over screen
     public bool isSlowed; //Slows player speed
     public float slowDuration = 5f;
+    public GameObject slowedEffect;
     
     public float slowedSpeed = 4f;
     public float slowedSlideSpeed = 4f;
 
     public float storeDefaultSpeed;
-    private float storeDefaultSlideSpeed;
+    public float storeDefaultSlideSpeed;
     public float stunnedSpeed;
     public float storeDefaultJumpForce;
     public float stunnedJumpForce;
@@ -21,9 +22,10 @@ public class PlayerStatusEffects : MonoBehaviour
 
     void Start()
     {
+        slowedEffect.SetActive(false);
         playerMovementScript = gameObject.GetComponent<PlayerMovementScript>();
         storeDefaultSpeed = playerMovementScript.playerSpeed;
-        storeDefaultSlideSpeed = playerMovementScript.playerCrouchSpeed;
+        storeDefaultSlideSpeed = playerMovementScript.playerSlideSpeed;
         storeDefaultJumpForce = playerMovementScript.playerJumpForce;
     }
     [ContextMenu(nameof(OnStun))]
@@ -44,6 +46,7 @@ public class PlayerStatusEffects : MonoBehaviour
     public void OnSlowed()
     {
         isSlowed = true;
+        slowedEffect.SetActive(true);
         playerMovementScript.playerSpeed = slowedSpeed;
         playerMovementScript.playerSlideSpeed = slowedSlideSpeed;
 
@@ -51,7 +54,8 @@ public class PlayerStatusEffects : MonoBehaviour
     [ContextMenu(nameof(OnRemoveSlowed))]
     public void OnRemoveSlowed()
     {
-        isSlowed = true;
+        isSlowed = false;
+        slowedEffect.SetActive(false);
         playerMovementScript.playerSpeed = storeDefaultSpeed;
         playerMovementScript.playerSlideSpeed = storeDefaultSlideSpeed;
     }
