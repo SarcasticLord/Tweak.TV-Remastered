@@ -325701,6 +325701,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5793440834577206791, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
   m_PrefabInstance: {fileID: 1733674183}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1733674187 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 328800369136569875, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+  m_PrefabInstance: {fileID: 1733674183}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733674186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f6029855fffdde4c9ac447ccca6d629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStatusEffects
 --- !u!43 &1734015114
 Mesh:
   m_ObjectHideFlags: 0
@@ -348030,6 +348041,8 @@ GameObject:
   - component: {fileID: 1850662236}
   - component: {fileID: 1850662235}
   - component: {fileID: 1850662234}
+  - component: {fileID: 1850662238}
+  - component: {fileID: 1850662237}
   m_Layer: 0
   m_Name: LightningParticleContainer
   m_TagString: Untagged
@@ -348099,6 +348112,40 @@ Transform:
   - {fileID: 235076896}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1850662237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850662233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c26db28f7337f0c4aaa99b6e5546009c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RailShock
+  effects: {fileID: 1733674187}
+--- !u!65 &1850662238
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850662233}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 9.51, y: 1.11, z: 3.24}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!43 &1850863732
 Mesh:
   m_ObjectHideFlags: 0
