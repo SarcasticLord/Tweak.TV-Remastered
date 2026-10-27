@@ -11,11 +11,15 @@ public class TaskMasterScript : MonoBehaviour
     public ViewTracker viewTracker; //The viewtracker
     public int objectsNeededForTask; //How many objects are needed to complete the collection task
     public int objectsCollected; //The current number of collected objects
+    public int enemiesLeftAlive; //How many enemies must be killed to complete the task
+    public int enemiesKilled; //The current number of enemies killed
 
     void SetTask(int taskNumber) //Change the task and task description
     {
         currentTask=availableTasks[taskCursor];
         descDisplay.text=currentTask.TaskDescription;
+        if(currentTask.TaskID==4){descDisplay.text=currentTask.TaskDescription+"\nTrash Collected: "+objectsCollected+" / "+objectsNeededForTask;}
+        if(currentTask.TaskID==5){descDisplay.text=currentTask.TaskDescription+"\nRats Killed: "+enemiesKilled+" / "+enemiesLeftAlive;}
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,7 +41,19 @@ public class TaskMasterScript : MonoBehaviour
     public void CollectObject() //Increment object and end task if complete
     {
         objectsCollected++;
+        descDisplay.text=currentTask.TaskDescription+"\nTrash Collected: "+objectsCollected+" / "+objectsNeededForTask;
         if (objectsCollected >= objectsNeededForTask)
+        {
+            EndTask();
+        }
+    }
+
+    public void CountEnemiesKilled() //Increment object and end task if complete
+    {
+        if(currentTask.TaskID!=5){return;}
+        enemiesKilled++;
+        descDisplay.text=currentTask.TaskDescription+"\nRats Killed: "+enemiesKilled+" / "+enemiesLeftAlive;
+        if (enemiesKilled >= enemiesLeftAlive)
         {
             EndTask();
         }

@@ -7,14 +7,15 @@ using UnityEngine.SceneManagement;
 
 public class PlayerItemInteract : MonoBehaviour
 {
-    public float maxDistance;
-    public GameObject heldObject;
-    private PickupAndCarry heldObjectScript;
-    public GameObject playerCamera;
+    public float maxDistance = 0.1f;
+    public GameObject heldObject; //Should be empty in editor
+    private PickupAndCarry heldObjectScript; //Should be empty in editor
+    public GameObject playerCamera; //should be attached to camera
     public float pickupCooldown = 1f;
-    public TaskMasterScript taskMasterScript;
-    public GrafittiChallenge grafittiChallenge;
-    public ViewTracker viewTracker;
+    public TaskMasterScript taskMasterScript; //Should be empty in editor
+    public GrafittiChallenge grafittiChallenge; //Should be empty in editor
+    public ViewTracker viewTracker; //Should be empty in editor
+    
     
     
     //private IEnumerator PickupDelay()
@@ -43,17 +44,26 @@ public class PlayerItemInteract : MonoBehaviour
     {
         if(heldObject == null && pickupCooldown <= 0)
         {
-            Vector3 direction = playerCamera.transform.forward * maxDistance;
-            Debug.DrawRay(transform.position, direction, Color.green);
-            if (Physics.Raycast(transform.position, playerCamera.transform.forward, out RaycastHit hit, maxDistance))
+            Vector3 rayOrigin =  new(playerCamera.transform.position.x, playerCamera.transform.position.y, playerCamera.transform.position.z); //Where the box is aimed
+            Vector3 rayDirection = playerCamera.transform.forward; //Direction you're facing
+
+            // Define the dimensions of your box
+            Vector3 boxHalfExtents = new Vector3(0.5f, 0.5f, 0.5f); // Total size is 1m x 1m x 1m
+            Quaternion boxOrientation = playerCamera.transform.rotation; // Aligns the box with the camera's angle
+
+            // Debug visualization: Draws a line representing the center trajectory of the box
+            Debug.DrawRay(rayOrigin, rayDirection * maxDistance, Color.green);
+
+            // Cast the box forward
+            if (Physics.BoxCast(rayOrigin, boxHalfExtents, rayDirection, out RaycastHit hit, boxOrientation, maxDistance)) //Casts a box forward
             {
-                if (hit.collider.gameObject.CompareTag("Object") || hit.collider.gameObject.CompareTag("KeyItem"))
+                if (hit.collider.gameObject.CompareTag("Object") || hit.collider.gameObject.CompareTag("KeyItem")) //If an object or key item
                 {
-                    heldObject = hit.collider.gameObject;
-                    heldObjectScript = heldObject.GetComponent<PickupAndCarry>();
-                    heldObjectScript.StartPickup();
+                    heldObject = hit.collider.gameObject; //Know who the held object is
+                    heldObjectScript = heldObject.GetComponent<PickupAndCarry>(); 
+                    heldObjectScript.StartPickup(); //Have the item react as if its being held
                 }
-                if (hit.collider.gameObject.CompareTag("GrafittiWall"))
+                if (hit.collider.gameObject.CompareTag("GrafittiWall")) //Start grafitti challenge if appropriate
                 {
                     if(taskMasterScript.currentTask.TaskID!=3){return;}
                     grafittiChallenge.Activate();

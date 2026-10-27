@@ -40,6 +40,7 @@ public class GrafittiChallenge : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         Grafitti = playerInput.actions.FindActionMap(nameof(Grafitti)); //Get grafitti functional
+        playerInput.enabled = false;
         for (int i = 0; i < 5; i++)
         {
             inputImages[i].SetActive(false); //Disable images until needed
@@ -59,9 +60,11 @@ public class GrafittiChallenge : MonoBehaviour
         //storeLinearVelocity = player.GetComponent<Rigidbody>().linearVelocity;
         //player.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         player.GetComponent<PlayerInput>().enabled = false;
+        playerInput.enabled = true;
     }
     void OnProvideMarks(InputValue movementValue)
     {
+        
         CommandInputs = movementValue.Get<Vector2>();
     }
 
@@ -85,6 +88,7 @@ public class GrafittiChallenge : MonoBehaviour
 
     void InterpretInputs() //Convert keyboard inputs to a set of directional inputs
     {
+        
         (UpIsInput, DownIsInput, LeftIsInput, RightIsInput) = (CommandInputs.y>0, CommandInputs.y<0, CommandInputs.x<0, CommandInputs.x>0);
         AnyIsInput=UpIsInput||DownIsInput||LeftIsInput||RightIsInput;
     }
@@ -189,7 +193,8 @@ public class GrafittiChallenge : MonoBehaviour
         taskMasterScript.EndTask();
         canBeStarted=false;
         player.GetComponent<PlayerInput>().enabled=true;
-        grafittiResult.material = grafittiResultImages[Random.Range(0, 3)];
+        grafittiResult.material = grafittiResultImages[Random.Range(0, grafittiResultImages.Length)];
+        playerInput.enabled = false;
     }
 
     public void FailState() //End task, reset everything, let player go back in
@@ -204,6 +209,7 @@ public class GrafittiChallenge : MonoBehaviour
         mainCanvas.SetActive(true);
         minigameCursor=0;
         player.GetComponent<PlayerInput>().enabled=true;
+        playerInput.enabled = false;
 
     }
 }
