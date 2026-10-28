@@ -5,10 +5,7 @@ public class UsernameURL : MonoBehaviour
 {
     public TextMeshProUGUI textElement;
 
-    public void AppendText()
-    {
-        textElement.text += UsernameInput.playerInput;
-    }
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,5 +16,9 @@ public class UsernameURL : MonoBehaviour
     void Update()
     {
         
+    }
+    public void AppendText()
+    {
+        textElement.text += UsernameInput.playerInput;
     }
 }

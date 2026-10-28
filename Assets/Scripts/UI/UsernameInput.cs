@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
@@ -12,6 +11,12 @@ public class UsernameInput : MonoBehaviour
     public void SaveInput()
     {
         playerInput = inputField.text;
+        UsernameURL text = FindFirstObjectByType<UsernameURL>();
+
+        if (text != null)
+        {
+            text.AppendText();
+        }
     }
 
     private void Awake()
