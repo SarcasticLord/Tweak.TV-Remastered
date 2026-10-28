@@ -16,6 +16,8 @@ public class StartingSoonUI : MonoBehaviour
 
     private string selectedLevel = "";
 
+    public GameObject selectErr;
+
     public void SelectAsylum()
     {
         asylumSelected.SetActive(true);
@@ -35,8 +37,19 @@ public class StartingSoonUI : MonoBehaviour
         if (string.IsNullOrEmpty(selectedLevel))
         {
             Debug.Log("select a level");
+            OpenErrWindow();
             return;
         }
         SceneManager.LoadScene(selectedLevel);
+    }
+
+    public void OpenErrWindow()
+    {
+        selectErr.SetActive(true);
+    }
+
+    public void CloseErrWindow()
+    {
+        selectErr.SetActive(false);
     }
 }
