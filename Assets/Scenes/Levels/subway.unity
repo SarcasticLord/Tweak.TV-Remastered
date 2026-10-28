@@ -11553,6 +11553,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &51080476
@@ -19694,6 +19696,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &104690852
@@ -31966,6 +31970,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &168647190
@@ -34637,6 +34643,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &187001991
@@ -63179,6 +63187,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &337344820
@@ -78369,6 +78379,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &434581487
@@ -91683,6 +91695,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &523829680
@@ -94656,6 +94670,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &541190059
@@ -113267,6 +113283,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &643706314
@@ -124753,6 +124771,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &696984515
@@ -129246,6 +129266,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &725745047
@@ -140678,6 +140700,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &799638777
@@ -147665,6 +147689,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &834629658
@@ -183828,6 +183854,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &1009698870
@@ -211613,6 +211641,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &1139240381
@@ -215892,6 +215922,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2074833553270648502, guid: 69a38606084d444b885149aeda6f969a, type: 3}
+      propertyPath: m_Size.x
+      value: 5.7089214
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074833553270648502, guid: 69a38606084d444b885149aeda6f969a, type: 3}
+      propertyPath: m_Size.y
+      value: 6.0513563
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074833553270648502, guid: 69a38606084d444b885149aeda6f969a, type: 3}
+      propertyPath: m_Size.z
+      value: 0.14887807
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074833553270648502, guid: 69a38606084d444b885149aeda6f969a, type: 3}
+      propertyPath: m_Center.x
+      value: 0.49122405
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074833553270648502, guid: 69a38606084d444b885149aeda6f969a, type: 3}
+      propertyPath: m_Center.y
+      value: -0.14951086
+      objectReference: {fileID: 0}
     - target: {fileID: 6755305312439915345, guid: 69a38606084d444b885149aeda6f969a, type: 3}
       propertyPath: m_Name
       value: sprayhere (3)
@@ -230014,6 +230064,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &1226117477
@@ -242817,6 +242869,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &1288213193
@@ -269815,6 +269869,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2074833553270648502, guid: 69a38606084d444b885149aeda6f969a, type: 3}
+      propertyPath: m_Size.x
+      value: 8.978909
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074833553270648502, guid: 69a38606084d444b885149aeda6f969a, type: 3}
+      propertyPath: m_Size.z
+      value: 0.14887807
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074833553270648502, guid: 69a38606084d444b885149aeda6f969a, type: 3}
+      propertyPath: m_Center.x
+      value: -1.1175036
+      objectReference: {fileID: 0}
     - target: {fileID: 6755305312439915345, guid: 69a38606084d444b885149aeda6f969a, type: 3}
       propertyPath: m_Name
       value: sprayhere (6)
@@ -280591,6 +280657,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &1483854316
@@ -289612,6 +289680,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &1554338908
@@ -295811,6 +295881,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2074833553270648502, guid: 69a38606084d444b885149aeda6f969a, type: 3}
+      propertyPath: m_Size.x
+      value: 8.704132
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074833553270648502, guid: 69a38606084d444b885149aeda6f969a, type: 3}
+      propertyPath: m_Center.x
+      value: -0.112213135
+      objectReference: {fileID: 0}
     - target: {fileID: 6755305312439915345, guid: 69a38606084d444b885149aeda6f969a, type: 3}
       propertyPath: m_Name
       value: sprayhere (2)
@@ -307862,6 +307940,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &1658661958
@@ -325255,6 +325335,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &1730568286
@@ -349534,6 +349616,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &1854019806
@@ -351700,6 +351784,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &1863765869
@@ -364199,6 +364285,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &1920928579
@@ -367283,6 +367371,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &1937177774
@@ -383261,6 +383351,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &2044344094
@@ -400522,6 +400614,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 9869cdcb28e927b44bede10cc56d6e46, type: 2}
   - {fileID: 2100000, guid: 1edc95fdf4deed24b987902baf954889, type: 2}
   - {fileID: 2100000, guid: fb2763d1984b8b04f842d4ac8ba2152d, type: 2}
+  wallTaskEnder: {fileID: 0}
 --- !u!114 &2142405483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400567,6 +400660,8 @@ MonoBehaviour:
   objectsCollected: 0
   enemiesLeftAlive: 5
   enemiesKilled: 0
+  grafittiSpots: 0
+  grafittiCompleted: 0
 --- !u!4 &2142405485
 Transform:
   m_ObjectHideFlags: 0
@@ -400693,6 +400788,8 @@ MonoBehaviour:
   isPickup: 1
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!54 &2143159441
