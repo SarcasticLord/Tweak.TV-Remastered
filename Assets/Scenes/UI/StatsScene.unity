@@ -590,7 +590,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -292.33154, y: 2.3166504}
+  m_AnchoredPosition: {x: -895.2, y: 2.3166504}
   m_SizeDelta: {x: 70, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1832801782
@@ -1205,7 +1205,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -35.180115}
+  m_AnchoredPosition: {x: 0.000061035156, y: -35.180176}
   m_SizeDelta: {x: 1920, y: 70.36658}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3170726469437489863
@@ -1227,6 +1227,7 @@ GameObject:
   - component: {fileID: 7975262608969732630}
   - component: {fileID: 4706527441124207024}
   - component: {fileID: 5737302822127912299}
+  - component: {fileID: 7975262608969732631}
   m_Layer: 5
   m_Name: URL
   m_TagString: Untagged
@@ -1677,7 +1678,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tweak.TV/statistics
+  m_text: Tweak.TV/statistics/
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 241c6acceca8b844baad6cbcf60cefc7, type: 2}
   m_sharedMaterial: {fileID: -699112959996641730, guid: 241c6acceca8b844baad6cbcf60cefc7, type: 2}
@@ -2253,9 +2254,22 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 65.9931, y: 0.00004132801}
-  m_SizeDelta: {x: 338.0116, y: 41.704}
+  m_AnchoredPosition: {x: 298.07, y: 0.00004132801}
+  m_SizeDelta: {x: 1526.7, y: 41.704}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7975262608969732631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3398612841327363426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b066308977946d2935f19d580189bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UsernameURL
+  textElement: {fileID: 5737302822127912299}
 --- !u!222 &8115172873793703488
 CanvasRenderer:
   m_ObjectHideFlags: 0
