@@ -51,6 +51,8 @@ public class InGameUIController : MonoBehaviour
             {
                 //Freeze game and activate pause overlay
                 pauseScreen.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 Time.timeScale = 0f;
                 isPaused = true;
             }
@@ -58,6 +60,8 @@ public class InGameUIController : MonoBehaviour
             {
                 //Unpause
                 pauseScreen.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 Time.timeScale = 1f;
                 isPaused = false;
             }
