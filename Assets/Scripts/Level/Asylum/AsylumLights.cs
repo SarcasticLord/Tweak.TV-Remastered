@@ -25,6 +25,8 @@ public class AsylumLights : MonoBehaviour
     [SerializeField] public float maxFlickerTime = 0.4f;
     [SerializeField] public float flickerChance = 0.6f;
 
+    [SerializeField] private bool foreverLight;
+
     private Material glowMat;
     private bool isOn;
     private Coroutine flickerCo;
@@ -60,12 +62,12 @@ public class AsylumLights : MonoBehaviour
             glowMat.EnableKeyword("_EMISSION");
         }
 
-        SetLight(false);
+        SetLight(foreverLight);
     }
 
     void OnTriggerEnter(Collider other) // when the player enters the collider
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") && !foreverLight)
         {
             SetLight(true);
         }
@@ -73,7 +75,7 @@ public class AsylumLights : MonoBehaviour
 
     void OnTriggerExit(Collider other) // when the player leaves the collider
     {
-        if (turnOffOnExit && other.CompareTag("Player"))
+        if (turnOffOnExit && other.CompareTag("Player") && !foreverLight)
         {
             SetLight(false);
         }
