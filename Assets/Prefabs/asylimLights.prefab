@@ -249,8 +249,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.0432816, y: 0.9665561, z: 3.2131846}
-  m_Center: {x: -0.009301186, y: -0.46581668, z: 0.051854372}
+  m_Size: {x: 5.0432816, y: 1.7356316, z: 3.2131846}
+  m_Center: {x: -0.009301186, y: -0.8503545, z: 0.051854372}
 --- !u!114 &-8105927256742550314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +275,7 @@ MonoBehaviour:
   minFlickerTime: 0.1
   maxFlickerTime: 1.2
   flickerChance: 0.6
+  foreverLight: 0
 --- !u!54 &6766677798924852620
 Rigidbody:
   m_ObjectHideFlags: 0
