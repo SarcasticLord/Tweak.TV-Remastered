@@ -12,6 +12,13 @@ public class UIManager : MonoBehaviour
 {
     // keeps track of the last played scene
     public static string lastScene = "";
+    public GameObject exitConf;
+
+    void Start()
+    {
+        exitConf.SetActive(false);
+
+    } 
 
 
     public void ExitGame() // this quits the game
@@ -50,6 +57,16 @@ public class UIManager : MonoBehaviour
     {
         lastScene = "DemoScene";
         SceneManager.LoadScene("DemoScene"); 
+    }
+
+    public void OpenExitWindow()
+    {
+        exitConf.SetActive(true);
+    }
+
+    public void CloseExitWindow()
+    {
+        exitConf.SetActive(false);
     }
 
     public void RestartLevel()
