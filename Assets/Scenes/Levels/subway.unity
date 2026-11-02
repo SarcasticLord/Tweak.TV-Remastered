@@ -234033,11 +234033,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1247482651}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1248106228 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 8579613297512021438, guid: 69a38606084d444b885149aeda6f969a, type: 3}
-  m_PrefabInstance: {fileID: 1507978140}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1249481331
 GameObject:
   m_ObjectHideFlags: 0
@@ -270044,7 +270039,7 @@ PrefabInstance:
     - target: {fileID: 6837649374158366095, guid: 69a38606084d444b885149aeda6f969a, type: 3}
       propertyPath: grafittiImage
       value: 
-      objectReference: {fileID: 1625118996}
+      objectReference: {fileID: 1427172290}
     - target: {fileID: 6837649374158366095, guid: 69a38606084d444b885149aeda6f969a, type: 3}
       propertyPath: grafittiChallenge
       value: 
@@ -270054,6 +270049,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69a38606084d444b885149aeda6f969a, type: 3}
+--- !u!23 &1427172290 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2943294430800613207, guid: 69a38606084d444b885149aeda6f969a, type: 3}
+  m_PrefabInstance: {fileID: 1427172289}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1427308587
 Mesh:
   m_ObjectHideFlags: 0
@@ -284526,7 +284526,7 @@ PrefabInstance:
     - target: {fileID: 6837649374158366095, guid: 69a38606084d444b885149aeda6f969a, type: 3}
       propertyPath: grafittiImage
       value: 
-      objectReference: {fileID: 1248106228}
+      objectReference: {fileID: 1507978141}
     - target: {fileID: 6837649374158366095, guid: 69a38606084d444b885149aeda6f969a, type: 3}
       propertyPath: grafittiChallenge
       value: 
@@ -284536,6 +284536,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69a38606084d444b885149aeda6f969a, type: 3}
+--- !u!23 &1507978141 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2943294430800613207, guid: 69a38606084d444b885149aeda6f969a, type: 3}
+  m_PrefabInstance: {fileID: 1507978140}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1508406626
 Mesh:
   m_ObjectHideFlags: 0
@@ -298929,11 +298934,6 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
---- !u!23 &1612101664 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 8579613297512021438, guid: 69a38606084d444b885149aeda6f969a, type: 3}
-  m_PrefabInstance: {fileID: 1936646879}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1612121572
 Mesh:
   m_ObjectHideFlags: 0
@@ -300728,11 +300728,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!23 &1625118996 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 8579613297512021438, guid: 69a38606084d444b885149aeda6f969a, type: 3}
-  m_PrefabInstance: {fileID: 1427172289}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1625189590
 GameObject:
   m_ObjectHideFlags: 0
@@ -367271,7 +367266,7 @@ PrefabInstance:
     - target: {fileID: 6837649374158366095, guid: 69a38606084d444b885149aeda6f969a, type: 3}
       propertyPath: grafittiImage
       value: 
-      objectReference: {fileID: 1612101664}
+      objectReference: {fileID: 1936646880}
     - target: {fileID: 6837649374158366095, guid: 69a38606084d444b885149aeda6f969a, type: 3}
       propertyPath: grafittiChallenge
       value: 
@@ -367281,6 +367276,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69a38606084d444b885149aeda6f969a, type: 3}
+--- !u!23 &1936646880 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2943294430800613207, guid: 69a38606084d444b885149aeda6f969a, type: 3}
+  m_PrefabInstance: {fileID: 1936646879}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1936696174
 Mesh:
   m_ObjectHideFlags: 0
