@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c796258eee9f0f49970a4333ae4657b, type: 3}
+  m_Script: {fileID: 11500000, guid: d1717318a578d8944a887937f529e96a, type: 3}
   m_Name: Flashlight
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
-  description: 
-  icon: {fileID: 0}
-  uses: 0
-  itemType: 0
-  offset: 0
-  prefab: {fileID: 0}
+  distance: 0.3
+  movement: 0.25
+  rotSpeed: 5
+  inventory: {fileID: 0}
+  useItem: {fileID: 0}
+  itemDrop: {fileID: 0}
+  isSelected: 0

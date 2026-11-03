@@ -62,7 +62,7 @@ public class PlayerInventoryManager : MonoBehaviour
         if (items.Count > 0)
         {
             selectedItem++;
-            //ensures selected item stays in range of items in inventory
+            //ensures selected item stays in range of items in inventoryem
             if (selectedItem >= items.Count)
             {
                 selectedItem = 0;
