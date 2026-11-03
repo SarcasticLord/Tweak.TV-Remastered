@@ -31,7 +31,7 @@ public class GrafittiChallenge : MonoBehaviour
     Vector3 storeLinearVelocity;
     public Sprite arrowSprite;
     public Sprite correctSprite;
-    public TaskMasterScript taskMasterScript;
+    
     public bool canBeStarted;
     public MeshRenderer grafittiResult;
     public Material[] grafittiResultImages;
@@ -192,7 +192,7 @@ public class GrafittiChallenge : MonoBehaviour
         systemActive=false;
         mainCanvas.SetActive(true);
         //player.GetComponent<Rigidbody>().linearVelocity = storeLinearVelocity;
-        taskMasterScript.CompleteGrafitti();
+        TaskMasterScript.instance.CompleteGrafitti();
         
         wallTaskEnder.canGrafitti=false;
         minigameCursor=0;

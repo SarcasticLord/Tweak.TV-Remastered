@@ -19,7 +19,7 @@ public class ViewTracker : MonoBehaviour
     void Start()
     {
         TweakManager tweakManager = GetComponent<TweakManager>();
-        if(tweakManager.doubleViewSpeed){slowingFactor/=2;}
+        if(tweakManager.doubleViewSpeed){slowingFactor/=2;} //If view tweak active, double view declien speed
         StartCoroutine(nameof(VCOT));
     }
 

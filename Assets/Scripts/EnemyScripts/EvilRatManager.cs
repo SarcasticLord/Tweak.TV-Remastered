@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EvilRatManager : BaseEnemy
@@ -131,5 +132,6 @@ public class EvilRatManager : BaseEnemy
             lookRotation,
             10f * Time.deltaTime);
     }
+    
 
 }

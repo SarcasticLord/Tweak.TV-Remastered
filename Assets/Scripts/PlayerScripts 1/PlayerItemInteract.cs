@@ -12,7 +12,7 @@ public class PlayerItemInteract : MonoBehaviour
     private PickupAndCarry heldObjectScript; //Should be empty in editor
     public GameObject playerCamera; //should be attached to camera
     public float pickupCooldown = 1f;
-    public TaskMasterScript taskMasterScript; //Should be empty in editor
+    
     public GrafittiChallenge grafittiChallenge; //Should be empty in editor
     public ViewTracker viewTracker; //Should be empty in editor
     
@@ -29,7 +29,7 @@ public class PlayerItemInteract : MonoBehaviour
     {
         grafittiChallenge = GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<GrafittiChallenge>();
         viewTracker = GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<ViewTracker>();
-        taskMasterScript = GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<TaskMasterScript>();
+        
     }
     private void Update()
     {
@@ -65,7 +65,7 @@ public class PlayerItemInteract : MonoBehaviour
                 }
                 if (hit.collider.gameObject.CompareTag("GrafittiWall")) //Start grafitti challenge if appropriate
                 {
-                    if(taskMasterScript.currentTask.TaskID!=3){return;}
+                    
                     TaskEnder taskEnder = hit.collider.gameObject.GetComponent<TaskEnder>();
                     grafittiChallenge.canBeStarted=taskEnder.canGrafitti;
                     grafittiChallenge.grafittiResult=taskEnder.grafittiImage;

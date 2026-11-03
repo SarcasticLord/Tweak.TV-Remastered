@@ -323,6 +323,7 @@ public class BaseEnemy : MonoBehaviour
 
     protected virtual void Death()
     {
+        
         GameController.instance.decreaseCurrEnemyCount(enemyType);
         blood.SetActive(true);
         agent.enabled = false;
