@@ -18,6 +18,8 @@ public class ViewTracker : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        TweakManager tweakManager = GetComponent<TweakManager>();
+        if(tweakManager.doubleViewSpeed){slowingFactor/=2;}
         StartCoroutine(nameof(VCOT));
     }
 
