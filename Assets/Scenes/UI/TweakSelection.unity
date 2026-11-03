@@ -4742,6 +4742,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2017813431}
   - component: {fileID: 2017813430}
+  - component: {fileID: 2017813432}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -4777,6 +4778,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2017813432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017813429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ef2631e9d73d4c77872e9e2f8413c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TweakSelectionUI
+  spawnSSImmUI: {fileID: 0}
+  fastViewDeclineUI: {fileID: 0}
+  moreTrapsUI: {fileID: 0}
+  allLightsOffUI: {fileID: 0}
+  cameraFiltersUI: {fileID: 0}
+  moreEnemieUI: {fileID: 0}
 --- !u!1 &2064898287
 GameObject:
   m_ObjectHideFlags: 0
