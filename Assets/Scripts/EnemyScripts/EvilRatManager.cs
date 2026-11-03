@@ -109,13 +109,16 @@ public class EvilRatManager : BaseEnemy
         if (distanceToTarget > attackRange)
         {
             currentState = EnemyState.Chase;
+            canAttack = false;
             return;
         }
 
         if (canAttack)
         {
+            //TODO: change to swarm script
             agent.velocity = Vector3.zero;
-            Instantiate(hitbox, attackPoint);
+            //Instantiate(hitbox, attackPoint);
+
             canAttack = false;
         }
         Vector3 direction =
