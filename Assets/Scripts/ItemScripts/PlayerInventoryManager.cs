@@ -28,7 +28,7 @@ public class PlayerInventoryManager : MonoBehaviour
     private void LateUpdate()
     {
         //cycles through each child of the gameobject and adds it to items 
-        foreach (Transform child in gameObject.GetComponentsInChildren<Transform>())
+        foreach (BaseItem child in gameObject.GetComponentsInChildren<BaseItem>())
         {
             if (child != gameObject.transform && !items.Contains(child.gameObject) && items.Count < maxItems) // Exclude the parent itself
             {
@@ -40,7 +40,9 @@ public class PlayerInventoryManager : MonoBehaviour
         {
             if (item != items[selectedItem])
             {
-               item.gameObject.GetComponent<ItemHandler>().isSelected = false;
+               BaseItem itemScript = item.gameObject.GetComponent<BaseItem>();
+                Debug.Log(itemScript);
+               itemScript.isSelected = false;
                item.SetActive(false);
             }
         }
@@ -67,7 +69,9 @@ public class PlayerInventoryManager : MonoBehaviour
             {
                 selectedItem = 0;
             }
-            items[selectedItem].gameObject.GetComponent<ItemHandler>().isSelected = true;
+            BaseItem itemScript = items[selectedItem].gameObject.GetComponent<BaseItem>();
+            Debug.Log(itemScript);
+            itemScript.isSelected = true;
             items[selectedItem].SetActive(true);
             Debug.Log(selectedItem);
         }
