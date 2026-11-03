@@ -64,7 +64,7 @@ public class BaseItem : MonoBehaviour
             Transform parent = transform.parent.transform;
             rb.useGravity = false;
             col.enabled = false;
-            gameObject.transform.SetPositionAndRotation(parent.position + itemHeldPos, parent.rotation * itemHeldRot);
+            gameObject.transform.SetLocalPositionAndRotation(itemHeldPos, itemHeldRot);
         }
         
 
