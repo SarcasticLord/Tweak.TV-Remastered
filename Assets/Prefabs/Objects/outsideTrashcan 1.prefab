@@ -217,7 +217,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 32.28
   m_Center: {x: 0, y: 0, z: 0}
@@ -233,11 +233,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4352277bcd3d695499e269f2b1310b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TaskEnder
-  taskMaster: {fileID: 0}
   isCollector: 1
   isPickup: 0
+  taskToBeEnded: {fileID: 0}
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
   grafittiChallenge: {fileID: 0}
   trackEnemyDeath: 0
 --- !u!1 &7326872401953399653 stripped
