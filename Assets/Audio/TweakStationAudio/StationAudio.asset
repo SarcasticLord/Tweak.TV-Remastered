@@ -69,11 +69,11 @@ AudioRandomContainer:
   m_Name: StationAudio
   m_Volume: 0
   m_Pitch: 0
-  m_AutomaticTriggerTime: 10
+  m_AutomaticTriggerTime: 15
   m_LoopCount: 1
   m_VolumeRandomizationRange: {x: 0, y: 0}
   m_PitchRandomizationRange: {x: 0, y: 0}
-  m_AutomaticTriggerTimeRandomizationRange: {x: -10, y: 10}
+  m_AutomaticTriggerTimeRandomizationRange: {x: -15, y: 15}
   m_LoopCountRandomizationRange: {x: 0, y: 0}
   m_Elements:
   - {fileID: -6768018420048833082}
@@ -82,7 +82,7 @@ AudioRandomContainer:
   - {fileID: -1548394495525886828}
   - {fileID: 2291084792014273825}
   - {fileID: -2046278950641487879}
-  m_AvoidRepeatingLast: 0
+  m_AvoidRepeatingLast: 2
   m_PlaybackMode: 2
   m_TriggerMode: 1
   m_AutomaticTriggerMode: 1

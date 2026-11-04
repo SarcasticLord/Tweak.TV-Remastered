@@ -7,7 +7,7 @@ public class SubwayAudio : MonoBehaviour
 
     void Start()
     {
-        GameObject[] speakers = GameObject.FindGameObjectsWithTag("SubwaySpeakers");
+        GameObject[] speakers = GameObject.FindGameObjectsWithTag("SubwaySpeaker");
         speakerSources = new AudioSource[speakers.Length];
 
         for(int i = 0; i < speakers.Length; i++)
