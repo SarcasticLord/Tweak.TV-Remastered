@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -14,6 +15,7 @@ public class TaskEnder : MonoBehaviour
     [Header("Pickup Variables")]
     [Tooltip("Is this object associated with a pickup task?")]
     public bool isPickup;
+    public bool isTrash = false;
     public TaskTemplate taskToBeEnded;
     
     public PickupAndCarry pickupAndCarry;
@@ -53,16 +55,28 @@ public class TaskEnder : MonoBehaviour
             return;
         }
 
+        if(!other.gameObject.CompareTag("KeyItem"))
+        {
+            return;
+        }
+
+        TaskEnder otherTask = other.GetComponent<TaskEnder>();
+
+        if(otherTask != null && otherTask.isPickup)
+        {
+            return;
+        }
+
         // Check if the colliding object is tagged as a KeyItem
         if (other.gameObject.CompareTag("KeyItem"))
         {
+
             // TaskID 2: Reach a destination/trigger with a key item to end the task (if not a collector)
             if (!isCollector)
             {
                 TaskMasterScript.instance.EndTask(2);
             }
             // TaskID 4: Collect the object, update progress, and destroy the item in the world
-            
             TaskMasterScript.instance.CollectObject();
             Destroy(other.gameObject);
             
