@@ -16,7 +16,11 @@ public class PlayerItemInteract : MonoBehaviour
     public GrafittiChallenge grafittiChallenge; //Should be empty in editor
     public ViewTracker viewTracker; //Should be empty in editor
     
-    
+    void OnProvideMarks(InputValue movementValue)
+    {
+        
+        GrafittiChallenge.instance.CommandInputs = movementValue.Get<Vector2>();
+    }
     
     //private IEnumerator PickupDelay()
     //{

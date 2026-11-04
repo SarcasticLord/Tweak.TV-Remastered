@@ -14,6 +14,7 @@ public class TaskEnder : MonoBehaviour
     [Header("Pickup Variables")]
     [Tooltip("Is this object associated with a pickup task?")]
     public bool isPickup;
+    public TaskTemplate taskToBeEnded;
     
     public PickupAndCarry pickupAndCarry;
 
@@ -84,10 +85,10 @@ public class TaskEnder : MonoBehaviour
             return;
         }
         
-        // TaskID 1: End the task and destroy this object once it is successfully carried
+        // TaskID 1, 6 & 7: End the task and destroy this object once it is successfully carried
         if (pickupAndCarry.isCarried)
         {
-            TaskMasterScript.instance.EndTask(1);
+            TaskMasterScript.instance.EndTask(taskToBeEnded.TaskID);
             Destroy(gameObject);
         }
     }
