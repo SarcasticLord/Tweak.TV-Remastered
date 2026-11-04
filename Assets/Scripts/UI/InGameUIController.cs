@@ -12,6 +12,8 @@ public class InGameUIController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI viewCountText;
     [SerializeField] private TextMeshProUGUI timerText;
 
+    public GameObject ticketUI;
+
     public static float gameTime = 0f;
 
     public static bool isPaused { get; private set; } = false;
@@ -41,6 +43,7 @@ public class InGameUIController : MonoBehaviour
     {
         pauseScreen.SetActive(false);
         gameTime = 0;
+        ticketUI.SetActive(false);
     }
 
     void onPausePressed(InputAction.CallbackContext pause)
