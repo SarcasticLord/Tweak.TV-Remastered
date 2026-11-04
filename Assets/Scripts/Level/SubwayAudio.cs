@@ -2,38 +2,37 @@ using UnityEngine;
 
 public class SubwayAudio : MonoBehaviour
 {
-    public AudioClip[] sounds;
+    public AudioSource audioRandomizer;
     public AudioSource[] speakerSources;
 
-    public float interval = 10f;
-    private float timer;
+    void Start()
+    {
+        GameObject[] speakers = GameObject.FindGameObjectsWithTag("SubwaySpeakers");
+        speakerSources = new AudioSource[speakers.Length];
 
+        for(int i = 0; i < speakers.Length; i++)
+        {
+            speakerSources[i] = speakers[i].GetComponentInChildren<AudioSource>();
+        }
+    }
     void Update()
     {
-        timer -= Time.deltaTime;
-
-        if (timer <= 0f)
+        if (audioRandomizer.isPlaying)
         {
-            PlayRandomToAllSpeakers();
-            timer = interval;
+            SyncSpeakers();
         }
     }
 
-    void PlayRandomToAllSpeakers()
+    void SyncSpeakers()
     {
-        // Pick random clip
-        AudioClip selected = sounds[Random.Range(0, sounds.Length)];
-
-        // Assign to each speaker
-        foreach (AudioSource s in speakerSources)
+        foreach (AudioSource speaker in speakerSources)
         {
-            s.clip = selected;
-        }
-
-        // Sync playback
-        foreach (AudioSource s in speakerSources)
-        {
-            s.Play();
+            if(speaker.clip != audioRandomizer.clip || !speaker.isPlaying)
+            {
+                speaker.clip = audioRandomizer.clip;
+                speaker.time = audioRandomizer.time;
+                speaker.Play();
+            }
         }
     }
 }
