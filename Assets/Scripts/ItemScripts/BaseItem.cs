@@ -24,7 +24,7 @@ public class BaseItem : MonoBehaviour
 
     public bool isSelected = false;
 
-    private bool inInventory = false;
+    protected bool inInventory = false;
 
     private void OnEnable()
     {
@@ -51,7 +51,7 @@ public class BaseItem : MonoBehaviour
         col = gameObject.GetComponent<CapsuleCollider>();
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (!inInventory)
         {

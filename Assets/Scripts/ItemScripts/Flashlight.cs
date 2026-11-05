@@ -8,7 +8,7 @@ public class Flashlight : BaseItem
     {
         if (isSelected && use.ReadValueAsButton())
         {
-            Debug.Log("Input read");
+            //Turns light on/off
             flashlight.enabled = !flashlight.enabled;
         }
     }

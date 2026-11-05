@@ -6,6 +6,8 @@ public class Crowbar : BaseItem
     public Transform cam;
     private int randAnim;
 
+    public LayerMask ignoreLayer;
+
     public float maxDistance;
 
     protected override void Start()
@@ -16,15 +18,18 @@ public class Crowbar : BaseItem
     {
         if (isSelected && use.ReadValueAsButton())
         {
-            Debug.Log("Bat input read");
+            Debug.Log("Crowbare input read");
             Vector3 rayOrigin = cam.position;
             Vector3 rayDirection = cam.forward;
 
-            Debug.DrawRay(rayOrigin, rayDirection * 10f, Color.red, 10f);
+            Debug.DrawRay(rayOrigin, rayDirection * 10f, Color.red, 5f);
             RaycastHit hit;
-            if (Physics.Raycast(rayOrigin, rayDirection * 10f, out hit, maxDistance))
+            if (Physics.Raycast(rayOrigin, rayDirection * 10f, out hit, maxDistance, ~ignoreLayer))
             {
-                if (hit.collider.CompareTag("Crowable"))
+                GameObject target = hit.transform.gameObject;
+                Debug.Log(target.name);
+
+                if (target.CompareTag("Crowable"))
                 {
                     Collider targetCollider = hit.collider;
                     Rigidbody targetRb = targetCollider.GetComponent<Rigidbody>();
@@ -37,7 +42,7 @@ public class Crowbar : BaseItem
                     if (targetRb != null)
                     {
                         // Enable collider if needed
-                        hit.collider.enabled = true;
+                        //hit.collider.enabled = true;
                         // Remove constraints
                         targetRb.constraints = RigidbodyConstraints.None;
                         // Calculate direction from target to caster

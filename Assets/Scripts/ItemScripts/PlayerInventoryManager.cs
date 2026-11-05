@@ -41,7 +41,6 @@ public class PlayerInventoryManager : MonoBehaviour
             if (item != items[selectedItem])
             {
                BaseItem itemScript = item.gameObject.GetComponent<BaseItem>();
-                Debug.Log(itemScript);
                itemScript.isSelected = false;
                item.SetActive(false);
             }
@@ -70,7 +69,6 @@ public class PlayerInventoryManager : MonoBehaviour
                 selectedItem = 0;
             }
             BaseItem itemScript = items[selectedItem].gameObject.GetComponent<BaseItem>();
-            Debug.Log(itemScript);
             itemScript.isSelected = true;
             items[selectedItem].SetActive(true);
             Debug.Log(selectedItem);
