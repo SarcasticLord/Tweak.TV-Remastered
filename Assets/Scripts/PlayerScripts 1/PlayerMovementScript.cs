@@ -217,6 +217,7 @@ public class PlayerMovementScript : MonoBehaviour
     //Retrieve move input
     void OnMove(InputValue movementValue)
     {
+        
         _moveInput = movementValue.Get<Vector2>();
     }
 

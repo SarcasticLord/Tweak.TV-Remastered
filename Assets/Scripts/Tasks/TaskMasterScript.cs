@@ -1,12 +1,13 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
 public class TaskMasterScript : MonoBehaviour
 {
-    public TaskTemplate currentTask; //The current task needed to complete
-    public TaskTemplate[] availableTasks; //All of the tasks needed to be completed, where 0 is always the exit task
-    public int taskCursor = 1; //The current number for the task
+    public static TaskMasterScript instance { get; private set; }
+    public List<TaskTemplate> availableTasks = new List<TaskTemplate>(); //All of the tasks needed to be completed, where 0 is always the exit task
+    public TaskTemplate endTask; //Should be set to the end task
     public TextMeshProUGUI descDisplay; //The description of the current task
     public ViewTracker viewTracker; //The viewtracker
     public int objectsNeededForTask; //How many objects are needed to complete the collection task
@@ -16,58 +17,97 @@ public class TaskMasterScript : MonoBehaviour
     public int grafittiSpots; //How many enemies must be killed to complete the task
     public int grafittiCompleted; //The current number of enemies killed
 
-    void SetTask(int taskNumber) //Change the task and task description
+    void SetTasks() //Change the task and task description
     {
-        currentTask=availableTasks[taskCursor];
-        descDisplay.text=currentTask.TaskDescription;
-        if(currentTask.TaskID==4){descDisplay.text=currentTask.TaskDescription+"\nTrash Collected: "+objectsCollected+" / "+objectsNeededForTask;}
-        if(currentTask.TaskID==5){descDisplay.text=currentTask.TaskDescription+"\nRats Killed: "+enemiesKilled+" / "+enemiesLeftAlive;}
-        if(currentTask.TaskID==3){descDisplay.text=currentTask.TaskDescription+"\nGrafitti Spots Completed: "+grafittiCompleted+" / "+grafittiSpots;}
+        descDisplay.text="";
+        foreach (TaskTemplate task in availableTasks)
+        {
+            descDisplay.text+=task.TaskDescription;
+            if(task.TaskID==4){descDisplay.text+="\nTrash Collected: "+objectsCollected+" / "+objectsNeededForTask;}
+            if(task.TaskID==5){descDisplay.text+="\nRats Killed: "+enemiesKilled+" / "+enemiesLeftAlive;}
+            if(task.TaskID==3){descDisplay.text+="\nGrafitti Spots Completed: "+grafittiCompleted+" / "+grafittiSpots;}
+            descDisplay.text+="\n\n";
+        }
+        
+    }
+    public void Awake()
+    {
+        //Singleton design patttern
+        if(instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+
+        DontDestroyOnLoad(gameObject);
+    }
+    private void OnEnable()
+    {
+        GameController.OnEnemyKilled += CountEnemiesKilled;
+
+    }
+    private void OnDisable()
+    {
+        GameController.OnEnemyKilled -= CountEnemiesKilled;
+        
+    }
+
+    void AddTask(TaskTemplate task)
+    {
+        availableTasks.Add(task);
+        SetTasks();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SetTask(taskCursor);
+        SetTasks();
     }
 
     // Update is called once per frame
     [ContextMenu(nameof(EndTask))]
-    public void EndTask() //Switch to next task, and pay out
+    public void EndTask(int taskID) //Switch to next task, and pay out
     {
-        taskCursor++;
-        if(taskCursor>=availableTasks.Length){taskCursor=0;}
-        viewTracker.baseOffset+=currentTask.TaskViewGain;
-        SetTask(taskCursor);
+        TaskTemplate endedTask=null;
+        foreach (TaskTemplate task in availableTasks)
+        {
+            if(task.TaskID == taskID){endedTask=task;break;}
+        }
+        if(endedTask==null){return;}
+        availableTasks.Remove(endedTask);
+        if(0==availableTasks.Count){AddTask(endTask);}
+        viewTracker.baseOffset+=endedTask.TaskViewGain;
+        SetTasks();
     }
 
     public void CollectObject() //Increment object and end task if complete
     {
         objectsCollected++;
-        descDisplay.text=currentTask.TaskDescription+"\nTrash Collected: "+objectsCollected+" / "+objectsNeededForTask;
+        SetTasks();
         if (objectsCollected >= objectsNeededForTask)
         {
-            EndTask();
+            EndTask(4);
         }
     }
     public void CompleteGrafitti() //Increment object and end task if complete
     {
         grafittiCompleted++;
-        descDisplay.text=currentTask.TaskDescription+"\nGrafitti Spots Completed: "+grafittiCompleted+" / "+grafittiSpots;
+        SetTasks();
         if (grafittiCompleted >= grafittiSpots)
         {
-            EndTask();
+            EndTask(3);
         }
     }
 
     public void CountEnemiesKilled() //Increment object and end task if complete
     {
-        if(currentTask.TaskID!=5){return;}
+        
         enemiesKilled++;
-        descDisplay.text=currentTask.TaskDescription+"\nRats Killed: "+enemiesKilled+" / "+enemiesLeftAlive;
+        SetTasks();
         if (enemiesKilled >= enemiesLeftAlive)
         {
-            EndTask();
+            EndTask(5);
         }
     }
 }
