@@ -18,6 +18,11 @@ public class PlayerStatusEffects : MonoBehaviour
     public float stunnedSpeed;
     public float storeDefaultJumpForce;
     public float stunnedJumpForce;
+
+    private float trappedSpeed = 0f;
+    
+
+    
     public PlayerMovementScript playerMovementScript;
 
     void Start()
@@ -56,6 +61,25 @@ public class PlayerStatusEffects : MonoBehaviour
     {
         isSlowed = false;
         slowedEffect.SetActive(false);
+        playerMovementScript.playerSpeed = storeDefaultSpeed;
+        playerMovementScript.playerSlideSpeed = storeDefaultSlideSpeed;
+    }
+
+    [ContextMenu(nameof(OnTrapped))]
+    public void OnTrapped()
+    {
+        isTrapped = true;
+
+        playerMovementScript.playerSpeed = trappedSpeed;
+        playerMovementScript.playerSlideSpeed = trappedSpeed;
+
+    }
+
+    [ContextMenu(nameof(OnRemoveTrapped))]
+    public void OnRemoveTrapped()
+    {
+        isTrapped = false;
+
         playerMovementScript.playerSpeed = storeDefaultSpeed;
         playerMovementScript.playerSlideSpeed = storeDefaultSlideSpeed;
     }
