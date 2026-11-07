@@ -61,6 +61,7 @@ public class GameController : MonoBehaviour
 
     public void StartGame()
     {
+        StopAllCoroutines(); //For safety
         streamSniperSpawnpoint = GameObject.Find("StreamSniperSpawn").transform;
         gameStarted = true;
         streamSniperSpawned = false;
