@@ -86,7 +86,10 @@ public class PlayerStatusEffectTracker : MonoBehaviour
                 else
                 {
                     //TODO: Apply effect
-                    onPlayerStatusChanged?.Invoke(status);
+                    if(!swarmed)
+                    {
+                        onPlayerStatusChanged?.Invoke(status);
+                    }
                     swarmed = true;
                 }
                 break;

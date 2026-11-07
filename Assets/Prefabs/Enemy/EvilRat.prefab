@@ -1052,6 +1052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1da17f8fd3298848b9f8d2d62957acd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EvilRatManager
+  enemyType: 0
   blood: {fileID: 7966952873066761778}
   ghostMat: {fileID: 2100000, guid: 7c59173c8abd48f4489ac0641a66a335, type: 2}
   jumpTime: 1
@@ -1083,7 +1084,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   rayOrigin: {fileID: 6257064406588118156}
-  hitbox: {fileID: 2524731856408087570, guid: 9dd11687e8b3d624493381617d2f651b, type: 3}
+  hitbox: {fileID: 6230829683720935401, guid: 1c509cc8bc73bad488ea058f4169d622, type: 3}
   attackPoint: {fileID: 1504927424948571077}
   ground:
     serializedVersion: 2
