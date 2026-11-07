@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,6 +19,8 @@ public class PlayerCameraScript : MonoBehaviour
     private float _xRotation = 0f;
 
     private Vector2 _lookInput;
+
+    private bool _isPlaying = false;
 
     private void OnEnable()
     {
@@ -39,6 +43,8 @@ public class PlayerCameraScript : MonoBehaviour
     private void Awake()
     {
         _cinemachineNoise = GetComponent<CinemachineBasicMultiChannelPerlin>();
+        StartCoroutine(nameof(BufferCameraInputOnGameStart));
+
     }
     void Start()
     {
@@ -51,7 +57,7 @@ public class PlayerCameraScript : MonoBehaviour
     void Update()
     {
         //Stop camera movement if game is paused
-        if(InGameUIController.isPaused) return;
+        if(InGameUIController.isPaused || !_isPlaying) return;
 
         float lookX = _lookInput.x * sensitivity;
         float lookY = _lookInput.y * sensitivity;
@@ -84,4 +90,9 @@ public class PlayerCameraScript : MonoBehaviour
         }
     }
 
+    IEnumerator BufferCameraInputOnGameStart()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _isPlaying = true;
+    }
 }
