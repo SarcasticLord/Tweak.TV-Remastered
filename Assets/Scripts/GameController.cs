@@ -139,7 +139,7 @@ public class GameController : MonoBehaviour
         while (true)
         {
             viewChangeTime = UnityEngine.Random.Range(1, 3);
-            viewCountDecreaseRate += 0.1f;
+            viewCountDecreaseRate += 0.05f;
             IncreaseViews();
             DecreaseViews();
             yield return new WaitForSeconds(viewChangeTime);
