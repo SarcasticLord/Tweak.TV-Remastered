@@ -9,8 +9,8 @@ public class PlayerStatusEffectTracker : MonoBehaviour
     public static event Action<float> onPoisonStatusValueChanged;
 
     private static float _swarmStatus = 0.0f;
-    private float _swarmStatusLimit = 10.0f;
-    private float _swarmDecreaseVal = 0.5f;
+    private float _swarmStatusLimit = 100.0f;
+    private float _swarmDecreaseVal = 1f;
     private float _swarmStatusDecreaseRate = 0.1f;
     public bool swarmed;
     public float swarmStatus
@@ -24,7 +24,7 @@ public class PlayerStatusEffectTracker : MonoBehaviour
     }
 
     private static float _poisonStatus = 0.0f;
-    private float _poisonStatusLimit = 10.0f;
+    private float _poisonStatusLimit = 100.0f;
     private float _poisonStatusDecreaseRate = 0.1f;
     public bool poisoned;
     public float poisonStatus
