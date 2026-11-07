@@ -1,10 +1,12 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerStatusEffectTracker : MonoBehaviour
 {
     
-    public static event Action<int> onSwarmStatusValueChanged;
-    public static event Action<int> onPoisonStatusValueChanged;
+    public static event Action<float> onSwarmStatusValueChanged;
+    public static event Action<float> onPoisonStatusValueChanged;
 
     private static float _swarmStatus = 0.0f;
     private float _swarmStatusLimit = 10.0f;
@@ -13,11 +15,11 @@ public class PlayerStatusEffectTracker : MonoBehaviour
     public bool swarmed;
     public float swarmStatus
     {
-        get {return _swarmStatus}
+        get {return _swarmStatus;}
         set 
         {
-            _swarmStatus = Mathf.Clamp(value, 0, _swarmStatusLimit)
-            onSwarmStatusValueChanged?.Invoke(_swarmStatus) //Subscribe to delegate in UI script to update UI
+            _swarmStatus = Mathf.Clamp(value, 0, _swarmStatusLimit);
+            onSwarmStatusValueChanged?.Invoke(_swarmStatus); //Subscribe to delegate in UI script to update UI
         }
     }
 
@@ -27,18 +29,18 @@ public class PlayerStatusEffectTracker : MonoBehaviour
     public bool poisoned;
     public float poisonStatus
     {
-        get {return _poisonStatus}
+        get {return _poisonStatus;}
         set
         {
-            _poisonStatus = Mathf.Clamp(value, 0, _poisonStatusLimit)
-            onPoisonStatusValueChanged?.Invoke(_poisonStatus) //Subscribe to delegate in UI script to update UI
+            _poisonStatus = Mathf.Clamp(value, 0, _poisonStatusLimit);
+            onPoisonStatusValueChanged?.Invoke(_poisonStatus); //Subscribe to delegate in UI script to update UI
         }
     }
 
     protected enum StatusEffect {SWARM, POISON};
 
 
-    protected void AddToStatus(PlayerStatusEffect.StatusEffect status, float value)//Call in other scripts to add to status
+    protected void AddToStatus(PlayerStatusEffectTracker.StatusEffect status, float value)//Call in other scripts to add to status
     {
         switch(status)
         {
@@ -64,31 +66,32 @@ public class PlayerStatusEffectTracker : MonoBehaviour
                     poisoned = true;
                 }
                 break;
-            case _:
+            default:
+                break;
                 
         }
     }
 
-    IEnumerator decreaseSwarmStatus()
+    private IEnumerator decreaseSwarmStatus()
     {
         while(true)
         {
-            if(swarmStatus <= 0) return;
+            if(swarmStatus <= 0) yield break;
             //Decrease rate when swarm has not been activated
             if(swarmed != true)
             {
-                swarmStatus -= _swarmDecreaseVal
+                swarmStatus -= _swarmDecreaseVal;
                 yield return new WaitForSeconds(_swarmStatusDecreaseRate);
             }
             else
             {
                 //Can change the rate the effect decreases after it has been triggered
-                swarmStatus -= _swarmDecreaseVal
+                swarmStatus -= _swarmDecreaseVal;
                 if(swarmStatus <= 0)
                 {
                     swarmed = false;
                 }
-                yield return new WaitForSeconds(_swarmStatusDecreaseRate * 2)//TODO: Change the decrease rate when you are affected with the effect
+                yield return new WaitForSeconds(_swarmStatusDecreaseRate * 2);//TODO: Change the decrease rate when you are affected with the effect
             }
             
         }
