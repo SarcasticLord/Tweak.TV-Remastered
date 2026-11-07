@@ -7,6 +7,7 @@ public class PlayerStatusEffectTracker : MonoBehaviour
     
     public static event Action<float> onSwarmStatusValueChanged;
     public static event Action<float> onPoisonStatusValueChanged;
+    public static event Action<StatusEffect> onPlayerStatusChanged;
 
     private static float _swarmStatus = 0.0f;
     private float _swarmStatusLimit = 100.0f;
@@ -48,13 +49,13 @@ public class PlayerStatusEffectTracker : MonoBehaviour
         }
     }
 
-    public enum StatusEffect {SWARM, POISON};
+    public enum StatusEffect {SWARMED, POISONED};
 
     public void AddToStatus(PlayerStatusEffectTracker.StatusEffect status, float value)//Call in other scripts to add to status
     {
         switch(status)
         {
-            case StatusEffect.SWARM:
+            case StatusEffect.SWARMED:
                 Debug.Log("swarming!");
                 if(swarmStatus < _swarmStatusLimit && !swarmed)
                 {
@@ -63,10 +64,11 @@ public class PlayerStatusEffectTracker : MonoBehaviour
                 else
                 {
                     //TODO: Apply effect
+                    onPlayerStatusChanged?.Invoke(status);
                     swarmed = true;
                 }
                 break;
-            case StatusEffect.POISON:
+            case StatusEffect.POISONED:
                 if(poisoned) return;
                 if(_poisonStatus < _poisonStatusLimit)
                 {
