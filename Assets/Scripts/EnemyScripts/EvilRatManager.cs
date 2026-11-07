@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EvilRatManager : BaseEnemy
 {
+    private PlayerStatusEffectTracker playerStatus;
     private PickupAndCarry pickup;
     //public bool canPickup;
     private bool isPickedUp;
@@ -27,6 +28,7 @@ public class EvilRatManager : BaseEnemy
     protected override void Start()
     {
         pickup = gameObject.GetComponent<PickupAndCarry>();
+        playerStatus = GameObject.FindWithTag("Player").GetComponent<PlayerStatusEffectTracker>();
         base.Start();
         isPickedUp = false;
         pickup.enabled = true;
@@ -116,7 +118,7 @@ public class EvilRatManager : BaseEnemy
 
         if (canAttack)
         {
-            //TODO: change to swarm script
+            playerStatus.AddToStatus(PlayerStatusEffectTracker.StatusEffect.SWARM, 10);
             agent.velocity = Vector3.zero;
             //Instantiate(hitbox, attackPoint);
 

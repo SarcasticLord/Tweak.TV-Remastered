@@ -10,9 +10,6 @@ public class StatusEffectUI : MonoBehaviour
     [SerializeField] private GameObject _swarmStatus;
     private ProgressBarScript _swarmProgressBar;
 
-    public float testPoisonValue = 100;
-    public float testSwarmValue = 100;
-
     void OnEnable()
     {
         PlayerStatusEffectTracker.onPoisonStatusValueChanged += UpdatePoisonStatusBar;
@@ -26,14 +23,9 @@ public class StatusEffectUI : MonoBehaviour
 
     void Awake()
     {
+        ToggleStatusVisibility(false);
         _poisonProgressBar = _poisonStatus.GetComponent<ProgressBarScript>();
         _swarmProgressBar = _swarmStatus.GetComponent<ProgressBarScript>();
-    }
-
-    void Update()
-    {
-        UpdatePoisonStatusBar(testPoisonValue);
-        UpdateSwarmStatusBar(testSwarmValue);
     }
 
     private void UpdatePoisonStatusBar(float currentValue)
