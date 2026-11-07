@@ -85,9 +85,9 @@ public class PlayerStatusEffectTracker : MonoBehaviour
                 }
                 else
                 {
-                    //TODO: Apply effect
                     if(!swarmed)
                     {
+                        GameController.instance.DecreaseViews(3); //Decrease a flat 3 viewers when swarmed is triggered
                         onPlayerStatusChanged?.Invoke(status);
                     }
                     swarmed = true;
