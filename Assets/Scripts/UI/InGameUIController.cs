@@ -32,6 +32,11 @@ public class InGameUIController : MonoBehaviour
         GameController.OnViewCountChanged -= UpdateViewCount;
     }
 
+    private void Awake()
+    {
+        Unpause();
+    }
+
     private void FixedUpdate()
     {
         gameTime += Time.deltaTime;
@@ -62,13 +67,18 @@ public class InGameUIController : MonoBehaviour
             else
             {
                 //Unpause
-                pauseScreen.SetActive(false);
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-                Time.timeScale = 1f;
-                isPaused = false;
+                Unpause();
             }
         }
+    }
+    
+    private void Unpause()
+    {
+        pauseScreen.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1f;
+        isPaused = false;
     }
 
     private void UpdateViewCount(int currentViewCount)
@@ -84,4 +94,5 @@ public class InGameUIController : MonoBehaviour
 
         timerText.text = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
     }
+
 }
