@@ -118,7 +118,7 @@ public class EvilRatManager : BaseEnemy
 
         if (canAttack)
         {
-            playerStatus.AddToStatus(PlayerStatusEffectTracker.StatusEffect.SWARM, 10);
+            playerStatus.AddToStatus(PlayerStatusEffectTracker.StatusEffect.SWARMED, 10);
             agent.velocity = Vector3.zero;
             //Instantiate(hitbox, attackPoint);
 
