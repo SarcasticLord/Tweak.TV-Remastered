@@ -7,12 +7,14 @@ public class PlayerStatusEffectTracker : MonoBehaviour
     
     public static event Action<float> onSwarmStatusValueChanged;
     public static event Action<float> onPoisonStatusValueChanged;
+    public static event Action<float> onShockStatusValueChanged;
+
     public static event Action<StatusEffect> onPlayerStatusChanged;
 
     private static float _swarmStatus = 0.0f;
     private float _swarmStatusLimit = 100.0f;
     private float _swarmDecreaseVal = 1f;
-    private float _swarmStatusDecreaseRate = 1f;
+    private float _swarmedDecreaseRate = 1f;
     public bool swarmed = false;
     private Coroutine _swarmDecreaseCoroutine;
     public float swarmStatus
@@ -31,7 +33,7 @@ public class PlayerStatusEffectTracker : MonoBehaviour
 
     private static float _poisonStatus = 0.0f;
     private float _poisonStatusLimit = 100.0f;
-    private float _poisonStatusDecreaseRate = 0.1f;
+    private float _poisonedDecreaseRate = 0.1f;
     public bool poisoned;
     private Coroutine _poisonDecreaseCoroutine;
     public float poisonStatus
@@ -49,14 +51,34 @@ public class PlayerStatusEffectTracker : MonoBehaviour
         }
     }
 
-    public enum StatusEffect {SWARMED, POISONED};
+    private static float _shockedStatus = 0.0f;
+    private float _shockStatusLimit = 100f;
+    private float _shockDecreaseVal = 20f;
+    private float _shockedDecreaseRate = 1f;
+    public bool shocked;
+    private Coroutine _shockDecreaseCoroutine;
+
+    public float shockedStatus
+    {
+        get { return _shockedStatus; }
+        set
+        {
+            _shockedStatus = Mathf.Clamp(value, 0, _shockStatusLimit);
+            onShockStatusValueChanged?.Invoke(_shockedStatus);
+            if(_shockedStatus > 0 && _shockDecreaseCoroutine == null)
+            {
+                _shockDecreaseCoroutine = StartCoroutine(DecreaseShockStatus());
+            }
+            
+        }
+    }
+    public enum StatusEffect {SWARMED, POISONED, SHOCKED};
 
     public void AddToStatus(PlayerStatusEffectTracker.StatusEffect status, float value)//Call in other scripts to add to status
     {
         switch(status)
         {
             case StatusEffect.SWARMED:
-                Debug.Log("swarming!");
                 if(swarmStatus < _swarmStatusLimit && !swarmed)
                 {
                     swarmStatus += value;
@@ -79,6 +101,17 @@ public class PlayerStatusEffectTracker : MonoBehaviour
                     poisoned = true;
                 }
                 break;
+            case StatusEffect.SHOCKED:
+                if(shockedStatus < _shockStatusLimit && !shocked)
+                {
+                    shockedStatus += value;
+                }
+                else
+                {
+                    onPlayerStatusChanged?.Invoke(status);
+                    shocked = true;
+                }
+                break;
             default:
                 Debug.Log("Invalid Status");
                 break;
@@ -96,7 +129,7 @@ public class PlayerStatusEffectTracker : MonoBehaviour
             if(!swarmed)
             {
                 swarmStatus -= _swarmDecreaseVal;    
-                yield return new WaitForSeconds(_swarmStatusDecreaseRate);
+                yield return new WaitForSeconds(_swarmedDecreaseRate);
             }
             else
             {
@@ -107,12 +140,31 @@ public class PlayerStatusEffectTracker : MonoBehaviour
                 {
                     swarmed = false;
                 }
-                yield return new WaitForSeconds(_swarmStatusDecreaseRate / 2f);//TODO: Change the decrease rate when you are affected with the effect
+                yield return new WaitForSeconds(_swarmedDecreaseRate / 2f);//TODO: Change the decrease rate when you are affected with the effect
             }
             
         }
         _swarmDecreaseCoroutine = null;
     }
 
+    //TODO: private IEnumerator DecreasePoisonStatus()
+
+    private IEnumerator DecreaseShockStatus()
+    {
+        yield return new WaitForSeconds(1f);
+        while(shockedStatus > 0)
+        {
+            //Cant think of a way to track this to perfectly with current setup 
+            //So just used some math instead, if slow lasts for 5 seconds then I decrease the shock status by 20 every 1 second
+            shockedStatus -= _shockDecreaseVal;
+            yield return new WaitForSeconds(_shockedDecreaseRate);
+            if(shockedStatus <= 0)
+            {
+                shocked = false;
+            }
+            
+        }
+        _shockDecreaseCoroutine = null;
+    }
 
 }

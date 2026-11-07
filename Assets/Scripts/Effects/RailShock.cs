@@ -3,15 +3,24 @@ using UnityEngine;
 
 public class RailShock : MonoBehaviour
 {
-    public PlayerStatusEffects effects;
+    [SerializeField] private PlayerStatusEffects _effects;
+
+    private PlayerStatusEffectTracker _tracker;
+
+    private void Awake()
+    {
+        _tracker = GameObject.FindWithTag("Player").GetComponent<PlayerStatusEffectTracker>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Entered");
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log(effects.storeDefaultSlideSpeed);
+            Debug.Log(_effects.storeDefaultSlideSpeed);
             Debug.Log("Player Detected");
-            effects.OnSlowed();
+            _effects.OnSlowed();
+            _tracker.AddToStatus(PlayerStatusEffectTracker.StatusEffect.SHOCKED, 100);
             StopCoroutine("ExitSlowed");
         }
     }
@@ -27,7 +36,7 @@ public class RailShock : MonoBehaviour
 
     private IEnumerator ExitSlowed()
     {
-        yield return new WaitForSeconds(effects.slowDuration);
-        effects.OnRemoveSlowed();
+        yield return new WaitForSeconds(_effects.slowDuration);
+        _effects.OnRemoveSlowed();
     }
 }

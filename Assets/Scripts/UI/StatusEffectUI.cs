@@ -12,6 +12,8 @@ public class StatusEffectUI : MonoBehaviour
     private ProgressBarScript _poisonProgressBar;
     [SerializeField] private GameObject _swarmStatus;
     private ProgressBarScript _swarmProgressBar;
+    [SerializeField] private GameObject _shockStatus;
+    private ProgressBarScript _shockProgressBar;
 
     private Coroutine _statusTextCoroutine;
 
@@ -19,12 +21,14 @@ public class StatusEffectUI : MonoBehaviour
     {
         PlayerStatusEffectTracker.onPoisonStatusValueChanged += UpdatePoisonStatusBar;
         PlayerStatusEffectTracker.onSwarmStatusValueChanged += UpdateSwarmStatusBar;
+        PlayerStatusEffectTracker.onShockStatusValueChanged += UpdateShockStatusBar;
         PlayerStatusEffectTracker.onPlayerStatusChanged += StatusTriggered;
     }
     void OnDisable()
     {
         PlayerStatusEffectTracker.onPoisonStatusValueChanged -= UpdatePoisonStatusBar;
         PlayerStatusEffectTracker.onSwarmStatusValueChanged -= UpdateSwarmStatusBar;
+        PlayerStatusEffectTracker.onShockStatusValueChanged -= UpdateShockStatusBar;
         PlayerStatusEffectTracker.onPlayerStatusChanged -= StatusTriggered;
     }
 
@@ -34,6 +38,7 @@ public class StatusEffectUI : MonoBehaviour
         statusText.text = null;
         _poisonProgressBar = _poisonStatus.GetComponent<ProgressBarScript>();
         _swarmProgressBar = _swarmStatus.GetComponent<ProgressBarScript>();
+        _shockProgressBar = _shockStatus.GetComponent<ProgressBarScript>();
     }
 
     private void UpdatePoisonStatusBar(float currentValue)
@@ -66,6 +71,21 @@ public class StatusEffectUI : MonoBehaviour
         }
     }
 
+    private void UpdateShockStatusBar(float currentValue)
+    {
+        if(currentValue > 0)
+        {
+            _shockStatus.SetActive(true);
+            ToggleStatusVisibility(true);
+            _shockProgressBar.UpdateProgressBar(currentValue);
+        }
+        else
+        {
+            _shockStatus.SetActive(false);
+            ToggleStatusVisibility(false);
+        }
+    }
+
     private void ToggleStatusVisibility(bool visbility)
     {
         if(visbility)
@@ -75,8 +95,10 @@ public class StatusEffectUI : MonoBehaviour
         else
         {
             //Check if any status bar is visible before disabling visibility
+            //Switch to for loop if we make more than 5 statuses + restructure status gameobject in PlayerCanvas prefab 
             if(_poisonStatus.activeSelf) return;
             if(_swarmStatus.activeSelf) return;
+            if(_shockStatus.activeSelf) return;
             StatusPanel.SetActive(false);
         }
     }
