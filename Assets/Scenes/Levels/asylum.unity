@@ -33174,7 +33174,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 6418180475301049370, guid: 699a1acf36e02334692179bfd175bb28, type: 2}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -33248,7 +33248,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1.1
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -63479,7 +63479,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 6418180475301049370, guid: 523a64e6a9567f04c9e0214ff991b950, type: 2}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -63553,7 +63553,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1.056
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -194809,13 +194809,13 @@ Transform:
   m_GameObject: {fileID: 1596235382}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5023773, y: -2.4321, z: -60.146233}
+  m_LocalPosition: {x: -4.4677773, y: 0, z: -35.068233}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 296028470}
   - {fileID: 492320463}
-  m_Father: {fileID: 1685025483}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1597806059
 PrefabInstance:
@@ -211413,7 +211413,6 @@ Transform:
   - {fileID: 2104111628}
   - {fileID: 782357330}
   - {fileID: 1388281513}
-  - {fileID: 1596235383}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1685025484
@@ -388204,6 +388203,7 @@ SceneRoots:
   - {fileID: 506893468}
   - {fileID: 1011402919}
   - {fileID: 764999728}
+  - {fileID: 1596235383}
   - {fileID: 1685025483}
   - {fileID: 1697353996}
   - {fileID: 1482962199}

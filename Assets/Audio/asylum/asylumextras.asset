@@ -38,7 +38,7 @@ AudioContainerElement:
   m_PrefabAsset: {fileID: 0}
   m_Name: Train Horn - Sound Effect (HD)_{-1028398442172937585}
   m_AudioClip: {fileID: 8300000, guid: f67816aa965ee6d43b083f383f96def8, type: 3}
-  m_Volume: -50
+  m_Volume: -60
   m_Enabled: 1
 --- !u!1233149941 &1692067231149846544
 AudioContainerElement:
@@ -50,6 +50,16 @@ AudioContainerElement:
   m_AudioClip: {fileID: 8300000, guid: 2f4da76679752504988f25296d569fc5, type: 3}
   m_Volume: 0
   m_Enabled: 1
+--- !u!1233149941 &2150875099339906165
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: clockticking_{2150875099339906165}
+  m_AudioClip: {fileID: 8300000, guid: 2f4da76679752504988f25296d569fc5, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
 --- !u!1307931743 &6418180475301049370
 AudioRandomContainer:
   m_ObjectHideFlags: 0
@@ -57,11 +67,11 @@ AudioRandomContainer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: asylumextras
-  m_Volume: -5.4
+  m_Volume: 0
   m_Pitch: 0
   m_AutomaticTriggerTime: 15
   m_LoopCount: 1
-  m_VolumeRandomizationRange: {x: 0, y: 56.618916}
+  m_VolumeRandomizationRange: {x: -5, y: 50}
   m_PitchRandomizationRange: {x: 0, y: 0}
   m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
   m_LoopCountRandomizationRange: {x: 0, y: 0}
@@ -71,6 +81,7 @@ AudioRandomContainer:
   - {fileID: -8546719027146165057}
   - {fileID: -3281776998787956073}
   - {fileID: -1028398442172937585}
+  - {fileID: 2150875099339906165}
   m_AvoidRepeatingLast: 0
   m_PlaybackMode: 1
   m_TriggerMode: 1
