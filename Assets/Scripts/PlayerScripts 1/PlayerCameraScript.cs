@@ -15,7 +15,7 @@ public class PlayerCameraScript : MonoBehaviour
     public float movementFrequencyMultiplier = 1.5f;
 
     [Header("Proximity Settings")]
-    [SerializeField] private float detectionRadius = 75f;
+    [SerializeField] private float detectionRadius = 30f;
     [SerializeField] private float baseIntensity = 0f;
     [SerializeField] private float maxTrainIntensity = 2f;
     [SerializeField] private float smoothingSpeed = 10f;
