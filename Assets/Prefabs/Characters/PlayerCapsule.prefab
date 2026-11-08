@@ -318,7 +318,11 @@ MonoBehaviour:
   _player: {fileID: 5793440834577206791}
   lookAction: {fileID: -5630151704836100654, guid: 6055c109ca094264eb94c4fc10bcb837, type: 3}
   moveAction: {fileID: -1680190386980627800, guid: 6055c109ca094264eb94c4fc10bcb837, type: 3}
-  headBobIntensity: 1
+  movementFrequencyMultiplier: 1.5
+  detectionRadius: 30
+  baseIntensity: 0
+  maxTrainIntensity: 2
+  smoothingSpeed: 10
   sensitivity: 1
 --- !u!20 &8168367945010948805
 Camera:
@@ -625,6 +629,7 @@ GameObject:
   - component: {fileID: 1867516630657381261}
   - component: {fileID: 2590586664598903075}
   - component: {fileID: 6297344864791719450}
+  - component: {fileID: 3965248877018922581}
   m_Layer: 3
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -850,6 +855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatusEffectTracker
   swarmed: 0
   poisoned: 0
+  shocked: 0
 --- !u!114 &1867516630657381261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -903,6 +909,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3965248877018922581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5793440834577206791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df87093c39f54cd79c330a1cb94e91e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrackAudioTrigger
+  subwayAudio: {fileID: 0}
 --- !u!1 &6352591362160903879
 GameObject:
   m_ObjectHideFlags: 0

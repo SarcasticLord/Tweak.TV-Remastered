@@ -38,23 +38,23 @@ AudioRandomContainer:
   m_PrefabAsset: {fileID: 0}
   m_Name: offTrackAudio
   m_Volume: 0
-  m_Pitch: -1200
-  m_AutomaticTriggerTime: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 5
   m_LoopCount: 1
   m_VolumeRandomizationRange: {x: 0, y: 0}
   m_PitchRandomizationRange: {x: 0, y: 0}
-  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: -5, y: 5}
   m_LoopCountRandomizationRange: {x: 0, y: 0}
   m_Elements:
   - {fileID: -8378319743296610823}
   - {fileID: -5939420935744124058}
   - {fileID: 2207986180623772784}
-  m_AvoidRepeatingLast: 0
+  m_AvoidRepeatingLast: 1
   m_PlaybackMode: 1
-  m_TriggerMode: 0
+  m_TriggerMode: 1
   m_AutomaticTriggerMode: 1
-  m_LoopMode: 2
+  m_LoopMode: 0
   m_VolumeRandomizationEnabled: 0
   m_PitchRandomizationEnabled: 0
-  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_AutomaticTriggerTimeRandomizationEnabled: 1
   m_LoopCountRandomizationEnabled: 0
