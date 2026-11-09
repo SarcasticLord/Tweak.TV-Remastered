@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerStatusEffects : MonoBehaviour
 {
@@ -19,9 +21,13 @@ public class PlayerStatusEffects : MonoBehaviour
     public float storeDefaultJumpForce;
     public float stunnedJumpForce;
     public PlayerMovementScript playerMovementScript;
+    public Volume poisonVolume;
+    public TweakManager tweakManager;
 
     void Start()
     {
+        tweakManager = GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<TweakManager>();
+        poisonVolume = GameObject.FindGameObjectWithTag("PoisonVolume").GetComponent<Volume>();
         slowedEffect.SetActive(false);
         playerMovementScript = gameObject.GetComponent<PlayerMovementScript>();
         storeDefaultSpeed = playerMovementScript.playerSpeed;
@@ -41,6 +47,26 @@ public class PlayerStatusEffects : MonoBehaviour
         playerMovementScript.playerSpeed = storeDefaultSpeed;
         playerMovementScript.playerJumpForce = storeDefaultJumpForce;
 
+    }
+    [ContextMenu(nameof(OnPoison))]
+    public void OnPoison()
+    {
+        if (tweakManager.alwaysPoison)
+        {
+            poisonVolume.GetComponent<PoisonEffect>().DoubleSpeed();
+            return;
+        }
+        poisonVolume.enabled = true;
+    }
+    [ContextMenu(nameof(OnRemovePoison))]
+    public void OnRemovePoison()
+    {
+        if (tweakManager.alwaysPoison)
+        {
+            poisonVolume.GetComponent<PoisonEffect>().NormalSpeed();
+            return;
+        }
+        poisonVolume.enabled = false;
     }
     [ContextMenu(nameof(OnSlowed))]
     public void OnSlowed()
