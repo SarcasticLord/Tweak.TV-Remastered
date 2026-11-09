@@ -716,6 +716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44cf2836d73114c1ab9733fc374387ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UISwitcher
+  exitConf: {fileID: 0}
 --- !u!4 &2017813431
 Transform:
   m_ObjectHideFlags: 0
@@ -1197,7 +1198,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2109959295797599935}
-  - {fileID: 8600099165868480371}
   - {fileID: 8301175728581549647}
   - {fileID: 5121855460942315909}
   - {fileID: 1832801781}
@@ -2292,6 +2292,7 @@ RectTransform:
   m_Children:
   - {fileID: 2450409044494618285}
   - {fileID: 3152319433609644292}
+  - {fileID: 8600099165868480371}
   - {fileID: 4448203533388318829}
   - {fileID: 6378101234182601778}
   - {fileID: 3440155781296949808}
@@ -2333,11 +2334,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3152319433609644292}
+  m_Father: {fileID: 8194418417168250974}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -0.00012207031, y: -1002.39996}
+  m_AnchoredPosition: {x: -0.000061035156, y: 7.236511}
   m_SizeDelta: {x: 0, y: 12.033}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8618472273727049605
