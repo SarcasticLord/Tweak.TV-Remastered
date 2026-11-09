@@ -44,8 +44,14 @@ public class SubwayAudio : MonoBehaviour
             if(speaker.clip != activeAudio.clip || !speaker.isPlaying)
             {
                 speaker.clip = activeAudio.clip;
-                speaker.time = activeAudio.time;
-                speaker.Play();
+                
+                if(speaker.clip != null)
+                {
+                    speaker.time = activeAudio.time;
+                    speaker.Play();
+                }
+
+                
             }
         }
     }
