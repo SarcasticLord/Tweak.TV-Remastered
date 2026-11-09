@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3605824488124336001}
   - component: {fileID: 4430420228143636581}
   - component: {fileID: 102741053174738834}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TrainMap
   m_TagString: KeyItem
   m_Icon: {fileID: 0}
@@ -106,9 +106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4352277bcd3d695499e269f2b1310b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TaskEnder
-  taskMaster: {fileID: 0}
   isCollector: 0
   isPickup: 1
+  isTrash: 0
+  taskToBeEnded: {fileID: 11400000, guid: 9195fadadd2add34fae965b4b5b1f9c2, type: 2}
   pickupAndCarry: {fileID: 0}
   isGrafitti: 0
   grafittiImage: {fileID: 0}
