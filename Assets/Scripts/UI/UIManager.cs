@@ -53,6 +53,16 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene("DeathScene");
     }
+
+    public void ToCredits()
+    {
+        SceneManager.LoadScene("CreditsScene");
+    }
+
+    public void ToTweakSelection()
+    {
+        SceneManager.LoadScene("TweakSelection");
+    }
     public void ToDemo()
     {
         lastScene = "DemoScene";
