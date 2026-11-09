@@ -68,6 +68,6 @@ public class PoisonEffect : MonoBehaviour
     {
         intensitySpeed=intensitySpeedSet;
     }
-    // Update is called once per frame
+    
     
 }

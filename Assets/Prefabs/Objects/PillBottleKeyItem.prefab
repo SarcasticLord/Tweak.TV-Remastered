@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5685523260408550478}
   - component: {fileID: 4432147884274760698}
   - component: {fileID: 6659076439772797018}
-  m_Layer: 0
-  m_Name: DummyKItem
+  m_Layer: 8
+  m_Name: PillBottleKeyItem
   m_TagString: KeyItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc003abe7e48fd1429f21d86de754cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickupAndCarry
-  rb: {fileID: 4432147884274760698}
   player: {fileID: 0}
   playerCamera: {fileID: 0}
   playerInteract: {fileID: 0}

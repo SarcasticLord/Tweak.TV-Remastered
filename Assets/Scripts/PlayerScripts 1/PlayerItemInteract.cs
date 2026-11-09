@@ -1,5 +1,8 @@
 using System.Collections;
+using System.IO.Compression;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
+
 //using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,6 +18,8 @@ public class PlayerItemInteract : MonoBehaviour
     
     public GrafittiChallenge grafittiChallenge; //Should be empty in editor
     public ViewTracker viewTracker; //Should be empty in editor
+    public float testRayScatter;
+    LayerMask carry;
     
     void OnProvideMarks(InputValue movementValue)
     {
@@ -31,9 +36,13 @@ public class PlayerItemInteract : MonoBehaviour
 
     void Start()
     {
-        grafittiChallenge = GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<GrafittiChallenge>();
-        viewTracker = GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<ViewTracker>();
+        if (GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<GrafittiChallenge>() != null)
+        {
+            grafittiChallenge = GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<GrafittiChallenge>();
+        }
         
+        viewTracker = GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<ViewTracker>();
+        carry = LayerMask.GetMask("Carry");
     }
     private void Update()
     {
@@ -46,41 +55,65 @@ public class PlayerItemInteract : MonoBehaviour
 
     void OnPickup(InputValue pickupValue)
     {
+        RaycastHit hit = default;
         if(heldObject == null && pickupCooldown <= 0)
         {
-            Vector3 rayOrigin =  new(playerCamera.transform.position.x, playerCamera.transform.position.y, playerCamera.transform.position.z); //Where the box is aimed
+            
             Vector3 rayDirection = playerCamera.transform.forward; //Direction you're facing
+            
+            bool hasHit = false;
 
-            // Define the dimensions of your box
-            Vector3 boxHalfExtents = new Vector3(0.5f, 0.5f, 0.5f); // Total size is 1m x 1m x 1m
-            Quaternion boxOrientation = playerCamera.transform.rotation; // Aligns the box with the camera's angle
+            float x = testRayScatter;
+            float y = testRayScatter;
+            float z = testRayScatter;
 
-            // Debug visualization: Draws a line representing the center trajectory of the box
-            Debug.DrawRay(rayOrigin, rayDirection * maxDistance, Color.green);
-
-            // Cast the box forward
-            if (Physics.BoxCast(rayOrigin, boxHalfExtents, rayDirection, out RaycastHit hit, boxOrientation, maxDistance)) //Casts a box forward
+            Vector3 baseOrigin = playerCamera.transform.position;
+            Vector3 rayOrigin = new Vector3(baseOrigin.x + x, baseOrigin.y + y, baseOrigin.z + z);
+            for (int i = 0; i < 10; i++)
             {
-                if (hit.collider.gameObject.CompareTag("Object") || hit.collider.gameObject.CompareTag("KeyItem")) //If an object or key item
+                if(i == 9) {x=0;y=0;z=0;}
+                else if (i % 4 == 0) { x *= -1; }
+                else if (i % 2 == 0) { y *= -1; }
+                else { z *= -1; }
+
+                
+                rayOrigin = new Vector3(baseOrigin.x + x, baseOrigin.y + y, baseOrigin.z + z);
+                Debug.DrawRay(rayOrigin, rayDirection * maxDistance, Color.red, 1000f);
+                
+                // Check if THIS specific raycast hit something
+                
+                if (Physics.Raycast(rayOrigin, rayDirection, out hit, maxDistance, carry))
                 {
-                    heldObject = hit.collider.gameObject; //Know who the held object is
-                    heldObjectScript = heldObject.GetComponent<PickupAndCarry>(); 
-                    heldObjectScript.StartPickup(); //Have the item react as if its being held
-                }
-                if (hit.collider.gameObject.CompareTag("GrafittiWall")) //Start grafitti challenge if appropriate
-                {
-                    
-                    TaskEnder taskEnder = hit.collider.gameObject.GetComponent<TaskEnder>();
-                    grafittiChallenge.canBeStarted=taskEnder.canGrafitti;
-                    grafittiChallenge.grafittiResult=taskEnder.grafittiImage;
-                    grafittiChallenge.wallTaskEnder=taskEnder;
-                    
-                    grafittiChallenge.Activate();
+                    hasHit = true;
+                    break; // Stop looping once the first valid hit is found 
                 }
                 
             }
-        }    
-    }
+
+            if (!hasHit)
+            {
+                return;
+            }
+            else if (hit.collider.gameObject.CompareTag("Object") || hit.collider.gameObject.CompareTag("KeyItem")) //If an object or key item
+            {
+                heldObject = hit.collider.gameObject; //Know who the held object is
+                heldObjectScript = heldObject.GetComponent<PickupAndCarry>(); 
+                heldObjectScript.StartPickup(); //Have the item react as if its being held
+            }
+            else if (hit.collider.gameObject.CompareTag("GrafittiWall")) //Start grafitti challenge if appropriate
+            {
+
+                TaskEnder taskEnder = hit.collider.gameObject.GetComponent<TaskEnder>();
+                grafittiChallenge.canBeStarted=taskEnder.canGrafitti;
+                grafittiChallenge.grafittiResult=taskEnder.grafittiImage;
+                grafittiChallenge.wallTaskEnder=taskEnder;
+
+                grafittiChallenge.Activate();
+            }
+
+        }
+    }    
+    
 
     void OnThrow(InputValue throwValue)
     {

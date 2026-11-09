@@ -10198,6 +10198,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fe6a0e5639c626b40bc1045769f5e9e0, type: 3}
   m_PrefabInstance: {fileID: 1048216845}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &104712142
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1677626979107777852, guid: 81f7ec483964d6645977f32b7d95751f, type: 3}
+      propertyPath: m_Name
+      value: PatientLogsKeyItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018721446546962310, guid: 81f7ec483964d6645977f32b7d95751f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 32.1345
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018721446546962310, guid: 81f7ec483964d6645977f32b7d95751f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 47.916405
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018721446546962310, guid: 81f7ec483964d6645977f32b7d95751f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.5246122
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018721446546962310, guid: 81f7ec483964d6645977f32b7d95751f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -99.371
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018721446546962310, guid: 81f7ec483964d6645977f32b7d95751f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.1774
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018721446546962310, guid: 81f7ec483964d6645977f32b7d95751f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.065626
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018721446546962310, guid: 81f7ec483964d6645977f32b7d95751f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018721446546962310, guid: 81f7ec483964d6645977f32b7d95751f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018721446546962310, guid: 81f7ec483964d6645977f32b7d95751f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018721446546962310, guid: 81f7ec483964d6645977f32b7d95751f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018721446546962310, guid: 81f7ec483964d6645977f32b7d95751f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018721446546962310, guid: 81f7ec483964d6645977f32b7d95751f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018721446546962310, guid: 81f7ec483964d6645977f32b7d95751f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 81f7ec483964d6645977f32b7d95751f, type: 3}
 --- !u!1001 &106162646
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82616,6 +82685,7 @@ GameObject:
   - component: {fileID: 650189417}
   - component: {fileID: 650189416}
   - component: {fileID: 650189415}
+  - component: {fileID: 650189418}
   m_Layer: 0
   m_Name: TaskMaster (1)
   m_TagString: ViewTracker
@@ -82656,8 +82726,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TaskMasterScript
   availableTasks:
-  - {fileID: 11400000, guid: 546574e1353b00c4d9101f854ca5a90c, type: 2}
   - {fileID: 11400000, guid: 54f4405b0c262314998117ffc98ed7e8, type: 2}
+  - {fileID: 11400000, guid: 774d716bc8570cd43843cf58c9f915ee, type: 2}
   - {fileID: 11400000, guid: 2a2fabecc86593346873c23cd24c8a60, type: 2}
   - {fileID: 11400000, guid: 45a9ebc8a02432a408effd72622e2266, type: 2}
   endTask: {fileID: 0}
@@ -82684,6 +82754,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &650189418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650189412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fbd63767d1928a4b8d6cadab9e834a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TweakManager
+  doubleViewSpeed: 0
+  alwaysPoison: 0
 --- !u!1001 &651402975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -126835,6 +126919,10 @@ PrefabInstance:
       propertyPath: viewTracker
       value: 
       objectReference: {fileID: 650189415}
+    - target: {fileID: 1867516630657381261, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: testRayScatter
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1867516630657381261, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
       propertyPath: taskMasterScript
       value: 
@@ -394897,6 +394985,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1374808594}
+  - {fileID: 650189417}
   - {fileID: 506893468}
   - {fileID: 1011402919}
   - {fileID: 764999728}
@@ -394912,7 +395001,6 @@ SceneRoots:
   - {fileID: 318936567}
   - {fileID: 918866183}
   - {fileID: 1382585026}
-  - {fileID: 650189417}
   - {fileID: 1922774406}
   - {fileID: 1807724594}
   - {fileID: 682987071}
@@ -394951,3 +395039,4 @@ SceneRoots:
   - {fileID: 1471695825}
   - {fileID: 2012112651}
   - {fileID: 291141298}
+  - {fileID: 104712142}
