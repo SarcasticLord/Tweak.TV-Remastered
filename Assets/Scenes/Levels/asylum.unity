@@ -82577,6 +82577,8 @@ MonoBehaviour:
   enemiesKilled: 0
   grafittiSpots: 0
   grafittiCompleted: 0
+  asylumTasks: []
+  subwayTasks: []
 --- !u!4 &650189417
 Transform:
   m_ObjectHideFlags: 0
@@ -126734,6 +126736,10 @@ PrefabInstance:
     - target: {fileID: 6851991341210038009, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028287391219927891, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: m_TagString
+      value: hotbar
       objectReference: {fileID: 0}
     - target: {fileID: 7319580181614732525, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
       propertyPath: m_HorizontalAlignment

@@ -17,12 +17,15 @@ public class StartingSoonUI : MonoBehaviour
     private string selectedLevel = "";
 
     public GameObject selectErr;
+    
 
     public void SelectAsylum()
     {
         asylumSelected.SetActive(true);
         stationSelected.SetActive(false);
         selectedLevel = asylumScene;
+        TaskMasterScript.instance.EndAllTasks();
+        TaskMasterScript.instance.ApplyAsylumTasks();
     }
 
     public void SelectStation()
@@ -30,6 +33,8 @@ public class StartingSoonUI : MonoBehaviour
         asylumSelected.SetActive(false);
         stationSelected.SetActive(true);
         selectedLevel = stationScene;
+        TaskMasterScript.instance.EndAllTasks();
+        TaskMasterScript.instance.ApplySubwayTasks();
     }
 
     public void Play()
