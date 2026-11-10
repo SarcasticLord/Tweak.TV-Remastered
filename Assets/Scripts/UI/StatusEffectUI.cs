@@ -14,6 +14,8 @@ public class StatusEffectUI : MonoBehaviour
     private ProgressBarScript _swarmProgressBar;
     [SerializeField] private GameObject _shockStatus;
     private ProgressBarScript _shockProgressBar;
+    [SerializeField] private GameObject _trappedStatus;
+    private ProgressBarScript _trappedProgressBar;
 
     private Coroutine _statusTextCoroutine;
 
@@ -22,6 +24,7 @@ public class StatusEffectUI : MonoBehaviour
         PlayerStatusEffectTracker.onPoisonStatusValueChanged += UpdatePoisonStatusBar;
         PlayerStatusEffectTracker.onSwarmStatusValueChanged += UpdateSwarmStatusBar;
         PlayerStatusEffectTracker.onShockStatusValueChanged += UpdateShockStatusBar;
+        PlayerStatusEffectTracker.onTrappedStatusValueChanged += UpdateTrappedStatusBar; 
         PlayerStatusEffectTracker.onPlayerStatusChanged += StatusTriggered;
     }
     void OnDisable()
@@ -29,6 +32,7 @@ public class StatusEffectUI : MonoBehaviour
         PlayerStatusEffectTracker.onPoisonStatusValueChanged -= UpdatePoisonStatusBar;
         PlayerStatusEffectTracker.onSwarmStatusValueChanged -= UpdateSwarmStatusBar;
         PlayerStatusEffectTracker.onShockStatusValueChanged -= UpdateShockStatusBar;
+        PlayerStatusEffectTracker.onTrappedStatusValueChanged -= UpdateTrappedStatusBar;
         PlayerStatusEffectTracker.onPlayerStatusChanged -= StatusTriggered;
     }
 
@@ -39,6 +43,7 @@ public class StatusEffectUI : MonoBehaviour
         _poisonProgressBar = _poisonStatus.GetComponent<ProgressBarScript>();
         _swarmProgressBar = _swarmStatus.GetComponent<ProgressBarScript>();
         _shockProgressBar = _shockStatus.GetComponent<ProgressBarScript>();
+        _trappedProgressBar = _trappedStatus.GetComponent<ProgressBarScript>();
     }
 
     private void UpdatePoisonStatusBar(float currentValue)
@@ -86,6 +91,21 @@ public class StatusEffectUI : MonoBehaviour
         }
     }
 
+    private void UpdateTrappedStatusBar(float currentValue)
+    {
+        if(currentValue > 0)
+        {
+            _trappedStatus.SetActive(true);
+            ToggleStatusVisibility(true);
+            _trappedProgressBar.UpdateProgressBar(currentValue);
+        }
+        else
+        {
+            _trappedStatus.SetActive(false);
+            ToggleStatusVisibility(false);
+        }
+    }
+
     private void ToggleStatusVisibility(bool visbility)
     {
         if(visbility)
@@ -99,6 +119,7 @@ public class StatusEffectUI : MonoBehaviour
             if(_poisonStatus.activeSelf) return;
             if(_swarmStatus.activeSelf) return;
             if(_shockStatus.activeSelf) return;
+            if(_trappedStatus.activeSelf) return;
             StatusPanel.SetActive(false);
         }
     }

@@ -348743,6 +348743,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1123351787306249253, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: m_TagString
+      value: Arrows
+      objectReference: {fileID: 0}
     - target: {fileID: 1331794247561623254, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
@@ -348795,10 +348799,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1894450372979629652, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: m_TagString
+      value: Arrows
+      objectReference: {fileID: 0}
+    - target: {fileID: 3824062811977548378, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: m_TagString
+      value: Arrows
+      objectReference: {fileID: 0}
     - target: {fileID: 3965248877018922581, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
       propertyPath: subwayAudio
       value: 
       objectReference: {fileID: 809537145}
+    - target: {fileID: 4682708229399112485, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: m_TagString
+      value: DescDisplay
+      objectReference: {fileID: 0}
     - target: {fileID: 4865386028009060570, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
       propertyPath: m_Volume
       value: 0.2
@@ -348843,6 +348859,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5449908402929203198, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: m_TagString
+      value: Arrows
+      objectReference: {fileID: 0}
     - target: {fileID: 5793440834577206791, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
       propertyPath: m_Name
       value: PlayerCapsule
@@ -348859,6 +348879,10 @@ PrefabInstance:
       propertyPath: pauseScreen
       value: 
       objectReference: {fileID: 996968372}
+    - target: {fileID: 8641109587729999289, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: m_TagString
+      value: Arrows
+      objectReference: {fileID: 0}
     - target: {fileID: 8759710355310932336, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -359645,7 +359669,7 @@ GameObject:
   - component: {fileID: 1794194321}
   m_Layer: 0
   m_Name: StreamSniperSpawn
-  m_TagString: Untagged
+  m_TagString: StreamSniperSpawn
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

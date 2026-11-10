@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GrafittiChallenge : MonoBehaviour
 {
+    
     bool UpIsInput;
     bool UpIsSent;
     bool DownIsInput;
@@ -52,10 +53,14 @@ public class GrafittiChallenge : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
     }
-    void Start()
+    
+    public void StartGrafittiChallenge()
     {
+        mainCanvas = GameObject.FindGameObjectWithTag("hotbar");
+        player = GameObject.FindGameObjectWithTag("Player");
         pInput = player.GetComponent<PlayerInput>();
-        
+        inputImages = GameObject.FindGameObjectsWithTag("Arrows");
+        System.Array.Sort(inputImages, (a, b) => a.name.CompareTo(b.name));
         
         for (int i = 0; i < 5; i++)
         {
