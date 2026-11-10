@@ -7,7 +7,7 @@ public class BaseTrap : MonoBehaviour
     [SerializeField] protected float duration;
     [SerializeField] protected GameObject effect;
 
-    private bool trapActive = false;
+    protected bool trapActive = false;
 
     [SerializeField] protected GameObject player;
     
@@ -17,6 +17,7 @@ public class BaseTrap : MonoBehaviour
         {
             trapActive = true;
             player = col.gameObject;
+            
         }
     }
 
@@ -30,7 +31,7 @@ public class BaseTrap : MonoBehaviour
         }
     }
 
-    IEnumerator TrapPlayer()
+    protected virtual IEnumerator TrapPlayer()
     {
         player.GetComponent<CharacterController>().enabled = false;
         yield return new WaitForSeconds(duration);

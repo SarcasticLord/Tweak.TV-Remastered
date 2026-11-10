@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2247908431017003448}
   - component: {fileID: 1588956038354179937}
   - component: {fileID: 3137350090960143753}
-  - component: {fileID: 8472117747723888888}
+  - component: {fileID: 7970316290774274089}
   m_Layer: 0
   m_Name: BearTrap
   m_TagString: Untagged
@@ -30,13 +30,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3983715939478388846}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: -0.18592, y: 2, z: -8.15964}
   m_LocalScale: {x: 16.167788, y: 98.299995, z: 1.7505751}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &4168791394795555402
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.123702765, y: 0.020393558, z: 0.01}
   m_Center: {x: 0, y: 0, z: -0.04}
---- !u!114 &8472117747723888888
+--- !u!114 &7970316290774274089
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,9 +175,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3983715939478388846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aebb6941276eb65409f1decc59fec3c7, type: 3}
+  m_Script: {fileID: 11500000, guid: b4ea4e3fe45cf274280e9eb45afc75cd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BaseTrap
-  duration: 5
+  m_EditorClassIdentifier: Assembly-CSharp::BearTrap
+  duration: 0
   effect: {fileID: 0}
   player: {fileID: 0}
+  closedTrap: {fileID: 0}
+  trapEffect: {fileID: 0}
