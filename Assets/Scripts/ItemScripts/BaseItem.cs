@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
 
-public class ItemHandler : MonoBehaviour
+public class BaseItem : MonoBehaviour
 {
     protected Rigidbody rb;
     protected CapsuleCollider col;
@@ -15,13 +15,16 @@ public class ItemHandler : MonoBehaviour
     [SerializeField] private GameObject inventory; //items in PlayerCapsule
     public InputActionReference useItem;
     public InputActionReference itemDrop;
+
+    public Vector3 itemHeldPos;
+    public Quaternion itemHeldRot;
     protected Quaternion origRot;
 
     protected PlayerInventoryManager playerInventory; //gathered from inventory
 
     public bool isSelected = false;
 
-    private bool inInventory = false;
+    protected bool inInventory = false;
 
     private void OnEnable()
     {
@@ -40,7 +43,7 @@ public class ItemHandler : MonoBehaviour
         useItem.action.canceled -= OnUseItem;
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         playerInventory = inventory.GetComponent<PlayerInventoryManager>(); //Get manager from inventory gameobject
         origRot = transform.rotation;
@@ -48,7 +51,7 @@ public class ItemHandler : MonoBehaviour
         col = gameObject.GetComponent<CapsuleCollider>();
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (!inInventory)
         {
@@ -61,8 +64,7 @@ public class ItemHandler : MonoBehaviour
             Transform parent = transform.parent.transform;
             rb.useGravity = false;
             col.enabled = false;
-            gameObject.transform.SetPositionAndRotation(parent.position, parent.rotation);
-
+            gameObject.transform.SetLocalPositionAndRotation(itemHeldPos, itemHeldRot);
         }
         
 

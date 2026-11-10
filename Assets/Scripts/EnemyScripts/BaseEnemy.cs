@@ -5,8 +5,8 @@ using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 public class BaseEnemy : MonoBehaviour
 {
-    protected enum EnemyState { Wander, Chase, Attack, Death, Stunned}
-    protected EnemyState currentState;
+    public enum EnemyState { Wander, Chase, Attack, Death, Stunned}
+    public EnemyState currentState;
 
     public enum EnemyType { RAT, BEE, STREAMSNIPER }
 
