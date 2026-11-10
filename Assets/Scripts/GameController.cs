@@ -69,6 +69,10 @@ public class GameController : MonoBehaviour
         viewCountIncreaseRate = 1f;
         currEnemyCount = 0;
         StartCoroutine("ChangeViews");
+        TaskMasterScript.instance.StartTaskMasterScript();
+        ViewTracker.instance.StartViewTracker();
+        GrafittiChallenge.instance.StartGrafittiChallenge();
+        TweakManager.instance.StartTweakManager();
     }
 
     public void StopGame()

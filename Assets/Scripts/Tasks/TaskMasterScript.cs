@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TaskMasterScript : MonoBehaviour
@@ -16,8 +17,9 @@ public class TaskMasterScript : MonoBehaviour
     public int enemiesKilled; //The current number of enemies killed
     public int grafittiSpots; //How many enemies must be killed to complete the task
     public int grafittiCompleted; //The current number of enemies killed
-
-    void SetTasks() //Change the task and task description
+    public TaskTemplate[] asylumTasks;
+    public TaskTemplate[] subwayTasks;
+    public void SetTasks() //Change the task and task description
     {
         descDisplay.text="";
         foreach (TaskTemplate task in availableTasks)
@@ -30,6 +32,21 @@ public class TaskMasterScript : MonoBehaviour
         }
         
     }
+    public void EndAllTasks()
+    {
+        
+        availableTasks.Clear();
+        
+    }
+
+    public void ApplyAsylumTasks()
+    {
+        availableTasks.AddRange(asylumTasks);
+    }
+    public void ApplySubwayTasks()
+    {
+        availableTasks.AddRange(subwayTasks);
+    }
     public void Awake()
     {
         //Singleton design patttern
@@ -41,6 +58,14 @@ public class TaskMasterScript : MonoBehaviour
         instance = this;
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void StartTaskMasterScript()
+    {
+        
+        descDisplay=GameObject.FindGameObjectWithTag("DescDisplay").GetComponent<TextMeshProUGUI>();
+        viewTracker = GetComponent<ViewTracker>();
+        SetTasks();
     }
     private void OnEnable()
     {
@@ -60,10 +85,7 @@ public class TaskMasterScript : MonoBehaviour
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        SetTasks();
-    }
+    
 
     // Update is called once per frame
     [ContextMenu(nameof(EndTask))]
@@ -78,6 +100,17 @@ public class TaskMasterScript : MonoBehaviour
         availableTasks.Remove(endedTask);
         if(0==availableTasks.Count){AddTask(endTask);}
         viewTracker.baseOffset+=endedTask.TaskViewGain;
+        SetTasks();
+    }
+    public void TrueEndTask(int taskID)
+    {
+        TaskTemplate endedTask=null;
+        foreach (TaskTemplate task in availableTasks)
+        {
+            if(task.TaskID == taskID){endedTask=task;break;}
+        }
+        if(endedTask==null){return;}
+        availableTasks.Remove(endedTask);
         SetTasks();
     }
 
