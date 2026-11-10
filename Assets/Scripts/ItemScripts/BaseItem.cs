@@ -12,7 +12,7 @@ public class BaseItem : MonoBehaviour
     public float movement = .25f;
     public float rotSpeed = 5f;
     //private int counter = 5;
-    [SerializeField] private GameObject inventory; //items in PlayerCapsule
+    public GameObject inventory; //items in PlayerCapsule
     public InputActionReference useItem;
     public InputActionReference itemDrop;
 
@@ -20,7 +20,7 @@ public class BaseItem : MonoBehaviour
     public Quaternion itemHeldRot;
     protected Quaternion origRot;
 
-    protected PlayerInventoryManager playerInventory; //gathered from inventory
+    public PlayerInventoryManager playerInventory; //gathered from inventory
 
     public bool isSelected = false;
 
@@ -45,7 +45,10 @@ public class BaseItem : MonoBehaviour
 
     protected virtual void Start()
     {
+        inventory = GameObject.Find("PlayerCapsule");
+        Debug.Log("Player: " + inventory.name);
         playerInventory = inventory.GetComponent<PlayerInventoryManager>(); //Get manager from inventory gameobject
+        Debug.Log(playerInventory == null);
         origRot = transform.rotation;
         rb = gameObject.GetComponent<Rigidbody>();
         col = gameObject.GetComponent<CapsuleCollider>();

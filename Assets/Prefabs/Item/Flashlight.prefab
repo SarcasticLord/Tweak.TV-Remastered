@@ -159,7 +159,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 4, y: 3.446, z: -4.219997}
-  m_LocalScale: {x: 7, y: 7, z: 1.8603408}
+  m_LocalScale: {x: 7, y: 7, z: 1.8603411}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 618055790086296731}
@@ -271,7 +271,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 10
   m_CollisionDetection: 0
 --- !u!136 &8501814273271705179
 CapsuleCollider:
@@ -311,8 +311,9 @@ MonoBehaviour:
   distance: 0.3
   movement: 0.25
   rotSpeed: 5
-  inventory: {fileID: 0}
   useItem: {fileID: 1120369429361536294, guid: 6055c109ca094264eb94c4fc10bcb837, type: 3}
   itemDrop: {fileID: 1638341257386738786, guid: 6055c109ca094264eb94c4fc10bcb837, type: 3}
+  itemHeldPos: {x: -0.6, y: -0.5, z: 1}
+  itemHeldRot: {x: 0, y: 0, z: 0, w: 0}
   isSelected: 0
   flashlight: {fileID: 4598007487398010942}

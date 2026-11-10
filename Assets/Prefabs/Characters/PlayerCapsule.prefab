@@ -829,11 +829,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatusEffects
   isTrapped: 0
   isPoisoned: 0
-  drankCoffee: 1
+  canDash: 0
   isDead: 0
   isSlowed: 0
   slowDuration: 5
   slowedEffect: {fileID: 8222731177536965089}
+  speedBoostSpeed: 25
+  speedBoostSlideSpeed: 35
   slowedSpeed: 2
   slowedSlideSpeed: 4
   storeDefaultSpeed: 0
@@ -841,6 +843,7 @@ MonoBehaviour:
   stunnedSpeed: 2
   storeDefaultJumpForce: 0
   stunnedJumpForce: 2
+  trappedEffect: {fileID: 0}
   playerMovementScript: {fileID: 8420447848467802541}
 --- !u!114 &2446721335840386804
 MonoBehaviour:
@@ -875,6 +878,7 @@ MonoBehaviour:
   pickupCooldown: 1
   grafittiChallenge: {fileID: 0}
   viewTracker: {fileID: 0}
+  testRayScatter: 0
 --- !u!114 &2590586664598903075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1033,7 +1037,7 @@ GameObject:
   m_Layer: 0
   m_Name: Items
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
