@@ -7,6 +7,9 @@ public class BearTrap : BaseTrap
     public GameObject closedTrap;
     public GameObject trapEffect; 
 
+    private PlayerStatusEffects _effects;
+    private PlayerStatusEffectTracker _playerStatus;
+
     private bool spawnedClosedTrap = false;
 
 
@@ -16,8 +19,13 @@ public class BearTrap : BaseTrap
         {
             trapActive = true;
             player = col.gameObject;
+            _effects = player.GetComponent<PlayerStatusEffects>();
+            _playerStatus = player.GetComponent<PlayerStatusEffectTracker>();
             if (!spawnedClosedTrap)
             {
+                StartCoroutine(TrapPlayer());
+                _playerStatus.AddToStatus(PlayerStatusEffectTracker.StatusEffect.TRAPPED, 100f);
+                _effects.trappedEffect = trapEffect;
                 GameObject trap = Instantiate(closedTrap, gameObject.transform.position, gameObject.transform.rotation);
                 spawnedClosedTrap = true;
                 Destroy(trap, duration + 1f);
@@ -28,13 +36,7 @@ public class BearTrap : BaseTrap
     }
     protected override void FixedUpdate()
     {
-        PlayerStatusEffects effects = player.GetComponent<PlayerStatusEffects>();
-        if (trapActive)
-        {
-            StartCoroutine(TrapPlayer());
-            effects.trappedEffect = trapEffect;
-            trapActive = false;
-        }
+
     }
 
 }
