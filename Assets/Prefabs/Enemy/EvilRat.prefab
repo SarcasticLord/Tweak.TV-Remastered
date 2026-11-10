@@ -903,7 +903,7 @@ GameObject:
   - component: {fileID: -6201841415487154230}
   m_Layer: 8
   m_Name: EvilRat
-  m_TagString: Object
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1052,6 +1052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1da17f8fd3298848b9f8d2d62957acd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EvilRatManager
+  currentState: 0
   enemyType: 0
   blood: {fileID: 7966952873066761778}
   ghostMat: {fileID: 2100000, guid: 7c59173c8abd48f4489ac0641a66a335, type: 2}

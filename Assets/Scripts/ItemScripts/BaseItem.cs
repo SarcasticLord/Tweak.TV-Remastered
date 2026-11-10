@@ -103,6 +103,11 @@ public class BaseItem : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && !inInventory && playerInventory.items.Count < playerInventory.maxItems)
         {
             inInventory = true;
+            //If first item automatically selects it
+            if(playerInventory.items.Count <= 1)
+            {
+                isSelected = true;
+            }
             //makes this item a child of the player's inventory attached to the camera
             gameObject.transform.SetParent(inventory.transform);
         }
