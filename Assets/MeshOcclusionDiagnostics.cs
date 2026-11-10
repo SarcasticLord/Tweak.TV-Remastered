@@ -1,3 +1,5 @@
+// this script is full ai generated. it was used to debug occulusion culling issues that were fixed
+// this script has no other uses for tweak.tv
 
 using UnityEngine;
 using UnityEditor;
