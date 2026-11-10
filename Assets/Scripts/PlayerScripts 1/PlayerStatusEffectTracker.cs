@@ -8,9 +8,11 @@ public class PlayerStatusEffectTracker : MonoBehaviour
     public static event Action<float> onSwarmStatusValueChanged;
     public static event Action<float> onPoisonStatusValueChanged;
     public static event Action<float> onShockStatusValueChanged;
+    public static event Action<float> onTrappedStatusValueChanged;
 
     public static event Action<StatusEffect> onPlayerStatusChanged;
 
+    #region Swarmed Status
     private static float _swarmStatus = 0.0f;
     private float _swarmStatusLimit = 100.0f;
     private float _swarmDecreaseVal = 1f;
@@ -30,7 +32,9 @@ public class PlayerStatusEffectTracker : MonoBehaviour
             }
         }
     }
+    #endregion
 
+    #region Poison Status
     private static float _poisonStatus = 0.0f;
     private float _poisonStatusLimit = 100.0f;
     private float _poisonedDecreaseRate = 0.1f;
@@ -50,14 +54,15 @@ public class PlayerStatusEffectTracker : MonoBehaviour
             }
         }
     }
+    #endregion
 
+    #region Shocked Status
     private static float _shockedStatus = 0.0f;
     private float _shockStatusLimit = 100f;
     private float _shockDecreaseVal = 20f;
     private float _shockedDecreaseRate = 1f;
     public bool shocked;
     private Coroutine _shockDecreaseCoroutine;
-
     public float shockedStatus
     {
         get { return _shockedStatus; }
@@ -67,14 +72,37 @@ public class PlayerStatusEffectTracker : MonoBehaviour
             onShockStatusValueChanged?.Invoke(_shockedStatus);
             if(_shockedStatus > 0 && _shockDecreaseCoroutine == null)
             {
-                _shockDecreaseCoroutine = StartCoroutine(DecreaseShockStatus());
+                _shockDecreaseCoroutine = StartCoroutine(DecreaseSwarmStatus());
             }
-            
         }
     }
-    public enum StatusEffect {SWARMED, POISONED, SHOCKED};
+    #endregion
+    
+    #region Trapped Status
+    private static float _trappedStatus = 0.0f;
+    private float _trappedStatusLimit = 100.0f;
+    private float _trappedDecreaseVal = 34f;
+    private float _trappededDecreaseRate = 1f;
+    public bool trapped = false;
+    private Coroutine _trappedDecreaseCoroutine;
+    public float trappedStatus
+    {
+        get {return _trappedStatus;}
+        set
+        {
+            _trappedStatus = Mathf.Clamp(value, 0, _trappedStatusLimit);
+            onTrappedStatusValueChanged?.Invoke(_trappedStatus); //Subscribe to delegate in UI script to update UI
+            if (_trappedStatus > 0 && _trappedDecreaseCoroutine == null)
+            {
+                _trappedDecreaseCoroutine = StartCoroutine(DecreaseTrappedStatus());
+            }
+        }
+    }
+    #endregion
 
-    public void AddToStatus(PlayerStatusEffectTracker.StatusEffect status, float value)//Call in other scripts to add to status
+    public enum StatusEffect {SWARMED, POISONED, SHOCKED, TRAPPED};
+
+    public void AddToStatus(StatusEffect status, float value)//Call in other scripts to add to status
     {
         switch(status)
         {
@@ -113,6 +141,17 @@ public class PlayerStatusEffectTracker : MonoBehaviour
                 {
                     onPlayerStatusChanged?.Invoke(status);
                     shocked = true;
+                }
+                break;
+            case StatusEffect.TRAPPED:
+                if(trappedStatus < _trappedStatusLimit && !trapped)
+                {
+                    trappedStatus += value;
+                }
+                else
+                {
+                    onPlayerStatusChanged?.Invoke(status);
+                    trapped = true;
                 }
                 break;
             default:
@@ -168,6 +207,22 @@ public class PlayerStatusEffectTracker : MonoBehaviour
             
         }
         _shockDecreaseCoroutine = null;
+    }
+
+    private IEnumerator DecreaseTrappedStatus()
+    {
+        //Trap player for 3 seconds
+        yield return new WaitForSeconds(1f);
+        while(trappedStatus > 0)
+        {
+            trappedStatus -= _trappedDecreaseVal;
+            yield return new WaitForSeconds(_trappededDecreaseRate);
+            if(trappedStatus <= 0)
+            {
+                trapped = false;
+            }
+        }
+        _trappedDecreaseCoroutine = null;
     }
 
 }
