@@ -12,7 +12,7 @@ public class StartingSoonUI : MonoBehaviour
     public GameObject stationSelected;
 
     public string asylumScene = "Asylum";
-    public string stationScene = "Station";
+    public string stationScene = "LoadingScene";
 
     private string selectedLevel = "";
 

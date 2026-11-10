@@ -79,6 +79,11 @@ public class UIManager : MonoBehaviour
         exitConf.SetActive(false);
     }
 
+    public void ToLoading()
+    {
+        SceneManager.LoadScene("Loading");
+    }
+
     public void RestartLevel()
     {
         if (string.IsNullOrEmpty(lastScene))
