@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 2aaff151ffb67e94b9c31bf924894640
+  m_OcclusionCullingData: {fileID: 36300000, guid: 2cdf8ee0c77a645da82e81348ca7c704, type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -153066,7 +153066,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &809537145
 MonoBehaviour:
@@ -212780,7 +212780,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!82 &1084100274
 AudioSource:
@@ -403991,7 +403991,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!82 &1997691025
 AudioSource:
@@ -430071,6 +430071,8 @@ MonoBehaviour:
   enemiesKilled: 0
   grafittiSpots: 3
   grafittiCompleted: 0
+  asylumTasks: []
+  subwayTasks: []
 --- !u!4 &2142405485
 Transform:
   m_ObjectHideFlags: 0
