@@ -19,10 +19,8 @@ public class Flashlight : BaseItem
             Transform parent = transform.parent.transform;
             rb.useGravity = false;
             col.enabled = false;
-            flashlight.enabled = true;
             gameObject.transform.SetLocalPositionAndRotation(itemHeldPos, itemHeldRot);
         }
-
 
     }
     protected override void OnUseItem(InputAction.CallbackContext use)

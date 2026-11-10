@@ -13,6 +13,7 @@ public class Crowbar : BaseItem
     protected override void Start()
     {
         base.Start();
+        cam = inventory.GetComponentInChildren<Camera>().gameObject.transform;
     }
     protected override void OnUseItem(InputAction.CallbackContext use)
     {

@@ -12,7 +12,7 @@ public class BaseItem : MonoBehaviour
     public float movement = .25f;
     public float rotSpeed = 5f;
     //private int counter = 5;
-    public GameObject inventory; //items in PlayerCapsule
+    protected GameObject inventory; //items in PlayerCapsule
     public InputActionReference useItem;
     public InputActionReference itemDrop;
 
@@ -20,7 +20,7 @@ public class BaseItem : MonoBehaviour
     public Quaternion itemHeldRot;
     protected Quaternion origRot;
 
-    public PlayerInventoryManager playerInventory; //gathered from inventory
+    protected PlayerInventoryManager playerInventory; //gathered from inventory
 
     public bool isSelected = false;
 
@@ -45,9 +45,8 @@ public class BaseItem : MonoBehaviour
 
     protected virtual void Start()
     {
-        inventory = GameObject.Find("PlayerCapsule");
-        Debug.Log("Player: " + inventory.name);
-        playerInventory = inventory.GetComponent<PlayerInventoryManager>(); //Get manager from inventory gameobject
+        inventory = GameObject.FindGameObjectWithTag("Player");
+        playerInventory = inventory.GetComponentInChildren<PlayerInventoryManager>(); //Get manager from inventory gameobject
         Debug.Log(playerInventory == null);
         origRot = transform.rotation;
         rb = gameObject.GetComponent<Rigidbody>();
@@ -112,7 +111,7 @@ public class BaseItem : MonoBehaviour
                 isSelected = true;
             }
             //makes this item a child of the player's inventory attached to the camera
-            gameObject.transform.SetParent(inventory.transform);
+            gameObject.transform.SetParent(playerInventory.gameObject.transform);
         }
     }
 
