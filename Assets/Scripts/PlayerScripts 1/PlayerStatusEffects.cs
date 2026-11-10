@@ -4,12 +4,16 @@ public class PlayerStatusEffects : MonoBehaviour
 {
     public bool isTrapped; //Should prevent player from moving
     public bool isPoisoned; //Should put a weird screen effect on that makes it hard to see
-    public bool drankCoffee; //Should allow player to dash
+    public bool canDash; //Should allow player to dash
     public bool isDead; //Should open game over screen
     public bool isSlowed; //Slows player speed
     public float slowDuration = 5f;
     public GameObject slowedEffect;
-    
+
+
+    public float speedBoostSpeed = 10f;
+    public float speedBoostSlideSpeed = 10f;
+
     public float slowedSpeed = 4f;
     public float slowedSlideSpeed = 4f;
 
@@ -43,8 +47,9 @@ public class PlayerStatusEffects : MonoBehaviour
     {
         playerMovementScript.playerSpeed = stunnedSpeed;
         playerMovementScript.playerJumpForce = stunnedJumpForce;
-
     }
+
+
     [ContextMenu(nameof(OnRemoveStun))]
     public void OnRemoveStun()
     {
@@ -52,6 +57,22 @@ public class PlayerStatusEffects : MonoBehaviour
         playerMovementScript.playerJumpForce = storeDefaultJumpForce;
 
     }
+    [ContextMenu(nameof(OnCanDash))]
+    public void OnCanDash()
+    {
+        playerMovementScript.playerSpeed = speedBoostSpeed;
+        playerMovementScript.playerSlideSpeed = speedBoostSlideSpeed;
+    }
+
+    [ContextMenu(nameof(OnRemoveCanDash))]
+    public void OnRemoveCanDash()
+    {
+        playerMovementScript.playerSpeed = storeDefaultSpeed;
+        playerMovementScript.playerSlideSpeed = storeDefaultSlideSpeed;
+
+    }
+    
+
     [ContextMenu(nameof(OnSlowed))]
     public void OnSlowed()
     {

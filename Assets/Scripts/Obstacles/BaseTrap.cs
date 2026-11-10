@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class BaseTrap : MonoBehaviour
 {
-    [SerializeField] protected float duration;
+    [SerializeField] protected float duration = 5f;
+
+    public float timer;
     [SerializeField] protected GameObject effect;
 
     protected bool trapActive = false;
 
     [SerializeField] protected GameObject player;
-    
+
+
     protected virtual void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("Player"))
