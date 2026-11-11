@@ -16,6 +16,7 @@ public class Coffee : BaseItem
     protected override void Start()
     {
         base.Start();
+        statusEffects = inventory.GetComponentInChildren<PlayerStatusEffects>();
     }
 
     protected override void FixedUpdate()
