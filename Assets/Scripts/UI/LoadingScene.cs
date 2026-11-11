@@ -11,7 +11,7 @@ public class LoadingScene : MonoBehaviour
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    void Start()
     {
         StartCoroutine(LoadLevelAsync());
     }
@@ -23,14 +23,20 @@ public class LoadingScene : MonoBehaviour
     {
         float startTime = Time.realtimeSinceStartup;
 
+        yield return new WaitForSecondsRealtime(0.5f);
+
         AsyncOperation operation = SceneManager.LoadSceneAsync("Subway");
+
         operation.allowSceneActivation = false;
 
         while (operation.progress < 0.9f || Time.realtimeSinceStartup - startTime < 2f)
         {
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
+
             LoadingBar.value = progress;
+
             Debug.Log("progress is: " + operation.progress);
+            
             yield return null;
         }
         LoadingBar.value = 1;
