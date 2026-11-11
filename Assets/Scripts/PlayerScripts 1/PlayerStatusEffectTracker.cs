@@ -72,7 +72,7 @@ public class PlayerStatusEffectTracker : MonoBehaviour
             onShockStatusValueChanged?.Invoke(_shockedStatus);
             if(_shockedStatus > 0 && _shockDecreaseCoroutine == null)
             {
-                _shockDecreaseCoroutine = StartCoroutine(DecreaseSwarmStatus());
+                _shockDecreaseCoroutine = StartCoroutine(DecreaseShockStatus());
             }
         }
     }
