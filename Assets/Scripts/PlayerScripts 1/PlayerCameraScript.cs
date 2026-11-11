@@ -61,6 +61,7 @@ public class PlayerCameraScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         //Cache trains at the start of the scene
+        sensitivity = PlayerPrefs.GetFloat("CameraSense", 2f);
         trains = GameObject.FindGameObjectsWithTag("Train"); //Anything tagged Trains will increase head bobbing intensity 
     }
 

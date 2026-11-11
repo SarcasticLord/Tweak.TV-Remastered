@@ -845,8 +845,6 @@ MonoBehaviour:
   stunnedJumpForce: 2
   trappedEffect: {fileID: 0}
   playerMovementScript: {fileID: 8420447848467802541}
-  poisonVolume: {fileID: 0}
-  tweakManager: {fileID: 0}
 --- !u!114 &2446721335840386804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -862,6 +860,7 @@ MonoBehaviour:
   swarmed: 0
   poisoned: 0
   shocked: 0
+  trapped: 0
 --- !u!114 &1867516630657381261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -925,7 +924,7 @@ AudioSource:
   m_GameObject: {fileID: 5793440834577206791}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 30a5552f8633e4f6ab2b350a0b2a39c2, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: e0a24b8d51ad12a41a17c18779ac688b, type: 3}
   m_PlayOnAwake: 1
