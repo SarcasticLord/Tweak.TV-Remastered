@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour
     //Enemy related stuff
     public int currEnemyCount = 0;
 
-    public int maxEnemyCount = 100;
+    public int maxEnemyCount = 20;
 
     public BaseEnemy.EnemyType lastEnemyKilled;
 
@@ -61,6 +61,7 @@ public class GameController : MonoBehaviour
 
     public void StartGame()
     {
+        StopAllCoroutines(); //For safety
         streamSniperSpawnpoint = GameObject.Find("StreamSniperSpawn").transform;
         gameStarted = true;
         streamSniperSpawned = false;
@@ -68,6 +69,10 @@ public class GameController : MonoBehaviour
         viewCountIncreaseRate = 1f;
         currEnemyCount = 0;
         StartCoroutine("ChangeViews");
+        TaskMasterScript.instance.StartTaskMasterScript();
+        ViewTracker.instance.StartViewTracker();
+        GrafittiChallenge.instance.StartGrafittiChallenge();
+        TweakManager.instance.StartTweakManager();
     }
 
     public void StopGame()

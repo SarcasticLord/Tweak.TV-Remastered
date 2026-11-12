@@ -1,0 +1,124 @@
+using System;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.XR;
+
+public class BaseItem : MonoBehaviour
+{
+    protected Rigidbody rb;
+    protected CapsuleCollider col;
+    public float distance = .3f;
+    public float movement = .25f;
+    public float rotSpeed = 5f;
+    //private int counter = 5;
+    protected GameObject inventory; //items in PlayerCapsule
+    public InputActionReference useItem;
+    public InputActionReference itemDrop;
+
+    public Vector3 itemHeldPos;
+    public Quaternion itemHeldRot;
+    protected Quaternion origRot;
+
+    protected PlayerInventoryManager playerInventory; //gathered from inventory
+
+    public bool isSelected = false;
+
+    protected bool inInventory = false;
+
+    private void OnEnable()
+    {
+        itemDrop.action.performed += OnDropItem;
+        itemDrop.action.canceled += OnDropItem;
+        useItem.action.performed += OnUseItem;
+        useItem.action.canceled += OnUseItem;
+
+    }
+
+    private void OnDisable()
+    {
+        itemDrop.action.performed -= OnDropItem;
+        itemDrop.action.canceled -= OnDropItem;
+        useItem.action.performed -= OnUseItem;
+        useItem.action.canceled -= OnUseItem;
+    }
+
+    protected virtual void Start()
+    {
+        inventory = GameObject.FindGameObjectWithTag("Player");
+        playerInventory = inventory.GetComponentInChildren<PlayerInventoryManager>(); //Get manager from inventory gameobject
+        Debug.Log(playerInventory == null);
+        origRot = transform.rotation;
+        rb = gameObject.GetComponent<Rigidbody>();
+        col = gameObject.GetComponent<CapsuleCollider>();
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        if (!inInventory)
+        {
+            //spins as a pickup when out of inventory
+            transform.Rotate(new Vector3(0f, 30f, 0f) * rotSpeed * Time.deltaTime);
+        }
+        if (inInventory && transform.parent != null)
+        {
+            //Fixes position and rotation of item when in player inventory
+            Transform parent = transform.parent.transform;
+            rb.useGravity = false;
+            col.enabled = false;
+            gameObject.transform.SetLocalPositionAndRotation(itemHeldPos, itemHeldRot);
+        }
+        
+
+    }
+
+    protected virtual void OnUseItem(InputAction.CallbackContext use)
+    {
+        if (isSelected && use.ReadValueAsButton())
+        {
+            //insert uses here, override needed
+            Debug.Log(gameObject.name + " used");
+        }
+    }
+
+    protected virtual void OnDropItem(InputAction.CallbackContext q)
+    { 
+        if (q.ReadValueAsButton())
+        {
+            if (inInventory && isSelected)
+            {
+                playerInventory.items.Remove(gameObject);
+                playerInventory.CycleItems();
+                col.enabled = true;
+                rb.useGravity = true;
+                rb.AddForce(transform.forward * 50f);
+                gameObject.transform.SetParent(null);
+                transform.rotation = origRot;
+                inInventory = false;
+            }
+        }
+    }
+
+    protected virtual void OnTriggerEnter(Collider other)
+    {
+        //Checks for player collision
+        if (other.gameObject.CompareTag("Player") && !inInventory && playerInventory.items.Count < playerInventory.maxItems)
+        {
+            inInventory = true;
+            //If first item automatically selects it
+            if(playerInventory.items.Count <= 1)
+            {
+                isSelected = true;
+            }
+            //makes this item a child of the player's inventory attached to the camera
+            gameObject.transform.SetParent(playerInventory.gameObject.transform);
+        }
+    }
+
+    public void StopMove()
+    {
+        //StopCoroutine(MoveObject());
+        SphereCollider col = gameObject.GetComponent<SphereCollider>();
+        col.enabled = false;
+    }
+}

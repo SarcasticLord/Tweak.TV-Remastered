@@ -1,9 +1,12 @@
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+
 public class GrafittiChallenge : MonoBehaviour
 {
+    
     bool UpIsInput;
     bool UpIsSent;
     bool DownIsInput;
@@ -14,9 +17,9 @@ public class GrafittiChallenge : MonoBehaviour
     bool RightIsSent;
     bool AnyIsInput;
     bool AnyIsSent;
-    Vector2 CommandInputs;
-    public InputActionMap Grafitti;
-    public PlayerInput playerInput;
+    public Vector2 CommandInputs;
+    
+    
     public enum Direction {Up, Left, Down, Right}
     public Direction lastKnownDirectionInput;
     public Direction[] directionOrder = new Direction[5]; //The commands randomly chosen
@@ -28,20 +31,37 @@ public class GrafittiChallenge : MonoBehaviour
     public GameObject[] inputImages;
 
     public bool systemActive;
-    Vector3 storeLinearVelocity;
+    
     public Sprite arrowSprite;
     public Sprite correctSprite;
-    public TaskMasterScript taskMasterScript;
+    
     public bool canBeStarted;
     public MeshRenderer grafittiResult;
     public Material[] grafittiResultImages;
     public TaskEnder wallTaskEnder;
-
-    void Start()
+    PlayerInput pInput;
+    public static GrafittiChallenge instance { get; private set; }
+    public void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();
-        Grafitti = playerInput.actions.FindActionMap(nameof(Grafitti)); //Get grafitti functional
-        playerInput.enabled = false;
+        //Singleton design patttern
+        if(instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+
+        DontDestroyOnLoad(gameObject);
+    }
+    
+    public void StartGrafittiChallenge()
+    {
+        mainCanvas = GameObject.FindGameObjectWithTag("hotbar");
+        player = GameObject.FindGameObjectWithTag("Player");
+        pInput = player.GetComponent<PlayerInput>();
+        inputImages = GameObject.FindGameObjectsWithTag("Arrows");
+        System.Array.Sort(inputImages, (a, b) => a.name.CompareTo(b.name));
+        
         for (int i = 0; i < 5; i++)
         {
             inputImages[i].SetActive(false); //Disable images until needed
@@ -50,6 +70,7 @@ public class GrafittiChallenge : MonoBehaviour
     [ContextMenu(nameof(Activate))]
     public void Activate()
     {
+        
         if(!canBeStarted){return;}
         for (int i = 0; i < 5; i++)
         {
@@ -58,16 +79,9 @@ public class GrafittiChallenge : MonoBehaviour
         CreateCommandPattern();
         systemActive=true;
         mainCanvas.SetActive(false);
-        //storeLinearVelocity = player.GetComponent<Rigidbody>().linearVelocity;
-        //player.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
-        player.GetComponent<PlayerInput>().enabled = false;
-        playerInput.enabled = true;
+        GrafittiControllerAttach();
     }
-    void OnProvideMarks(InputValue movementValue)
-    {
-        
-        CommandInputs = movementValue.Get<Vector2>();
-    }
+    
 
     void CreateCommandPattern() //Randomize pattern and display visuals for it
     {
@@ -178,7 +192,6 @@ public class GrafittiChallenge : MonoBehaviour
         {
             FailState();
         }
-        
     }
 
     void Deactivate() //End task, reset everything
@@ -188,17 +201,16 @@ public class GrafittiChallenge : MonoBehaviour
             inputImages[i].SetActive(false);
             inputImages[i].GetComponent<Image>().sprite = arrowSprite;
         }
-        player.GetComponent<PlayerInput>().enabled = false;
+        
         systemActive=false;
         mainCanvas.SetActive(true);
-        //player.GetComponent<Rigidbody>().linearVelocity = storeLinearVelocity;
-        taskMasterScript.CompleteGrafitti();
-        
+        TaskMasterScript.instance.CompleteGrafitti();
+        Debug.Log("Successful Grafitti...Restoring controls.");
         wallTaskEnder.canGrafitti=false;
         minigameCursor=0;
-        player.GetComponent<PlayerInput>().enabled=true;
+        PlayerControllerReattach();
         grafittiResult.material = grafittiResultImages[Random.Range(0, grafittiResultImages.Length)];
-        playerInput.enabled = false;
+        
     }
 
     public void FailState() //End task, reset everything, let player go back in
@@ -208,14 +220,37 @@ public class GrafittiChallenge : MonoBehaviour
             inputImages[i].SetActive(false);
             inputImages[i].GetComponent<Image>().sprite = arrowSprite;
         }
-        player.GetComponent<PlayerInput>().enabled = false;
         systemActive=false;
         mainCanvas.SetActive(true);
         minigameCursor=0;
-        player.GetComponent<PlayerInput>().enabled=true;
-        playerInput.enabled = true;
+        PlayerControllerReattach();
+        
         Debug.Log("Failed input...Restoring controls.");
         
 
+    }
+
+    void PlayerControllerReattach() //Have player controls reattach properly
+    {
+        if (pInput != null)
+        {
+            pInput.SwitchCurrentActionMap("Player");
+        }
+        else
+        {
+            Debug.Log("PLAYER ISSUE");
+        }
+    }
+
+    void GrafittiControllerAttach() //Switch to grafitti controls
+    {
+        if (pInput != null)
+        {
+            pInput.SwitchCurrentActionMap("Grafitti");
+        }
+        else
+        {
+            Debug.Log("GRAFITTI ISSUE");
+        }
     }
 }

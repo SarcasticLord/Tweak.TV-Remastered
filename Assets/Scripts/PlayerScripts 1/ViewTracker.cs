@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ViewTracker : MonoBehaviour
 {
+    public static ViewTracker instance { get; private set; }
     public bool streamSniperSpawned;
     private static WaitForSeconds _waitForSeconds_01 = new WaitForSeconds(.1f);
     public double baseNumber=-50; //increases over time
@@ -16,11 +17,24 @@ public class ViewTracker : MonoBehaviour
     public Transform streamSniperSpawnpoint;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void StartViewTracker()
     {
+        streamSniperSpawnpoint = GameObject.FindGameObjectWithTag("StreamSniperSpawn").transform;
         TweakManager tweakManager = GetComponent<TweakManager>();
-        if(tweakManager.doubleViewSpeed){slowingFactor/=2;}
+        if(tweakManager.doubleViewSpeed){slowingFactor/=2;} //If view tweak active, double view declien speed
         StartCoroutine(nameof(VCOT));
+    }
+    public void Awake()
+    {
+        //Singleton design patttern
+        if(instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+
+        DontDestroyOnLoad(gameObject);
     }
 
     IEnumerator VCOT() //Views Change Over Time

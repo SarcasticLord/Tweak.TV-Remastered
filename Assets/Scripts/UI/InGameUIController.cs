@@ -12,6 +12,8 @@ public class InGameUIController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI viewCountText;
     [SerializeField] private TextMeshProUGUI timerText;
 
+    public GameObject ticketUI;
+
     public static float gameTime = 0f;
 
     public static bool isPaused { get; private set; } = false;
@@ -39,8 +41,9 @@ public class InGameUIController : MonoBehaviour
 
     private void Start()
     {
-        pauseScreen.SetActive(false);
+        Unpause();
         gameTime = 0;
+        ticketUI.SetActive(false);
     }
 
     void onPausePressed(InputAction.CallbackContext pause)
@@ -59,13 +62,18 @@ public class InGameUIController : MonoBehaviour
             else
             {
                 //Unpause
-                pauseScreen.SetActive(false);
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-                Time.timeScale = 1f;
-                isPaused = false;
+                Unpause();
             }
         }
+    }
+    
+    private void Unpause()
+    {
+        pauseScreen.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1f;
+        isPaused = false;
     }
 
     private void UpdateViewCount(int currentViewCount)
@@ -81,4 +89,5 @@ public class InGameUIController : MonoBehaviour
 
         timerText.text = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
     }
+
 }

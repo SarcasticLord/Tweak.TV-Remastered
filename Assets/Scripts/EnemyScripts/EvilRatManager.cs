@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EvilRatManager : BaseEnemy
@@ -26,6 +27,7 @@ public class EvilRatManager : BaseEnemy
     protected override void Start()
     {
         pickup = gameObject.GetComponent<PickupAndCarry>();
+        
         base.Start();
         isPickedUp = false;
         pickup.enabled = true;
@@ -109,6 +111,7 @@ public class EvilRatManager : BaseEnemy
         if (distanceToTarget > attackRange)
         {
             currentState = EnemyState.Chase;
+            canAttack = false;
             return;
         }
 
@@ -116,6 +119,7 @@ public class EvilRatManager : BaseEnemy
         {
             agent.velocity = Vector3.zero;
             Instantiate(hitbox, attackPoint);
+
             canAttack = false;
         }
         Vector3 direction =
@@ -131,5 +135,6 @@ public class EvilRatManager : BaseEnemy
             lookRotation,
             10f * Time.deltaTime);
     }
+    
 
 }

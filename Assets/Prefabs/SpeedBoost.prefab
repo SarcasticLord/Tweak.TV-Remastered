@@ -78,7 +78,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5081a8c454991f041b26f31cba466900, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5081a8c454991f041b26f31cba466900, type: 3}
+      propertyPath: m_TagString
+      value: KeyItem
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -95,13 +99,10 @@ PrefabInstance:
       addedObject: {fileID: 4205832664087727686}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5081a8c454991f041b26f31cba466900, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8009592237792915696}
+      addedObject: {fileID: 6872494906893806547}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5081a8c454991f041b26f31cba466900, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7590745613315875660}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5081a8c454991f041b26f31cba466900, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 21940007514291275}
+      addedObject: {fileID: 8464363973752439293}
   m_SourcePrefab: {fileID: 100100000, guid: 5081a8c454991f041b26f31cba466900, type: 3}
 --- !u!1 &676110504836972351 stripped
 GameObject:
@@ -137,10 +138,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676110504836972351}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 20
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -172,13 +173,13 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.25, y: 0.25, z: 0.1}
-  m_Center: {x: 0.001408577, y: 0.00074303744, z: 0.01578677}
---- !u!114 &8009592237792915696
+  m_Size: {x: 0.03289133, y: 0.032544896, z: 0.027933123}
+  m_Center: {x: 0.00023453907, y: -0.00071183144, z: 0.0021939862}
+--- !u!114 &6872494906893806547
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,12 +188,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 676110504836972351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7027bd55c72dc947894d30e84de44be, type: 3}
+  m_Script: {fileID: 11500000, guid: 4352277bcd3d695499e269f2b1310b4b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: be497814d427766419a3a7ceb2927567, type: 2}
-  currentDurability: 2
---- !u!114 &7590745613315875660
+  m_EditorClassIdentifier: Assembly-CSharp::TaskEnder
+  isCollector: 0
+  isPickup: 1
+  isTrash: 0
+  taskToBeEnded: {fileID: 11400000, guid: bcf2ba170ab1b2a499ebbb1a6a172390, type: 2}
+  pickupAndCarry: {fileID: 0}
+  isGrafitti: 0
+  grafittiImage: {fileID: 0}
+  canGrafitti: 0
+  grafittiChallenge: {fileID: 0}
+  trackEnemyDeath: 0
+--- !u!114 &8464363973752439293
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,25 +210,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 676110504836972351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fafe7e4e4dead29408eeed23037aceba, type: 3}
+  m_Script: {fileID: 11500000, guid: dc003abe7e48fd1429f21d86de754cbe, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: be497814d427766419a3a7ceb2927567, type: 2}
-  emissionColorProperty: _EmissionColor
-  emissionIntensity: 2
---- !u!114 &21940007514291275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 676110504836972351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c42b87f71f1e91e4eb2341547541aaf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: be497814d427766419a3a7ceb2927567, type: 2}
-  crosshair: {fileID: 21300000, guid: 19dea4e266019f24a98ab8f7fd50c875, type: 3}
-  pickup: {fileID: 21300000, guid: f0f26e279532bcd49aa894093f883385, type: 3}
-  itemSpawn: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::PickupAndCarry
+  player: {fileID: 0}
+  playerCamera: {fileID: 0}
+  playerInteract: {fileID: 0}
+  distanceFromCamera: 1.1
+  lerpTime: 0.2
+  lerpTimeStamp: 0
+  throwForce: 1000
+  isCarried: 0

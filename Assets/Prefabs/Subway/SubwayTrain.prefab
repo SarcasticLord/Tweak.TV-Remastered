@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 835834319980243697}
   m_Layer: 0
   m_Name: SUBWAY (2)
-  m_TagString: Untagged
+  m_TagString: Train
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183251863705517208}
-  m_Mesh: {fileID: 322372922932118070, guid: 282f9dd06b1d11f4f8cd28940c3e88e0, type: 3}
+  m_Mesh: {fileID: 322372922932118070, guid: 94f560deed3da0949b1d227406ecf8d5, type: 3}
 --- !u!23 &835834319980243697
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66,9 +66,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 725804396391725484, guid: 282f9dd06b1d11f4f8cd28940c3e88e0, type: 3}
+  - {fileID: 725804396391725484, guid: 94f560deed3da0949b1d227406ecf8d5, type: 3}
   - {fileID: 2100000, guid: 87a0d96f044f344358d0b5f38a65bfb5, type: 2}
-  - {fileID: -6922793697723135513, guid: 282f9dd06b1d11f4f8cd28940c3e88e0, type: 3}
+  - {fileID: -6922793697723135513, guid: 94f560deed3da0949b1d227406ecf8d5, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 4700853362650701572}
   m_Layer: 0
   m_Name: SUBWAY
-  m_TagString: Untagged
+  m_TagString: Train
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,7 +262,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371425996686028665}
-  m_Mesh: {fileID: 322372922932118070, guid: 282f9dd06b1d11f4f8cd28940c3e88e0, type: 3}
+  m_Mesh: {fileID: 322372922932118070, guid: 94f560deed3da0949b1d227406ecf8d5, type: 3}
 --- !u!23 &4700853362650701572
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -288,9 +288,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 725804396391725484, guid: 282f9dd06b1d11f4f8cd28940c3e88e0, type: 3}
+  - {fileID: 725804396391725484, guid: 94f560deed3da0949b1d227406ecf8d5, type: 3}
   - {fileID: 2100000, guid: 87a0d96f044f344358d0b5f38a65bfb5, type: 2}
-  - {fileID: -6922793697723135513, guid: 282f9dd06b1d11f4f8cd28940c3e88e0, type: 3}
+  - {fileID: -6922793697723135513, guid: 94f560deed3da0949b1d227406ecf8d5, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2865,6 +2865,7 @@ MonoBehaviour:
   m_UnmodifiedMeshVersion: 1216
   m_Size: {x: 4.6, y: 2, z: 5.03}
   m_LocalCenter: {x: 0, y: 0, z: 0}
+  m_PivotRatio: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -2968,7 +2969,7 @@ GameObject:
   - component: {fileID: 833393276556803139}
   m_Layer: 0
   m_Name: SUBWAY (3)
-  m_TagString: Untagged
+  m_TagString: Train
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2996,7 +2997,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3864436415574500768}
-  m_Mesh: {fileID: 322372922932118070, guid: 282f9dd06b1d11f4f8cd28940c3e88e0, type: 3}
+  m_Mesh: {fileID: 322372922932118070, guid: 94f560deed3da0949b1d227406ecf8d5, type: 3}
 --- !u!23 &833393276556803139
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3022,9 +3023,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 725804396391725484, guid: 282f9dd06b1d11f4f8cd28940c3e88e0, type: 3}
+  - {fileID: 725804396391725484, guid: 94f560deed3da0949b1d227406ecf8d5, type: 3}
   - {fileID: 2100000, guid: 87a0d96f044f344358d0b5f38a65bfb5, type: 2}
-  - {fileID: -6922793697723135513, guid: 282f9dd06b1d11f4f8cd28940c3e88e0, type: 3}
+  - {fileID: -6922793697723135513, guid: 94f560deed3da0949b1d227406ecf8d5, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3409,7 +3410,7 @@ GameObject:
   - component: {fileID: 1564915539922420363}
   m_Layer: 0
   m_Name: SUBWAY (1)
-  m_TagString: Untagged
+  m_TagString: Train
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3436,7 +3437,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8122797984187471789}
-  m_Mesh: {fileID: 322372922932118070, guid: 282f9dd06b1d11f4f8cd28940c3e88e0, type: 3}
+  m_Mesh: {fileID: 322372922932118070, guid: 94f560deed3da0949b1d227406ecf8d5, type: 3}
 --- !u!23 &1564915539922420363
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3462,9 +3463,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 725804396391725484, guid: 282f9dd06b1d11f4f8cd28940c3e88e0, type: 3}
+  - {fileID: 725804396391725484, guid: 94f560deed3da0949b1d227406ecf8d5, type: 3}
   - {fileID: 2100000, guid: 87a0d96f044f344358d0b5f38a65bfb5, type: 2}
-  - {fileID: -6922793697723135513, guid: 282f9dd06b1d11f4f8cd28940c3e88e0, type: 3}
+  - {fileID: -6922793697723135513, guid: 94f560deed3da0949b1d227406ecf8d5, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3501,7 +3502,7 @@ GameObject:
   - component: {fileID: 6720241468872985037}
   m_Layer: 0
   m_Name: SUBWAY (4)
-  m_TagString: Untagged
+  m_TagString: Train
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3528,7 +3529,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8138620876778359398}
-  m_Mesh: {fileID: 322372922932118070, guid: 282f9dd06b1d11f4f8cd28940c3e88e0, type: 3}
+  m_Mesh: {fileID: 322372922932118070, guid: 94f560deed3da0949b1d227406ecf8d5, type: 3}
 --- !u!23 &6720241468872985037
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3554,9 +3555,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 725804396391725484, guid: 282f9dd06b1d11f4f8cd28940c3e88e0, type: 3}
+  - {fileID: 725804396391725484, guid: 94f560deed3da0949b1d227406ecf8d5, type: 3}
   - {fileID: 2100000, guid: 87a0d96f044f344358d0b5f38a65bfb5, type: 2}
-  - {fileID: -6922793697723135513, guid: 282f9dd06b1d11f4f8cd28940c3e88e0, type: 3}
+  - {fileID: -6922793697723135513, guid: 94f560deed3da0949b1d227406ecf8d5, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3593,7 +3594,7 @@ GameObject:
   - component: {fileID: 8575121230108094724}
   m_Layer: 0
   m_Name: SUBWAY (5)
-  m_TagString: Untagged
+  m_TagString: Train
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3620,7 +3621,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8729369339078732012}
-  m_Mesh: {fileID: 322372922932118070, guid: 282f9dd06b1d11f4f8cd28940c3e88e0, type: 3}
+  m_Mesh: {fileID: 322372922932118070, guid: 94f560deed3da0949b1d227406ecf8d5, type: 3}
 --- !u!23 &8575121230108094724
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3646,9 +3647,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 725804396391725484, guid: 282f9dd06b1d11f4f8cd28940c3e88e0, type: 3}
+  - {fileID: 725804396391725484, guid: 94f560deed3da0949b1d227406ecf8d5, type: 3}
   - {fileID: 2100000, guid: 87a0d96f044f344358d0b5f38a65bfb5, type: 2}
-  - {fileID: -6922793697723135513, guid: 282f9dd06b1d11f4f8cd28940c3e88e0, type: 3}
+  - {fileID: -6922793697723135513, guid: 94f560deed3da0949b1d227406ecf8d5, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
