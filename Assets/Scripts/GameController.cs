@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour
         get {return _viewerRetention;}
         set
         {
-            _viewerRetention = MathF.Clamp(value, _minViewerRetention, _maxViewerRetention);
+            _viewerRetention = Mathf.Clamp(value, _minViewerRetention, _maxViewerRetention);
             OnViewerRetentionChanged?.Invoke(_viewerRetention);
         }
     }
@@ -88,7 +88,7 @@ public class GameController : MonoBehaviour
         streamSniperSpawnpoint = GameObject.Find("StreamSniperSpawn").transform;
         gameStarted = true;
         //Viewer Retention Base stats
-        ViewerRetention = 1f;
+        viewerRetention = 1f;
         shmovementMult = baseShmovementMult;
         violenceMult = baseViolenceMult;
         riskyMult = baseRiskyMult;
@@ -137,14 +137,14 @@ public class GameController : MonoBehaviour
         float newRetention = UnityEngine.Random.Range(0,1f); //Random roll if your gonna lose or gain a viewer
         if(newRetention < viewerRetention)
         {
-            viewCount += MathF.Ceiling(viewerRetention);    
+            viewCount += (int)MathF.Ceiling(viewerRetention);    
         }
         else
         {
             float viewDelta = viewerRetention > 0 ? -MathF.Ceiling(viewerRetention) : MathF.Floor(viewerRetention);
             //If viewer retention is between 0 and 1 decrease by 1
             //Else if viewer retention is in the negatives decreases by that negative value
-            viewCount += viewerRetention;
+            viewCount += (int)viewerRetention;
         }
         
         
@@ -166,18 +166,18 @@ public class GameController : MonoBehaviour
                 break;
             case ViewerRetentionCategories.SHMOVEMENT:
                 viewerRetention += increaseViewerRetention * shmovementMult;
-                shmovementMult = MathF.Clamp(shmovementMult - 0.01f, 0, baseShmovementMult); //Lower multiplier every time we increase retention
+                shmovementMult = Mathf.Clamp(shmovementMult - 0.01f, 0, baseShmovementMult); //Lower multiplier every time we increase retention
                 break;
             case ViewerRetentionCategories.VIOLENCE:
                 viewerRetention += increaseViewerRetention * violenceMult;
-                violenceMult = MathF.Clamp(violenceMult - 0.01f,0,baseViolenceMult);
+                violenceMult = Mathf.Clamp(violenceMult - 0.01f,0,baseViolenceMult);
                 break;
             case ViewerRetentionCategories.RISKY:
                 viewerRetention += increaseViewerRetention * riskyMult;
-                riskyMult = MathF.Clamp(riskyMult - 0.05f, 0, baseRiskyMult);
+                riskyMult = Mathf.Clamp(riskyMult - 0.05f, 0, baseRiskyMult);
                 break;
             default:
-                Debug.Log("Invalid viewer retention category");
+                UnityEngine.Debug.Log("Invalid viewer retention category");
                 break;
         }
 
@@ -188,11 +188,11 @@ public class GameController : MonoBehaviour
         if (InGameUIController.gameTime <= 15) return;// 15 second grace period
 
         if (decreaseViewerRetention == 0)//Natural Viewer retention decrease rate
-            ViewerRetention -= 0.01f;
+            viewerRetention -= 0.01f;
         else
         {
             //Allow other scripts to choose a value to decrease view count by
-            ViewerRetention -= decreaseViewerRetention; 
+            viewerRetention -= decreaseViewerRetention; 
         }
     }
 
