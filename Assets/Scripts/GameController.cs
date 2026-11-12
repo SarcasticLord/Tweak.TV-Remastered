@@ -40,10 +40,14 @@ public class GameController : MonoBehaviour
 
     private float viewChangeTime;
 
+    [Header("Stream Sniper")]
     [SerializeField] private GameObject streamSniper;
     private Transform streamSniperSpawnpoint;
 
-    private bool streamSniperSpawned;
+    // private bool streamSniperSpawned;
+    [SerializeField] private float streamSniperCooldown = 60f;
+    [SerializeField] private float streamSniperSpawnTimer = 0f;
+    [SerializeField] private float streamSniperSpawnChance = 0f;
     private bool gameStarted = false;
 
     public void Awake()
@@ -64,11 +68,11 @@ public class GameController : MonoBehaviour
         StopAllCoroutines(); //For safety
         streamSniperSpawnpoint = GameObject.Find("StreamSniperSpawn").transform;
         gameStarted = true;
-        streamSniperSpawned = false;
         viewCountDecreaseRate = 0f;
         viewCountIncreaseRate = 1f;
         currEnemyCount = 0;
-        StartCoroutine("ChangeViews");
+        // StartCoroutine(nameof(ChangeViews));
+        StartCoroutine(nameof(WeightedChanceToSpawnSniper));
         TaskMasterScript.instance.StartTaskMasterScript();
         ViewTracker.instance.StartViewTracker();
         GrafittiChallenge.instance.StartGrafittiChallenge();
@@ -127,7 +131,7 @@ public class GameController : MonoBehaviour
 
         if (InGameUIController.gameTime <= 60) return; //Prevent streamsniper from spawning before a minute passes
 
-        if (viewCount <= 0 && !streamSniperSpawned)
+        if (viewCount <= 0 && streamSniperSpawnTimer < streamSniperCooldown)
         {
             SpawnStreamSniper();
         }
@@ -152,10 +156,42 @@ public class GameController : MonoBehaviour
         }
     }
 
+    private IEnumerator WeightedChanceToSpawnSniper()
+    {
+        WaitForSeconds waitTime = new WaitForSeconds(1f);
+
+        while(gameStarted)
+        {
+            
+            if(streamSniperSpawnTimer < streamSniperCooldown)//So we dont spawn a million streamsnipers at once
+            {
+                streamSniperSpawnTimer += 1f;
+                yield return waitTime;
+                continue; 
+            } 
+
+            if(streamSniperSpawnChance < 1f) //if streamSniperSpawnChance = 1, 100% chance to spawn StreamSniper
+            {
+                streamSniperSpawnChance += 0.01f;
+            }
+
+            float newRandomChance = UnityEngine.Random.Range(0f, 1.0f);
+            if(newRandomChance < streamSniperSpawnChance)
+            {
+                SpawnStreamSniper();
+            }
+
+            yield return waitTime;
+            
+
+        }
+    }
+
     public void SpawnStreamSniper()
     {
         Instantiate(streamSniper, streamSniperSpawnpoint.position, streamSniper.transform.rotation);
-        streamSniperSpawned = true;
+        streamSniperSpawnTimer = 0f;//Reset stream sniper spawn timer
+        streamSniperSpawnChance = 0f;//Reset stream sniper spawn chance
     }
 
 }
