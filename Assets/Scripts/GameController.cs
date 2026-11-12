@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -8,6 +9,7 @@ public class GameController : MonoBehaviour
 
     public static GameController instance { get; private set; }
     public static event Action<int> OnViewCountChanged;
+    public static event Action<float> OnViewerRetentionChanged;
     public static event Action OnEnemyKilled;
 
     //Enemy related stuff
@@ -30,9 +32,28 @@ public class GameController : MonoBehaviour
             OnViewCountChanged?.Invoke(_viewCount); //Update views on the GUI
         }
     }
-    private float viewCountIncreaseRate = 1f; //Successful tasks and coolness increase this value
-    //TODO; ViewerRetention //Weighted value that adds or decreases viewers over time
-    private float viewCountDecreaseRate = 0f; //When damaged increase decrease rate
+    [SerializeField] private float _maxViewerRetention = 5f;
+    [SerializeField] private float _minViewerRetention = -3f; 
+    [SerializeField] private float _viewerRetention = 1f; //Weighted value that adds or decreases viewers over time
+    public float viewerRetention
+    {
+        get {return _viewerRetention;}
+        set
+        {
+            _viewerRetention = MathF.Clamp(value, _minViewerRetention, _maxViewerRetention);
+            OnViewerRetentionChanged?.Invoke(_viewerRetention);
+        }
+    }
+
+    public enum ViewerRetentionCategories {TASK, SHMOVEMENT, VIOLENCE, RISKY}
+
+    [SerializeField] private float baseShmovementMult = 2f;
+    private float shmovementMult;
+    [SerializeField] private float baseViolenceMult = 2f;
+    private float violenceMult;
+    [SerializeField] private float baseRiskyMult = 2f;
+    private float riskyMult;
+
     private float viewChangeTime;
     #endregion
 
@@ -66,14 +87,18 @@ public class GameController : MonoBehaviour
         StopAllCoroutines(); //For safety
         streamSniperSpawnpoint = GameObject.Find("StreamSniperSpawn").transform;
         gameStarted = true;
-        viewCountDecreaseRate = 0f;
-        viewCountIncreaseRate = 1f;
+        //Viewer Retention Base stats
+        ViewerRetention = 1f;
+        shmovementMult = baseShmovementMult;
+        violenceMult = baseViolenceMult;
+        riskyMult = baseRiskyMult;
+        //Reset enemy count
         currEnemyCount = 0;
-        // StartCoroutine(nameof(ChangeViews));
+        StartCoroutine(nameof(ChangeViewerRetention));
         currentStreamSniperSpawnChance = UnityEngine.Random.Range(0f, 1.0f);
         StartCoroutine(nameof(WeightedChanceToSpawnSniper));
         TaskMasterScript.instance.StartTaskMasterScript();
-        ViewTracker.instance.StartViewTracker();
+        // ViewTracker.instance.StartViewTracker();
         GrafittiChallenge.instance.StartGrafittiChallenge();
         TweakManager.instance.StartTweakManager();
     }
@@ -82,6 +107,7 @@ public class GameController : MonoBehaviour
     {
         gameStarted = false;
         StopAllCoroutines();
+        //TODO: save values for stats screen
     }
 
     //Called in EnemySpawner.cs script 
@@ -106,51 +132,78 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void IncreaseViews()
+    public void ChangeViews()
     {
-        viewCount += (int)(1 * viewCountIncreaseRate);
-    }
-
-    public void IncreaseViewIncreaseRate(float viewIncreaseRate)
-    {
-        viewCountIncreaseRate += viewIncreaseRate;
-    }
-
-    public void DecreaseViews(int decreaseViewsVal = 0)
-    {
-        if (InGameUIController.gameTime <= 15) return;// 15 second grace period
-
-        if (decreaseViewsVal == 0)//Default value to allow the ChangeViews() coroutine to fight each other
-            viewCount -= (int)(1 * viewCountDecreaseRate);
+        float newRetention = UnityEngine.Random.Range(0,1f); //Random roll if your gonna lose or gain a viewer
+        if(newRetention < viewerRetention)
+        {
+            viewCount += MathF.Ceiling(viewerRetention);    
+        }
         else
         {
-            //Allow other scripts to choose a value to decrease view count by
-            viewCount -= decreaseViewsVal; 
+            float viewDelta = viewerRetention > 0 ? -MathF.Ceiling(viewerRetention) : MathF.Floor(viewerRetention);
+            //If viewer retention is between 0 and 1 decrease by 1
+            //Else if viewer retention is in the negatives decreases by that negative value
+            viewCount += viewerRetention;
         }
-
+        
+        
         if (InGameUIController.gameTime <= 60) return; //Prevent streamsniper from spawning before a minute passes
 
-        if (viewCount <= 0 && streamSniperSpawnTimer < streamSniperCooldown)
+        if (viewCount <= 0 && streamSniperSpawnTimer < streamSniperCooldown/2)
         {
             SpawnStreamSniper();
         }
     }
 
-    public void IncreaseViewDecreaseRate(float viewDecreaseRate)
+    //Called in other scripts to increase viewer retention
+    public void IncreaseViewerRetention(ViewerRetentionCategories category, float increaseViewerRetention)
     {
-        viewCountDecreaseRate += viewDecreaseRate;
+        switch(category)
+        {
+            case ViewerRetentionCategories.TASK:
+                viewerRetention += increaseViewerRetention; 
+                break;
+            case ViewerRetentionCategories.SHMOVEMENT:
+                viewerRetention += increaseViewerRetention * shmovementMult;
+                shmovementMult = MathF.Clamp(shmovementMult - 0.01f, 0, baseShmovementMult); //Lower multiplier every time we increase retention
+                break;
+            case ViewerRetentionCategories.VIOLENCE:
+                viewerRetention += increaseViewerRetention * violenceMult;
+                violenceMult = MathF.Clamp(violenceMult - 0.01f,0,baseViolenceMult);
+                break;
+            case ViewerRetentionCategories.RISKY:
+                viewerRetention += increaseViewerRetention * riskyMult;
+                riskyMult = MathF.Clamp(riskyMult - 0.05f, 0, baseRiskyMult);
+                break;
+            default:
+                Debug.Log("Invalid viewer retention category");
+                break;
+        }
+
+    }
+
+    public void DecreaseViewerRetention(float decreaseViewerRetention = 0)
+    {
+        if (InGameUIController.gameTime <= 15) return;// 15 second grace period
+
+        if (decreaseViewerRetention == 0)//Natural Viewer retention decrease rate
+            ViewerRetention -= 0.01f;
+        else
+        {
+            //Allow other scripts to choose a value to decrease view count by
+            ViewerRetention -= decreaseViewerRetention; 
+        }
     }
 
     //Looping coroutine that has the view increase and view decrease rates fight
-    IEnumerator ChangeViews()
+    IEnumerator ChangeViewerRetention()
     {
         while (gameStarted)
         {
-            viewChangeTime = UnityEngine.Random.Range(1, 3);
-            //Slowly increase the decrease rate of viewers
-            viewCountDecreaseRate += 0.05f;
-            IncreaseViews();
-            DecreaseViews();
+            viewChangeTime = UnityEngine.Random.Range(1f, 3f);
+            ChangeViews();
+            DecreaseViewerRetention();
             yield return new WaitForSeconds(viewChangeTime);
         }
     }
