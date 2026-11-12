@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-7867084061776916191
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: fe386493f1fb44fdf91af277e154cd21
+  m_EffectName: Attenuation
+  m_MixLevel: 0628fb18f3c1f4ad48ad82b0308a1276
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -16,11 +30,17 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
+  - guid: 917bbfc7661d1448c89ae2fb546743fb
+    name: Announcer
+  - guid: 71c8856b674fc4e6288c696d516a33bd
+    name: CamFlash
   - guid: 027c9f420d7b543e682ca1af208b530b
     name: MasterVolume
   m_AudioMixerGroupViews:
   - guids:
     - f4d4bf5b3b44b47f2b73afa2fb545f38
+    - 91386eb7b266c4f4ba5c3151dc7b7925
+    - c4d776facc1cd45eb89752063f14fb55
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -33,7 +53,9 @@ AudioMixerGroupController:
   m_Name: Master
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: f4d4bf5b3b44b47f2b73afa2fb545f38
-  m_Children: []
+  m_Children:
+  - {fileID: 8150021440889059292}
+  - {fileID: 4022551858001529610}
   m_Volume: 027c9f420d7b543e682ca1af208b530b
   m_Pitch: ee1b310695a6b4f7fb93f22910670489
   m_Send: 00000000000000000000000000000000
@@ -69,3 +91,55 @@ AudioMixerSnapshotController:
   m_FloatValues:
     027c9f420d7b543e682ca1af208b530b: 0
   m_TransitionOverrides: {}
+--- !u!244 &890158644656877848
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: e76242ccfbf2c41239416cb4ac887417
+  m_EffectName: Attenuation
+  m_MixLevel: 06a3967c3f1f64c80ac1870adc9c6635
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &4022551858001529610
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CamFlash
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: c4d776facc1cd45eb89752063f14fb55
+  m_Children: []
+  m_Volume: 71c8856b674fc4e6288c696d516a33bd
+  m_Pitch: 7cec8af4233424781b2fa5143578fef6
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 890158644656877848}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &8150021440889059292
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Announcer
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 91386eb7b266c4f4ba5c3151dc7b7925
+  m_Children: []
+  m_Volume: 917bbfc7661d1448c89ae2fb546743fb
+  m_Pitch: 8e36f5e50375746d4bfcb11b102bd77a
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -7867084061776916191}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
