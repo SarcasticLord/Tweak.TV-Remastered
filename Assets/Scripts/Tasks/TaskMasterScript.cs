@@ -65,6 +65,7 @@ public class TaskMasterScript : MonoBehaviour
         
         descDisplay=GameObject.FindGameObjectWithTag("DescDisplay").GetComponent<TextMeshProUGUI>();
         viewTracker = GetComponent<ViewTracker>();
+        objectsCollected=0;grafittiCompleted=0;enemiesKilled=0;
         SetTasks();
     }
     private void OnEnable()
@@ -107,17 +108,7 @@ public class TaskMasterScript : MonoBehaviour
         viewTracker.baseOffset+=endedTask.TaskViewGain;
         SetTasks();
     }
-    public void TrueEndTask(int taskID)
-    {
-        TaskTemplate endedTask=null;
-        foreach (TaskTemplate task in availableTasks)
-        {
-            if(task.TaskID == taskID){endedTask=task;break;}
-        }
-        if(endedTask==null){return;}
-        availableTasks.Remove(endedTask);
-        SetTasks();
-    }
+    
 
     public void CollectObject() //Increment object and end task if complete
     {
