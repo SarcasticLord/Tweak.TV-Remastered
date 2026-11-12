@@ -98,7 +98,12 @@ public class TaskMasterScript : MonoBehaviour
         }
         if(endedTask==null){return;}
         availableTasks.Remove(endedTask);
-        if(0==availableTasks.Count){AddTask(endTask);}
+        if(0==availableTasks.Count)
+        {
+            //Put exit spawn here
+            Debug.Log("All Tasks Complete!");
+            AddTask(endTask);
+        }
         viewTracker.baseOffset+=endedTask.TaskViewGain;
         SetTasks();
     }

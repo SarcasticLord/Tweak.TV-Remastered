@@ -30,9 +30,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7846147016266648958}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000029802326, y: -0.7237372, z: -0.6900757, w: 0.0000008940698}
+  m_LocalRotation: {x: 0.0000005862421, y: -0.7237384, z: -0.6900745, w: 0.0000005862421}
   m_LocalPosition: {x: -0, y: -0.425, z: 0.5}
-  m_LocalScale: {x: 10, y: 10, z: 17.676414}
+  m_LocalScale: {x: 10, y: 10, z: 17.67642}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -112,13 +112,16 @@ MonoBehaviour:
   distance: 0.3
   movement: 0.25
   rotSpeed: 5
-  inventory: {fileID: 0}
   useItem: {fileID: 1120369429361536294, guid: 6055c109ca094264eb94c4fc10bcb837, type: 3}
   itemDrop: {fileID: 1638341257386738786, guid: 6055c109ca094264eb94c4fc10bcb837, type: 3}
   itemHeldPos: {x: -0.6, y: -0.4, z: 1}
   itemHeldRot: {x: 0.11670627, y: -0.6974093, z: -0.6974093, w: -0.11670627}
   isSelected: 0
   drinkingPos: {x: 0, y: -0.425, z: 0.5}
+  statusEffects: {fileID: 0}
+  duration: 15
+  uses: 3
+  isCaffeinated: 0
 --- !u!54 &4720274715637051064
 Rigidbody:
   m_ObjectHideFlags: 0
