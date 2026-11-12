@@ -28,11 +28,11 @@ public class LoadingScene : MonoBehaviour
 
         operation.allowSceneActivation = false;
 
-        while (operation.progress < 0.9f || Time.realtimeSinceStartup - startTime < 1f) // updates the loading bar based on what the status of the async loading
+        while (operation.progress < 0.9f || Time.realtimeSinceStartup - startTime < 1.5f) // updates the loading bar based on what the status of the async loading
         {
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
 
-            LoadingBar.value = progress;
+            LoadingBar.value = Mathf.MoveTowards(LoadingBar.value, progress, 0.5f * Time.deltaTime);
 
             Debug.Log("progress is: " + operation.progress);
             
