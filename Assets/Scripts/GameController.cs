@@ -4,51 +4,48 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    //Singleton Script
+    //GameController Script by Christian Andrion
 
     public static GameController instance { get; private set; }
-
     public static event Action<int> OnViewCountChanged;
-
     public static event Action OnEnemyKilled;
 
     //Enemy related stuff
+    [Header("Enemy Count")] 
+    #region 
     public int currEnemyCount = 0;
-
     public int maxEnemyCount = 20;
-
     public BaseEnemy.EnemyType lastEnemyKilled;
+    #endregion
 
-    public int _viewCount;
-
+    [Header("Viewer Count")]
+    #region 
+    [SerializeField] private int _viewCount;
     public int viewCount
     {
         get { return _viewCount; }
         set 
         {
             _viewCount = Mathf.Clamp(value,0,999999);
-            OnViewCountChanged?.Invoke(_viewCount);
+            OnViewCountChanged?.Invoke(_viewCount); //Update views on the GUI
         }
-
     }
-
     private float viewCountIncreaseRate = 1f; //Successful tasks and coolness increase this value
-
-    //TODO; ViewCountIncreaseRateDepreciationRate
-
+    //TODO; ViewerRetention //Weighted value that adds or decreases viewers over time
     private float viewCountDecreaseRate = 0f; //When damaged increase decrease rate
-
     private float viewChangeTime;
+    #endregion
 
     [Header("Stream Sniper")]
+    #region 
     [SerializeField] private GameObject streamSniper;
     private Transform streamSniperSpawnpoint;
-
-    // private bool streamSniperSpawned;
     [SerializeField] private float streamSniperCooldown = 60f;
     [SerializeField] private float streamSniperSpawnTimer = 0f;
     [SerializeField] private float streamSniperSpawnChance = 0f;
     [SerializeField] private float currentStreamSniperSpawnChance;
+    #endregion
+
     private bool gameStarted = false;
 
     public void Awake()
@@ -147,7 +144,7 @@ public class GameController : MonoBehaviour
     //Looping coroutine that has the view increase and view decrease rates fight
     IEnumerator ChangeViews()
     {
-        while (true)
+        while (gameStarted)
         {
             viewChangeTime = UnityEngine.Random.Range(1, 3);
             //Slowly increase the decrease rate of viewers
@@ -183,8 +180,6 @@ public class GameController : MonoBehaviour
             }
 
             yield return waitTime;
-            
-
         }
     }
 
