@@ -26,6 +26,7 @@ public class TweakManager : MonoBehaviour
         poisonVolume = GameObject.FindGameObjectWithTag("PoisonVolume").GetComponent<Volume>();
         if (poisonVolume!=null)
         {
+            Debug.Log("Poison Volume true");
             poisonVolume.enabled=true;
         }
     }
