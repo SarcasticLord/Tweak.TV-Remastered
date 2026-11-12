@@ -48,6 +48,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private float streamSniperCooldown = 60f;
     [SerializeField] private float streamSniperSpawnTimer = 0f;
     [SerializeField] private float streamSniperSpawnChance = 0f;
+    [SerializeField] private float currentStreamSniperSpawnChance;
     private bool gameStarted = false;
 
     public void Awake()
@@ -72,6 +73,7 @@ public class GameController : MonoBehaviour
         viewCountIncreaseRate = 1f;
         currEnemyCount = 0;
         // StartCoroutine(nameof(ChangeViews));
+        currentStreamSniperSpawnChance = UnityEngine.Random.Range(0f, 1.0f);
         StartCoroutine(nameof(WeightedChanceToSpawnSniper));
         TaskMasterScript.instance.StartTaskMasterScript();
         ViewTracker.instance.StartViewTracker();
@@ -175,8 +177,7 @@ public class GameController : MonoBehaviour
                 streamSniperSpawnChance += 0.01f;
             }
 
-            float newRandomChance = UnityEngine.Random.Range(0f, 1.0f);
-            if(newRandomChance < streamSniperSpawnChance)
+            if(currentStreamSniperSpawnChance < streamSniperSpawnChance)
             {
                 SpawnStreamSniper();
             }
@@ -192,6 +193,7 @@ public class GameController : MonoBehaviour
         Instantiate(streamSniper, streamSniperSpawnpoint.position, streamSniper.transform.rotation);
         streamSniperSpawnTimer = 0f;//Reset stream sniper spawn timer
         streamSniperSpawnChance = 0f;//Reset stream sniper spawn chance
+        currentStreamSniperSpawnChance = UnityEngine.Random.Range(0f, 1.0f);
     }
 
 }
