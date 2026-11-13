@@ -428486,9 +428486,9 @@ MonoBehaviour:
   viewTracker: {fileID: 2142405483}
   objectsNeededForTask: 1
   objectsCollected: 0
-  enemiesLeftAlive: 5
+  enemiesLeftAlive: 10
   enemiesKilled: 0
-  grafittiSpots: 3
+  grafittiSpots: 4
   grafittiCompleted: 0
   asylumTasks: []
   subwayTasks: []
@@ -428521,6 +428521,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TweakManager
   doubleViewSpeed: 0
   alwaysPoison: 0
+  moreBearTraps: 0
+  moreEnemies: 0
+  streamSniperImmediately: 0
+  deactivateLights: 0
+  lightDead: {fileID: 0}
+  allLights: []
+  allBonusSpawnAreas: []
+  allBonusTrapAreas: []
+  bearTrap: {fileID: 0}
+  enemiesToSpawn: 1
 --- !u!1 &2143462879
 GameObject:
   m_ObjectHideFlags: 0
