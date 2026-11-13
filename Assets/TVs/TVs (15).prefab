@@ -108,10 +108,10 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 34de75d2b724a4f25b839ab54208369b, type: 3}
   - {fileID: 2800000, guid: 0aeb91f4875394181809af81b5da5619, type: 3}
   - {fileID: 2800000, guid: 8ed891c9583024c6c8f6a0629ddfa7d6, type: 3}
-  - {fileID: 2800000, guid: 2460c23c2cb1c4e07a2e6f1a8f9d85cd, type: 3}
   - {fileID: 2800000, guid: f60e96940ec3b4838b261e88893323ab, type: 3}
   - {fileID: 2800000, guid: bc13fe4ab837740a79e4b94489c3c206, type: 3}
   - {fileID: 2800000, guid: 20250415d64694c7092dac8eee4303f8, type: 3}
+  brokenImage: {fileID: 2800000, guid: 2460c23c2cb1c4e07a2e6f1a8f9d85cd, type: 3}
   changeTime: 5
 --- !u!1 &6130297966742159105
 GameObject:
@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 3705123502460300846}
   - component: {fileID: 3011628394105231646}
   - component: {fileID: 1796790953561067383}
+  - component: {fileID: 5158215457362197539}
   m_Layer: 0
   m_Name: TVs (15)
   m_TagString: Untagged
@@ -205,3 +206,24 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5158215457362197539
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6130297966742159105}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020000003, y: 0.024682697, z: 0.020000005}
+  m_Center: {x: -2.936286e-12, y: -0.0013191252, z: 0.0000000027989897}
