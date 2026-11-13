@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform EnemyPoint;
     public GameObject Enemy; 
     public GameObject EnemyExists;
+    
 
     public bool facingRight = true;
 
@@ -57,10 +58,14 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            if (isSpawning && GameController.instance.increaseCurrEnemyCount())
+            for (int i = 0; i < TweakManager.instance.enemiesToSpawn; i++)
             {
-                EnemyExists = Instantiate(Enemy, EnemyPoint.position, facingRight ? EnemyPoint.rotation : Quaternion.Euler(-90, 0, 0));
+                if (isSpawning && GameController.instance.increaseCurrEnemyCount())
+                {
+                    EnemyExists = Instantiate(Enemy, EnemyPoint.position, facingRight ? EnemyPoint.rotation : Quaternion.Euler(-90, 0, 0));
+                }
             }
+            
             yield return new WaitForSeconds(spawnGap);  
         } 
     }
