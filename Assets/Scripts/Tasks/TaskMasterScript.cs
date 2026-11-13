@@ -105,7 +105,8 @@ public class TaskMasterScript : MonoBehaviour
             Debug.Log("All Tasks Complete!");
             AddTask(endTask);
         }
-        viewTracker.baseOffset+=endedTask.TaskViewGain;
+        // viewTracker.baseOffset+=endedTask.TaskViewGain;
+        GameController.instance.IncreaseViewerRetention(GameController.ViewerRetentionCategories.TASK, endedTask.TaskViewGain);
         SetTasks();
     }
     
