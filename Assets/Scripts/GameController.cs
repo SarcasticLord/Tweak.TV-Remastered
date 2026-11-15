@@ -101,6 +101,7 @@ public class GameController : MonoBehaviour
         // ViewTracker.instance.StartViewTracker();
         GrafittiChallenge.instance.StartGrafittiChallenge();
         TweakManager.instance.StartTweakManager();
+        checkForImmediateStreamSniperSpawn();
     }
 
     public void StopGame()
@@ -119,6 +120,11 @@ public class GameController : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    void checkForImmediateStreamSniperSpawn()
+    {
+        if(TweakManager.instance.streamSniperImmediately){SpawnStreamSniper();}
     }
 
     //Called in BaseEnemy.cs
