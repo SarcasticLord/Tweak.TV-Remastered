@@ -8,23 +8,22 @@ public class VentTP : MonoBehaviour
     {
         ventTPpoints = GameObject.FindGameObjectsWithTag("VentPoint");
     }
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        if(!other.CompareTag("Player"))
-            return;
-        int randomPoint = Random.Range(0, ventTPpoints.Length); // 0 - total random point
-        
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("tp " + other.name); 
-            CharacterController controller = other.GetComponent<CharacterController>(); // gets the controller, disables it, tps, then reenables it
-                
-            controller.enabled = false;
-            other.transform.position = ventTPpoints[randomPoint].transform.position;
-            controller.enabled = true;
-        }
-             
 
+    public void Teleport()
+    {
+        if(ventTPpoints.Length == 0)
+            return;
+
+        int randomPoint = Random.Range(0, ventTPpoints.Length); // 0 - total random point
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        CharacterController controller = player.GetComponent<CharacterController>(); // gets the controller, disables it, tps, then reenables it
+        
+        controller.enabled = false;
+        player.transform.position = ventTPpoints[randomPoint].transform.position;
+        controller.enabled = true;
+             
     }
+
+
 }

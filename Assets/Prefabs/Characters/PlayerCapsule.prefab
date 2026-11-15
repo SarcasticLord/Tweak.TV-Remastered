@@ -2094,10 +2094,10 @@ GameObject:
   - component: {fileID: 6028191206799576113}
   - component: {fileID: 8420447848467802541}
   - component: {fileID: 8784038733276363321}
+  - component: {fileID: 1867516630657381261}
   - component: {fileID: 703740887833873743}
   - component: {fileID: 328800369136569875}
   - component: {fileID: 2446721335840386804}
-  - component: {fileID: 1867516630657381261}
   - component: {fileID: 2590586664598903075}
   - component: {fileID: 6297344864791719450}
   - component: {fileID: 4865386028009060570}
@@ -2262,6 +2262,26 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1867516630657381261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5793440834577206791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 500654cdc2e715940a607df1365efcd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerItemInteract
+  maxDistance: 3
+  interactDistance: 5
+  heldObject: {fileID: 0}
+  playerCamera: {fileID: 2378955566042852624}
+  pickupCooldown: 1
+  grafittiChallenge: {fileID: 0}
+  viewTracker: {fileID: 0}
+  testRayScatter: 0
 --- !u!143 &703740887833873743
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2333,25 +2353,6 @@ MonoBehaviour:
   poisoned: 0
   shocked: 0
   trapped: 0
---- !u!114 &1867516630657381261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5793440834577206791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 500654cdc2e715940a607df1365efcd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerItemInteract
-  maxDistance: 3
-  heldObject: {fileID: 0}
-  playerCamera: {fileID: 2378955566042852624}
-  pickupCooldown: 1
-  grafittiChallenge: {fileID: 0}
-  viewTracker: {fileID: 0}
-  testRayScatter: 0
 --- !u!114 &2590586664598903075
 MonoBehaviour:
   m_ObjectHideFlags: 0

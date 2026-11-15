@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 public class PlayerItemInteract : MonoBehaviour
 {
     public float maxDistance = 0.1f;
+    public float interactDistance = 5f;
     public GameObject heldObject; //Should be empty in editor
     private PickupAndCarry heldObjectScript; //Should be empty in editor
     public GameObject playerCamera; //should be attached to camera
@@ -145,4 +146,27 @@ public class PlayerItemInteract : MonoBehaviour
         }
         
     }
+
+    void OnInteract(InputValue value)
+    {
+        RaycastHit hit;
+
+        Debug.Log("E");
+
+        if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactDistance))
+        {
+            VentTP vent = hit.collider.GetComponentInChildren<VentTP>();
+
+            if(vent != null)
+            {
+                Debug.Log("VENT");
+                vent.Teleport();
+            }
+        }
+        else
+        {
+            Debug.Log("Nothing");
+        }
+    }
+        
 }
