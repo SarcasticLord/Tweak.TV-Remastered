@@ -84,12 +84,4 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("Loading");
     }
 
-    public void RestartLevel()
-    {
-        if (string.IsNullOrEmpty(lastScene))
-        {
-            Debug.Log("loading last scene");
-        } // after you die it opens the last scene
-        SceneManager.LoadScene(lastScene);
-    }
 }

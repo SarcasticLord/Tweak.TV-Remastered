@@ -13,6 +13,7 @@ public class StartingSoonUI : MonoBehaviour
 
     public string asylumScene = "Asylum";
     public string stationScene = "LoadingScene";
+    public static string lastScene = "";
 
     private string selectedLevel = "";
 
@@ -21,6 +22,7 @@ public class StartingSoonUI : MonoBehaviour
 
     public void SelectAsylum()
     {
+        lastScene = "Asylum";
         asylumSelected.SetActive(true);
         stationSelected.SetActive(false);
         selectedLevel = asylumScene;
@@ -30,6 +32,7 @@ public class StartingSoonUI : MonoBehaviour
 
     public void SelectStation()
     {
+        lastScene = "LoadingScene";
         asylumSelected.SetActive(false);
         stationSelected.SetActive(true);
         selectedLevel = stationScene;
@@ -56,5 +59,14 @@ public class StartingSoonUI : MonoBehaviour
     public void CloseErrWindow()
     {
         selectErr.SetActive(false);
+    }
+
+     public void RestartLevel()
+    {
+        if (string.IsNullOrEmpty(lastScene))
+        {
+            Debug.Log("loading last scene");
+        } // after you die it opens the last scene
+        SceneManager.LoadScene(lastScene);
     }
 }
