@@ -1,4 +1,7 @@
+using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
+using static PlayerStatusEffectTracker;
 
 public class PlayerStatusEffects : MonoBehaviour
 {
@@ -25,9 +28,7 @@ public class PlayerStatusEffects : MonoBehaviour
 
     private float trappedSpeed = 0f;
     public GameObject trappedEffect;
-    
 
-    
     public PlayerMovementScript playerMovementScript;
 
     void Start()
@@ -115,4 +116,5 @@ public class PlayerStatusEffects : MonoBehaviour
             trappedEffect.SetActive(false);
         }
     }
+
 }

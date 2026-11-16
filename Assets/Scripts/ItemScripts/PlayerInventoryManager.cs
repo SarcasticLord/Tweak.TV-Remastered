@@ -40,9 +40,12 @@ public class PlayerInventoryManager : MonoBehaviour
         {
             if (item != items[selectedItem])
             {
-               BaseItem itemScript = item.gameObject.GetComponent<BaseItem>();
-               itemScript.isSelected = false;
-               item.SetActive(false);
+                BaseItem itemScript = item.gameObject.GetComponent<BaseItem>();
+                Renderer mesh = item.gameObject.GetComponent<Renderer>();
+                mesh.enabled = false;
+                itemScript.isSelected = false;
+                //item.SetActive(false);
+
             }
         }
     }
@@ -69,8 +72,11 @@ public class PlayerInventoryManager : MonoBehaviour
                 selectedItem = 0;
             }
             BaseItem itemScript = items[selectedItem].gameObject.GetComponent<BaseItem>();
+            Renderer mesh = items[selectedItem].gameObject.GetComponent<Renderer>();
+            mesh.enabled = true;
             itemScript.isSelected = true;
-            items[selectedItem].SetActive(true);
+
+            //items[selectedItem].SetActive(true);
             Debug.Log(selectedItem);
         }
     }

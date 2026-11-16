@@ -15,10 +15,10 @@ public class BaseItem : MonoBehaviour
     protected GameObject inventory; //items in PlayerCapsule
     public InputActionReference useItem;
     public InputActionReference itemDrop;
-
     public Vector3 itemHeldPos;
     public Quaternion itemHeldRot;
     protected Quaternion origRot;
+
 
     protected PlayerInventoryManager playerInventory; //gathered from inventory
 
@@ -95,6 +95,7 @@ public class BaseItem : MonoBehaviour
                 gameObject.transform.SetParent(null);
                 transform.rotation = origRot;
                 inInventory = false;
+                isSelected = false;
             }
         }
     }

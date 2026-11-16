@@ -3,15 +3,12 @@ using UnityEngine;
 public class ExitTrain : MonoBehaviour
 {
     public float speed = 20f;
-
     private float flipSpeed = 100f;
     public float timeToWait = 0f;
     public float timeBetweenTrains = 145;
     public float exitWaitTime = 60f;
-
     public float elapsedTime = 0f;
     private Rigidbody rb;
-
     public Transform[] waypoints;
     private int waypointIndex = 0;
 

@@ -22,7 +22,4 @@ public class ItemData : ScriptableObject
     public int uses;
     public ItemType itemType;
     public float offset;
-
-    public GameObject prefab;
-
 }
