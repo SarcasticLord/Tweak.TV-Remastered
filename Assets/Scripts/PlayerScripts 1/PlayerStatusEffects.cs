@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerStatusEffects : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class PlayerStatusEffects : MonoBehaviour
 
     private float trappedSpeed = 0f;
     public GameObject trappedEffect;
+    public Volume poisonVolume;
     
 
     
@@ -32,6 +34,7 @@ public class PlayerStatusEffects : MonoBehaviour
 
     void Start()
     {
+        poisonVolume = GameObject.FindGameObjectWithTag("PoisonVolume").GetComponent<Volume>();
         if (trappedEffect)
         {
             trappedEffect.SetActive(false);
@@ -57,12 +60,27 @@ public class PlayerStatusEffects : MonoBehaviour
         playerMovementScript.playerJumpForce = storeDefaultJumpForce;
 
     }
+    [ContextMenu(nameof(OnPoison))]
+    public void OnPoison()
+    {
+        if (TweakManager.instance.alwaysPoison){return;}
+        poisonVolume.enabled=true;
+    }
+
+
+    [ContextMenu(nameof(OnRemovePoison))]
+    public void OnRemovePoison()
+    {
+        if (TweakManager.instance.alwaysPoison){return;}
+        poisonVolume.enabled=false;
+    }
     [ContextMenu(nameof(OnCanDash))]
     public void OnCanDash()
     {
         playerMovementScript.playerSpeed = speedBoostSpeed;
         playerMovementScript.playerSlideSpeed = speedBoostSlideSpeed;
     }
+    
 
     [ContextMenu(nameof(OnRemoveCanDash))]
     public void OnRemoveCanDash()
