@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 
 public class GameController : MonoBehaviour
 {
@@ -67,6 +68,13 @@ public class GameController : MonoBehaviour
     [SerializeField] private float currentStreamSniperSpawnChance;
     #endregion
 
+    [Header("Statistics")]
+    #region 
+    public int enemiesKilled;
+    public float streamLength;
+    public int maxViewership;
+    #endregion
+
     private bool gameStarted = false;
 
     public void Awake()
@@ -87,18 +95,25 @@ public class GameController : MonoBehaviour
         StopAllCoroutines(); //For safety
         streamSniperSpawnpoint = GameObject.Find("StreamSniperSpawn").transform;
         gameStarted = true;
+
         //Viewer Retention Base stats
         viewerRetention = 1f;
         shmovementMult = baseShmovementMult;
         violenceMult = baseViolenceMult;
         riskyMult = baseRiskyMult;
+        
+        //Reset Viewership stats
+        enemiesKilled = 0;
+        streamLength = 0;
+        maxViewership = 0;
+
         //Reset enemy count
         currEnemyCount = 0;
         StartCoroutine(nameof(ChangeViewerRetention));
         currentStreamSniperSpawnChance = UnityEngine.Random.Range(0f, 1.0f);
         StartCoroutine(nameof(WeightedChanceToSpawnSniper));
+        
         TaskMasterScript.instance.StartTaskMasterScript();
-        // ViewTracker.instance.StartViewTracker();
         GrafittiChallenge.instance.StartGrafittiChallenge();
         TweakManager.instance.StartTweakManager();
         checkForImmediateStreamSniperSpawn();
@@ -109,6 +124,7 @@ public class GameController : MonoBehaviour
         gameStarted = false;
         StopAllCoroutines();
         //TODO: save values for stats screen
+        
     }
 
     //Called in EnemySpawner.cs script 
@@ -134,6 +150,7 @@ public class GameController : MonoBehaviour
         if(currEnemyCount > 0)
         {
             currEnemyCount--;
+            enemiesKilled++;
             OnEnemyKilled?.Invoke();
         }
     }
@@ -151,6 +168,11 @@ public class GameController : MonoBehaviour
             //If viewer retention is between 0 and 1 decrease by 1
             //Else if viewer retention is in the negatives decreases by that negative value
             viewCount += (int)viewerRetention;
+        }
+
+        if(viewCount > maxViewership)
+        {
+            maxViewership = viewCount;
         }
         
         
