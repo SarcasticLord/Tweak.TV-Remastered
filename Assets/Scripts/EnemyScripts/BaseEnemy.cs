@@ -15,56 +15,61 @@ public class BaseEnemy : MonoBehaviour
     //Component variables
     protected Rigidbody rb;
     protected NavMeshAgent agent;
-    public GameObject blood;
-    public Material ghostMat;
-
+    [SerializeField] protected GameObject blood;
+    [SerializeField] protected Material ghostMat;
     protected bool isDead;
-   
 
+
+
+    //Health Variables, use in other scripts
+    [SerializeField] protected int health;
+    protected int currentHealth;
+   
+    // Jumping between links variables
     protected bool canUseLinks = true;
     private bool isJumping = false;
-    public float jumpTime = 3f;
-    public float jumpHeight = 3f;
+    [SerializeField] protected float jumpTime = 3f;
+    [SerializeField] protected float jumpHeight = 3f;
 
     //Wander variables
-    public float wanderSpeed = 1f;
-    public float wanderRadius = 1f;
-    public float wanderInterval = 5f;
-    public float wanderTimer;
-    public float wanderTolerance = 1f;
-    public float idleTime = 10f;
+    [SerializeField] protected float wanderSpeed = 1f;
+    [SerializeField] protected float wanderRadius = 1f;
+    [SerializeField] protected float wanderInterval = 5f;
+    [SerializeField] protected float wanderTimer;
+    [SerializeField] protected float wanderTolerance = 1f;
+    [SerializeField] protected float idleTime = 10f;
 
     //Chase variables
-    public float chaseSpeed = 3f;
+    [SerializeField] protected float chaseSpeed = 3f;
 
 
     //Attack variables
-    public float attackRange = 2f;
-    public float cooldown = 3f;
+    [SerializeField] protected float attackRange = 2f;
+    [SerializeField] protected float cooldown = 3f;
     protected float attackTimer;
     protected bool canAttack;
 
 
     //Stun variables
-    public GameObject stunObj;
-    public float stunTimer;
-    public float stunDuration = 999f; //Original Val = 5f
-    public float stunCooldown = 1f;
+    [SerializeField] protected GameObject stunObj;
+    [SerializeField] protected float stunTimer;
+    [SerializeField] protected float stunDuration = 999f; //Original Val = 5f
+    [SerializeField] protected float stunCooldown = 1f;
 
 
     //Detection variables
-    public float detectionAngle = 60f;
-    public float detectionRange = 10f;
-    public LayerMask obstructionMask;
-    public LayerMask targetMask;
+    [SerializeField] protected float detectionAngle = 60f;
+    [SerializeField] protected float detectionRange = 10f;
+    [SerializeField] protected LayerMask obstructionMask;
+    [SerializeField] protected LayerMask targetMask;
 
     protected Transform chaseTarget;
     protected bool targetVisible = false;
 
     private float lookTimer;
-    public float lookInterval = 0.1f;
+    [SerializeField] protected float lookInterval = 0.1f;
 
-    public float targetMemoryTime = 3f;
+    [SerializeField] protected float targetMemoryTime = 3f;
     protected float lastSeenTimer;
 
     protected Vector3 lastTargetPos;
@@ -75,9 +80,9 @@ public class BaseEnemy : MonoBehaviour
     private Vector3 currentDestination;
 
 
-    public LayerMask groundMask;
+    [SerializeField] protected LayerMask groundMask;
 
-    public Transform rayOrigin;
+    [SerializeField] protected Transform rayOrigin;
 
     //Optional
     protected Animator animator;
@@ -103,7 +108,8 @@ public class BaseEnemy : MonoBehaviour
         stunTimer = 0f;
         attackTimer = 0f;
         currentState = EnemyState.Wander;
-        ChooseNewWanderPoint();
+        if (!ChooseNewWanderPoint())
+            wanderTimer = idleTime;
         if (animator != null || animator.runtimeAnimatorController == null)
         {
             StartCoroutine(UpdateAnimations());
@@ -175,9 +181,9 @@ public class BaseEnemy : MonoBehaviour
 
     //Meant to test death, may be removed/altered later
 
-    protected void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Hitbox"))
+        if (other.gameObject.CompareTag("PlayerHitbox"))
         {
             Debug.Log("Death");
             currentState = EnemyState.Death;
@@ -254,21 +260,26 @@ public class BaseEnemy : MonoBehaviour
             return;
         }
 
-        if (agent.pathPending || agent.remainingDistance > wanderTolerance)
+        if (agent.pathPending || !ReachedDestination())
             return;
 
         wanderTimer += Time.deltaTime;
 
-        if (ReachedDestination())
+        if (wanderTimer >= idleTime)
         {
-            agent.ResetPath();
-            wanderTimer += Time.deltaTime;
-
-            if (wanderTimer >= idleTime)
-            {
-                ChooseNewWanderPoint();
-            }
+            ChooseNewWanderPoint();
         }
+
+        //if (ReachedDestination())
+        //{
+        //    agent.ResetPath();
+        //    wanderTimer += Time.deltaTime;
+
+        //    if (wanderTimer >= idleTime)
+        //    {
+        //        ChooseNewWanderPoint();
+        //    }
+        //}
     }
 
     protected virtual void AttackBehavior()
@@ -425,11 +436,11 @@ public class BaseEnemy : MonoBehaviour
         isJumping = false;
     }
  
-    public void MoveTo(Vector3 destination)
+    protected void MoveTo(Vector3 destination)
     {
         agent.SetDestination(destination);
     }
-    public virtual void SetTarget(Transform target)
+    protected virtual void SetTarget(Transform target)
         {
             chaseTarget = target;
  
@@ -446,7 +457,7 @@ public class BaseEnemy : MonoBehaviour
                (!agent.hasPath || agent.velocity.sqrMagnitude < 0.01f);
     }
 
-    public void Look()
+    protected void Look()
     {
         targetVisible = false;
 
@@ -483,27 +494,44 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
-    protected virtual void ChooseNewWanderPoint()
+    protected virtual bool ChooseNewWanderPoint()
     {
-        wanderTimer = 0f;
+        //wanderTimer = 0f;
 
-        Vector3 randomDirection = transform.position + Random.insideUnitSphere * wanderRadius;
+        //Vector3 randomDirection = transform.position + Random.insideUnitSphere * wanderRadius;
 
-        if (NavMesh.SamplePosition(
-            randomDirection,
-            out NavMeshHit hit,
-            wanderRadius,
-            NavMesh.AllAreas))
+        //if (NavMesh.SamplePosition(
+        //    randomDirection,
+        //    out NavMeshHit hit,
+        //    wanderRadius,
+        //    NavMesh.AllAreas))
+        //{
+        //    NavMeshPath path = new NavMeshPath();
+        //    // Verify the destination is reachable
+        //    if (agent.CalculatePath(hit.position, path) &&
+        //        path.status == NavMeshPathStatus.PathComplete)
+        //    {
+        //        currentDestination = hit.position;
+        //        agent.SetDestination(currentDestination);
+        //    }
+        //}
+
+        Vector2 circle = Random.insideUnitCircle * wanderRadius;
+        Vector3 candidate = agent.nextPosition + new Vector3(circle.x, 0f, circle.y);
+
+        if (NavMesh.SamplePosition(candidate, out NavMeshHit hit, wanderRadius, NavMesh.AllAreas))
         {
             NavMeshPath path = new NavMeshPath();
-            // Verify the destination is reachable
             if (agent.CalculatePath(hit.position, path) &&
                 path.status == NavMeshPathStatus.PathComplete)
             {
+                wanderTimer = 0f;          // only reset on success
                 currentDestination = hit.position;
-                agent.SetDestination(currentDestination);
+                agent.SetDestination(hit.position);
+                return true;
             }
         }
+        return false;
     }
     private IEnumerator UpdateAnimations()
     {

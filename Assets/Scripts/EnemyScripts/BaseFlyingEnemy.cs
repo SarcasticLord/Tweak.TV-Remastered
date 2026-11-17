@@ -13,8 +13,10 @@ public class BaseFlyingEnemy : BaseEnemy
 
     protected override void Start()
     {
-        base.Start();
+        
         agent.baseOffset = hoverOffset;
+        attackRange = attackRange + hoverOffset; //Compensates for hover height
+        base.Start();
     }
 
     protected override IEnumerator Stunned()
@@ -103,6 +105,7 @@ public class BaseFlyingEnemy : BaseEnemy
 
     protected override void Death()
     {
+        GameController.instance.decreaseCurrEnemyCount(enemyType);
         if (blood != null)
             blood.SetActive(true);
         agent.enabled = false;
@@ -118,4 +121,26 @@ public class BaseFlyingEnemy : BaseEnemy
 
     }
 
+    protected float FlatDistanceToTarget()
+    {
+        Vector3 d = chaseTarget.position - transform.position;
+        d.y = 0f;
+        return d.magnitude;
+    }
+    protected override void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PlayerHitbox"))
+        {
+            if (health > 1)
+            {
+                Debug.Log("Hit once! Stun");
+                currentState = EnemyState.Stunned;
+            }
+            else
+            {
+                Debug.Log("Death");
+                currentState = EnemyState.Death;
+            }
+        }
+    }
 }
