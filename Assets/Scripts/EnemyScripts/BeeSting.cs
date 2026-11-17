@@ -18,6 +18,7 @@ public class BeeSting : AttackHitbox
                 if(tag == "Player")
                 {
                     playerStatus = other.gameObject.GetComponent<PlayerStatusEffects>();
+                    
                 }
                 //Debug.Log(other.tag.ToString() + " attacked. Decreasing views...");
                 Destroy(gameObject);
