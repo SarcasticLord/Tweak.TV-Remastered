@@ -13,7 +13,6 @@ public class BaseFlyingEnemy : BaseEnemy
 
     protected override void Start()
     {
-        
         agent.baseOffset = hoverOffset;
         attackRange = attackRange + hoverOffset; //Compensates for hover height
         base.Start();
@@ -131,10 +130,11 @@ public class BaseFlyingEnemy : BaseEnemy
     {
         if (other.gameObject.CompareTag("PlayerHitbox"))
         {
-            if (health > 1)
+            if (currentHealth > 1 && currentState != EnemyState.Stunned)
             {
                 Debug.Log("Hit once! Stun");
                 currentState = EnemyState.Stunned;
+                currentHealth--;
             }
             else
             {

@@ -22,7 +22,7 @@ public class BaseEnemy : MonoBehaviour
 
 
     //Health Variables, use in other scripts
-    [SerializeField] protected int health;
+    [SerializeField] protected int health = 3;
     protected int currentHealth;
    
     // Jumping between links variables
@@ -89,6 +89,7 @@ public class BaseEnemy : MonoBehaviour
 
     protected void Awake()
     {
+        currentHealth = health;
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
