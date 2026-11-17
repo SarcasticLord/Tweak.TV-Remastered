@@ -115,7 +115,7 @@ public class PlayerStatusEffectTracker : MonoBehaviour
                 {
                     if(!swarmed)
                     {
-                        GameController.instance.DecreaseViews(3); //Decrease a flat 3 viewers when swarmed is triggered
+                        GameController.instance.DecreaseViewerRetention(0.5f); //Viewer Retention when swarmed is triggered
                         onPlayerStatusChanged?.Invoke(status);
                     }
                     swarmed = true;
@@ -139,6 +139,7 @@ public class PlayerStatusEffectTracker : MonoBehaviour
                 }
                 else
                 {
+                    GameController.instance.DecreaseViewerRetention(0.5f);
                     onPlayerStatusChanged?.Invoke(status);
                     shocked = true;
                 }
@@ -150,6 +151,7 @@ public class PlayerStatusEffectTracker : MonoBehaviour
                 }
                 else
                 {
+                    GameController.instance.DecreaseViewerRetention(0.5f);
                     onPlayerStatusChanged?.Invoke(status);
                     trapped = true;
                 }

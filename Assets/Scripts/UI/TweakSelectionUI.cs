@@ -3,16 +3,36 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class TweakSelectionUI : MonoBehaviour
 {
-
+    [Header("Panel")]
     public GameObject spawnSSImmUI;
     public GameObject fastViewDeclineUI;
     public GameObject moreTrapsUI;
     public GameObject allLightsOffUI;
     public GameObject cameraFiltersUI;
-    public GameObject moreEnemieUI;
+    public GameObject moreEnemiesUI;
+
+    [Header("Toggles")]
+    public Toggle spawnSSImmToggle;
+    public Toggle fastViewDeclineToggle;
+    public Toggle moreTrapsToggle;
+    public Toggle allLightsOffToggle;
+    public Toggle cameraFiltersToggle;
+    public Toggle moreEnemiesToggle;
+
+    void Awake()
+    {
+        spawnSSImmToggle.onValueChanged.AddListener(TweakManager.instance.FlipspawnSSImm);
+        fastViewDeclineToggle.onValueChanged.AddListener(TweakManager.instance.FlipfastViewDecline);
+        moreTrapsToggle.onValueChanged.AddListener(TweakManager.instance.FlipmoreTraps);
+        allLightsOffToggle.onValueChanged.AddListener(TweakManager.instance.FlipallLightsOff);
+        cameraFiltersToggle.onValueChanged.AddListener(TweakManager.instance.FlipcameraFilters);
+        moreEnemiesToggle.onValueChanged.AddListener(TweakManager.instance.FlipmoreEnemies);
+    }
+    
 
 // these are for the buttons. clicking a button to view the description will set its desc true and set all the othes to false
 // is there a better way to do this? probably
@@ -23,7 +43,8 @@ public class TweakSelectionUI : MonoBehaviour
         moreTrapsUI.SetActive(false);
         allLightsOffUI.SetActive(false);
         cameraFiltersUI.SetActive(false);
-        moreEnemieUI.SetActive(false);
+        moreEnemiesUI.SetActive(false);
+        
     }
 
     public void SelectFastDecline()
@@ -33,7 +54,8 @@ public class TweakSelectionUI : MonoBehaviour
         moreTrapsUI.SetActive(false);
         allLightsOffUI.SetActive(false);
         cameraFiltersUI.SetActive(false);
-        moreEnemieUI.SetActive(false);
+        moreEnemiesUI.SetActive(false);
+        
     }
 
     public void SelectMoreTraps()
@@ -43,7 +65,8 @@ public class TweakSelectionUI : MonoBehaviour
         moreTrapsUI.SetActive(true);
         allLightsOffUI.SetActive(false);
         cameraFiltersUI.SetActive(false);
-        moreEnemieUI.SetActive(false);
+        moreEnemiesUI.SetActive(false);
+        
     }
 
     public void SelectLightsOff()
@@ -53,7 +76,8 @@ public class TweakSelectionUI : MonoBehaviour
         moreTrapsUI.SetActive(false);
         allLightsOffUI.SetActive(true);
         cameraFiltersUI.SetActive(false);
-        moreEnemieUI.SetActive(false);
+        moreEnemiesUI.SetActive(false);
+        
     }
 
     public void SelectCameraFilters()
@@ -63,7 +87,7 @@ public class TweakSelectionUI : MonoBehaviour
         moreTrapsUI.SetActive(false);
         allLightsOffUI.SetActive(false);
         cameraFiltersUI.SetActive(true);
-        moreEnemieUI.SetActive(false);
+        moreEnemiesUI.SetActive(false);
     }
 
     public void SelectMoreEnemies()
@@ -73,7 +97,7 @@ public class TweakSelectionUI : MonoBehaviour
         moreTrapsUI.SetActive(false);
         allLightsOffUI.SetActive(false);
         cameraFiltersUI.SetActive(false);
-        moreEnemieUI.SetActive(true);
+        moreEnemiesUI.SetActive(true);
     }
 
     

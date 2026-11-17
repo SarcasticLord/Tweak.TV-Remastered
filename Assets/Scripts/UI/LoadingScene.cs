@@ -17,8 +17,7 @@ public class LoadingScene : MonoBehaviour
     }
 
     // the async loader loaded the scene too fast and lag from start up was still visible. 
-    // yes that means i did build in lag to the game
-    // these extra two seconds should allow the game to load before the player can get in
+
     IEnumerator LoadLevelAsync()
     {
         float startTime = Time.realtimeSinceStartup;
@@ -29,11 +28,11 @@ public class LoadingScene : MonoBehaviour
 
         operation.allowSceneActivation = false;
 
-        while (operation.progress < 0.9f || Time.realtimeSinceStartup - startTime < 2f)
+        while (operation.progress < 0.9f || Time.realtimeSinceStartup - startTime < 1.5f) // updates the loading bar based on what the status of the async loading
         {
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
 
-            LoadingBar.value = progress;
+            LoadingBar.value = Mathf.MoveTowards(LoadingBar.value, progress, 0.5f * Time.deltaTime);
 
             Debug.Log("progress is: " + operation.progress);
             

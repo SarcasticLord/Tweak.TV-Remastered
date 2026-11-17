@@ -48,15 +48,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TaskMasterScript
   availableTasks: []
-  endTask: {fileID: 0}
+  endTask: {fileID: 11400000, guid: 546574e1353b00c4d9101f854ca5a90c, type: 2}
   descDisplay: {fileID: 0}
   viewTracker: {fileID: 0}
-  objectsNeededForTask: 0
+  objectsNeededForTask: 5
   objectsCollected: 0
-  enemiesLeftAlive: 0
+  enemiesLeftAlive: 5
   enemiesKilled: 0
-  grafittiSpots: 0
+  grafittiSpots: 3
   grafittiCompleted: 0
+  asylumTasks:
+  - {fileID: 11400000, guid: 54f4405b0c262314998117ffc98ed7e8, type: 2}
+  - {fileID: 11400000, guid: 774d716bc8570cd43843cf58c9f915ee, type: 2}
+  - {fileID: 11400000, guid: 2a2fabecc86593346873c23cd24c8a60, type: 2}
+  - {fileID: 11400000, guid: 45a9ebc8a02432a408effd72622e2266, type: 2}
+  subwayTasks:
+  - {fileID: 11400000, guid: bcf2ba170ab1b2a499ebbb1a6a172390, type: 2}
+  - {fileID: 11400000, guid: 48bf57fcfc4b0f949ad0c275b6e3f801, type: 2}
+  - {fileID: 11400000, guid: 9195fadadd2add34fae965b4b5b1f9c2, type: 2}
+  - {fileID: 11400000, guid: 45a9ebc8a02432a408effd72622e2266, type: 2}
 --- !u!114 &6995368675044081879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,11 +87,15 @@ MonoBehaviour:
   player: {fileID: 0}
   inputImages: []
   systemActive: 0
-  arrowSprite: {fileID: 0}
-  correctSprite: {fileID: 0}
+  arrowSprite: {fileID: 21300000, guid: 372373826a9b9c8499feec7020fa5b5c, type: 3}
+  correctSprite: {fileID: 21300000, guid: bc48d74203ee40b41b0cbd052ca599c7, type: 3}
   canBeStarted: 0
   grafittiResult: {fileID: 0}
-  grafittiResultImages: []
+  grafittiResultImages:
+  - {fileID: 2100000, guid: 994c2d0ce0f3fe84eaf1dfa4789dcea8, type: 2}
+  - {fileID: 2100000, guid: 247ad8f1429f4b54abf0c1e23225f629, type: 2}
+  - {fileID: 2100000, guid: 9869cdcb28e927b44bede10cc56d6e46, type: 2}
+  - {fileID: 2100000, guid: fb2763d1984b8b04f842d4ac8ba2152d, type: 2}
   wallTaskEnder: {fileID: 0}
 --- !u!114 &9161870935327133908
 MonoBehaviour:
@@ -117,3 +131,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TweakManager
   doubleViewSpeed: 0
   alwaysPoison: 0
+  moreBearTraps: 0
+  moreEnemies: 0
+  streamSniperImmediately: 0
+  deactivateLights: 0
+  lightDead: {fileID: 2100000, guid: 123ae6503dc63f14899a9e3ad3517a67, type: 2}
+  allLights: []
+  allBonusSpawnAreas: []
+  allBonusTrapAreas: []
+  bearTrap: {fileID: 1865467616548538108, guid: d387461cd09125b4b87d7ca26109ad83, type: 3}

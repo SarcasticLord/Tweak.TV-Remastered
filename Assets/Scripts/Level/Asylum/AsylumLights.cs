@@ -145,6 +145,14 @@ public class AsylumLights : MonoBehaviour
             glowMat.SetColor("_EmissionColor", emissionColor * intensity);
         }
     }
+    void OnDisable()
+    {
+        if (flickerCo != null)
+        {
+            StopCoroutine(flickerCo);
+            flickerCo = null;
+        }
+    }
         
 }
 
