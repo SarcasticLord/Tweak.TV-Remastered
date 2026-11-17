@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class TaskMasterScript : MonoBehaviour
@@ -19,6 +20,13 @@ public class TaskMasterScript : MonoBehaviour
     public int grafittiCompleted; //The current number of enemies killed
     public TaskTemplate[] asylumTasks;
     public TaskTemplate[] subwayTasks;
+    public string level;
+    public GameObject coffeeTaskItem;
+    public GameObject pillTaskItem;
+    public GameObject logTaskItem;
+    public List<Transform> coffeeTaskLocation = new List<Transform>();
+    public List<Transform> pillTaskLocation = new List<Transform>();
+    public List<Transform> logTaskLocation = new List<Transform>();
     public void SetTasks() //Change the task and task description
     {
         descDisplay.text="";
@@ -31,6 +39,11 @@ public class TaskMasterScript : MonoBehaviour
             descDisplay.text+="\n\n";
         }
         
+    }
+
+    public bool checkForThisTask(TaskTemplate taskToCheck)
+    {
+        return availableTasks.Contains(taskToCheck);
     }
     public void EndAllTasks()
     {
@@ -67,6 +80,42 @@ public class TaskMasterScript : MonoBehaviour
         viewTracker = GetComponent<ViewTracker>();
         objectsCollected=0;grafittiCompleted=0;enemiesKilled=0;
         SetTasks();
+        randomizeItemLocations();
+    }
+
+    void randomizeItemLocations()
+    {
+        
+        if (level == "asylum")
+        {
+            GameObject[] pillPoints = GameObject.FindGameObjectsWithTag("PillSpawns");
+            for (int i = 0; i < pillPoints.Length; i++)
+            {
+                pillTaskLocation.Add(pillPoints[i].transform);
+            }
+            GameObject[] logPoints = GameObject.FindGameObjectsWithTag("logSpawns");
+            for (int i = 0; i < logPoints.Length; i++)
+            {
+                logTaskLocation.Add(logPoints[i].transform);
+            }
+            int pillIndex = Random.Range(0, pillTaskLocation.Count);
+            Transform pillLocationOfChoice = pillTaskLocation[pillIndex];
+            int logIndex = Random.Range(0, logTaskLocation.Count);
+            Transform logLocationOfChoice = logTaskLocation[logIndex];
+            Instantiate(pillTaskItem, pillLocationOfChoice.position, pillTaskItem.transform.rotation);
+            Instantiate(logTaskItem, logLocationOfChoice.position, logTaskItem.transform.rotation);
+        }
+        else if (level == "subway")
+        {
+            GameObject[] coffeePoints = GameObject.FindGameObjectsWithTag("CoffeeSpawns");
+            for (int i = 0; i < coffeePoints.Length; i++)
+            {
+                coffeeTaskLocation.Add(coffeePoints[i].transform);
+            }
+            int coffeeIndex = Random.Range(0, coffeeTaskLocation.Count);
+            Transform coffeeLocationOfChoice = coffeeTaskLocation[coffeeIndex];
+            Instantiate(coffeeTaskItem, coffeeLocationOfChoice.position, coffeeTaskItem.transform.rotation);
+        }
     }
     private void OnEnable()
     {
