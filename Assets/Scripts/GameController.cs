@@ -117,7 +117,10 @@ public class GameController : MonoBehaviour
         GrafittiChallenge.instance.StartGrafittiChallenge();
         TweakManager.instance.StartTweakManager();
         checkForImmediateStreamSniperSpawn();
+        
     }
+
+    
 
     public void StopGame()
     {
