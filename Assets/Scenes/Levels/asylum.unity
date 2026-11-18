@@ -81322,7 +81322,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 774d716bc8570cd43843cf58c9f915ee, type: 2}
   - {fileID: 11400000, guid: 2a2fabecc86593346873c23cd24c8a60, type: 2}
   - {fileID: 11400000, guid: 45a9ebc8a02432a408effd72622e2266, type: 2}
-  endTask: {fileID: 0}
+  endTask: {fileID: 11400000, guid: 546574e1353b00c4d9101f854ca5a90c, type: 2}
   descDisplay: {fileID: 1011402920}
   viewTracker: {fileID: 650189415}
   objectsNeededForTask: 5
@@ -81333,6 +81333,13 @@ MonoBehaviour:
   grafittiCompleted: 0
   asylumTasks: []
   subwayTasks: []
+  level: asylum
+  coffeeTaskItem: {fileID: 0}
+  pillTaskItem: {fileID: 0}
+  logTaskItem: {fileID: 0}
+  coffeeTaskLocation: []
+  pillTaskLocation: []
+  logTaskLocation: []
 --- !u!4 &650189417
 Transform:
   m_ObjectHideFlags: 0
