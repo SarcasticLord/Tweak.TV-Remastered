@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
-using NUnit.Framework.Internal;
 public class GameController : MonoBehaviour
 {
     //GameController Script by Christian Andrion
@@ -79,7 +78,6 @@ public class GameController : MonoBehaviour
 
     [Header("Click audio")]
     [SerializeField] private AudioSource audio;
-    [SerializeField] private Randomizer click;
 
     private bool gameStarted = false;
 
