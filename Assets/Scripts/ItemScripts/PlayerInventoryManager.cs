@@ -8,8 +8,12 @@ public class PlayerInventoryManager : MonoBehaviour
     public InputActionReference itemSelect;
 
     public List<GameObject> items = new List<GameObject>();
+    public List<GameObject> itemSlots = new List<GameObject>();
     public int maxItems = 3;
     private int selectedItem;
+
+    public GameObject hotbar;
+    
 
     private void OnEnable()
     {
@@ -33,6 +37,7 @@ public class PlayerInventoryManager : MonoBehaviour
             if (child != gameObject.transform && !items.Contains(child.gameObject) && items.Count < maxItems) // Exclude the parent itself
             {
                 items.Add(child.gameObject);
+                itemSlots.Add(child.CreateItemSlot(hotbar.transform));
             }
         }
         //cycles through each item in the inventory and disables items that are not selected
