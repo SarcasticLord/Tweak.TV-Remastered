@@ -5,6 +5,7 @@ public class ExitManager : MonoBehaviour
 {
     public GameObject exit;
 
+
     private void OnEnable()
     {
         TaskMasterScript.AllTasksComplete += SpawnExit; 
@@ -26,5 +27,6 @@ public class ExitManager : MonoBehaviour
         Debug.Log("Exit is Active");
         exit.SetActive(true);
     }
+
 
 }
