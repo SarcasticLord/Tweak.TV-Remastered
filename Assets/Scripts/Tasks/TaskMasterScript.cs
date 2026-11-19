@@ -23,6 +23,7 @@ public class TaskMasterScript : MonoBehaviour
     public int grafittiCompleted; //The current number of enemies killed
     public TaskTemplate[] asylumTasks;
     public TaskTemplate[] subwayTasks;
+    public TaskTemplate escapeTask;
     public string level;
     public GameObject coffeeTaskItem;
     public GameObject pillTaskItem;
@@ -49,6 +50,16 @@ public class TaskMasterScript : MonoBehaviour
             descDisplay.text+="\n\n";
         }
         
+    }
+
+    public void ShowEscapeTask()
+    {
+        descDisplay.text=escapeTask.TaskDescription;
+    }
+
+    public void EndEscapeTask()
+    {
+        SetTasks();
     }
 
     public bool checkForThisTask(TaskTemplate taskToCheck)
@@ -103,7 +114,7 @@ public class TaskMasterScript : MonoBehaviour
             {
                 pillTaskLocation.Add(pillPoints[i].transform);
             }
-            GameObject[] logPoints = GameObject.FindGameObjectsWithTag("logSpawns");
+            GameObject[] logPoints = GameObject.FindGameObjectsWithTag("LogSpawns");
             for (int i = 0; i < logPoints.Length; i++)
             {
                 logTaskLocation.Add(logPoints[i].transform);
