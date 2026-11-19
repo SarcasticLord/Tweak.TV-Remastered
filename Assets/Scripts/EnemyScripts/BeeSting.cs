@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BeeSting : AttackHitbox
 {
-    protected PlayerStatusEffects playerStatus;
+    public PlayerStatusEffects playerStatus;
 
     protected override void Start()
     {
@@ -17,7 +17,9 @@ public class BeeSting : AttackHitbox
             {
                 if(tag == "Player")
                 {
+                    Debug.Log("Poisoned!");
                     playerStatus = other.gameObject.GetComponent<PlayerStatusEffects>();
+                    playerStatus.OnPoison();
                 }
                 //Debug.Log(other.tag.ToString() + " attacked. Decreasing views...");
                 Destroy(gameObject);

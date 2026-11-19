@@ -69,5 +69,4 @@ public class PoisonEffect : MonoBehaviour
         intensitySpeed=intensitySpeedSet;
     }
     
-    
 }

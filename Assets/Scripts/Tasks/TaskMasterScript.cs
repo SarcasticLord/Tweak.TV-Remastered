@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
@@ -27,6 +28,13 @@ public class TaskMasterScript : MonoBehaviour
     public List<Transform> coffeeTaskLocation = new List<Transform>();
     public List<Transform> pillTaskLocation = new List<Transform>();
     public List<Transform> logTaskLocation = new List<Transform>();
+
+    //Exit delegate
+    public delegate void OnAllTasksComplete();
+    public static event OnAllTasksComplete AllTasksComplete;
+
+
+
     public void SetTasks() //Change the task and task description
     {
         descDisplay.text="";
@@ -80,10 +88,10 @@ public class TaskMasterScript : MonoBehaviour
         viewTracker = GetComponent<ViewTracker>();
         objectsCollected=0;grafittiCompleted=0;enemiesKilled=0;
         SetTasks();
-        randomizeItemLocations();
+        RandomizeItemLocations();
     }
 
-    void randomizeItemLocations()
+    void RandomizeItemLocations()
     {
         
         if (level == "asylum")
@@ -98,9 +106,9 @@ public class TaskMasterScript : MonoBehaviour
             {
                 logTaskLocation.Add(logPoints[i].transform);
             }
-            int pillIndex = Random.Range(0, pillTaskLocation.Count);
+            int pillIndex = UnityEngine.Random.Range(0, pillTaskLocation.Count);
             Transform pillLocationOfChoice = pillTaskLocation[pillIndex];
-            int logIndex = Random.Range(0, logTaskLocation.Count);
+            int logIndex = UnityEngine.Random.Range(0, logTaskLocation.Count);
             Transform logLocationOfChoice = logTaskLocation[logIndex];
             Instantiate(pillTaskItem, pillLocationOfChoice.position, pillTaskItem.transform.rotation);
             Instantiate(logTaskItem, logLocationOfChoice.position, logTaskItem.transform.rotation);
@@ -112,7 +120,7 @@ public class TaskMasterScript : MonoBehaviour
             {
                 coffeeTaskLocation.Add(coffeePoints[i].transform);
             }
-            int coffeeIndex = Random.Range(0, coffeeTaskLocation.Count);
+            int coffeeIndex = UnityEngine.Random.Range(0, coffeeTaskLocation.Count);
             Transform coffeeLocationOfChoice = coffeeTaskLocation[coffeeIndex];
             Instantiate(coffeeTaskItem, coffeeLocationOfChoice.position, coffeeTaskItem.transform.rotation);
         }
@@ -151,6 +159,7 @@ public class TaskMasterScript : MonoBehaviour
         if(0==availableTasks.Count)
         {
             //Put exit spawn here
+            AllTasksComplete?.Invoke();
             Debug.Log("All Tasks Complete!");
             AddTask(endTask);
         }
