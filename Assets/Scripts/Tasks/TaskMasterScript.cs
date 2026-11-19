@@ -11,6 +11,8 @@ public class TaskMasterScript : MonoBehaviour
     public static TaskMasterScript instance { get; private set; }
     public List<TaskTemplate> availableTasks = new List<TaskTemplate>(); //All of the tasks needed to be completed, where 0 is always the exit task
     public TaskTemplate endTask; //Should be set to the end task
+    public TaskTemplate exitSubwayTask;
+    public TaskTemplate exitAsylumTask; 
     public TextMeshProUGUI descDisplay; //The description of the current task
     public ViewTracker viewTracker; //The viewtracker
     public int objectsNeededForTask; //How many objects are needed to complete the collection task
@@ -161,7 +163,17 @@ public class TaskMasterScript : MonoBehaviour
             //Put exit spawn here
             AllTasksComplete?.Invoke();
             Debug.Log("All Tasks Complete!");
-            AddTask(endTask);
+            
+
+            if(level == "asylm")
+            {
+                AddTask(exitAsylumTask);
+            }
+
+            else if(level == "subway")
+            {
+                AddTask(exitSubwayTask);
+            }
         }
         // viewTracker.baseOffset+=endedTask.TaskViewGain;
         GameController.instance.IncreaseViewerRetention(GameController.ViewerRetentionCategories.TASK, endedTask.TaskViewGain);
