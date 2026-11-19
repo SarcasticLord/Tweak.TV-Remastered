@@ -45,7 +45,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameController
   currEnemyCount: 0
-  maxEnemyCount: 100
+  maxEnemyCount: 20
+  lastEnemyKilled: 0
   _viewCount: 0
-  gameTime: 0
+  _maxViewerRetention: 5
+  _minViewerRetention: -3
+  _viewerRetention: 1
+  baseShmovementMult: 2
+  baseViolenceMult: 2
+  baseRiskyMult: 2
   streamSniper: {fileID: 3732554126820547295, guid: ca88ba6cbc86eea40b4d620536eb4a16, type: 3}
+  streamSniperCooldown: 60
+  streamSniperSpawnTimer: 0
+  streamSniperSpawnChance: 0
+  currentStreamSniperSpawnChance: 0
+  enemiesKilled: 0
+  streamLength: 0
+  maxViewership: 0
+  audio: {fileID: 0}

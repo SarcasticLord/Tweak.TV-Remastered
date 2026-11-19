@@ -31,6 +31,8 @@ public class TaskMasterScript : MonoBehaviour
     public List<Transform> coffeeTaskLocation = new List<Transform>();
     public List<Transform> pillTaskLocation = new List<Transform>();
     public List<Transform> logTaskLocation = new List<Transform>();
+    public AudioSource audioSource;
+    public AudioClip[] successSounds;
 
     //Exit delegate
     public delegate void OnAllTasksComplete();
@@ -60,6 +62,7 @@ public class TaskMasterScript : MonoBehaviour
     public void EndEscapeTask()
     {
         SetTasks();
+        PlaySuccessSound();
     }
 
     public bool checkForThisTask(TaskTemplate taskToCheck)
@@ -92,11 +95,11 @@ public class TaskMasterScript : MonoBehaviour
         instance = this;
 
         DontDestroyOnLoad(gameObject);
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void StartTaskMasterScript()
     {
-        
         descDisplay=GameObject.FindGameObjectWithTag("DescDisplay").GetComponent<TextMeshProUGUI>();
         viewTracker = GetComponent<ViewTracker>();
         objectsCollected=0;grafittiCompleted=0;enemiesKilled=0;
@@ -155,7 +158,12 @@ public class TaskMasterScript : MonoBehaviour
         SetTasks();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void PlaySuccessSound()
+    {
+        int getClip = UnityEngine.Random.Range(0, 3);
+        audioSource.clip=successSounds[getClip];
+        audioSource.Play();
+    }
     
 
     // Update is called once per frame
@@ -169,6 +177,7 @@ public class TaskMasterScript : MonoBehaviour
         }
         if(endedTask==null){return;}
         availableTasks.Remove(endedTask);
+        PlaySuccessSound();
         if(0==availableTasks.Count)
         {
             //Put exit spawn here

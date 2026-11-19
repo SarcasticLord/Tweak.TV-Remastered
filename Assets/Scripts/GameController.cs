@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
-using System.Diagnostics;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.Audio;
+
 using UnityEngine.InputSystem;
 public class GameController : MonoBehaviour
 {
@@ -286,7 +284,7 @@ public class GameController : MonoBehaviour
 
     public void SpawnStreamSniper()
     {
-        Instantiate(streamSniper, streamSniperSpawnpoint.position, streamSniper.transform.rotation);
+        GameObject PsychicFriend = Instantiate(streamSniper, streamSniperSpawnpoint.position, streamSniper.transform.rotation);
         streamSniperSpawnTimer = 0f;//Reset stream sniper spawn timer
         streamSniperSpawnChance = 0f;//Reset stream sniper spawn chance
         currentStreamSniperSpawnChance = UnityEngine.Random.Range(0f, 1.0f);
