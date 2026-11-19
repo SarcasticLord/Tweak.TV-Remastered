@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerInventoryManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class PlayerInventoryManager : MonoBehaviour
     private int selectedItem;
 
     public GameObject hotbar;
+
+    public GameObject itemSlotPrefab;
     
 
     private void OnEnable()
@@ -27,7 +30,25 @@ public class PlayerInventoryManager : MonoBehaviour
         itemSelect.action.canceled -= OnSelectItem;
     }
 
+    private void Awake()
+    {
 
+        if (itemSlotPrefab != null)
+        {
+            for (int i = 0; i < maxItems; i++)
+            {
+                GameObject newSlot = Instantiate(itemSlotPrefab);
+                newSlot.transform.parent = hotbar.transform;
+            }
+
+            foreach (Transform slot in hotbar.transform)
+            {
+                Image slotIcon = slot.gameObject.;
+                slotIcon.color = Color.clear;
+                itemSlots.Add(slot.gameObject);
+            }
+        }
+    }
 
     private void LateUpdate()
     {
@@ -37,12 +58,27 @@ public class PlayerInventoryManager : MonoBehaviour
             if (child != gameObject.transform && !items.Contains(child.gameObject) && items.Count < maxItems) // Exclude the parent itself
             {
                 items.Add(child.gameObject);
-                itemSlots.Add(child.CreateItemSlot(hotbar.transform));
+                
             }
         }
-        //cycles through each item in the inventory and disables items that are not selected
+        //cycles through each item in the inventory
         foreach (GameObject item in items)
         {
+            int itemIndex = items.IndexOf(item);
+            Image slotIcon = itemSlots[itemIndex].GetComponentInChildren<Image>();
+            if (items.Count > 0)
+            { 
+                slotIcon.sprite = item.GetComponent<BaseItem>().itemData.icon;
+                slotIcon.color = Color.white;
+            }
+            else
+            {
+                slotIcon.sprite = null;
+                slotIcon.color = Color.clear;
+            }
+
+
+            //hides items that are not selected
             if (item != items[selectedItem])
             {
                 BaseItem itemScript = item.gameObject.GetComponent<BaseItem>();
