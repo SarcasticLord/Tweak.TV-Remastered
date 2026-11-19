@@ -26,6 +26,7 @@ public class PlayerItemInteract : MonoBehaviour
     public string summaryStatsScene;
     public string level;
     [SerializeField] private TrainTicket trainTicket;
+    [SerializeField] private GameObject ticketWarning;
 
 
     void OnProvideMarks(InputValue movementValue)
@@ -139,6 +140,9 @@ public class PlayerItemInteract : MonoBehaviour
         {
             case "Exit":
 
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+
                 if(level == "asylm")
                 {
                     SceneManager.LoadScene(summaryStatsScene);
@@ -148,9 +152,12 @@ public class PlayerItemInteract : MonoBehaviour
                 {
                     if (trainTicket.hasTicket == true)
                     {
-                        Cursor.lockState = CursorLockMode.None;
-                        Cursor.visible = true;
+                        
                         SceneManager.LoadScene(summaryStatsScene);
+                    }
+                    else
+                    {
+                        ticketWarning.SetActive(true);
                     }
                 }
                 
@@ -169,6 +176,13 @@ public class PlayerItemInteract : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        ticketWarning.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void OnInteract(InputValue value)
