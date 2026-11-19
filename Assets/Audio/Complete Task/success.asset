@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-8753310475075403695
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: pixelSuccess1_{-8753310475075403695}
+  m_AudioClip: {fileID: 8300000, guid: ae22bf4cb3006b44daf2f5ca67902a18, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-2249227632445267621
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: completeEcho_{-2249227632445267621}
+  m_AudioClip: {fileID: 8300000, guid: 65042ac46dfbd314999892f279a73bf9, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-1330330236209704177
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: crunchSuccess_{-1330330236209704177}
+  m_AudioClip: {fileID: 8300000, guid: ad303e0f034121d4a89b2f0cfc05bf30, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: success
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: 0, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: 8013063811059705190}
+  - {fileID: -8753310475075403695}
+  - {fileID: -1330330236209704177}
+  - {fileID: -2249227632445267621}
+  m_AvoidRepeatingLast: 2
+  m_PlaybackMode: 0
+  m_TriggerMode: 0
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 2
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 0
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &8013063811059705190
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: pixelSuccess2_{8013063811059705190}
+  m_AudioClip: {fileID: 8300000, guid: 7de29a0e664bb6849ad2df58cc8c50fa, type: 3}
+  m_Volume: 0
+  m_Enabled: 1

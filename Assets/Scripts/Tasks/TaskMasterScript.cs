@@ -32,7 +32,6 @@ public class TaskMasterScript : MonoBehaviour
     public List<Transform> pillTaskLocation = new List<Transform>();
     public List<Transform> logTaskLocation = new List<Transform>();
     public AudioSource audioSource;
-    public AudioClip[] successSounds;
 
     //Exit delegate
     public delegate void OnAllTasksComplete();
@@ -160,8 +159,6 @@ public class TaskMasterScript : MonoBehaviour
 
     void PlaySuccessSound()
     {
-        int getClip = UnityEngine.Random.Range(0, 3);
-        audioSource.clip=successSounds[getClip];
         audioSource.Play();
     }
     

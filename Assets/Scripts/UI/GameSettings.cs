@@ -35,7 +35,7 @@ public class GameSettings : MonoBehaviour
         announcerSlider.onValueChanged.AddListener(SetAnnouncerVolume);
 
         // cam flash  
-        float saveFlashVolume = PlayerPrefs.GetFloat("CamFlash", 1f);
+        float saveFlashVolume = PlayerPrefs.GetFloat("PlayerSounds", 1f);
         flashSlider.value = saveFlashVolume;
 
         SetFlashVolume(saveAnnouncerVolume);
@@ -63,8 +63,8 @@ public class GameSettings : MonoBehaviour
 
     public void SetFlashVolume(float volume)
     {
-        masterAudio.SetFloat("CamFlash", Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20);
-        PlayerPrefs.SetFloat("CamFlash", volume);
+        masterAudio.SetFloat("PlayerSounds", Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20);
+        PlayerPrefs.SetFloat("PlayerSounds", volume);
     }
 
     public void SetCameraSense(float sensitivity)
