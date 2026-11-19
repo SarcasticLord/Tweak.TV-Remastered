@@ -13,7 +13,7 @@ public class Coffee : BaseItem
     public bool isCaffeinated = false;
     public CinemachineCamera cam;
     public float storedFOV;
-    public float caffeinatedFOV;
+    public float caffeinatedFOV = 90f;
 
 
     protected override void Start()

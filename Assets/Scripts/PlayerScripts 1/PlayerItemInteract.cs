@@ -21,7 +21,10 @@ public class PlayerItemInteract : MonoBehaviour
     public ViewTracker viewTracker; //Should be empty in editor
     public float testRayScatter;
     LayerMask carry;
-    
+
+    public string summaryStatsScene;
+
+
     void OnProvideMarks(InputValue movementValue)
     {
         
@@ -131,6 +134,10 @@ public class PlayerItemInteract : MonoBehaviour
     {
         switch (other.gameObject.tag)
         {
+            case "Exit":
+                SceneManager.LoadScene(summaryStatsScene);
+                break;
+
             case "KillZone":
                 Cursor.lockState = CursorLockMode.None;
                 //if (grafittiChallenge.systemActive){grafittiChallenge.FailState();} //Fail them if they get hit in the minigame
@@ -144,7 +151,6 @@ public class PlayerItemInteract : MonoBehaviour
             default:
                 break;
         }
-        
     }
 
     void OnInteract(InputValue value)
