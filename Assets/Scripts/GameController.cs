@@ -3,7 +3,8 @@ using System.Collections;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
-
+using UnityEngine.Audio;
+using UnityEngine.InputSystem;
 public class GameController : MonoBehaviour
 {
     //GameController Script by Christian Andrion
@@ -75,6 +76,9 @@ public class GameController : MonoBehaviour
     public int maxViewership;
     #endregion
 
+    [Header("Click audio")]
+    [SerializeField] private AudioSource audio;
+
     private bool gameStarted = false;
 
     public void Awake()
@@ -95,6 +99,8 @@ public class GameController : MonoBehaviour
         StopAllCoroutines(); //For safety
         streamSniperSpawnpoint = GameObject.Find("StreamSniperSpawn").transform;
         gameStarted = true;
+        audio.volume = 0.0f;
+    
 
         //Viewer Retention Base stats
         viewerRetention = 1f;
@@ -117,13 +123,27 @@ public class GameController : MonoBehaviour
         GrafittiChallenge.instance.StartGrafittiChallenge();
         TweakManager.instance.StartTweakManager();
         checkForImmediateStreamSniperSpawn();
+        
     }
+
+    void Update()
+    {
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            audio.Play();
+        }
+    }
+
+    
 
     public void StopGame()
     {
         gameStarted = false;
         StopAllCoroutines();
         //TODO: save values for stats screen
+        
+        audio.volume = 1.0f;
+        
         
     }
 

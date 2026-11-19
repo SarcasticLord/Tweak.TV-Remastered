@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class PlayerItemInteract : MonoBehaviour
 {
@@ -21,7 +22,13 @@ public class PlayerItemInteract : MonoBehaviour
     public ViewTracker viewTracker; //Should be empty in editor
     public float testRayScatter;
     LayerMask carry;
-    
+
+    public string summaryStatsScene;
+    public string level;
+    [SerializeField] private TrainTicket trainTicket;
+    [SerializeField] private GameObject ticketWarning;
+
+
     void OnProvideMarks(InputValue movementValue)
     {
         
@@ -131,6 +138,31 @@ public class PlayerItemInteract : MonoBehaviour
     {
         switch (other.gameObject.tag)
         {
+            case "Exit":
+
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+
+                if(level == "asylm")
+                {
+                    SceneManager.LoadScene(summaryStatsScene);
+                }
+
+                else if(level == "subway") // the train ticket is required to leave :)))
+                {
+                    if (trainTicket.hasTicket == true)
+                    {
+                        
+                        SceneManager.LoadScene(summaryStatsScene);
+                    }
+                    else
+                    {
+                        ticketWarning.SetActive(true);
+                    }
+                }
+                
+                break;
+
             case "KillZone":
                 Cursor.lockState = CursorLockMode.None;
                 //if (grafittiChallenge.systemActive){grafittiChallenge.FailState();} //Fail them if they get hit in the minigame
@@ -144,7 +176,13 @@ public class PlayerItemInteract : MonoBehaviour
             default:
                 break;
         }
-        
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        ticketWarning.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void OnInteract(InputValue value)

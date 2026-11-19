@@ -40,6 +40,8 @@ public class BaseFlyingEnemy : BaseEnemy
 
     protected override void AttackBehavior()
     {
+        if (animator != null)
+            animator.SetInteger("EnemyStates", 1);
         Vector3 direction =
             (chaseTarget.position - transform.position).normalized;
         direction.y = 0f;
@@ -47,8 +49,7 @@ public class BaseFlyingEnemy : BaseEnemy
         Quaternion lookRotation =
             Quaternion.LookRotation(direction);
 
-        if (animator != null)
-            animator.SetInteger("EnemyState", (int)EnemyState.Attack);
+
 
         if (!targetVisible)
         {
@@ -93,11 +94,15 @@ public class BaseFlyingEnemy : BaseEnemy
 
     IEnumerator BeeAttack()
     {
+        if (animator != null)
+            animator.SetTrigger("Attack");
+            //animator.ResetTrigger("Attack");
         Vector3 direction =
             (chaseTarget.position - transform.position).normalized;
         agent.velocity = Vector3.zero;
         agent.isStopped = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.15f);
+
         ShootAttack(direction);
         agent.isStopped = false;
     }

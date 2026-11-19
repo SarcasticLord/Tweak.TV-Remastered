@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour
     {
         lastScene = "TitleScene";
         SceneManager.LoadScene("TitleScene"); // 0 opens title scene
+        GameController.instance.StopGame();
     }
 
     public void ToStarting()

@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerStatusEffectTracker : MonoBehaviour
 {
-    
+    private PlayerStatusEffects statusEffects;
     public static event Action<float> onSwarmStatusValueChanged;
     public static event Action<float> onPoisonStatusValueChanged;
     public static event Action<float> onShockStatusValueChanged;
     public static event Action<float> onTrappedStatusValueChanged;
 
     public static event Action<StatusEffect> onPlayerStatusChanged;
+
 
     #region Swarmed Status
     private static float _swarmStatus = 0.0f;
@@ -37,7 +38,8 @@ public class PlayerStatusEffectTracker : MonoBehaviour
     #region Poison Status
     private static float _poisonStatus = 0.0f;
     private float _poisonStatusLimit = 100.0f;
-    private float _poisonedDecreaseRate = 0.1f;
+    private float _poisonDecreaseVal = 1f; //Optimize later into a combined var with swarm
+    private float _poisonedDecreaseRate = 1f;
     public bool poisoned;
     private Coroutine _poisonDecreaseCoroutine;
     public float poisonStatus
@@ -45,12 +47,12 @@ public class PlayerStatusEffectTracker : MonoBehaviour
         get {return _poisonStatus;}
         set
         {
-            _poisonStatus = Mathf.Clamp(value, 0, _poisonStatusLimit);
+            _poisonStatus = Mathf.Clamp(value, 0, _poisonStatusLimit + 10);
             onPoisonStatusValueChanged?.Invoke(_poisonStatus); //Subscribe to delegate in UI script to update UI
             if(_poisonStatus > 0 && _poisonDecreaseCoroutine == null)
             {
                 //TODO: Setup poison status
-                return; //_poisonDecreaseCoroutine = StartCoroutine(DecreasePoisonStatus());
+                _poisonDecreaseCoroutine = StartCoroutine(DecreasePoisonStatus());
             }
         }
     }
@@ -102,6 +104,10 @@ public class PlayerStatusEffectTracker : MonoBehaviour
 
     public enum StatusEffect {SWARMED, POISONED, SHOCKED, TRAPPED};
 
+    private void Awake()
+    {
+        statusEffects = gameObject.GetComponent<PlayerStatusEffects>();
+    }
     public void AddToStatus(StatusEffect status, float value)//Call in other scripts to add to status
     {
         switch(status)
@@ -129,7 +135,14 @@ public class PlayerStatusEffectTracker : MonoBehaviour
                 }
                 else
                 {
+                    if (!poisoned)
+                    {
+                        statusEffects.OnPoison();
+                        GameController.instance.DecreaseViewerRetention(0.5f);
+                        onPlayerStatusChanged?.Invoke(status);
+                    }
                     poisoned = true;
+
                 }
                 break;
             case StatusEffect.SHOCKED:
@@ -192,7 +205,34 @@ public class PlayerStatusEffectTracker : MonoBehaviour
     }
 
     //TODO: private IEnumerator DecreasePoisonStatus()
+    private IEnumerator DecreasePoisonStatus()
+    {
+        yield return new WaitForSeconds(1f);
+        while (poisonStatus > 0)
+        {
 
+            //Decrease rate when swarmed status has not been activated
+            if (!poisoned)
+            {
+                poisonStatus -= _poisonDecreaseVal;
+                yield return new WaitForSeconds(_poisonedDecreaseRate);
+            }
+            else
+            {
+                //Can change the rate the effect decreases after it has been triggered
+                poisonStatus -= _poisonDecreaseVal * 20; //Empties Status quicker
+
+                if (_poisonStatus <= 0)
+                {
+                    statusEffects.OnRemovePoison();
+                    poisoned = false;
+                }
+                yield return new WaitForSeconds(_poisonedDecreaseRate);//TODO: Change the decrease rate when you are affected with the effect
+            }
+
+        }
+        _swarmDecreaseCoroutine = null;
+    }
     private IEnumerator DecreaseShockStatus()
     {
         yield return new WaitForSeconds(1f);

@@ -23,6 +23,7 @@ public class StartingSoonUI : MonoBehaviour
     public void SelectAsylum()
     {
         lastScene = "Asylum";
+        TaskMasterScript.instance.level="asylum";
         asylumSelected.SetActive(true);
         stationSelected.SetActive(false);
         selectedLevel = asylumScene;
@@ -33,6 +34,7 @@ public class StartingSoonUI : MonoBehaviour
     public void SelectStation()
     {
         lastScene = "LoadingScene";
+        TaskMasterScript.instance.level="subway";
         asylumSelected.SetActive(false);
         stationSelected.SetActive(true);
         selectedLevel = stationScene;

@@ -21,5 +21,6 @@ public class ItemData : ScriptableObject
     public Sprite icon;
     public int uses;
     public ItemType itemType;
-    public float offset;
+    public bool limitedUses;
+
 }
