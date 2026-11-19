@@ -212,7 +212,7 @@ public class GameController : MonoBehaviour
                 break;
             case ViewerRetentionCategories.SHMOVEMENT:
                 viewerRetention += increaseViewerRetention * shmovementMult;
-                shmovementMult = Mathf.Clamp(shmovementMult - 0.01f, 0, baseShmovementMult); //Lower multiplier every time we increase retention
+                shmovementMult = Mathf.Clamp(shmovementMult - 0.05f, 0, baseShmovementMult); //Lower multiplier every time we increase retention
                 break;
             case ViewerRetentionCategories.VIOLENCE:
                 viewerRetention += increaseViewerRetention * violenceMult;
@@ -220,7 +220,7 @@ public class GameController : MonoBehaviour
                 break;
             case ViewerRetentionCategories.RISKY:
                 viewerRetention += increaseViewerRetention * riskyMult;
-                riskyMult = Mathf.Clamp(riskyMult - 0.05f, 0, baseRiskyMult);
+                riskyMult = Mathf.Clamp(riskyMult - 0.01f, 0, baseRiskyMult);
                 break;
             default:
                 UnityEngine.Debug.Log("Invalid viewer retention category");
