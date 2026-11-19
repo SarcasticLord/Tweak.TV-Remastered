@@ -49,6 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TaskMasterScript
   availableTasks: []
   endTask: {fileID: 11400000, guid: 546574e1353b00c4d9101f854ca5a90c, type: 2}
+  exitSubwayTask: {fileID: 11400000, guid: b6a13c29f6dc9304394754be7d0fbdb6, type: 2}
+  exitAsylumTask: {fileID: 11400000, guid: 931a0b3f0893f6b4f9822709ea15caff, type: 2}
   descDisplay: {fileID: 0}
   viewTracker: {fileID: 0}
   objectsNeededForTask: 5
@@ -67,6 +69,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 48bf57fcfc4b0f949ad0c275b6e3f801, type: 2}
   - {fileID: 11400000, guid: 9195fadadd2add34fae965b4b5b1f9c2, type: 2}
   - {fileID: 11400000, guid: 45a9ebc8a02432a408effd72622e2266, type: 2}
+  escapeTask: {fileID: 11400000, guid: 0fcfc0a31663b5d4db394f43d1123434, type: 2}
   level: 
   coffeeTaskItem: {fileID: 676110504836972351, guid: 05f1ade1529977b4f9003d69917bdc54, type: 3}
   pillTaskItem: {fileID: 692072400724826194, guid: d640b9d1697d4cf4ea8eebf768f990a6, type: 3}

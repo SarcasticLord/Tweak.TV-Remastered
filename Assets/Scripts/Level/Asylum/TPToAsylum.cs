@@ -14,7 +14,10 @@ public class TPToAsylum : MonoBehaviour
             controller.enabled = false;
             other.transform.position = BackAsylum.position;
             controller.enabled = true;
-
+            if (other.CompareTag("Player"))
+            {
+                TaskMasterScript.instance.EndEscapeTask();
+            }
         } 
     }
 }
