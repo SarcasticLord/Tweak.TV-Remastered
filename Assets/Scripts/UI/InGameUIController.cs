@@ -61,7 +61,6 @@ public class InGameUIController : MonoBehaviour
             }
             else
             {
-                //Unpause
                 Unpause();
             }
         }

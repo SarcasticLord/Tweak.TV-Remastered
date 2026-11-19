@@ -15,10 +15,14 @@ public class PlayerStatusEffects : MonoBehaviour
     public float slowDuration = 5f;
     public GameObject slowedEffect;
 
-
+    #region Coffee
     public float speedBoostSpeed = 10f;
     public float speedBoostSlideSpeed = 10f;
+    [SerializeField] private CinemachineCamera cam;
+    private float storedFOV;
+    [SerializeField] private float caffeinatedFOV = 90f;
 
+    #endregion
     public float slowedSpeed = 4f;
     public float slowedSlideSpeed = 4f;
 
@@ -45,6 +49,10 @@ public class PlayerStatusEffects : MonoBehaviour
         storeDefaultSpeed = playerMovementScript.playerSpeed;
         storeDefaultSlideSpeed = playerMovementScript.playerSlideSpeed;
         storeDefaultJumpForce = playerMovementScript.playerJumpForce;
+
+        //Caffeinated related items
+        cam = gameObject.GetComponentInChildren<CinemachineCamera>();
+        storedFOV = cam.Lens.FieldOfView;
     }
     [ContextMenu(nameof(OnStun))]
     public void OnStun()
@@ -76,16 +84,20 @@ public class PlayerStatusEffects : MonoBehaviour
         poisonVolume.enabled = false;
 
     }
-    [ContextMenu(nameof(OnCanDash))]
-    public void OnCanDash()
+    [ContextMenu(nameof(OnCaffeinated))]
+    public void OnCaffeinated()
     {
+        Debug.Log("Player is caffeinated");
+        cam.Lens.FieldOfView = caffeinatedFOV;
         playerMovementScript.playerSpeed = speedBoostSpeed;
         playerMovementScript.playerSlideSpeed = speedBoostSlideSpeed;
     }
 
-    [ContextMenu(nameof(OnRemoveCanDash))]
-    public void OnRemoveCanDash()
+    [ContextMenu(nameof(OnRemoveCaffeinated))]
+    public void OnRemoveCaffeinated()
     {
+        Debug.Log("Player stopped being caffeinated");
+        cam.Lens.FieldOfView = storedFOV;
         playerMovementScript.playerSpeed = storeDefaultSpeed;
         playerMovementScript.playerSlideSpeed = storeDefaultSlideSpeed;
 
