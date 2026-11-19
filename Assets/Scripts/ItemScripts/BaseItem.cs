@@ -29,9 +29,7 @@ public class BaseItem : MonoBehaviour
 
     //Inventory Display/Information
     public ItemData itemData;
-    public GameObject itemSlot;
     
-
 
     private void OnEnable()
     {
@@ -88,12 +86,13 @@ public class BaseItem : MonoBehaviour
         }
     }
 
-    protected virtual void OnDropItem(InputAction.CallbackContext q)
+    protected virtual void OnDropItem(InputAction.CallbackContext drop)
     { 
-        if (q.ReadValueAsButton())
+        if (drop.ReadValueAsButton())
         {
             if (inInventory && isSelected)
             {
+                playerInventory.Drop(gameObject);
                 playerInventory.items.Remove(gameObject);
                 playerInventory.CycleItems();
                 col.enabled = true;
@@ -130,12 +129,4 @@ public class BaseItem : MonoBehaviour
         col.enabled = false;
     }
 
-    public GameObject CreateItemSlot(Transform parent)
-    {
-        GameObject newItemSlot = Instantiate(itemSlot);
-        //assigns parent object
-        newItemSlot.gameObject.transform.SetParent(parent);
-        newItemSlot.GetComponent<ItemSlot>().icon.sprite = itemData.icon;
-        return newItemSlot;
-    }
 }

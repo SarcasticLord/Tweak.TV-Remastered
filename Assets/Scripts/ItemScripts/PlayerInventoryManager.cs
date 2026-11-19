@@ -43,7 +43,7 @@ public class PlayerInventoryManager : MonoBehaviour
 
             foreach (Transform slot in hotbar.transform)
             {
-                Image slotIcon = slot.gameObject.;
+                Image slotIcon = slot.transform.GetChild(0).GetComponent<Image>();
                 slotIcon.color = Color.clear;
                 itemSlots.Add(slot.gameObject);
             }
@@ -64,14 +64,15 @@ public class PlayerInventoryManager : MonoBehaviour
         //cycles through each item in the inventory
         foreach (GameObject item in items)
         {
+            //Changes slot item icon image to match item in inventory
             int itemIndex = items.IndexOf(item);
-            Image slotIcon = itemSlots[itemIndex].GetComponentInChildren<Image>();
+            Image slotIcon = itemSlots[itemIndex].transform.GetChild(0).GetComponent<Image>();
             if (items.Count > 0)
             { 
                 slotIcon.sprite = item.GetComponent<BaseItem>().itemData.icon;
                 slotIcon.color = Color.white;
             }
-            else
+            else //Resets icon image back to null and transparent
             {
                 slotIcon.sprite = null;
                 slotIcon.color = Color.clear;
@@ -99,6 +100,14 @@ public class PlayerInventoryManager : MonoBehaviour
         {
             CycleItems();
         }
+    }
+
+    public void Drop(GameObject droppedItem)
+    {
+        int itemIndex = items.IndexOf(droppedItem);
+        Image slotIcon = itemSlots[itemIndex].transform.GetChild(0).GetComponent<Image>();
+        slotIcon.sprite = null;
+        slotIcon.color = Color.clear;
     }
 
 
