@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
@@ -25,6 +26,12 @@ public class BaseItem : MonoBehaviour
     public bool isSelected = false;
 
     protected bool inInventory = false;
+
+    //Inventory Display/Information
+    public ItemData itemData;
+    public GameObject itemSlot;
+    
+
 
     private void OnEnable()
     {
@@ -121,5 +128,14 @@ public class BaseItem : MonoBehaviour
         //StopCoroutine(MoveObject());
         SphereCollider col = gameObject.GetComponent<SphereCollider>();
         col.enabled = false;
+    }
+
+    public GameObject CreateItemSlot(Transform parent)
+    {
+        GameObject newItemSlot = Instantiate(itemSlot);
+        //assigns parent object
+        newItemSlot.gameObject.transform.SetParent(parent);
+        newItemSlot.GetComponent<ItemSlot>().icon.sprite = itemData.icon;
+        return newItemSlot;
     }
 }
