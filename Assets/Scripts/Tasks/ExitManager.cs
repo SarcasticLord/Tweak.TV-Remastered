@@ -3,7 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class ExitManager : MonoBehaviour
 {
-    public GameObject exit;
+    public GameObject exitTrain;
+    public Animator exitDoor;
 
 
     private void OnEnable()
@@ -19,13 +20,16 @@ public class ExitManager : MonoBehaviour
 
     private void Awake()
     {
-        exit.SetActive(false);
+        exitDoor.enabled = false;
+        exitTrain.SetActive(false);
     }
 
     public void SpawnExit()
     {
-        Debug.Log("Exit is Active");
-        exit.SetActive(true);
+        if (exitTrain)
+            exitTrain.SetActive(true);
+        if(exitDoor)
+            exitDoor.enabled = true;
     }
 
 
