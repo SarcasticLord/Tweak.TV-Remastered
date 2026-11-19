@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class PlayerItemInteract : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class PlayerItemInteract : MonoBehaviour
     LayerMask carry;
 
     public string summaryStatsScene;
+    public string level;
+    [SerializeField] private TrainTicket trainTicket;
 
 
     void OnProvideMarks(InputValue movementValue)
@@ -135,7 +138,22 @@ public class PlayerItemInteract : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Exit":
-                SceneManager.LoadScene(summaryStatsScene);
+
+                if(level == "asylm")
+                {
+                    SceneManager.LoadScene(summaryStatsScene);
+                }
+
+                else if(level == "subway") // the train ticket is required to leave :)))
+                {
+                    if (trainTicket.hasTicket == true)
+                    {
+                        Cursor.lockState = CursorLockMode.None;
+                        Cursor.visible = true;
+                        SceneManager.LoadScene(summaryStatsScene);
+                    }
+                }
+                
                 break;
 
             case "KillZone":
