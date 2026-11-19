@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ public class ViewerRetentionProgressBar : MonoBehaviour
     private float _maxOffset;
     private float _targetRetention;
     private float _displayedRetention;
+
+    [SerializeField] private TextMeshProUGUI multiplierText;
 
     // Clamps and steps the displayed value towards the target
     private float DisplayedRetention
@@ -48,6 +51,7 @@ public class ViewerRetentionProgressBar : MonoBehaviour
     private void HandleRetentionChanged(float newRetention)
     {
         _targetRetention = Mathf.Clamp(newRetention, 0f, _fillSegments.Length);
+        multiplierText.text = "x" + ((int)newRetention).ToString();
     }
 
     private void Update()

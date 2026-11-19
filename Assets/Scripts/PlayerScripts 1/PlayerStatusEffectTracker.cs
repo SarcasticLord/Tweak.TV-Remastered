@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Lumin;
 
 public class PlayerStatusEffectTracker : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerStatusEffectTracker : MonoBehaviour
     public static event Action<float> onPoisonStatusValueChanged;
     public static event Action<float> onShockStatusValueChanged;
     public static event Action<float> onTrappedStatusValueChanged;
+    public static event Action<float> onCaffeinatedValueChanged;
 
     public static event Action<StatusEffect> onPlayerStatusChanged;
 
@@ -102,7 +104,31 @@ public class PlayerStatusEffectTracker : MonoBehaviour
     }
     #endregion
 
-    public enum StatusEffect {SWARMED, POISONED, SHOCKED, TRAPPED};
+    #region Caffeinated Status
+
+    private static float _caffeinatedStatus = 0.0f;
+    private float _caffeinatedStatusLimited = 100f;
+    private float _caffeinatedDecreaseVal = 20f;
+    private float _caffeinatedDecreaseRate = 1f;
+    public bool caffeinated = false;
+    private Coroutine _caffeinatedDecreaseCoroutine;
+
+    public float caffeinatedStatus
+    {
+        get {return _caffeinatedStatus;}
+        set
+        {
+            _caffeinatedStatus = Mathf.Clamp(value, 0, _caffeinatedStatusLimited);
+            onCaffeinatedValueChanged?.Invoke(_caffeinatedStatus);
+            if(_caffeinatedStatus > 0 && _caffeinatedDecreaseCoroutine == null)
+            {
+                _caffeinatedDecreaseCoroutine = StartCoroutine(DecreaseCaffeinatedStatus());
+            }
+        }
+    }
+    #endregion
+
+    public enum StatusEffect {SWARMED, POISONED, SHOCKED, TRAPPED, CAFFEINATED};
 
     private void Awake()
     {
@@ -146,27 +172,31 @@ public class PlayerStatusEffectTracker : MonoBehaviour
                 }
                 break;
             case StatusEffect.SHOCKED:
-                if(shockedStatus < _shockStatusLimit && !shocked)
+                if(!shocked)
                 {
-                    shockedStatus += value;
-                }
-                else
-                {
+                    shockedStatus = 100f;
                     GameController.instance.DecreaseViewerRetention(0.5f);
                     onPlayerStatusChanged?.Invoke(status);
                     shocked = true;
                 }
                 break;
             case StatusEffect.TRAPPED:
-                if(trappedStatus < _trappedStatusLimit && !trapped)
+                if(!trapped)
                 {
-                    trappedStatus += value;
-                }
-                else
-                {
+                    trappedStatus = 100f;
                     GameController.instance.DecreaseViewerRetention(0.5f);
                     onPlayerStatusChanged?.Invoke(status);
                     trapped = true;
+                }
+                break;
+            case StatusEffect.CAFFEINATED:
+                if(!caffeinated)
+                {
+                    caffeinatedStatus = 100f;
+                    GameController.instance.IncreaseViewerRetention(GameController.ViewerRetentionCategories.SHMOVEMENT, 0.20f);
+                    onPlayerStatusChanged?.Invoke(status);
+                    statusEffects.OnCaffeinated();
+                    caffeinated = true;
                 }
                 break;
             default:
@@ -203,8 +233,6 @@ public class PlayerStatusEffectTracker : MonoBehaviour
         }
         _swarmDecreaseCoroutine = null;
     }
-
-    //TODO: private IEnumerator DecreasePoisonStatus()
     private IEnumerator DecreasePoisonStatus()
     {
         yield return new WaitForSeconds(1f);
@@ -250,7 +278,6 @@ public class PlayerStatusEffectTracker : MonoBehaviour
         }
         _shockDecreaseCoroutine = null;
     }
-
     private IEnumerator DecreaseTrappedStatus()
     {
         //Trap player for 3 seconds
@@ -266,5 +293,19 @@ public class PlayerStatusEffectTracker : MonoBehaviour
         }
         _trappedDecreaseCoroutine = null;
     }
-
+    private IEnumerator DecreaseCaffeinatedStatus()
+    {
+        yield return new WaitForSeconds(1f);
+        while(caffeinatedStatus > 0)
+        {
+            caffeinatedStatus -= _caffeinatedDecreaseVal;
+            if(caffeinatedStatus <= 0)
+            {
+                statusEffects.OnRemoveCaffeinated();
+                caffeinated = false;
+            }
+            yield return new WaitForSeconds(_caffeinatedDecreaseRate);
+        }
+        _caffeinatedDecreaseCoroutine = null;
+    }
 }
