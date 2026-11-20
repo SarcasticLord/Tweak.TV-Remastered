@@ -221,10 +221,11 @@ public class GameController : MonoBehaviour
             float viewDelta = viewerRetention > 0 ? -MathF.Ceiling(viewerRetention) : MathF.Floor(viewerRetention);
             //If viewer retention is between 0 and 1 decrease by 1
             //Else if viewer retention is in the negatives decreases by that negative value
-            viewCount += (int)viewerRetention;
+            Debug.Log("ViewRetention: " + viewDelta);
+            viewCount += (int)viewDelta;
             if (TweakManager.instance.doubleViewSpeed)
             {
-                viewCount += (int)viewerRetention; //If the tweak is on, reduce it quicker
+                viewCount += (int)viewDelta; //If the tweak is on, reduce it quicker
             }
         }
 
