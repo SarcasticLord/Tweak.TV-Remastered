@@ -4,9 +4,10 @@ using System;
 
 public class SummaryUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI enemiesKilledTxt;
-    [SerializeField] private TextMeshProUGUI totalStreamTime;
-    [SerializeField] private TextMeshProUGUI maxViewersTxt;
+    [SerializeField] private TextMeshProUGUI enemiesKilledTxt;  // enemies killed total
+    [SerializeField] private TextMeshProUGUI totalStreamTime;   // length of the run
+    [SerializeField] private TextMeshProUGUI maxViewersTxt;     // peak number of views in a run
+    [SerializeField] private TextMeshProUGUI viewsEndedWith;    // the number of views you ended the run with
 
     private void Start()
     {
@@ -14,6 +15,8 @@ public class SummaryUI : MonoBehaviour
 
         enemiesKilledTxt.text = game.enemiesKilled.ToString();
         maxViewersTxt.text = game.maxViewership.ToString();
+        viewsEndedWith.text = game.maxViewership.ToString();
+
 
     
         TimeSpan time = TimeSpan.FromSeconds(game.streamLength);

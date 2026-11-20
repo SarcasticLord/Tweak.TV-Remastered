@@ -36656,17 +36656,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc003abe7e48fd1429f21d86de754cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickupAndCarry
-  pickedUpItem: {fileID: 0}
-  cam: {fileID: 0}
+  player: {fileID: 0}
+  playerCamera: {fileID: 0}
   playerInteract: {fileID: 0}
   distanceFromCamera: 1.1
   lerpTime: 0.2
   lerpTimeStamp: 0
   throwForce: 1000
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  maxDistance: 0
   isCarried: 0
 --- !u!1001 &187121030
 PrefabInstance:
@@ -98204,17 +98200,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc003abe7e48fd1429f21d86de754cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickupAndCarry
-  pickedUpItem: {fileID: 0}
-  cam: {fileID: 0}
+  player: {fileID: 0}
+  playerCamera: {fileID: 0}
   playerInteract: {fileID: 0}
   distanceFromCamera: 1.1
   lerpTime: 0.2
   lerpTimeStamp: 0
   throwForce: 1000
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  maxDistance: 0
   isCarried: 0
 --- !u!1 &524953770
 GameObject:
@@ -121993,17 +121985,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc003abe7e48fd1429f21d86de754cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickupAndCarry
-  pickedUpItem: {fileID: 0}
-  cam: {fileID: 0}
+  player: {fileID: 0}
+  playerCamera: {fileID: 0}
   playerInteract: {fileID: 0}
   distanceFromCamera: 1.1
   lerpTime: 0.2
   lerpTimeStamp: 0
   throwForce: 1000
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  maxDistance: 0
   isCarried: 0
 --- !u!1001 &645962532
 PrefabInstance:
@@ -151550,17 +151538,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc003abe7e48fd1429f21d86de754cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickupAndCarry
-  pickedUpItem: {fileID: 0}
-  cam: {fileID: 0}
+  player: {fileID: 0}
+  playerCamera: {fileID: 0}
   playerInteract: {fileID: 0}
   distanceFromCamera: 1.1
   lerpTime: 0.2
   lerpTimeStamp: 0
   throwForce: 1000
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  maxDistance: 0
   isCarried: 0
 --- !u!1 &799669810
 GameObject:
@@ -207657,17 +207641,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc003abe7e48fd1429f21d86de754cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickupAndCarry
-  pickedUpItem: {fileID: 0}
-  cam: {fileID: 0}
+  player: {fileID: 0}
+  playerCamera: {fileID: 0}
   playerInteract: {fileID: 0}
   distanceFromCamera: 1.1
   lerpTime: 0.2
   lerpTimeStamp: 0
   throwForce: 1000
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  maxDistance: 0
   isCarried: 0
 --- !u!65 &1048524048
 BoxCollider:
@@ -331123,17 +331103,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc003abe7e48fd1429f21d86de754cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickupAndCarry
-  pickedUpItem: {fileID: 0}
-  cam: {fileID: 0}
+  player: {fileID: 0}
+  playerCamera: {fileID: 0}
   playerInteract: {fileID: 0}
   distanceFromCamera: 1.1
   lerpTime: 0.2
   lerpTimeStamp: 0
   throwForce: 1000
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  maxDistance: 0
   isCarried: 0
 --- !u!1 &1659302575
 GameObject:
@@ -350678,6 +350654,18 @@ PrefabInstance:
     - target: {fileID: 1331794247561623254, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635398246310125708, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635398246310125708, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1635398246310125708, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1635398246310125708, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -431173,17 +431161,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc003abe7e48fd1429f21d86de754cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickupAndCarry
-  pickedUpItem: {fileID: 0}
-  cam: {fileID: 0}
+  player: {fileID: 0}
+  playerCamera: {fileID: 0}
   playerInteract: {fileID: 0}
   distanceFromCamera: 1.1
   lerpTime: 0.2
   lerpTimeStamp: 0
   throwForce: 1000
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  maxDistance: 0
   isCarried: 0
 --- !u!65 &2140357008
 BoxCollider:
@@ -431717,6 +431701,14 @@ MonoBehaviour:
   allBonusTrapAreas: []
   bearTrap: {fileID: 0}
   enemiesToSpawn: 1
+  tweakAddedBar: {fileID: 0}
+  doubleViewSpeedPhrase: 
+  alwaysPoisonPhrase: 
+  moreBearTrapsPhrase: 
+  moreEnemiesPhrase: 
+  streamSniperImmediatelyPhrase: 
+  deactivateLightsPhrase: 
+  emptyPhrase: 
 --- !u!1 &2143462879
 GameObject:
   m_ObjectHideFlags: 0
