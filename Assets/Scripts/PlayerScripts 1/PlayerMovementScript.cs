@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -40,6 +41,9 @@ public class PlayerMovementScript : MonoBehaviour
     public float playerCrouchSpeed = 5f;
     public float playerSlideSpeed = 20f;
     public float playerRotationSpeed = 1.0f;
+    private float playerSlideTime = 0f;
+    private float currPlayerSlideTime;
+
 
     public float playerJumpForce = 9f;
     public float playerFastFall = -20f;
@@ -147,6 +151,15 @@ public class PlayerMovementScript : MonoBehaviour
                     _canMove = false;
                     if (_isGrounded)
                     {
+                        if(playerSlideTime < 5f)//Let player build up to triggering an increase to viewer retention
+                        {
+                            playerSlideTime += Time.deltaTime;
+                        }
+                        else
+                        {
+                            playerSlideTime = 0f;
+                            GameController.instance.IncreaseViewerRetention(GameController.ViewerRetentionCategories.SHMOVEMENT, 0.05f);
+                        }
                         //Decrease slide speed as slide is held down
                         if (_currSlideSpeed > 0.0f)
                         {
