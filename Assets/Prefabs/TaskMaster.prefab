@@ -79,11 +79,6 @@ MonoBehaviour:
   pillTaskLocation: []
   logTaskLocation: []
   audioSource: {fileID: 6514894927658121349}
-  successSounds:
-  - {fileID: 8300000, guid: 65042ac46dfbd314999892f279a73bf9, type: 3}
-  - {fileID: 8300000, guid: ad303e0f034121d4a89b2f0cfc05bf30, type: 3}
-  - {fileID: 8300000, guid: ae22bf4cb3006b44daf2f5ca67902a18, type: 3}
-  - {fileID: 8300000, guid: 7de29a0e664bb6849ad2df58cc8c50fa, type: 3}
 --- !u!114 &6995368675044081879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +153,14 @@ MonoBehaviour:
   allBonusTrapAreas: []
   bearTrap: {fileID: 1865467616548538108, guid: d387461cd09125b4b87d7ca26109ad83, type: 3}
   enemiesToSpawn: 1
+  tweakAddedBar: {fileID: 0}
+  doubleViewSpeedPhrase: Views decline faster
+  alwaysPoisonPhrase: Poison filter always active
+  moreBearTrapsPhrase: Bear traps are scattered everywhere
+  moreEnemiesPhrase: Rats spawn in pairs
+  streamSniperImmediatelyPhrase: Stream sniper shows up immediately
+  deactivateLightsPhrase: Lights are always off
+  emptyPhrase: No tweaks selected
 --- !u!82 &6514894927658121349
 AudioSource:
   m_ObjectHideFlags: 0

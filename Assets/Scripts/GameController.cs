@@ -198,6 +198,10 @@ public class GameController : MonoBehaviour
             //If viewer retention is between 0 and 1 decrease by 1
             //Else if viewer retention is in the negatives decreases by that negative value
             viewCount += (int)viewerRetention;
+            if (TweakManager.instance.doubleViewSpeed)
+            {
+                viewCount += (int)viewerRetention; //If the tweak is on, reduce it quicker
+            }
         }
 
         if(viewCount > maxViewership)

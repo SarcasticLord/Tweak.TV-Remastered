@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using TMPro;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -9,9 +11,9 @@ public class TweakManager : MonoBehaviour
     [Header("Tweak Toggles")]
     public bool doubleViewSpeed;
     public bool alwaysPoison;
-    public bool moreBearTraps; //Still need to add to subway
+    public bool moreBearTraps; 
     public bool moreEnemies; 
-    public bool streamSniperImmediately; //TODO
+    public bool streamSniperImmediately; 
     public bool deactivateLights; 
 
     [Space(3)]
@@ -23,8 +25,16 @@ public class TweakManager : MonoBehaviour
     public GameObject[] allBonusTrapAreas;
     public GameObject bearTrap;
     public int enemiesToSpawn = 1;
-
-    
+    public TextMeshProUGUI tweakAddedBar;
+    [Space(3)]
+    [Header("Phrases")]
+    public string doubleViewSpeedPhrase;
+    public string alwaysPoisonPhrase;
+    public string moreBearTrapsPhrase; 
+    public string moreEnemiesPhrase; 
+    public string streamSniperImmediatelyPhrase; 
+    public string deactivateLightsPhrase; 
+    public string emptyPhrase;
     
 
     public void Awake()
@@ -43,26 +53,90 @@ public class TweakManager : MonoBehaviour
     public void FlipspawnSSImm(bool isOn)
     {
         streamSniperImmediately=isOn;
+        if (isOn)
+        {
+            AddToTweakBar(streamSniperImmediatelyPhrase);
+        }
+        else
+        {
+            RemoveFromTweakBar(streamSniperImmediatelyPhrase);
+        }
     }
     public void FlipfastViewDecline(bool isOn)
     {
         doubleViewSpeed=isOn;
+        if (isOn)
+        {
+            AddToTweakBar(doubleViewSpeedPhrase);
+        }
+        else
+        {
+            RemoveFromTweakBar(doubleViewSpeedPhrase);
+        }
     }
     public void FlipmoreTraps(bool isOn)
     {
         moreBearTraps=isOn;
+        if (isOn)
+        {
+            AddToTweakBar(moreBearTrapsPhrase);
+        }
+        else
+        {
+            RemoveFromTweakBar(moreBearTrapsPhrase);
+        }
     }
     public void FlipallLightsOff(bool isOn)
     {
         deactivateLights=isOn;
+        if (isOn)
+        {
+            AddToTweakBar(deactivateLightsPhrase);
+        }
+        else
+        {
+            RemoveFromTweakBar(deactivateLightsPhrase);
+        }
     }
     public void FlipcameraFilters(bool isOn)
     {
         alwaysPoison=isOn;
+        if (isOn)
+        {
+            AddToTweakBar(alwaysPoisonPhrase);
+        }
+        else
+        {
+            RemoveFromTweakBar(alwaysPoisonPhrase);
+        }
     }
     public void FlipmoreEnemies(bool isOn)
     {
         moreEnemies=isOn;
+        if (isOn)
+        {
+            AddToTweakBar(moreEnemiesPhrase);
+        }
+        else
+        {
+            RemoveFromTweakBar(moreEnemiesPhrase);
+        }
+    }
+    public void AddToTweakBar(string phrase)
+    {
+        if (tweakAddedBar.text == "\n"+emptyPhrase)
+        {
+            tweakAddedBar.text = tweakAddedBar.text.Replace("\n"+emptyPhrase, "");
+        }
+        tweakAddedBar.text+="\n"+phrase;
+    }
+    public void RemoveFromTweakBar(string phrase)
+    {
+        tweakAddedBar.text = tweakAddedBar.text.Replace("\n"+phrase, "");
+        if (tweakAddedBar.text == "")
+        {
+            tweakAddedBar.text+="\n"+emptyPhrase;
+        }
     }
     public void StartTweakManager()
     {
