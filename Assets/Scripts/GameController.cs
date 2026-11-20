@@ -51,7 +51,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public enum ViewerRetentionCategories {TASK, SHMOVEMENT, VIOLENCE, RISKY}
+    public enum ViewerRetentionCategories {TASK, SHMOVEMENT, VIOLENCE, RISKY, VANDALISM}
 
     [SerializeField] private float baseShmovementMult = 2f;
     private float shmovementMult;
@@ -59,7 +59,13 @@ public class GameController : MonoBehaviour
     private float violenceMult;
     [SerializeField] private float baseRiskyMult = 2f;
     private float riskyMult;
+    [SerializeField] private float baseVandalismMult = 2f;
+    private float vandalismMult;
 
+    [SerializeField] private float baseEasyEnemyMult = 2f;
+    private float easyEnemyMult;
+    [SerializeField] private float baseMidEnemyMult = 2f;
+    private float midEnemyMult;
     private float viewChangeTime;
     #endregion
 
@@ -115,6 +121,9 @@ public class GameController : MonoBehaviour
         shmovementMult = baseShmovementMult;
         violenceMult = baseViolenceMult;
         riskyMult = baseRiskyMult;
+        vandalismMult = baseVandalismMult;
+        easyEnemyMult = baseEasyEnemyMult;
+        midEnemyMult = baseMidEnemyMult;
         
         //Reset Viewership stats
         enemiesKilled = 0;
@@ -177,6 +186,21 @@ public class GameController : MonoBehaviour
     public void decreaseCurrEnemyCount(BaseEnemy.EnemyType killedEnemyType) 
     {
         lastEnemyKilled = killedEnemyType;
+        //Handle viewer retention increases depending on enemy
+        switch(killedEnemyType)
+        {
+            case BaseEnemy.EnemyType.RAT:
+                IncreaseViewerRetention(ViewerRetentionCategories.VIOLENCE,0.1f * easyEnemyMult);
+                easyEnemyMult = Mathf.Clamp(easyEnemyMult - 0.05f, 0, baseEasyEnemyMult);
+                break;
+            case BaseEnemy.EnemyType.BEE:
+                IncreaseViewerRetention(ViewerRetentionCategories.VIOLENCE,0.1f * midEnemyMult);
+                midEnemyMult = Mathf.Clamp(midEnemyMult - 0.05f, 0, midEnemyMult);
+                break;
+            default:
+                Debug.LogError("Invalid enemy type" + killedEnemyType);
+                break;
+        }
         if(currEnemyCount > 0)
         {
             currEnemyCount--;
@@ -231,15 +255,18 @@ public class GameController : MonoBehaviour
                 shmovementMult = Mathf.Clamp(shmovementMult - 0.05f, 0, baseShmovementMult); //Lower multiplier every time we increase retention
                 break;
             case ViewerRetentionCategories.VIOLENCE:
-                viewerRetention += increaseViewerRetention * violenceMult;
-                violenceMult = Mathf.Clamp(violenceMult - 0.01f,0,baseViolenceMult);
+                viewerRetention += increaseViewerRetention; //Calculation done in decreaseCurrEnemyCount 
                 break;
             case ViewerRetentionCategories.RISKY:
                 viewerRetention += increaseViewerRetention * riskyMult;
                 riskyMult = Mathf.Clamp(riskyMult - 0.01f, 0, baseRiskyMult);
                 break;
+            case ViewerRetentionCategories.VANDALISM:
+                viewerRetention += increaseViewerRetention * vandalismMult;
+                vandalismMult = Mathf.Clamp(vandalismMult - 0.01f,0,baseVandalismMult);
+                break;
             default:
-                UnityEngine.Debug.Log("Invalid viewer retention category");
+                Debug.LogError("Invalid viewer retention category: " + category);
                 break;
         }
 
@@ -308,7 +335,7 @@ public class GameController : MonoBehaviour
 
     public void SpawnStreamSniper()
     {
-        GameObject PsychicFriend = Instantiate(streamSniper, streamSniperSpawnpoint.position, streamSniper.transform.rotation);
+        Instantiate(streamSniper, streamSniperSpawnpoint.position, streamSniper.transform.rotation);
         streamSniperSpawnTimer = 0f;//Reset stream sniper spawn timer
         streamSniperSpawnChance = 0f;//Reset stream sniper spawn chance
         currentStreamSniperSpawnChance = UnityEngine.Random.Range(0f, 1.0f);
