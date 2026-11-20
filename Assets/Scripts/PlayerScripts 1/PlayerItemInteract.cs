@@ -106,7 +106,7 @@ public class PlayerItemInteract : MonoBehaviour
             {
                 heldObject = hit.collider.gameObject; //Know who the held object is
                 heldObjectScript = heldObject.GetComponent<PickupAndCarry>(); 
-                heldObjectScript.StartPickup(); //Have the item react as if its being held
+                //heldObjectScript.StartPickup(); //Have the item react as if its being held
             }
             else if (hit.collider.gameObject.CompareTag("GrafittiWall")) //Start grafitti challenge if appropriate
             {

@@ -13,10 +13,9 @@ GameObject:
   - component: {fileID: 8753484502715323986}
   - component: {fileID: 5339933116428800491}
   - component: {fileID: -9035847798298126573}
-  - component: {fileID: 4234384253075673361}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DummyItem
-  m_TagString: Object
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,7 +121,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4012005124692186222}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -141,24 +140,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4234384253075673361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4012005124692186222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc003abe7e48fd1429f21d86de754cbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickupAndCarry
-  rb: {fileID: 0}
-  player: {fileID: 0}
-  playerCamera: {fileID: 0}
-  playerInteract: {fileID: 0}
-  distanceFromCamera: 1.1
-  lerpTime: 0.2
-  lerpTimeStamp: 0
-  throwForce: 10000
-  isCarried: 0
