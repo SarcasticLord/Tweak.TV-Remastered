@@ -1,13 +1,12 @@
-using Unity.Cinemachine;
+
 using UnityEngine;
 
 public class TrainMovement : MonoBehaviour
 {
-    [SerializeField] private CinemachineImpulseSource impulseSource;
-    [SerializeField] private float shakeCooldown = 0.25f;
+
     public float speed = 5f;
     private Rigidbody rb;
-    private float nextShakeTime;
+
     public Transform[] waypoints;
     private int waypointIndex = 0;
 
@@ -36,11 +35,7 @@ public class TrainMovement : MonoBehaviour
         {
             waypointIndex = (waypointIndex + 1) % waypoints.Length;
         }
-        if(Time.time >= nextShakeTime)
-        {
-            impulseSource.GenerateImpulse();
-            nextShakeTime = Time.time + shakeCooldown;
-        }
+
         
 
     }
