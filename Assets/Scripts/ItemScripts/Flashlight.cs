@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class Flashlight : BaseItem
 {
     public Light flashlight;
-
+   
     protected override void FixedUpdate()
     {
         if (!inInventory)

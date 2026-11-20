@@ -100,10 +100,10 @@ public class TaskEnder : MonoBehaviour
         }
         
         // TaskID 1, 6 & 7: End the task and destroy this object once it is successfully carried
-        if (pickupAndCarry.isCarried)
-        {
-            TaskMasterScript.instance.EndTask(taskToBeEnded.TaskID);
-            Destroy(gameObject);
-        }
+        //if (pickupAndCarry.isCarried)
+        //{
+        //    TaskMasterScript.instance.EndTask(taskToBeEnded.TaskID);
+        //    Destroy(gameObject);
+        //}
     }
 }

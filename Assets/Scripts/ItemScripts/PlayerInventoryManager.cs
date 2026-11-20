@@ -105,9 +105,9 @@ public class PlayerInventoryManager : MonoBehaviour
             }
             BaseItem itemScript = items[selectedItem].gameObject.GetComponent<BaseItem>();
             Renderer mesh = items[selectedItem].gameObject.GetComponent<Renderer>();
-            mesh.enabled = true;
+            //mesh.enabled = true;
             itemScript.isSelected = true;
-            //items[selectedItem].SetActive(true);
+            items[selectedItem].SetActive(true);
             Debug.Log(selectedItem);
         }
     }

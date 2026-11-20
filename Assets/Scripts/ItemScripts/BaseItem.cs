@@ -116,7 +116,7 @@ public class BaseItem : MonoBehaviour
         {
             inInventory = true;
             //If first item automatically selects it
-            if(playerInventory.items.Count == 0)
+            if (playerInventory.items.Count == 0)
             {
                 isSelected = true;
             }
