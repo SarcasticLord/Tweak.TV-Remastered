@@ -25,7 +25,7 @@ public class BaseItem : MonoBehaviour
 
     public bool isSelected = false;
 
-    protected bool inInventory = false;
+    public bool inInventory = false;
 
     //Inventory Display/Information
     public ItemData itemData;
@@ -86,22 +86,25 @@ public class BaseItem : MonoBehaviour
         }
     }
 
-    protected virtual void OnDropItem(InputAction.CallbackContext drop)
-    { 
-        if (drop.ReadValueAsButton())
+    protected virtual void OnDropItem(InputAction.CallbackContext q)
+    {
+        
+        if (q.ReadValueAsButton())
         {
             if (inInventory && isSelected)
             {
                 playerInventory.Drop(gameObject);
                 playerInventory.items.Remove(gameObject);
                 playerInventory.CycleItems();
+                inInventory = false;
+                isSelected = false;
+                gameObject.transform.SetParent(null);
                 col.enabled = true;
                 rb.useGravity = true;
                 rb.AddForce(transform.forward * 50f);
-                gameObject.transform.SetParent(null);
                 transform.rotation = origRot;
-                inInventory = false;
-                isSelected = false;
+
+
             }
         }
     }
@@ -113,12 +116,14 @@ public class BaseItem : MonoBehaviour
         {
             inInventory = true;
             //If first item automatically selects it
-            if(playerInventory.items.Count <= 1)
+            if(playerInventory.items.Count == 0)
             {
                 isSelected = true;
             }
             //makes this item a child of the player's inventory attached to the camera
             gameObject.transform.SetParent(playerInventory.gameObject.transform);
+            playerInventory.items.Add(this.gameObject);
+            playerInventory.RefreshHUDInventory();
         }
     }
 

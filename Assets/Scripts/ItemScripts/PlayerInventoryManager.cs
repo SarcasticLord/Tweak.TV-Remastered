@@ -16,6 +16,8 @@ public class PlayerInventoryManager : MonoBehaviour
     public GameObject hotbar;
 
     public GameObject itemSlotPrefab;
+
+    public Sprite emptySlot;
     
 
     private void OnEnable()
@@ -44,51 +46,31 @@ public class PlayerInventoryManager : MonoBehaviour
             foreach (Transform slot in hotbar.transform)
             {
                 Image slotIcon = slot.transform.GetChild(0).GetComponent<Image>();
-                slotIcon.color = Color.clear;
+                slotIcon.sprite = emptySlot;
                 itemSlots.Add(slot.gameObject);
             }
         }
     }
 
-    private void LateUpdate()
+    private void Update()
     {
-        //cycles through each child of the gameobject and adds it to items 
-        foreach (BaseItem child in gameObject.GetComponentsInChildren<BaseItem>())
-        {
-            if (child != gameObject.transform && !items.Contains(child.gameObject) && items.Count < maxItems) // Exclude the parent itself
-            {
-                items.Add(child.gameObject);
-                
-            }
-        }
         //cycles through each item in the inventory
         foreach (GameObject item in items)
         {
             //Changes slot item icon image to match item in inventory
             int itemIndex = items.IndexOf(item);
             Image slotIcon = itemSlots[itemIndex].transform.GetChild(0).GetComponent<Image>();
-            if (items.Count > 0)
-            { 
-                slotIcon.sprite = item.GetComponent<BaseItem>().itemData.icon;
-                slotIcon.color = Color.white;
-            }
-            else //Resets icon image back to null and transparent
-            {
-                slotIcon.sprite = null;
-                slotIcon.color = Color.clear;
-            }
-
+            BaseItem itemScript = item.gameObject.GetComponent<BaseItem>();
+            Renderer mesh = item.gameObject.GetComponent<Renderer>();
 
             //hides items that are not selected
             if (item != items[selectedItem])
             {
-                BaseItem itemScript = item.gameObject.GetComponent<BaseItem>();
-                Renderer mesh = item.gameObject.GetComponent<Renderer>();
-                mesh.enabled = false;
-                itemScript.isSelected = false;
-                //item.SetActive(false);
-
+                //mesh.enabled = false;
+                //itemScript.isSelected = false;
+                item.SetActive(false);
             }
+
         }
     }
 
@@ -105,9 +87,9 @@ public class PlayerInventoryManager : MonoBehaviour
     public void Drop(GameObject droppedItem)
     {
         int itemIndex = items.IndexOf(droppedItem);
+        Debug.Log(itemIndex);
         Image slotIcon = itemSlots[itemIndex].transform.GetChild(0).GetComponent<Image>();
-        slotIcon.sprite = null;
-        slotIcon.color = Color.clear;
+        RefreshHUDInventory();
     }
 
 
@@ -125,9 +107,27 @@ public class PlayerInventoryManager : MonoBehaviour
             Renderer mesh = items[selectedItem].gameObject.GetComponent<Renderer>();
             mesh.enabled = true;
             itemScript.isSelected = true;
-
             //items[selectedItem].SetActive(true);
             Debug.Log(selectedItem);
+        }
+    }
+
+
+    public void RefreshHUDInventory()
+    {
+        for (int i = 0; i < itemSlots.Count; i++)
+        {
+            Image icon = itemSlots[i].transform.GetChild(0).GetComponent<Image>();
+
+            if (i < items.Count)
+            {
+                BaseItem item = items[i].GetComponent<BaseItem>();
+                icon.sprite = item.itemData.icon;
+            }
+            else
+            {
+                icon.sprite = emptySlot;
+            }
         }
     }
 }
