@@ -51,7 +51,14 @@ public class ViewerRetentionProgressBar : MonoBehaviour
     private void HandleRetentionChanged(float newRetention)
     {
         _targetRetention = Mathf.Clamp(newRetention, 0f, _fillSegments.Length);
-        multiplierText.text = "x" + ((int)newRetention).ToString();
+        if(newRetention > 0)
+        {
+            multiplierText.text = "x" + Mathf.CeilToInt(newRetention).ToString();
+        }
+        else
+        {
+            multiplierText.text = "x" + Mathf.FloorToInt(newRetention).ToString();
+        }
     }
 
     private void Update()
