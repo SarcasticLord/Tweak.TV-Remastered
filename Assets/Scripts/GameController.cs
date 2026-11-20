@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using UnityEngine;
-
+using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using System.IO;
 public class GameController : MonoBehaviour
 {
     //GameController Script by Christian Andrion
@@ -29,6 +31,10 @@ public class GameController : MonoBehaviour
         set 
         {
             _viewCount = Mathf.Clamp(value,0,999999);
+
+            if(_viewCount > maxViewership)
+                maxViewership = _viewCount;
+
             OnViewCountChanged?.Invoke(_viewCount); //Update views on the GUI
         }
     }
@@ -94,6 +100,10 @@ public class GameController : MonoBehaviour
 
     public void StartGame()
     {
+        enemiesKilled = 0;
+        streamLength = 0;
+        maxViewership = viewCount;
+
         StopAllCoroutines(); //For safety
         streamSniperSpawnpoint = GameObject.Find("StreamSniperSpawn").transform;
         gameStarted = true;
@@ -142,7 +152,8 @@ public class GameController : MonoBehaviour
         //TODO: save values for stats screen
         
         audio.volume = 1.0f;
-        
+
+        streamLength = InGameUIController.gameTime;
         
     }
 
@@ -235,7 +246,7 @@ public class GameController : MonoBehaviour
         if (InGameUIController.gameTime <= 15) return;// 15 second grace period
 
         if (decreaseViewerRetention == 0)//Natural Viewer retention decrease rate
-            viewerRetention -= 0.05f;
+            viewerRetention -= 0.02f;
         else
         {
             //Allow other scripts to choose a value to decrease view count by
