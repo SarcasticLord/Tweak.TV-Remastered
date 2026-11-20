@@ -19,7 +19,7 @@ public class PlayerCameraScript : MonoBehaviour
     [SerializeField] private float baseIntensity = 0f;
     [SerializeField] private float maxTrainIntensity = 2f;
     [SerializeField] private float smoothingSpeed = 10f;
-    private float _currentTrainIntensity = 0f;
+    private float _shakeIntensity = 1f;
 
     private GameObject[] trains;
 
@@ -81,36 +81,45 @@ public class PlayerCameraScript : MonoBehaviour
         _player.transform.Rotate(Vector3.up * lookX);
 
         //Train camera shake
-        float highestTargetIntensity = baseIntensity;
+        // float highestTargetIntensity = baseIntensity;
 
-        if(trains != null && trains.Length > 0)
-        {
-            for(int i = 0; i < trains.Length; i++)
-            {
-                if (trains[i] == null) continue;
+        // if(trains != null && trains.Length > 0)
+        // {
+        //     for(int i = 0; i < trains.Length; i++)
+        //     {
+        //         if (trains[i] == null) continue;
 
-                float distance = Vector3.Distance(transform.position, trains[i].transform.position);
-                if(distance < detectionRadius)
-                {
-                    float proximityPercentage = 1f - (distance/detectionRadius);
-                    float calculatedIntensity = Mathf.Lerp(baseIntensity, maxTrainIntensity, proximityPercentage);
-                    if (calculatedIntensity > highestTargetIntensity)
-                    {
-                        highestTargetIntensity = calculatedIntensity;
-                    }
-                }
-            }
-        }
+        //         CinemachineImpulseSource trainImpulse = trains[i].GetComponentInChildren<CinemachineImpulseSource>();
+        //         if(trainImpulse == null)
+        //         {
+        //             return;
+        //         }
+        //         trainImpulse.GenerateImpulse(_shakeIntensity);
+        //         Debug.Log("Train Impulse: " + trainImpulse);
+
+                // float distance = Vector3.Distance(transform.position, trains[i].transform.position);
+                // if(distance < detectionRadius)
+                // {
+                    
+                    // float proximityPercentage = 1f - (distance/detectionRadius);
+                    // float calculatedIntensity = Mathf.Lerp(baseIntensity, maxTrainIntensity, proximityPercentage);
+                    // if (calculatedIntensity > highestTargetIntensity)
+                    // {
+                    //     highestTargetIntensity = calculatedIntensity;
+                    // }
+                // }
+        //     }
+        // }
 
         //Adjust headbob Intensity
-        _currentTrainIntensity = Mathf.MoveTowards(_currentTrainIntensity, highestTargetIntensity, smoothingSpeed * Time.deltaTime);
+        // _currentTrainIntensity = Mathf.MoveTowards(_currentTrainIntensity, highestTargetIntensity, smoothingSpeed * Time.deltaTime);
 
-        float moveMagnitude = _moveInput.magnitude;
+        // float moveMagnitude = _moveInput.magnitude;
 
-        float movementFrequency = moveMagnitude * movementFrequencyMultiplier;
-        float trainFrequencyBoost = _currentTrainIntensity;
+        // float movementFrequency = moveMagnitude * movementFrequencyMultiplier;
+        // float trainFrequencyBoost = _currentTrainIntensity;
 
-        _cinemachineNoise.FrequencyGain = 1.0f + movementFrequency + trainFrequencyBoost;
+        // _cinemachineNoise.FrequencyGain = 1.0f + movementFrequency + trainFrequencyBoost;
 
     }
 
