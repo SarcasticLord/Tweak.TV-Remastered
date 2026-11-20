@@ -113,6 +113,7 @@ public class GameController : MonoBehaviour
 
         //Reset enemy count
         currEnemyCount = 0;
+        StartCoroutine(nameof(ChangeViewesOverTime));
         StartCoroutine(nameof(ChangeViewerRetention));
         currentStreamSniperSpawnChance = UnityEngine.Random.Range(0f, 1.0f);
         StartCoroutine(nameof(WeightedChanceToSpawnSniper));
@@ -212,7 +213,7 @@ public class GameController : MonoBehaviour
                 break;
             case ViewerRetentionCategories.SHMOVEMENT:
                 viewerRetention += increaseViewerRetention * shmovementMult;
-                shmovementMult = Mathf.Clamp(shmovementMult - 0.01f, 0, baseShmovementMult); //Lower multiplier every time we increase retention
+                shmovementMult = Mathf.Clamp(shmovementMult - 0.05f, 0, baseShmovementMult); //Lower multiplier every time we increase retention
                 break;
             case ViewerRetentionCategories.VIOLENCE:
                 viewerRetention += increaseViewerRetention * violenceMult;
@@ -220,7 +221,7 @@ public class GameController : MonoBehaviour
                 break;
             case ViewerRetentionCategories.RISKY:
                 viewerRetention += increaseViewerRetention * riskyMult;
-                riskyMult = Mathf.Clamp(riskyMult - 0.05f, 0, baseRiskyMult);
+                riskyMult = Mathf.Clamp(riskyMult - 0.01f, 0, baseRiskyMult);
                 break;
             default:
                 UnityEngine.Debug.Log("Invalid viewer retention category");
@@ -234,7 +235,7 @@ public class GameController : MonoBehaviour
         if (InGameUIController.gameTime <= 15) return;// 15 second grace period
 
         if (decreaseViewerRetention == 0)//Natural Viewer retention decrease rate
-            viewerRetention -= 0.01f;
+            viewerRetention -= 0.05f;
         else
         {
             //Allow other scripts to choose a value to decrease view count by
@@ -243,14 +244,22 @@ public class GameController : MonoBehaviour
     }
 
     //Looping coroutine that has the view increase and view decrease rates fight
-    IEnumerator ChangeViewerRetention()
+    IEnumerator ChangeViewesOverTime()
     {
         while (gameStarted)
         {
             viewChangeTime = UnityEngine.Random.Range(1f, 3f);
             ChangeViews();
-            DecreaseViewerRetention();
             yield return new WaitForSeconds(viewChangeTime);
+        }
+    }
+
+    IEnumerator ChangeViewerRetention()
+    {
+        while(gameStarted)
+        {
+            DecreaseViewerRetention();
+            yield return new WaitForSeconds(1f);
         }
     }
 

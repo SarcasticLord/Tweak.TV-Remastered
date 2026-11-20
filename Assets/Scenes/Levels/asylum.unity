@@ -124860,8 +124860,28 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 1452729345503007814, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5793440834577206791, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1011402921}
   m_SourcePrefab: {fileID: 100100000, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+--- !u!1 &1011402920 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5793440834577206791, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+  m_PrefabInstance: {fileID: 1011402919}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1011402921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011402920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5531d3234448462aa711817b9c210d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObstacleScore
 --- !u!43 &1013338407
 Mesh:
   m_ObjectHideFlags: 0
@@ -262982,7 +263002,7 @@ GameObject:
   - component: {fileID: 2012112650}
   m_Layer: 0
   m_Name: slide collider
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
