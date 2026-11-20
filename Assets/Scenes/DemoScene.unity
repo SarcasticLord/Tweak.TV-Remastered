@@ -2976,6 +2976,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1147610699776607998, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: throwForce
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1147610699776607998, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
+      propertyPath: distanceFromCamera
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1635398246310125708, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -135
@@ -3064,14 +3072,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4676861268793990318, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
-      propertyPath: maxItems
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4676861268793990318, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
-      propertyPath: emptySlot
-      value: 
-      objectReference: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 5793440834577206791, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
       propertyPath: m_Name
       value: PlayerCapsule
@@ -3159,10 +3159,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5793440834577206791, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 742637729}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
 --- !u!1001 &314019388
 PrefabInstance:
@@ -5864,36 +5861,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!1 &742637714 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5793440834577206791, guid: ec02e4d0ef8843c40b5c73445c5a3bb5, type: 3}
-  m_PrefabInstance: {fileID: 292218515}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &742637729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 742637714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc003abe7e48fd1429f21d86de754cbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickupAndCarry
-  pickedUpItem: {fileID: 0}
-  cam: {fileID: 0}
-  playerInteract: {fileID: 0}
-  distanceFromCamera: 1.1
-  lerpTime: 0.2
-  lerpTimeStamp: 0
-  throwForce: 10000
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 511
-  maxDistance: 100
-  pickupInHand: 0
-  pickupItem: {fileID: 173825923650048943, guid: 6055c109ca094264eb94c4fc10bcb837, type: 3}
 --- !u!43 &753265576
 Mesh:
   m_ObjectHideFlags: 0

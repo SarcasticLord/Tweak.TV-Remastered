@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7617706438288152291}
   - component: {fileID: 5367042901445965211}
   - component: {fileID: 1668822049235745991}
-  - component: {fileID: 5218806835909923473}
   m_Layer: 8
   m_Name: trashKeyItem
   m_TagString: KeyItem
@@ -29,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 719526801191990571}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 14.995, y: 6.5769, z: 13.97}
   m_LocalScale: {x: 13.510079, y: 13.510079, z: 6.8834157}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &391749410499701032
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -144,23 +143,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0879735, y: 0.06278463, z: 0.039366007}
   m_Center: {x: -0.003137985, y: -0.003696465, z: 0.019630723}
---- !u!114 &5218806835909923473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 719526801191990571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc003abe7e48fd1429f21d86de754cbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickupAndCarry
-  player: {fileID: 0}
-  playerCamera: {fileID: 0}
-  playerInteract: {fileID: 0}
-  distanceFromCamera: 1.1
-  lerpTime: 0.2
-  lerpTimeStamp: 0
-  throwForce: 1000
-  isCarried: 0
