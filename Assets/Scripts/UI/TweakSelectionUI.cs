@@ -22,6 +22,8 @@ public class TweakSelectionUI : MonoBehaviour
     public Toggle allLightsOffToggle;
     public Toggle cameraFiltersToggle;
     public Toggle moreEnemiesToggle;
+    [Header("Other")]
+    public TextMeshProUGUI descriptionBar;
 
     void Awake()
     {
@@ -31,6 +33,41 @@ public class TweakSelectionUI : MonoBehaviour
         allLightsOffToggle.onValueChanged.AddListener(TweakManager.instance.FlipallLightsOff);
         cameraFiltersToggle.onValueChanged.AddListener(TweakManager.instance.FlipcameraFilters);
         moreEnemiesToggle.onValueChanged.AddListener(TweakManager.instance.FlipmoreEnemies);
+        TweakManager.instance.tweakAddedBar=descriptionBar;
+        
+        spawnSSImmToggle.isOn=TweakManager.instance.streamSniperImmediately;
+        fastViewDeclineToggle.isOn=TweakManager.instance.doubleViewSpeed;
+        moreTrapsToggle.isOn=TweakManager.instance.moreBearTraps;
+        allLightsOffToggle.isOn=TweakManager.instance.deactivateLights;
+        cameraFiltersToggle.isOn=TweakManager.instance.alwaysPoison;
+        moreEnemiesToggle.isOn=TweakManager.instance.moreEnemies;
+
+        descriptionBar.text="";
+        if (spawnSSImmToggle.isOn)
+        {
+            TweakManager.instance.AddToTweakBar(TweakManager.instance.streamSniperImmediatelyPhrase);
+        }
+        if (fastViewDeclineToggle.isOn)
+        {
+            TweakManager.instance.AddToTweakBar(TweakManager.instance.doubleViewSpeedPhrase);
+        }
+        if (moreTrapsToggle.isOn)
+        {
+            TweakManager.instance.AddToTweakBar(TweakManager.instance.moreBearTrapsPhrase);
+        }
+        if (allLightsOffToggle.isOn)
+        {
+            TweakManager.instance.AddToTweakBar(TweakManager.instance.deactivateLightsPhrase);
+        }
+        if (cameraFiltersToggle.isOn)
+        {
+            TweakManager.instance.AddToTweakBar(TweakManager.instance.alwaysPoisonPhrase);
+        }
+        if (moreEnemiesToggle.isOn)
+        {
+            TweakManager.instance.AddToTweakBar(TweakManager.instance.moreEnemiesPhrase);
+        }
+        
     }
     
 

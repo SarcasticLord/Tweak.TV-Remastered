@@ -1685,7 +1685,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1893039983}
   m_HandleRect: {fileID: 1893039982}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3519,7 +3519,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'this is the description for the spawn stream sniper immediately tweak
+  m_text: 'We love what you''ve been doing recently, so we''re doing a meet-n-greet!
+    All your biggest fans''ll be there, especially that one guy that keeps trying
+    to doxx you!
 
     advantages:
 
@@ -3752,7 +3754,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'this is the description for the faster decline tweak
+  m_text: 'you''re last week''s news buddy. You better start taking some shortcuts
+    or doing crazy tricks or we''re gonna start moving your viewers to baby sensory
+    videos!
 
     advantages:
 
@@ -3876,7 +3880,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0005569633}
+  m_AnchoredPosition: {x: 0, y: -0.0010213603}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1147884613
@@ -4646,7 +4650,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'this is the description for the more traps tweak
+  m_text: 'We''re trying to clean these places up for you after your recent complaints,
+    so we put up some bear traps. Unfortunately we''re still figuring out how to
+    make rats trigger them. They definitely work on you, though!
 
     advantages:
 
@@ -4872,7 +4878,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'this is the description for the spawn more enemies tweak
+  m_text: 'The viewers can''t get enough of your rat killing, so we''ve dumped a
+    ton of them into the sewers. Don''t ask where we got them from, but some of their
+    tails may be tied together
 
     advantages:
 
@@ -5013,7 +5021,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'this is the description for the camera filters tweak
+  m_text: 'Yeah sorry about that sandwich buddy. We thought the Tweaksauce had been
+    pasteurized. You''ll make do, yeah?
 
     advantages:
 
@@ -6142,7 +6151,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'this is the description for the deactivate all lights tweak
+  m_text: 'Sorry ... we couldn''t afford to power the place up when you got there,
+    so you''ll have to do with a flashlight, buddy
 
     advantages:
 
@@ -7454,6 +7464,7 @@ MonoBehaviour:
   allLightsOffToggle: {fileID: 1421656048}
   cameraFiltersToggle: {fileID: 1333007852}
   moreEnemiesToggle: {fileID: 1492027225}
+  descriptionBar: {fileID: 2097620328}
 --- !u!1 &2064898287
 GameObject:
   m_ObjectHideFlags: 0
@@ -7617,8 +7628,8 @@ GameObject:
   - component: {fileID: 2097620329}
   - component: {fileID: 2097620328}
   m_Layer: 5
-  m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_Name: DescriptionBar
+  m_TagString: DescDisplay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7639,7 +7650,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -162.07458, y: -0.0002327}
+  m_AnchoredPosition: {x: -162.07458, y: 37}
   m_SizeDelta: {x: 951.8525, y: 226.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2097620328
