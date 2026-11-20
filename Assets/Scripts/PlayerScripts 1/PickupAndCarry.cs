@@ -36,7 +36,7 @@ public class PickupAndCarry : MonoBehaviour
     public void Pickup() //Run continuously to carry object
     {
         
-        //Vector3.Lerp(transform.position, player.position+(player.forward*distanceFromCamera), lerpTime);
+        Vector3.Lerp(transform.position, player.position+(player.forward*distanceFromCamera), lerpTime);
         transform.position = player.position+(player.forward*distanceFromCamera);
         transform.LookAt(player);
 
@@ -61,6 +61,6 @@ public class PickupAndCarry : MonoBehaviour
         rb.useGravity=grav;
         if(!lin){rb.linearVelocity=Vector3.zero;}
         c.isTrigger=!collide;
-        // if(!rota){rb.freezeRotation=true;}else{rb.freezeRotation=false;}
+        if(!rota){rb.freezeRotation=true;}else{rb.freezeRotation=false;}
     }
 }

@@ -1444,7 +1444,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1844515882311691293
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2189,6 +2189,8 @@ GameObject:
   - component: {fileID: 4865386028009060570}
   - component: {fileID: 3965248877018922581}
   - component: {fileID: 8983731793372942916}
+  - component: {fileID: 1147610699776607998}
+  - component: {fileID: 2277370432524817760}
   m_Layer: 3
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -2206,8 +2208,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.36, y: 1.36, z: 1.36}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 181428416258657988}
   - {fileID: 5874876636557082907}
@@ -2360,14 +2362,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500654cdc2e715940a607df1365efcd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerItemInteract
-  maxDistance: 3
+  maxDistance: 10
   interactDistance: 5
   heldObject: {fileID: 0}
   playerCamera: {fileID: 2378955566042852624}
   pickupCooldown: 1
   grafittiChallenge: {fileID: 0}
   viewTracker: {fileID: 0}
-  testRayScatter: 0
+  testRayScatter: 1
   summaryStatsScene: SummaryScene
   level: subway
   trainTicket: {fileID: 0}
@@ -2587,6 +2589,43 @@ MonoBehaviour:
   flashSlider: {fileID: 0}
   SenseSlider: {fileID: 3502776888727332363}
   playerCamera: {fileID: 2273673707435137200}
+--- !u!114 &1147610699776607998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5793440834577206791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 512a2da8fc0eec842abe689ca3ff57f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupAndThrow
+  pickedUpItem: {fileID: 0}
+  cam: {fileID: 0}
+  playerInteract: {fileID: 0}
+  distanceFromCamera: 1.1
+  lerpTime: 0.2
+  lerpTimeStamp: 0
+  throwForce: 1000
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 255
+  maxDistance: 10
+  pickupInHand: 0
+  pickupItem: {fileID: 173825923650048943, guid: 6055c109ca094264eb94c4fc10bcb837, type: 3}
+--- !u!114 &2277370432524817760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5793440834577206791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5531d3234448462aa711817b9c210d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObstacleScore
 --- !u!1 &6095978083870461345
 GameObject:
   m_ObjectHideFlags: 0
@@ -2758,6 +2797,7 @@ MonoBehaviour:
   maxItems: 3
   hotbar: {fileID: 3572802819976288443}
   itemSlotPrefab: {fileID: 4744322443691301642, guid: 3a06bdc3b5d527f4f9e88bb5569906e9, type: 3}
+  emptySlot: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &7531868942162882745
 GameObject:
   m_ObjectHideFlags: 0
@@ -3135,6 +3175,10 @@ PrefabInstance:
       value: -23.199951
       objectReference: {fileID: 0}
     - target: {fileID: 2203033528288738991, guid: 2a3b8399145964088adbf6f570f5f414, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2203033528288738991, guid: 2a3b8399145964088adbf6f570f5f414, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 516.5801
       objectReference: {fileID: 0}
@@ -3227,8 +3271,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4781686977849847987, guid: 2a3b8399145964088adbf6f570f5f414, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 2342.713
+      objectReference: {fileID: 0}
+    - target: {fileID: 4781686977849847987, guid: 2a3b8399145964088adbf6f570f5f414, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 278.4
+      value: 283.2945
       objectReference: {fileID: 0}
     - target: {fileID: 4887067093317487100, guid: 2a3b8399145964088adbf6f570f5f414, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3481,6 +3529,10 @@ PrefabInstance:
     - target: {fileID: 7162276298923150270, guid: 2a3b8399145964088adbf6f570f5f414, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7729364225948679404, guid: 2a3b8399145964088adbf6f570f5f414, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 46.8459
       objectReference: {fileID: 0}
     - target: {fileID: 7729364225948679404, guid: 2a3b8399145964088adbf6f570f5f414, type: 3}
       propertyPath: m_AnchoredPosition.y

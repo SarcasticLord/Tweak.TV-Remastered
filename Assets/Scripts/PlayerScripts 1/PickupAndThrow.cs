@@ -67,8 +67,6 @@ public class PickupAndThrow : MonoBehaviour
         itemRb = null;
 
     }
-
-
     void OnPickupItem(InputAction.CallbackContext pickup)
     {
         if (pickup.ReadValueAsButton())
@@ -83,16 +81,12 @@ public class PickupAndThrow : MonoBehaviour
                 if (Physics.Raycast(rayOrigin, rayDirection * 10f, out hit, maxDistance, ~ignoreLayer))
                 {
                     GameObject target = hit.transform.gameObject;
-                    if (target.CompareTag("Pickup"))
+                    Collider targetCollider = hit.collider;
+                    Rigidbody targetRb = targetCollider.GetComponent<Rigidbody>();
+                    if (targetRb != null)
                     {
-                        Collider targetCollider = hit.collider;
-                        Rigidbody targetRb = targetCollider.GetComponent<Rigidbody>();
-
-                        if (targetRb != null)
-                        {
                             pickedUpItem = target;
                             Pickup();
-                        }
                     }
                 }
             } else if (pickupInHand)
