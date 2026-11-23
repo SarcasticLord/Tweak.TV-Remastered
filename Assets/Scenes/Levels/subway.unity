@@ -5277,6 +5277,32 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &14598164 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6301742527726317814, guid: a57a4f38b13ac1e48bc831e13afcbc20, type: 3}
+  m_PrefabInstance: {fileID: 2050975038}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &14598166
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14598164}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.004558958, y: 0.009122566, z: 0.0517259}
+  m_Center: {x: -0.004960726, y: -0.00047073403, z: 0.00006514861}
 --- !u!43 &16859445
 Mesh:
   m_ObjectHideFlags: 0
@@ -414774,14 +414800,45 @@ PrefabInstance:
       propertyPath: 'waypoints.Array.data[3]'
       value: 
       objectReference: {fileID: 593359699}
+    - target: {fileID: 6301742527726317814, guid: a57a4f38b13ac1e48bc831e13afcbc20, type: 3}
+      propertyPath: m_TagString
+      value: Exit
+      objectReference: {fileID: 0}
+    - target: {fileID: 8065861488774766927, guid: a57a4f38b13ac1e48bc831e13afcbc20, type: 3}
+      propertyPath: m_Size.y
+      value: 1.2975445
+      objectReference: {fileID: 0}
+    - target: {fileID: 8065861488774766927, guid: a57a4f38b13ac1e48bc831e13afcbc20, type: 3}
+      propertyPath: m_Size.z
+      value: 3.7955084
+      objectReference: {fileID: 0}
+    - target: {fileID: 8065861488774766927, guid: a57a4f38b13ac1e48bc831e13afcbc20, type: 3}
+      propertyPath: m_Center.x
+      value: -0.000014678316
+      objectReference: {fileID: 0}
+    - target: {fileID: 8065861488774766927, guid: a57a4f38b13ac1e48bc831e13afcbc20, type: 3}
+      propertyPath: m_Center.y
+      value: -1.0473328
+      objectReference: {fileID: 0}
+    - target: {fileID: 8065861488774766927, guid: a57a4f38b13ac1e48bc831e13afcbc20, type: 3}
+      propertyPath: m_Center.z
+      value: -0.035723925
+      objectReference: {fileID: 0}
     - target: {fileID: 8065861488774766927, guid: a57a4f38b13ac1e48bc831e13afcbc20, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8827136905063717754, guid: a57a4f38b13ac1e48bc831e13afcbc20, type: 3}
+      propertyPath: m_TagString
+      value: Exit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6301742527726317814, guid: a57a4f38b13ac1e48bc831e13afcbc20, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 14598166}
     - targetCorrespondingSourceObject: {fileID: 8827136905063717754, guid: a57a4f38b13ac1e48bc831e13afcbc20, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2050975040}
@@ -414806,7 +414863,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

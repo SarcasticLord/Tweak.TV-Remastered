@@ -7,16 +7,14 @@ public class UsernameInput : MonoBehaviour
     public static string playerInput = "";
 
     public TMP_InputField inputField;
+    [SerializeField] private TextMeshProUGUI username;    
 
     public void SaveInput()
     {
+        username.text = " ";
         playerInput = inputField.text;
-        UsernameURL text = FindFirstObjectByType<UsernameURL>();
+        username.text = playerInput.ToString();
 
-        if (text != null)
-        {
-            text.AppendText();
-        }
     }
 
     private void Awake()
