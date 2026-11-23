@@ -99,6 +99,7 @@ public class TaskMasterScript : MonoBehaviour
 
     public void StartTaskMasterScript()
     {
+        
         descDisplay=GameObject.FindGameObjectWithTag("DescDisplay").GetComponent<TextMeshProUGUI>();
         viewTracker = GetComponent<ViewTracker>();
         objectsCollected=0;grafittiCompleted=0;enemiesKilled=0;
@@ -130,6 +131,7 @@ public class TaskMasterScript : MonoBehaviour
         }
         else if (level == "subway")
         {
+            Debug.Log("Addressed");
             GameObject[] coffeePoints = GameObject.FindGameObjectsWithTag("CoffeeSpawns");
             for (int i = 0; i < coffeePoints.Length; i++)
             {

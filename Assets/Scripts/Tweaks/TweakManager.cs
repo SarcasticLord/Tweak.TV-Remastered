@@ -144,7 +144,6 @@ public class TweakManager : MonoBehaviour
         
         if (poisonVolume!=null && alwaysPoison)
         {
-            
             poisonVolume.enabled=true;
         }
         if (moreBearTraps)
@@ -153,7 +152,7 @@ public class TweakManager : MonoBehaviour
             foreach (GameObject spot in allBonusSpawnAreas)
             {
                 Vector3 vector3 = new(spot.transform.eulerAngles.x-90, spot.transform.eulerAngles.y, spot.transform.eulerAngles.z);
-                GameObject jeffery = Instantiate(bearTrap, spot.transform.position, Quaternion.Euler(vector3));
+                Instantiate(bearTrap, spot.transform.position, Quaternion.Euler(vector3));
                 
                 
             }

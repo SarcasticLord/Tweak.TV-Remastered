@@ -167,6 +167,9 @@ public class PlayerItemInteract : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 //if (grafittiChallenge.systemActive){grafittiChallenge.FailState();} //Fail them if they get hit in the minigame
                 Cursor.visible = true;
+                TaskMasterScript.instance.coffeeTaskLocation.Clear();
+                TaskMasterScript.instance.pillTaskLocation.Clear();
+                TaskMasterScript.instance.logTaskLocation.Clear();
                 SceneManager.LoadScene("DeathScene");
                 break;
             case "AttackZone":

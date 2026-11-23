@@ -49,16 +49,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TaskMasterScript
   availableTasks: []
-  endTask: {fileID: 11400000, guid: 546574e1353b00c4d9101f854ca5a90c, type: 2}
+  endTask: {fileID: 0}
   exitSubwayTask: {fileID: 11400000, guid: b6a13c29f6dc9304394754be7d0fbdb6, type: 2}
   exitAsylumTask: {fileID: 11400000, guid: 931a0b3f0893f6b4f9822709ea15caff, type: 2}
   descDisplay: {fileID: 0}
   viewTracker: {fileID: 0}
   objectsNeededForTask: 5
   objectsCollected: 0
-  enemiesLeftAlive: 5
+  enemiesLeftAlive: 10
   enemiesKilled: 0
-  grafittiSpots: 3
+  grafittiSpots: 4
   grafittiCompleted: 0
   asylumTasks:
   - {fileID: 11400000, guid: 54f4405b0c262314998117ffc98ed7e8, type: 2}

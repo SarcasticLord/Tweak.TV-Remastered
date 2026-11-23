@@ -106,6 +106,7 @@ public class GameController : MonoBehaviour
 
     public void StartGame()
     {
+        Debug.Log("Addressed");
         enemiesKilled = 0;
         streamLength = 0;
         maxViewership = viewCount;
@@ -129,7 +130,7 @@ public class GameController : MonoBehaviour
         enemiesKilled = 0;
         streamLength = 0;
         maxViewership = 0;
-
+        
         //Reset enemy count
         currEnemyCount = 0;
         StartCoroutine(nameof(ChangeViewesOverTime));
