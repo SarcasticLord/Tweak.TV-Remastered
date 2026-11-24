@@ -115,7 +115,8 @@ public class GameController : MonoBehaviour
         StopAllCoroutines(); //For safety
         streamSniperSpawnpoint = GameObject.Find("StreamSniperSpawn").transform;
         gameStarted = true;
-        audio.volume = 0.0f;
+        if(audio!=null){audio.volume = 0.0f;}
+        
     
 
         //Viewer Retention Base stats
@@ -148,7 +149,7 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame && audio != null)
         {
             audio.Play();
         }

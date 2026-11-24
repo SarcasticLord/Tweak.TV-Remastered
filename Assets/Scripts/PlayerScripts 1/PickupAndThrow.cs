@@ -84,16 +84,20 @@ public class PickupAndThrow : MonoBehaviour
                     if (LayerMask.LayerToName(target.layer) == "Carry") //Item is on carry layer
                     {
                         //Anything with carry tag gets destroyed and completes said task if applicable
-                        TaskMasterScript.instance.EndTask(target.GetComponent<TaskEnder>().taskToBeEnded.TaskID);
-                        Destroy(target);
-                        return;
+                        if (target.GetComponent<TaskEnder>() != null)
+                        {
+                            TaskMasterScript.instance.EndTask(target.GetComponent<TaskEnder>().taskToBeEnded.TaskID);
+                            Destroy(target);
+                            return;
+                        }
+                        
                     }
                     Collider targetCollider = hit.collider;
                     Rigidbody targetRb = targetCollider.GetComponent<Rigidbody>();
                     if (targetRb != null)
                     {
-                            pickedUpItem = target;
-                            Pickup();
+                        pickedUpItem = target;
+                        Pickup();
                     }
                 }
             } else if (pickupInHand)
