@@ -37,7 +37,16 @@ public class TaskMasterScript : MonoBehaviour
     public delegate void OnAllTasksComplete();
     public static event OnAllTasksComplete AllTasksComplete;
 
+    private void OnEnable()
+    {
+        GameController.OnEnemyKilled += CountEnemiesKilled;
 
+    }
+    private void OnDisable()
+    {
+        GameController.OnEnemyKilled -= CountEnemiesKilled;
+        
+    }
 
     public void SetTasks() //Change the task and task description
     {
@@ -142,16 +151,7 @@ public class TaskMasterScript : MonoBehaviour
             Instantiate(coffeeTaskItem, coffeeLocationOfChoice.position, coffeeTaskItem.transform.rotation);
         }
     }
-    private void OnEnable()
-    {
-        GameController.OnEnemyKilled += CountEnemiesKilled;
 
-    }
-    private void OnDisable()
-    {
-        GameController.OnEnemyKilled -= CountEnemiesKilled;
-        
-    }
 
     void AddTask(TaskTemplate task)
     {
