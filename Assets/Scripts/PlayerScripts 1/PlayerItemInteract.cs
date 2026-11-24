@@ -170,6 +170,7 @@ public class PlayerItemInteract : MonoBehaviour
                 TaskMasterScript.instance.coffeeTaskLocation.Clear();
                 TaskMasterScript.instance.pillTaskLocation.Clear();
                 TaskMasterScript.instance.logTaskLocation.Clear();
+                GameController.instance.StopGame();
                 SceneManager.LoadScene("DeathScene");
                 break;
             case "AttackZone":
