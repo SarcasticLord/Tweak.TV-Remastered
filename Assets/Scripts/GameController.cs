@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     public static GameController instance { get; private set; }
     public static event Action<int> OnViewCountChanged;
     public static event Action<float> OnViewerRetentionChanged;
-    public static event Action OnEnemyKilled;
+    public static event Action<BaseEnemy.EnemyType> OnEnemyKilled;
 
     //Enemy related stuff
     [Header("Enemy Count")] 
@@ -73,7 +73,7 @@ public class GameController : MonoBehaviour
     #region 
     [SerializeField] private GameObject streamSniper;
     private Transform streamSniperSpawnpoint;
-    [SerializeField] private float streamSniperCooldown = 60f;
+    [SerializeField] private float streamSniperCooldown = 120f;
     [SerializeField] private float streamSniperSpawnTimer = 0f;
     [SerializeField] private float streamSniperSpawnChance = 0f;
     [SerializeField] private float currentStreamSniperSpawnChance;
@@ -106,10 +106,11 @@ public class GameController : MonoBehaviour
 
     public void StartGame()
     {
-        Debug.Log("Addressed");
-        enemiesKilled = 0;
+        Debug.Log("Game Started"); //Why just addressed?????
         streamLength = 0;
+        viewCount = 0;
         maxViewership = viewCount;
+
 
         StopAllCoroutines(); //For safety
         streamSniperSpawnpoint = GameObject.Find("StreamSniperSpawn").transform;
@@ -206,7 +207,7 @@ public class GameController : MonoBehaviour
         {
             currEnemyCount--;
             enemiesKilled++;
-            OnEnemyKilled?.Invoke();
+            OnEnemyKilled?.Invoke(lastEnemyKilled);
         }
     }
 

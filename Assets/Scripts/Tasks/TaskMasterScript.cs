@@ -219,14 +219,25 @@ public class TaskMasterScript : MonoBehaviour
         }
     }
 
-    public void CountEnemiesKilled() //Increment object and end task if complete
+    public void CountEnemiesKilled(BaseEnemy.EnemyType enemyKilled) //Increment object and end task if complete
     {
-        
-        enemiesKilled++;
-        SetTasks();
-        if (enemiesKilled >= enemiesLeftAlive)
+        switch (enemyKilled)
         {
-            EndTask(5);
+            case BaseEnemy.EnemyType.RAT:
+                enemiesKilled++;
+                SetTasks();
+                if (enemiesKilled >= enemiesLeftAlive)
+                {
+                    EndTask(5);
+                }
+                break;
+            case BaseEnemy.EnemyType.BEE:
+                Debug.Log("Bee killed, we currently have no tasks related to them so uhhh, yeah");
+                break;
+            default:
+                Debug.LogError("Invalid enemy type: " + enemyKilled);
+                break;
         }
+
     }
 }
