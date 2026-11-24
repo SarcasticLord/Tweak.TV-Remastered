@@ -9,7 +9,7 @@ public class ExitManager : MonoBehaviour
 
     private void OnEnable()
     {
-        TaskMasterScript.AllTasksComplete += SpawnExit; 
+        TaskMasterScript.AllTasksComplete += SpawnExit;
     }
 
     private void OnDisable()
@@ -20,9 +20,10 @@ public class ExitManager : MonoBehaviour
 
     private void Awake()
     {
-        if(exitDoor!=null){exitDoor.enabled = false;}
-        if(exitTrain!=null){exitTrain.SetActive(false);}
-        
+        if (exitTrain)
+            exitTrain.SetActive(false);
+        if (exitDoor)
+            exitDoor.GetComponent<Animator>().enabled = false ;
     }
 
     public void SpawnExit()
@@ -30,7 +31,7 @@ public class ExitManager : MonoBehaviour
         if (exitTrain)
             exitTrain.SetActive(true);
         if(exitDoor)
-            exitDoor.enabled = true;
+            exitDoor.GetComponent<Animator>().enabled = true;
     }
 
 
