@@ -5,19 +5,19 @@ using UnityEngine.InputSystem;
 
 public class PickupAndThrow : MonoBehaviour
 {
-    public GameObject pickedUpItem;
-    private Rigidbody itemRb;
-    private Collider col;
-    public Transform cam;
-    public PlayerItemInteract playerInteract;
-    public float distanceFromCamera=1.1f;
-    public float lerpTime=0.2f;
-    public float lerpTimeStamp=0f;
-    public float throwForce = 1000f;
-    public LayerMask ignoreLayer;
-    public float maxDistance;
-    public bool pickupInHand;
-    public InputActionReference pickupItem;
+    protected GameObject pickedUpItem;
+    protected Rigidbody itemRb;
+    protected Collider col;
+    [SerializeField] protected Transform cam;
+    [SerializeField] protected PlayerItemInteract playerInteract;
+    [SerializeField] protected float distanceFromCamera=1.1f;
+    [SerializeField] protected float lerpTime=0.2f;
+    [SerializeField] protected float lerpTimeStamp=0f;
+    [SerializeField] protected float throwForce = 3000f;
+    [SerializeField] protected LayerMask ignoreLayer;
+    [SerializeField] protected float maxDistance;
+    [SerializeField] protected bool pickupInHand;
+    [SerializeField] protected InputActionReference pickupItem;
 
 
     private void OnEnable()
@@ -51,7 +51,7 @@ public class PickupAndThrow : MonoBehaviour
         itemRb.constraints = RigidbodyConstraints.FreezeAll;
         itemRb.useGravity = false;
         pickedUpItem.transform.position = cam.position+(cam.forward*distanceFromCamera);
-        pickedUpItem.transform.LookAt(cam.transform);
+        //pickedUpItem.transform.LookAt(cam.transform);
         pickedUpItem.transform.parent = cam.transform;
 
 
@@ -81,7 +81,7 @@ public class PickupAndThrow : MonoBehaviour
                 if (Physics.Raycast(rayOrigin, rayDirection * 10f, out hit, maxDistance, ~ignoreLayer))
                 {
                     GameObject target = hit.transform.gameObject;
-                    if(target.layer == 8) //Item is on carry layer
+                    if (LayerMask.LayerToName(target.layer) == "Carry") //Item is on carry layer
                     {
                         //Anything with carry tag gets destroyed and completes said task if applicable
                         TaskMasterScript.instance.EndTask(target.GetComponent<TaskEnder>().taskToBeEnded.TaskID);
