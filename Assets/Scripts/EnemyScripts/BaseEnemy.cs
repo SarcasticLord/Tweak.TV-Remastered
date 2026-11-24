@@ -533,7 +533,7 @@ public class BaseEnemy : MonoBehaviour
         }
         return false;
     }
-    protected IEnumerator UpdateAnimations()
+    protected virtual IEnumerator UpdateAnimations()
     {
         while(this.isActiveAndEnabled)
         {

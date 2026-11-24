@@ -94,16 +94,6 @@ public class EvilRatManager : BaseEnemy
         if (animator != null)
             animator.SetInteger("EnemyState", (int)EnemyState.Attack);
 
-        if (!targetVisible)
-        {
-            if (lastSeenTimer <= targetMemoryTime)
-            {
-                currentState = EnemyState.Chase;
-                ChaseTarget();
-            }
-            return;
-        }
-
         float distanceToTarget =
             Vector3.Distance(transform.position,
                              chaseTarget.position);
