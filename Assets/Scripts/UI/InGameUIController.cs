@@ -32,6 +32,13 @@ public class InGameUIController : MonoBehaviour
         GameController.OnViewCountChanged -= UpdateViewCount;
     }
 
+    private void Start()
+    {
+        Unpause();
+        gameTime = 0;
+        ticketUI.SetActive(false);
+    }
+
     private void FixedUpdate()
     {
         gameTime += Time.deltaTime;
@@ -39,12 +46,7 @@ public class InGameUIController : MonoBehaviour
         UpdateTimer(timespan);
     }
 
-    private void Start()
-    {
-        Unpause();
-        gameTime = 0;
-        ticketUI.SetActive(false);
-    }
+
 
     void onPausePressed(InputAction.CallbackContext pause)
     {

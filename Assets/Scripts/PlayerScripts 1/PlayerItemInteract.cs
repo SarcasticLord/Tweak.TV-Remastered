@@ -145,6 +145,7 @@ public class PlayerItemInteract : MonoBehaviour
 
                 if(level == "asylum")
                 {
+                    GameController.instance.StopGame();
                     SceneManager.LoadScene(summaryStatsScene);
                 }
 
@@ -152,7 +153,7 @@ public class PlayerItemInteract : MonoBehaviour
                 {
                     if ( trainTicket.hasTicket == true)
                     {
-                        
+                        GameController.instance.StopGame();
                         SceneManager.LoadScene(summaryStatsScene);
                     }
                     else
