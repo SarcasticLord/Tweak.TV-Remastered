@@ -183,7 +183,8 @@ public class PlayerItemInteract : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        ticketWarning.SetActive(false);
+        if(ticketWarning!=null){ticketWarning.SetActive(false);}
+        
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

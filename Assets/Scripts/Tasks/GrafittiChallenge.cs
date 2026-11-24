@@ -64,6 +64,7 @@ public class GrafittiChallenge : MonoBehaviour
         
         for (int i = 0; i < 5; i++)
         {
+            if(inputImages.Length==0){break;}
             inputImages[i].SetActive(false); //Disable images until needed
         }
     }
