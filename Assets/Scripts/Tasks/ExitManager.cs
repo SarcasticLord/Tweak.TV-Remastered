@@ -20,8 +20,9 @@ public class ExitManager : MonoBehaviour
 
     private void Awake()
     {
-        exitDoor.enabled = false;
-        exitTrain.SetActive(false);
+        if(exitDoor!=null){exitDoor.enabled = false;}
+        if(exitTrain!=null){exitTrain.SetActive(false);}
+        
     }
 
     public void SpawnExit()
