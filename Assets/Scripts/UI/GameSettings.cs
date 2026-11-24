@@ -29,24 +29,42 @@ public class GameSettings : MonoBehaviour
 
         // subway announcer
         float saveAnnouncerVolume = PlayerPrefs.GetFloat("Announcer", 1f);
-        announcerSlider.value = saveAnnouncerVolume;
+        if (announcerSlider != null)
+        {
+            announcerSlider.value = saveAnnouncerVolume;
+        }
+        
 
         SetAnnouncerVolume(saveAnnouncerVolume);
-        announcerSlider.onValueChanged.AddListener(SetAnnouncerVolume);
+        if (announcerSlider != null)
+        {
+            announcerSlider.onValueChanged.AddListener(SetAnnouncerVolume);
+        }
+        
 
         // cam flash  
         float saveFlashVolume = PlayerPrefs.GetFloat("PlayerSounds", 1f);
-        flashSlider.value = saveFlashVolume;
+        if (flashSlider != null)
+        {
+            flashSlider.value = saveFlashVolume;
+            SetFlashVolume(saveAnnouncerVolume);
+            flashSlider.onValueChanged.AddListener(SetFlashVolume);
+        }
+        
 
-        SetFlashVolume(saveAnnouncerVolume);
-        flashSlider.onValueChanged.AddListener(SetFlashVolume);
+        
 
         // camera sense
         float saveSense = PlayerPrefs.GetFloat("CameraSense", 2f);
-        SenseSlider.value = saveSense;
+        if (SenseSlider != null)
+        {
+            SenseSlider.value = saveSense;
+            SetCameraSense(saveSense);
+            SenseSlider.onValueChanged.AddListener(SetCameraSense);
+        }
+        
 
-        SetCameraSense(saveSense);
-        SenseSlider.onValueChanged.AddListener(SetCameraSense);
+        
     }
 
     public void SetMasterVolume(float volume)

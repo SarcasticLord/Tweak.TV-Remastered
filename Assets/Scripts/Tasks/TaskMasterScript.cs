@@ -14,7 +14,7 @@ public class TaskMasterScript : MonoBehaviour
     public TaskTemplate exitSubwayTask;
     public TaskTemplate exitAsylumTask; 
     public TextMeshProUGUI descDisplay; //The description of the current task
-    //public ViewTracker viewTracker; //The viewtracker
+    // public ViewTracker viewTracker; //The viewtracker
     public int objectsNeededForTask; //How many objects are needed to complete the collection task
     public int objectsCollected; //The current number of collected objects
     public int enemiesLeftAlive; //How many enemies must be killed to complete the task
@@ -37,7 +37,16 @@ public class TaskMasterScript : MonoBehaviour
     public delegate void OnAllTasksComplete();
     public static event OnAllTasksComplete AllTasksComplete;
 
+    private void OnEnable()
+    {
+        GameController.OnEnemyKilled += CountEnemiesKilled;
 
+    }
+    private void OnDisable()
+    {
+        GameController.OnEnemyKilled -= CountEnemiesKilled;
+        
+    }
 
     public void SetTasks() //Change the task and task description
     {
@@ -101,7 +110,7 @@ public class TaskMasterScript : MonoBehaviour
     {
         
         descDisplay=GameObject.FindGameObjectWithTag("DescDisplay").GetComponent<TextMeshProUGUI>();
-        //viewTracker = GetComponent<ViewTracker>();
+
         objectsCollected=0;grafittiCompleted=0;enemiesKilled=0;
         SetTasks();
         RandomizeItemLocations();
@@ -142,16 +151,7 @@ public class TaskMasterScript : MonoBehaviour
             Instantiate(coffeeTaskItem, coffeeLocationOfChoice.position, coffeeTaskItem.transform.rotation);
         }
     }
-    private void OnEnable()
-    {
-        GameController.OnEnemyKilled += CountEnemiesKilled;
 
-    }
-    private void OnDisable()
-    {
-        GameController.OnEnemyKilled -= CountEnemiesKilled;
-        
-    }
 
     void AddTask(TaskTemplate task)
     {
