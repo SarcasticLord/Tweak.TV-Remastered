@@ -18,10 +18,11 @@ public class PlayerItemInteract : MonoBehaviour
     public GameObject playerCamera; //should be attached to camera
     public float pickupCooldown = 1f;
     
-    public GrafittiChallenge grafittiChallenge; //Should be empty in editor
+    
     //public ViewTracker viewTracker; //Should be empty in editor
     public float testRayScatter;
     LayerMask carry;
+    LayerMask interactable;
 
     public string summaryStatsScene;
     public string level;
@@ -29,11 +30,11 @@ public class PlayerItemInteract : MonoBehaviour
     [SerializeField] private GameObject ticketWarning;
 
 
-    //void OnProvideMarks(InputValue movementValue)
-    //{
+    void OnProvideMarks(InputValue movementValue)
+    {
         
-    //    GrafittiChallenge.instance.CommandInputs = movementValue.Get<Vector2>();
-    //}
+       GrafittiChallenge.instance.CommandInputs = movementValue.Get<Vector2>();
+    }
     
     //private IEnumerator PickupDelay()
     //{
@@ -44,13 +45,8 @@ public class PlayerItemInteract : MonoBehaviour
 
     void Start()
     {
-        if (GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<GrafittiChallenge>() != null)
-        {
-            grafittiChallenge = GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<GrafittiChallenge>();
-        }
-        
-        //viewTracker = GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<ViewTracker>();
         carry = LayerMask.GetMask("Carry");
+        interactable = LayerMask.GetMask("Interactable");
     }
     private void Update()
     {
@@ -90,11 +86,13 @@ public class PlayerItemInteract : MonoBehaviour
                 
                 // Check if THIS specific raycast hit something
                 
-                if (Physics.Raycast(rayOrigin, rayDirection, out hit, maxDistance, carry))
+                if (Physics.Raycast(rayOrigin, rayDirection, out hit, maxDistance, carry) || 
+                Physics.Raycast(rayOrigin, rayDirection, out hit, maxDistance, interactable))
                 {
                     hasHit = true;
                     break; // Stop looping once the first valid hit is found 
                 }
+                
                 
             }
 
@@ -112,11 +110,11 @@ public class PlayerItemInteract : MonoBehaviour
             {
 
                 TaskEnder taskEnder = hit.collider.gameObject.GetComponent<TaskEnder>();
-                grafittiChallenge.canBeStarted=taskEnder.canGrafitti;
-                grafittiChallenge.grafittiResult=taskEnder.grafittiImage;
-                grafittiChallenge.wallTaskEnder=taskEnder;
+                GrafittiChallenge.instance.canBeStarted=taskEnder.canGrafitti;
+                GrafittiChallenge.instance.grafittiResult=taskEnder.grafittiImage;
+                GrafittiChallenge.instance.wallTaskEnder=taskEnder;
 
-                grafittiChallenge.Activate();
+                GrafittiChallenge.instance.Activate();
             }
 
         }
@@ -166,7 +164,7 @@ public class PlayerItemInteract : MonoBehaviour
 
             case "KillZone":
                 Cursor.lockState = CursorLockMode.None;
-                //if (grafittiChallenge.systemActive){grafittiChallenge.FailState();} //Fail them if they get hit in the minigame
+                //if (GrafittiChallenge.instance.systemActive){GrafittiChallenge.instance.FailState();} //Fail them if they get hit in the minigame
                 Cursor.visible = true;
                 TaskMasterScript.instance.coffeeTaskLocation.Clear();
                 TaskMasterScript.instance.pillTaskLocation.Clear();
@@ -176,7 +174,7 @@ public class PlayerItemInteract : MonoBehaviour
                 break;
             case "AttackZone":
                 //GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<ViewTracker>().baseOffset-=100;
-                if(grafittiChallenge.systemActive){grafittiChallenge.FailState();} //Fail them if they get hit in the minigame
+                if(GrafittiChallenge.instance.systemActive){GrafittiChallenge.instance.FailState();} //Fail them if they get hit in the minigame
                 break;
             default:
                 break;
