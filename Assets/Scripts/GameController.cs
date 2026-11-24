@@ -81,9 +81,9 @@ public class GameController : MonoBehaviour
 
     [Header("Statistics")]
     #region 
-    public int enemiesKilled;
-    public float streamLength;
-    public int maxViewership;
+    public static int enemiesKilled;
+    public static float streamLength;
+    public static int maxViewership;
     #endregion
 
     [Header("Click audio")]
@@ -159,14 +159,13 @@ public class GameController : MonoBehaviour
 
     public void StopGame()
     {
+        streamLength = InGameUIController.gameTime;
+        Debug.Log("Stream Length: " + streamLength);
         gameStarted = false;
         StopAllCoroutines();
-        //TODO: save values for stats screen
-        
+
         audio.volume = 1.0f;
 
-        streamLength = InGameUIController.gameTime;
-        
     }
 
     //Called in EnemySpawner.cs script 

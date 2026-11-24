@@ -11,22 +11,18 @@ public class SummaryUI : MonoBehaviour
 
     private void Start()
     {
-        GameController game = GameController.instance;
 
-        enemiesKilledTxt.text = game.enemiesKilled.ToString();
-        maxViewersTxt.text = game.maxViewership.ToString();
-        viewsEndedWith.text = game.maxViewership.ToString();
-
-
+        enemiesKilledTxt.text = GameController.enemiesKilled.ToString();
+        maxViewersTxt.text = GameController.maxViewership.ToString();
+        viewsEndedWith.text = GameController.instance.viewCount.ToString();
     
-        TimeSpan time = TimeSpan.FromSeconds(game.streamLength);
+        TimeSpan time = TimeSpan.FromSeconds(GameController.streamLength);
 
         int hours = time.Hours;
         int minutes = time.Minutes; 
         int seconds = time.Seconds;
 
         totalStreamTime.text = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
-
         
     }
 
