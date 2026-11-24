@@ -115,8 +115,7 @@ public class GameController : MonoBehaviour
         StopAllCoroutines(); //For safety
         streamSniperSpawnpoint = GameObject.Find("StreamSniperSpawn").transform;
         gameStarted = true;
-        if(audio != null){audio.volume = 0.0f;}
-        
+        audio.volume = 0.0f;
     
 
         //Viewer Retention Base stats

@@ -160,6 +160,8 @@ public class TweakManager : MonoBehaviour
         if (moreEnemies)
         {
             enemiesToSpawn=2;
+            TaskMasterScript.instance.enemiesLeftAlive*=2;
+            TaskMasterScript.instance.SetTasks();
         }
         if (deactivateLights)
         {
