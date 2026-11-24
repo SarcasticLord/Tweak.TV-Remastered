@@ -110,7 +110,7 @@ public class TaskMasterScript : MonoBehaviour
     {
         
         descDisplay=GameObject.FindGameObjectWithTag("DescDisplay").GetComponent<TextMeshProUGUI>();
-        // viewTracker = GetComponent<ViewTracker>();
+
         objectsCollected=0;grafittiCompleted=0;enemiesKilled=0;
         SetTasks();
         RandomizeItemLocations();
