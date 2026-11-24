@@ -690,7 +690,7 @@ MonoBehaviour:
   baseIntensity: 0
   maxTrainIntensity: 2
   smoothingSpeed: 10
-  sensitivity: 1
+  sensitivity: 0.5
 --- !u!20 &8168367945010948805
 Camera:
   m_ObjectHideFlags: 0
@@ -2368,7 +2368,6 @@ MonoBehaviour:
   playerCamera: {fileID: 2378955566042852624}
   pickupCooldown: 1
   grafittiChallenge: {fileID: 0}
-  viewTracker: {fileID: 0}
   testRayScatter: 1
   summaryStatsScene: SummaryScene
   level: subway
@@ -2601,7 +2600,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 512a2da8fc0eec842abe689ca3ff57f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickupAndThrow
-  pickedUpItem: {fileID: 0}
   cam: {fileID: 0}
   playerInteract: {fileID: 0}
   distanceFromCamera: 1.1
