@@ -10,7 +10,7 @@ public class BeeSting : AttackHitbox
     {
         base.Start();
     }
-    protected override void OnTriggerEnter(Collider other)
+    protected override void OnTriggerStay(Collider other)
     {
         foreach (string tag in target)
         {
