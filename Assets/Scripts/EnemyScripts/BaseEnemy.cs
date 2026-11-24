@@ -27,7 +27,7 @@ public class BaseEnemy : MonoBehaviour
    
     // Jumping between links variables
     protected bool canUseLinks = true;
-    private bool isJumping = false;
+    protected bool isJumping = false;
     [SerializeField] protected float jumpTime = 3f;
     [SerializeField] protected float jumpHeight = 3f;
 
@@ -65,8 +65,7 @@ public class BaseEnemy : MonoBehaviour
 
     protected Transform chaseTarget;
     protected bool targetVisible = false;
-
-    private float lookTimer;
+    protected float lookTimer;
     [SerializeField] protected float lookInterval = 0.1f;
 
     [SerializeField] protected float targetMemoryTime = 3f;
@@ -87,7 +86,7 @@ public class BaseEnemy : MonoBehaviour
     //Optional
     protected Animator animator;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         currentHealth = health;
         rb = GetComponent<Rigidbody>();
@@ -382,7 +381,7 @@ public class BaseEnemy : MonoBehaviour
         }
         
     }
-    private void RotateTowardsMovement()
+    protected virtual void RotateTowardsMovement()
     {
         if (agent.velocity.sqrMagnitude < 0.01f)
             return;
@@ -534,7 +533,7 @@ public class BaseEnemy : MonoBehaviour
         }
         return false;
     }
-    private IEnumerator UpdateAnimations()
+    protected IEnumerator UpdateAnimations()
     {
         while(this.isActiveAndEnabled)
         {

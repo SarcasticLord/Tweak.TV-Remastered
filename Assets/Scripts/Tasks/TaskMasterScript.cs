@@ -184,7 +184,7 @@ public class TaskMasterScript : MonoBehaviour
             Debug.Log("All Tasks Complete!");
             
 
-            if(level == "asylm")
+            if(level == "asylum")
             {
                 AddTask(exitAsylumTask);
             }
