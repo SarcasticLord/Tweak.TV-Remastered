@@ -19,7 +19,7 @@ public class PlayerItemInteract : MonoBehaviour
     public float pickupCooldown = 1f;
     
     public GrafittiChallenge grafittiChallenge; //Should be empty in editor
-    public ViewTracker viewTracker; //Should be empty in editor
+    // public ViewTracker viewTracker; //Should be empty in editor
     public float testRayScatter;
     LayerMask carry;
 
@@ -49,7 +49,7 @@ public class PlayerItemInteract : MonoBehaviour
             grafittiChallenge = GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<GrafittiChallenge>();
         }
         
-        viewTracker = GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<ViewTracker>();
+        // viewTracker = GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<ViewTracker>();
         carry = LayerMask.GetMask("Carry");
     }
     private void Update()
@@ -143,7 +143,7 @@ public class PlayerItemInteract : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
 
-                if(level == "asylm")
+                if(level == "asylum")
                 {
                     SceneManager.LoadScene(summaryStatsScene);
                 }
@@ -174,7 +174,7 @@ public class PlayerItemInteract : MonoBehaviour
                 SceneManager.LoadScene("DeathScene");
                 break;
             case "AttackZone":
-                GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<ViewTracker>().baseOffset-=100;
+                // GameObject.FindGameObjectWithTag("ViewTracker").GetComponent<ViewTracker>().baseOffset-=100;
                 if(grafittiChallenge.systemActive){grafittiChallenge.FailState();} //Fail them if they get hit in the minigame
                 break;
             default:
@@ -192,8 +192,6 @@ public class PlayerItemInteract : MonoBehaviour
     void OnInteract(InputValue value)
     {
         RaycastHit hit;
-
-        Debug.Log("E");
 
         if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactDistance))
         {
