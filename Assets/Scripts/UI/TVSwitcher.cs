@@ -43,6 +43,10 @@ public class TVSwitcher : MonoBehaviour
     }
     public void BreakTV()
     {
+        if(isBroken == false)
+        {
+            GameController.instance.IncreaseViewerRetention(GameController.ViewerRetentionCategories.VANDALISM, 0.01f);
+        }
         isBroken = true;
         screen.material.mainTexture = brokenImage;
     }
