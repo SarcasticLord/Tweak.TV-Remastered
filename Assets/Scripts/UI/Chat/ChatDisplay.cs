@@ -8,7 +8,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEditor;
+using UnityEngine.UI;
 
 //by herman
 public class ChatDisplay : MonoBehaviour
@@ -30,29 +32,31 @@ public class ChatDisplay : MonoBehaviour
     // private int lastMinute = -1;
     public string modName;
     private List<GameObject> messagePool;
-    private int messagesToPool;
+    private int messagesToPool = 20;
     
     public List<string> Messages { get; private set; }
 
     void Start()
     {
         // player = GameObject.FindGameObjectWithTag("WholePlayer").GetComponent<>();
-        usernames = usernamesFile.text.Split('\n');
-        messages = messageFile.text.Split('\n');
-        if (!isSuperChat)
-        {
-            for (int i = 0; i < 6; i++)
-            {
-                AddMessage("");
-            }
-            StartCoroutine(DisplayMessagesWithDelay());
-        }
+        //usernames = usernamesFile.text.Split('\n');
+
+        //messages = messageFiles[0].text.Split('\n');
+        //if (!isSuperChat)
+        //{
+        //    for (int i = 0; i < 6; i++)
+        //    {
+        //        AddMessage("");
+        //    }
+        //    StartCoroutine(DisplayMessagesWithDelay());
+        //}
         messagePool = new List<GameObject>();
         GameObject tmp;
         for (int i = 0; i < messagesToPool; i++)
         {
             tmp = Instantiate(messagePrefab);
             tmp.SetActive(false);
+            tmp.transform.SetParent(this.transform);
             messagePool.Add(tmp);
         }
         CycleChatSource();
@@ -134,7 +138,7 @@ public class ChatDisplay : MonoBehaviour
             int randomMesssage = UnityEngine.Random.Range(0, messages.Length);
             string randomColor = colors[UnityEngine.Random.Range(0, colors.Length)];
             //string randomEmoji = emojis[UnityEngine.Random.Range(0,emojis.Length)];
-            // int randNum = UnityEngine.Random.Range(0,10);
+            //int randNum = UnityEngine.Random.Range(0,10);
             
             string username = usernames[randomName].Trim();
             string message = messages[randomMesssage].Trim();
