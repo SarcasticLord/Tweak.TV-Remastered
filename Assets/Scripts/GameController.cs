@@ -75,7 +75,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject streamSniper;
     private Transform streamSniperSpawnpoint;
     [SerializeField] private float streamSniperCooldown = 120f;
-    [SerializeField] private float streamSniperSpawnTimer = 0f;
+    [SerializeField] private static float streamSniperSpawnTimer = 0f;
     [SerializeField] private float streamSniperSpawnChance = 0f;
     [SerializeField] private float currentStreamSniperSpawnChance;
     private Coroutine _activeWeightedChanceToSpawnSniper;
@@ -241,9 +241,9 @@ public class GameController : MonoBehaviour
         
         // if (InGameUIController.gameTime <= 60) return; //Prevent streamsniper from spawning before a minute passes
 
-        // if (viewCount <= 0 && streamSniperSpawnTimer < streamSniperCooldown/2)
+        // if (viewCount <= 0)
         // {
-        //     SpawnStreamSniper();
+        //     streamSniperSpawnTimer = 999f; //Im tired, I think this is what was breaking it before, so instead of directly calling the function lets just overcap the time
         // }
     }
 
@@ -315,7 +315,7 @@ public class GameController : MonoBehaviour
         WaitForSeconds waitTime = new WaitForSeconds(1f);
         yield return waitTime;
 
-        while(streamSniperSpawnChance < currentStreamSniperSpawnChance)
+        while(streamSniperSpawnChance <= currentStreamSniperSpawnChance)
         {
             if(streamSniperSpawnTimer < streamSniperCooldown)
             {
@@ -324,7 +324,9 @@ public class GameController : MonoBehaviour
 
             else //if streamSniperSpawnChance = 1, 100% chance to spawn StreamSniper
             {
-                streamSniperSpawnChance += 0.01f;
+                yield return new WaitForSecondsRealtime(5f); 
+                streamSniperSpawnChance = UnityEngine.Random.Range(0f,1f);
+                //If spawn chance fails, wait 5 seconds before trying again
             }
             yield return waitTime;
         }
@@ -337,7 +339,7 @@ public class GameController : MonoBehaviour
         Instantiate(streamSniper, streamSniperSpawnpoint.position, streamSniper.transform.rotation);
         streamSniperSpawnTimer = 0f;//Reset stream sniper spawn timer
         streamSniperSpawnChance = 0f;//Reset stream sniper spawn chance
-        currentStreamSniperSpawnChance = UnityEngine.Random.Range(0f, 1.0f);
+        currentStreamSniperSpawnChance = UnityEngine.Random.Range(0f, 1f);
         if(_activeWeightedChanceToSpawnSniper != null)
         {
             StopCoroutine(_activeWeightedChanceToSpawnSniper);
