@@ -10,9 +10,11 @@ public class StartingSoonUI : MonoBehaviour
 
     public GameObject asylumSelected;
     public GameObject stationSelected;
+    public GameObject demoSelected;
 
     public string asylumScene = "Asylum";
     public string stationScene = "LoadingScene";
+    public string demoScene = "Tutorial";
     public static string lastScene = "";
 
     private string selectedLevel = "";
@@ -26,6 +28,7 @@ public class StartingSoonUI : MonoBehaviour
         TaskMasterScript.instance.level="asylum";
         asylumSelected.SetActive(true);
         stationSelected.SetActive(false);
+        demoSelected.SetActive(false);
         selectedLevel = asylumScene;
         TaskMasterScript.instance.EndAllTasks();
         TaskMasterScript.instance.ApplyAsylumTasks();
@@ -37,9 +40,22 @@ public class StartingSoonUI : MonoBehaviour
         TaskMasterScript.instance.level="subway";
         asylumSelected.SetActive(false);
         stationSelected.SetActive(true);
+        demoSelected.SetActive(false);
         selectedLevel = stationScene;
         TaskMasterScript.instance.EndAllTasks();
         TaskMasterScript.instance.ApplySubwayTasks();
+    }
+
+    public void SelectDemo()
+    {
+        lastScene = "Tutorial";
+        //TaskMasterScript.instance.level="Tutorial";
+        asylumSelected.SetActive(false);
+        stationSelected.SetActive(false);
+        demoSelected.SetActive(true);
+        selectedLevel = demoScene;
+        //TaskMasterScript.instance.EndAllTasks();
+        //TaskMasterScript.instance.ApplySubwayTasks();
     }
 
     public void Play()
