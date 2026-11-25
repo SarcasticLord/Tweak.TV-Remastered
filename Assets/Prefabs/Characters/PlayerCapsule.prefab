@@ -2191,6 +2191,7 @@ GameObject:
   - component: {fileID: 8983731793372942916}
   - component: {fileID: 1147610699776607998}
   - component: {fileID: 2277370432524817760}
+  - component: {fileID: 2017017259531152153}
   m_Layer: 3
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -2367,7 +2368,6 @@ MonoBehaviour:
   heldObject: {fileID: 0}
   playerCamera: {fileID: 2378955566042852624}
   pickupCooldown: 1
-  grafittiChallenge: {fileID: 0}
   testRayScatter: 1
   summaryStatsScene: SummaryScene
   level: subway
@@ -2624,6 +2624,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5531d3234448462aa711817b9c210d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleScore
+--- !u!114 &2017017259531152153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5793440834577206791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe5b0f5c2ccc8e643b47f66664d36d49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerProximityScript
+  staticRawImage: {fileID: 2001545366369164901}
+  maxAlpha: 0.01
 --- !u!1 &6095978083870461345
 GameObject:
   m_ObjectHideFlags: 0
@@ -3104,6 +3118,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1635398246310125708}
     m_Modifications:
+    - target: {fileID: 86642166945719467, guid: 2a3b8399145964088adbf6f570f5f414, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 176470591412654832, guid: 2a3b8399145964088adbf6f570f5f414, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -188.83789
@@ -3614,6 +3632,17 @@ PrefabInstance:
       addedObject: {fileID: 1839995070677655807}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a3b8399145964088adbf6f570f5f414, type: 3}
+--- !u!114 &2001545366369164901 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 86642166945719467, guid: 2a3b8399145964088adbf6f570f5f414, type: 3}
+  m_PrefabInstance: {fileID: 1942523069324982990}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
 --- !u!224 &4319528331427417205 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2379930650228192955, guid: 2a3b8399145964088adbf6f570f5f414, type: 3}

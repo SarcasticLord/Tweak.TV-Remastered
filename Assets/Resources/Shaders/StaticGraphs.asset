@@ -28,7 +28,7 @@ CustomRenderTexture:
   m_EnableRandomWrite: 0
   m_TextureSettings:
     serializedVersion: 2
-    m_FilterMode: 1
+    m_FilterMode: 0
     m_Aniso: 0
     m_MipBias: 0
     m_WrapU: 1
@@ -38,12 +38,12 @@ CustomRenderTexture:
   m_VolumeDepth: 1
   m_ShadowSamplingMode: 2
   m_Material: {fileID: 2100000, guid: 09ca8c0b9e647c74c9125cc550dc17a5, type: 2}
-  m_InitSource: 0
-  m_InitMaterial: {fileID: 0}
+  m_InitSource: 1
+  m_InitMaterial: {fileID: 2100000, guid: 09ca8c0b9e647c74c9125cc550dc17a5, type: 2}
   m_InitColor: {r: 1, g: 1, b: 1, a: 1}
-  m_InitTexture: {fileID: 0}
-  m_UpdateMode: 0
-  m_InitializationMode: 2
+  m_InitTexture: {fileID: 8600000}
+  m_UpdateMode: 1
+  m_InitializationMode: 1
   m_UpdateZoneSpace: 0
   m_CurrentUpdateZoneSpace: 0
   m_UpdateZones: []
