@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
     public static event Action<float> OnViewerRetentionChanged;
     public static event Action<BaseEnemy.EnemyType> OnEnemyKilled;
 
+    SubwayLights[] subwayLight;
+
     //Enemy related stuff
     [Header("Enemy Count")] 
     #region 
@@ -119,7 +121,7 @@ public class GameController : MonoBehaviour
         gameStarted = true;
         if(audio!=null){audio.volume = 0.0f;}
         
-    
+        subwayLight = FindObjectsOfType<SubwayLights>();
 
         //Viewer Retention Base stats
         viewerRetention = 1f;
@@ -335,6 +337,11 @@ public class GameController : MonoBehaviour
 
     public void SpawnStreamSniper()
     {
+        foreach(SubwayLights light in subwayLight)
+        {
+            light.StartFlickering();
+        }
+
         Debug.Log("Spawning New Stream Sniper");
         Instantiate(streamSniper, streamSniperSpawnpoint.position, streamSniper.transform.rotation);
         streamSniperSpawnTimer = 0f;//Reset stream sniper spawn timer

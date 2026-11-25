@@ -17,10 +17,9 @@ public class SubwayLights : MonoBehaviour
     [SerializeField] private Color emissionColor = Color.white;
     [SerializeField] private float offLight = 0f;
     [SerializeField] private float onLight = 10f;
-    [SerializeField] private bool turnOffOnExit;
 
     [Header("Flicker Settings")] // this is the stuff that flickers the lights when theyre on   // they are set public so you should be able to access them
-    [SerializeField] public bool flicker = true;
+    public bool flicker = true;
     [SerializeField] public float minFlickerTime = 0.05f;
     [SerializeField] public float maxFlickerTime = 0.4f;
     [SerializeField] public float flickerChance = 0.6f;
@@ -99,7 +98,7 @@ public class SubwayLights : MonoBehaviour
 
             if(Random.value < flickerChance)
             {
-                float randomIntensity = Random.Range(0f, onLight);
+                float randomIntensity = Random.Range(2f, onLight);
 
                 if(light != null)
                 {
@@ -122,6 +121,18 @@ public class SubwayLights : MonoBehaviour
             }
         }
     }
+
+    public void StartFlickering()
+    {
+        flicker = true;
+
+        if(isOn && flickerCo == null)
+        {
+            flickerCo = StartCoroutine(FlickerLight());
+        }
+    }
+
+    
     private void UpdateGlow(float intensity)
     {
         if (glowMat != null)
