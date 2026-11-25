@@ -67,7 +67,7 @@ public class AsylumLights : MonoBehaviour
 
     void OnTriggerEnter(Collider other) // when the player enters the collider
     {
-        if(other.CompareTag("Player") && other.CompareTag("StreamSniper") && !foreverLight)
+        if(other.CompareTag("Player") || other.CompareTag("StreamSniper") && !foreverLight)
         {
             SetLight(true);
         }
@@ -75,7 +75,7 @@ public class AsylumLights : MonoBehaviour
 
     void OnTriggerExit(Collider other) // when the player leaves the collider
     {
-        if (turnOffOnExit && other.CompareTag("Player") && !foreverLight)
+        if (turnOffOnExit && other.CompareTag("Player") || other.CompareTag("StreamSniper") && !foreverLight)
         {
             SetLight(false);
         }
