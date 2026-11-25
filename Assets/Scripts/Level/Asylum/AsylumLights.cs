@@ -67,7 +67,7 @@ public class AsylumLights : MonoBehaviour
 
     void OnTriggerEnter(Collider other) // when the player enters the collider
     {
-        if(other.CompareTag("Player") && !foreverLight)
+        if(other.CompareTag("Player") && other.CompareTag("StreamSniper") && !foreverLight)
         {
             SetLight(true);
         }
