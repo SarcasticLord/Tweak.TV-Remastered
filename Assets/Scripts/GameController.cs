@@ -88,6 +88,8 @@ public class GameController : MonoBehaviour
     public static int enemiesKilled;
     public static float streamLength;
     public static int maxViewership;
+    public static int subscriberCount;
+    public int subscribersGained; 
     #endregion
 
     [Header("Click audio")]
@@ -354,4 +356,9 @@ public class GameController : MonoBehaviour
         _activeWeightedChanceToSpawnSniper = StartCoroutine(nameof(WeightedChanceToSpawnSniper));
     }
 
+    public void ConvertViewsToSubscribers()
+    {
+        subscribersGained = Mathf.FloorToInt(viewCount * 0.1f); //10% of final view count become subscribers
+        subscriberCount += subscribersGained;
+    }
 }
