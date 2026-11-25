@@ -5,7 +5,8 @@ public class EnemySpawner : MonoBehaviour
 {
 
     public Transform EnemyPoint;
-    public GameObject Enemy; 
+    public GameObject Rat; 
+    public GameObject Bee;
     public GameObject EnemyExists;
     
 
@@ -17,6 +18,7 @@ public class EnemySpawner : MonoBehaviour
     public int spawnGap = 5;
 
     private bool isSpawning = false;
+    private int nextEnemy = 0; // alternates between spawning the bee and the rat
 
     private Coroutine EnemyCoroutine;
 
@@ -62,7 +64,17 @@ public class EnemySpawner : MonoBehaviour
             {
                 if (isSpawning && GameController.instance.increaseCurrEnemyCount())
                 {
-                    EnemyExists = Instantiate(Enemy, EnemyPoint.position, facingRight ? EnemyPoint.rotation : Quaternion.Euler(-90, 0, 0));
+                    if(nextEnemy == 0)
+                    {
+                        EnemyExists = Instantiate(Rat, EnemyPoint.position, facingRight ? EnemyPoint.rotation : Quaternion.Euler(-90, 0, 0));
+                        nextEnemy = 1;
+                    }
+                    else
+                    {
+                        EnemyExists = Instantiate(Bee, EnemyPoint.position, facingRight ? EnemyPoint.rotation : Quaternion.Euler(-90, 0, 0));
+                        nextEnemy = 0;
+                    }
+                    
                 }
             }
             
