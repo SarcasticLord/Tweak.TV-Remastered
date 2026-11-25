@@ -20,6 +20,7 @@ public class BaseItem : MonoBehaviour
     public Quaternion itemHeldRot;
     protected Quaternion origRot;
 
+    public Vector3 rotationAxis = new Vector3(0f, 30f, 0f);
 
     protected PlayerInventoryManager playerInventory; //gathered from inventory
 
@@ -63,7 +64,7 @@ public class BaseItem : MonoBehaviour
         if (!inInventory)
         {
             //spins as a pickup when out of inventory
-            transform.Rotate(new Vector3(0f, 30f, 0f) * rotSpeed * Time.deltaTime);
+            transform.Rotate(rotationAxis * rotSpeed * Time.deltaTime);
         }
         if (inInventory && transform.parent != null)
         {
