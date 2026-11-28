@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 993530f8b21843548a82c04346b03b59, type: 3}
+  m_Name: combatmessagesPool
+  m_EditorClassIdentifier: Assembly-CSharp::ChatMessage
+  modeName: combatmessages
+  delayRange: {x: 0.5, y: 2}
+  messages:
+  - messageText: maybe try actually hitting the target?
+    weight: 10
+  - messageText: are you blind?
+    weight: 10
+  - messageText: "erm\u2026 he's actually doing good."
+    weight: 10
+  - messageText: this feels like when i play games with my baby cousin and feel my
+      soul leaving
+    weight: 10
+  - messageText: THE GOAT!!!
+    weight: 10
+  - messageText: WOAHHH I ALMOST DROPPED MY BROCCOLI CHEDDAR BREAD BOWL
+    weight: 10
+  - messageText: Like a fetus fresh out the womb
+    weight: 10
+  - messageText: I played this game as a kid
+    weight: 10
+  - messageText: "we need to take you to a neurologist\u2026"
+    weight: 10
+  - messageText: street level btw
+    weight: 10
+  - messageText: HECK YA WRECK THE PLACE
+    weight: 10
+  - messageText: Hide yo kids, hide yo wife
+    weight: 10
+  - messageText: Oh my god
+    weight: 10
+  - messageText: FINALLY ACTION JESUS
+    weight: 10
+  importFile: {fileID: 4900000, guid: 3fdc96d9ff8ac764c81603b940e4b5a0, type: 3}
+  importWeight: 10
+  appendOnImport: 0

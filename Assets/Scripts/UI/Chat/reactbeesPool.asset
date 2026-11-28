@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 993530f8b21843548a82c04346b03b59, type: 3}
+  m_Name: reactbeesPool
+  m_EditorClassIdentifier: Assembly-CSharp::ChatMessage
+  modeName: reactbees
+  delayRange: {x: 0.5, y: 2}
+  messages:
+  - messageText: THERES A BEE!???!?!
+    weight: 10
+  - messageText: According to all known laws of aviation, there is no way a bee should
+      be able to fly. Its wings are too small to get its fat little body off the
+      ground. The bee, of course, flies anyway because bees don't ca
+    weight: 10
+  - messageText: they added bees to minecraft?
+    weight: 10
+  - messageText: bees mentioned who cheered
+    weight: 10
+  - messageText: do you have your epipen
+    weight: 10
+  importFile: {fileID: 4900000, guid: 5e2ad344117d76941acd0d3afdefee7d, type: 3}
+  importWeight: 10
+  appendOnImport: 0

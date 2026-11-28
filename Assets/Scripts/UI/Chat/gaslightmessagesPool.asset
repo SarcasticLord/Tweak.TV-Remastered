@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 993530f8b21843548a82c04346b03b59, type: 3}
+  m_Name: gaslightmessagesPool
+  m_EditorClassIdentifier: Assembly-CSharp::ChatMessage
+  modeName: gaslightmessages
+  delayRange: {x: 0.5, y: 2}
+  messages:
+  - messageText: "throw stuff at the door like\u2026 6 or 7 times"
+    weight: 10
+  - messageText: make a crafting table
+    weight: 10
+  - messageText: I went to report this stream but there was no option for cringe
+      so i just picked terrorism
+    weight: 10
+  - messageText: "spin for me pwincess\u2026"
+    weight: 10
+  - messageText: "Are you just\u2026 not paying attention"
+    weight: 10
+  - messageText: Bro look behind you
+    weight: 10
+  - messageText: You missed the only hint in the game
+    weight: 10
+  - messageText: RIGHT THERE RIGHT THERE
+    weight: 10
+  - messageText: up up down down left right left right b a start
+    weight: 10
+  - messageText: Wait what was that
+    weight: 10
+  - messageText: press T for insta win
+    weight: 10
+  - messageText: Look at the writing on the walls say
+    weight: 10
+  - messageText: "if you stare at that wall for 30 seconds you\u2019ll get a secret
+      item"
+    weight: 10
+  - messageText: you can walk through that (item) btw
+    weight: 10
+  - messageText: DOWN RIGHT LEFT
+    weight: 10
+  - messageText: UP LEFT RIGHT
+    weight: 10
+  importFile: {fileID: 4900000, guid: e6353def3e1c2d34b9c3216f2caf0cfa, type: 3}
+  importWeight: 10
+  appendOnImport: 0

@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 993530f8b21843548a82c04346b03b59, type: 3}
+  m_Name: deathmessagesPool
+  m_EditorClassIdentifier: Assembly-CSharp::ChatMessage
+  modeName: poorperformancemessages
+  delayRange: {x: 0.5, y: 2}
+  messages:
+  - messageText: good job, loser.
+    weight: 10
+  - messageText: this is going to ruin the tour :(
+    weight: 10
+  - messageText: what will this do to the economy?
+    weight: 10
+  - messageText: I genuinely hope you feel nothing but pain
+    weight: 10
+  - messageText: Have you ever tried going outside perchance?
+    weight: 10
+  - messageText: "there goes my streamer\u2026 watch him as he falls"
+    weight: 10
+  - messageText: "we\u2019ve gotta put you down dawg\u2026"
+    weight: 10
+  - messageText: maybe next time!
+    weight: 10
+  - messageText: "that\u2019s crazyyyy"
+    weight: 10
+  - messageText: L in the Chat
+    weight: 10
+  - messageText: chat what the hell
+    weight: 10
+  - messageText: LLLLL
+    weight: 10
+  - messageText: LLLLl
+    weight: 10
+  - messageText: LLL
+    weight: 10
+  - messageText: lLLLLL
+    weight: 10
+  - messageText: L
+    weight: 10
+  - messageText: LMFAOOOO
+    weight: 10
+  - messageText: If the sun can black out on a monday afternoon so can you
+    weight: 10
+  - messageText: oof
+    weight: 10
+  - messageText: frick my stupid chungus life
+    weight: 10
+  - messageText: bro got drawn and quartered
+    weight: 10
+  - messageText: shouldve dodged unc
+    weight: 10
+  - messageText: chopped AND unc fr no cap
+    weight: 10
+  - messageText: "I\u2019m a starving child starving to death and this is the very
+      last thing I have ever seen. Gootbye."
+    weight: 10
+  - messageText: kitten whiskers it appears you've fallen off
+    weight: 10
+  - messageText: my goat is washed
+    weight: 10
+  - messageText: literally wasting away again in Margaritaville
+    weight: 10
+  - messageText: I call dibs on their camera
+    weight: 10
+  - messageText: Git gud
+    weight: 10
+  importFile: {fileID: 4900000, guid: 1b5dcbba5a474474bb13d5509f76543c, type: 3}
+  importWeight: 10
+  appendOnImport: 0
