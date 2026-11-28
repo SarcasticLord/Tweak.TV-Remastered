@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 993530f8b21843548a82c04346b03b59, type: 3}
+  m_Name: averagechatmessagePool
+  m_EditorClassIdentifier: Assembly-CSharp::ChatMessage
+  modeName: chat
+  delayRange: {x: 0.5, y: 2}
+  messages:
+  - messageText: "I swear he\u2019s just vibing with the terrain."
+    weight: 10
+  - messageText: "This man\u2019s got the navigation skills of a GPS with attitude."
+    weight: 10
+  - messageText: "He\u2019s got the stride of someone who forgot the objective."
+    weight: 10
+  - messageText: "He\u2019s exploring like he\u2019s auditioning for a travel vlog."
+    weight: 10
+  - messageText: "I think he\u2019s trying to unlock a secret door with vibes."
+    weight: 10
+  - messageText: "He\u2019s got the map memorized... or not."
+    weight: 10
+  - messageText: This is the slow burn of greatness.
+    weight: 10
+  - messageText: "He\u2019s walking like he\u2019s narrating a nature documentary."
+    weight: 10
+  - messageText: "He\u2019s taking the long way for dramatic effect."
+    weight: 10
+  - messageText: "He\u2019s walking like the floor might betray him."
+    weight: 10
+  - messageText: "I\u2019m here for the scenic route and the chaos."
+    weight: 10
+  - messageText: "He\u2019s taking the scenic route to assert dominance."
+    weight: 10
+  - messageText: That was a bold move for no reason.
+    weight: 10
+  - messageText: "He\u2019s speedrunning like he\u2019s late for dinner."
+    weight: 10
+  - messageText: "I think he\u2019s roleplaying as a confused NPC."
+    weight: 10
+  - messageText: "I swear he\u2019s taking the scenic route on purpose."
+    weight: 10
+  - messageText: "I think he\u2019s trying to unlock achievements by accident."
+    weight: 10
+  - messageText: "I swear he\u2019s just trying to confuse the viewers."
+    weight: 10
+  - messageText: "He\u2019s walking like he\u2019s avoiding responsibilities."
+    weight: 10
+  - messageText: "He\u2019s got the stride of a confused tourist."
+    weight: 10
+  - messageText: "This is the most dramatic hallway I\u2019ve ever seen."
+    weight: 10
+  - messageText: I think he just walked past the objective... again.
+    weight: 10
+  - messageText: "I swear he\u2019s just trying to make the level last longer."
+    weight: 10
+  - messageText: That detour was sponsored by curiosity.
+    weight: 10
+  - messageText: Is he lost or just sightseeing?
+    weight: 10
+  - messageText: "He\u2019s moving like he\u2019s narrating his own journey."
+    weight: 10
+  - messageText: "He\u2019s got the pathfinding skills of a squirrel in a maze."
+    weight: 10
+  - messageText: "He\u2019s moving like he\u2019s avoiding eye contact with the level."
+    weight: 10
+  - messageText: That corner looked suspicious... and he still walked into it.
+    weight: 10
+  - messageText: "He\u2019s got the stealth of a marching band."
+    weight: 10
+  - messageText: That wall definitely looked climbable... nope.
+    weight: 10
+  - messageText: That jump was a leap of faith and a prayer.
+    weight: 10
+  - messageText: This is peak wandering energy.
+    weight: 10
+  - messageText: "He\u2019s checking every corner like it owes him money."
+    weight: 10
+  - messageText: "He\u2019s got the agility of a caffeinated cat."
+    weight: 10
+  - messageText: That jump was way too close for comfort.
+    weight: 10
+  - messageText: "He\u2019s walking like he\u2019s in a fashion show."
+    weight: 10
+  - messageText: "I\u2019m convinced he\u2019s mapping the level for science."
+    weight: 10
+  - messageText: 'Parkour level: mildly impressive.'
+    weight: 10
+  - messageText: This is what peak wandering looks like.
+    weight: 10
+  - messageText: This is peak exploration content.
+    weight: 10
+  - messageText: That was a jump scare from a rock.
+    weight: 10
+  - messageText: "I think he\u2019s trying to confuse the map."
+    weight: 10
+  - messageText: "He\u2019s moving like he\u2019s dodging invisible enemies."
+    weight: 10
+  - messageText: "I think he\u2019s trying to unlock lore by walking weird."
+    weight: 10
+  - messageText: "He\u2019s exploring like he\u2019s looking for snacks."
+    weight: 10
+  - messageText: "I think he\u2019s trying to break the game physics."
+    weight: 10
+  - messageText: "He\u2019s moving like he\u2019s trying to avoid spoilers."
+    weight: 10
+  - messageText: "This is the most intense walking simulator I\u2019ve ever seen."
+    weight: 10
+  - messageText: "He\u2019s walking like the floor is lava... emotionally."
+    weight: 10
+  importFile: {fileID: 4900000, guid: d57cfee9f5e732a409288416b172777b, type: 3}
+  importWeight: 10
+  appendOnImport: 1

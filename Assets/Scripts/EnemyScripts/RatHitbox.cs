@@ -5,7 +5,7 @@ public class RatHitbox : AttackHitbox
 {
     private PlayerStatusEffectTracker _playerStatus;
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerStay(Collider other)
     {
 
         foreach (string tag in target)
