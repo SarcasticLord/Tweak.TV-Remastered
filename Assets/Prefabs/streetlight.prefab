@@ -307,8 +307,45 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 98f26b09c6de243779851a77d9ebd21c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7518650962936387647}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 98f26b09c6de243779851a77d9ebd21c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7225343048408906712}
   m_SourcePrefab: {fileID: 100100000, guid: 98f26b09c6de243779851a77d9ebd21c, type: 3}
+--- !u!23 &2963738999376788185 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1806680513116206669, guid: 98f26b09c6de243779851a77d9ebd21c, type: 3}
+  m_PrefabInstance: {fileID: 5750025042197328746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4831615412976782907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 98f26b09c6de243779851a77d9ebd21c, type: 3}
+  m_PrefabInstance: {fileID: 5750025042197328746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7225343048408906712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831615412976782907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332ccdd291938473fa0867d7e364e131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SubwayLights
+  light: {fileID: 829445408714211795}
+  glowing: {fileID: 2963738999376788185}
+  glowingMaterial: {fileID: 2100000, guid: 08e9d88e1fb71c34eab622a551517c46, type: 2}
+  materialSlot: 2
+  emissionColor: {r: 1, g: 1, b: 1, a: 1}
+  offLight: 0
+  onLight: 10
+  flicker: 1
+  minFlickerTime: 0.05
+  maxFlickerTime: 0.4
+  flickerChance: 0.6
+  foreverLight: 1
 --- !u!4 &5207999771313755265 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 98f26b09c6de243779851a77d9ebd21c, type: 3}
