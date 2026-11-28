@@ -116,7 +116,7 @@ public class TaskMasterScript : MonoBehaviour
     public void StartTaskMasterScript()
     {
         
-        descDisplay=GameObject.FindGameObjectWithTag("DescDisplay").GetComponent<TextMeshProUGUI>();
+        descDisplay = GameObject.FindGameObjectWithTag("DescDisplay").GetComponent<TextMeshProUGUI>();
 
         objectsCollected=0;grafittiCompleted=0;enemiesKilled=0;
         SetTasks();
