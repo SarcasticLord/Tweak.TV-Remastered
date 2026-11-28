@@ -13,7 +13,7 @@ public class AttackHitbox : MonoBehaviour
         Destroy(gameObject, duration);
     }
 
-    protected virtual void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerStay(Collider other)
     {
         foreach (string tag in target)
         {
