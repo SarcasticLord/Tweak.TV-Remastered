@@ -68,14 +68,14 @@ public class StartingSoonUI : MonoBehaviour
     public void SelectCenter()
     {
         lastScene = "Center";
-        //TaskMasterScript.instance.level="Tutorial";
+        TaskMasterScript.instance.level="Center";
         asylumSelected.SetActive(false);
         stationSelected.SetActive(false);
         demoSelected.SetActive(false);
         centerSelected.SetActive(true);
         selectedLevel = centerScene;
-        //TaskMasterScript.instance.EndAllTasks();
-        //TaskMasterScript.instance.ApplySubwayTasks();
+        TaskMasterScript.instance.EndAllTasks();
+        TaskMasterScript.instance.ApplyCityTasks();
     }
 
     public void Play()

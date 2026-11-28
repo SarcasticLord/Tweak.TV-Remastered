@@ -12,6 +12,7 @@ public class TaskMasterScript : MonoBehaviour
     public List<TaskTemplate> availableTasks = new List<TaskTemplate>(); //All of the tasks needed to be completed, where 0 is always the exit task
     public TaskTemplate endTask; //Should be set to the end task
     public TaskTemplate exitSubwayTask;
+    public TaskTemplate exitCenterTask;
     public TaskTemplate exitAsylumTask; 
     public TextMeshProUGUI descDisplay; //The description of the current task
     // public ViewTracker viewTracker; //The viewtracker
@@ -23,6 +24,7 @@ public class TaskMasterScript : MonoBehaviour
     public int grafittiCompleted; //The current number of enemies killed
     public TaskTemplate[] asylumTasks;
     public TaskTemplate[] subwayTasks;
+    public TaskTemplate[] centerTasks;
     public TaskTemplate escapeTask;
     public string level;
     public GameObject coffeeTaskItem;
@@ -92,6 +94,11 @@ public class TaskMasterScript : MonoBehaviour
     {
         availableTasks.AddRange(subwayTasks);
     }
+
+    public void ApplyCityTasks()
+    {
+        availableTasks.AddRange(centerTasks);
+    }
     public void Awake()
     {
         //Singleton design patttern
@@ -140,7 +147,7 @@ public class TaskMasterScript : MonoBehaviour
         }
         else if (level == "subway")
         {
-            Debug.Log("Addressed");
+            Debug.Log("Subway tasks are here");
             GameObject[] coffeePoints = GameObject.FindGameObjectsWithTag("CoffeeSpawns");
             for (int i = 0; i < coffeePoints.Length; i++)
             {
@@ -192,6 +199,11 @@ public class TaskMasterScript : MonoBehaviour
             else if(level == "subway")
             {
                 AddTask(exitSubwayTask);
+            }
+
+            else if(level == "Center")
+            {
+                AddTask(exitCenterTask);
             }
         }
         // viewTracker.baseOffset+=endedTask.TaskViewGain;

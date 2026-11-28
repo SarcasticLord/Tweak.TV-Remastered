@@ -847,6 +847,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3508133229675528306, guid: 20f106471a2a6f941ad407a4d0be2382, type: 3}
+      propertyPath: centerTasks.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508133229675528306, guid: 20f106471a2a6f941ad407a4d0be2382, type: 3}
       propertyPath: successSounds.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -854,6 +858,26 @@ PrefabInstance:
       propertyPath: 'asylumTasks.Array.data[4]'
       value: 
       objectReference: {fileID: 11400000, guid: 931a0b3f0893f6b4f9822709ea15caff, type: 2}
+    - target: {fileID: 3508133229675528306, guid: 20f106471a2a6f941ad407a4d0be2382, type: 3}
+      propertyPath: 'centerTasks.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 48bf57fcfc4b0f949ad0c275b6e3f801, type: 2}
+    - target: {fileID: 3508133229675528306, guid: 20f106471a2a6f941ad407a4d0be2382, type: 3}
+      propertyPath: 'centerTasks.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a2fabecc86593346873c23cd24c8a60, type: 2}
+    - target: {fileID: 3508133229675528306, guid: 20f106471a2a6f941ad407a4d0be2382, type: 3}
+      propertyPath: 'centerTasks.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 45a9ebc8a02432a408effd72622e2266, type: 2}
+    - target: {fileID: 3508133229675528306, guid: 20f106471a2a6f941ad407a4d0be2382, type: 3}
+      propertyPath: 'centerTasks.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9195fadadd2add34fae965b4b5b1f9c2, type: 2}
+    - target: {fileID: 3508133229675528306, guid: 20f106471a2a6f941ad407a4d0be2382, type: 3}
+      propertyPath: 'centerTasks.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: bcf2ba170ab1b2a499ebbb1a6a172390, type: 2}
     - target: {fileID: 3508133229675528306, guid: 20f106471a2a6f941ad407a4d0be2382, type: 3}
       propertyPath: 'subwayTasks.Array.data[4]'
       value: 
@@ -7245,8 +7269,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 942046919}
   m_HandleRect: {fileID: 942046918}
   m_Direction: 2
-  m_Value: 0.9999962
-  m_Size: 0.8062343
+  m_Value: 0.9999972
+  m_Size: 0.77013224
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
