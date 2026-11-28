@@ -249,13 +249,16 @@ public class PlayerStatusEffectTracker : MonoBehaviour
             {
                 //Can change the rate the effect decreases after it has been triggered
                 poisonStatus -= _poisonDecreaseVal * 20; //Empties Status quicker
+                GameController.instance.DecreaseViewerRetention(0.1f);//Decrease viewer retention by 10% every time it ticks down
+
+                yield return new WaitForSeconds(_poisonedDecreaseRate);//TODO: Change the decrease rate when you are affected with the effect
 
                 if (_poisonStatus <= 0)
                 {
                     statusEffects.OnRemovePoison();
                     poisoned = false;
                 }
-                yield return new WaitForSeconds(_poisonedDecreaseRate);//TODO: Change the decrease rate when you are affected with the effect
+                
             }
 
         }

@@ -27,6 +27,7 @@ public class BearTrap : BaseTrap
                 _playerStatus.AddToStatus(PlayerStatusEffectTracker.StatusEffect.TRAPPED, 100f);
                 _effects.trappedEffect = trapEffect;
                 GameObject trap = Instantiate(closedTrap, gameObject.transform.position, gameObject.transform.rotation);
+                GameController.instance.DecreaseViewerRetention(1f);
                 spawnedClosedTrap = true;
                 Destroy(trap, duration + 1f);
                 Destroy(this.gameObject, duration + 1f);
